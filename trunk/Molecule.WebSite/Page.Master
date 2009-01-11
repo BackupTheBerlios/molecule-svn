@@ -21,8 +21,10 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  --%>
- 
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Molecule.WebSite.Page" EnableTheming="true" %>
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Molecule.WebSite.Page"
+    EnableTheming="true" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,29 +36,22 @@
 <body>
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
-    <div id="menuUpperLeft">
-        <div id="menuUpperRight">
-            <div id="menuLowerLeft">
-                <div id="menuLowerRight">
-                    <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
-                    <asp:LoginName ID="LoginName1" runat="server" />
-                    !
-                    <asp:TreeView ID="NavigationTree" runat="Server" ImageSet="Arrows" HoverNodeStyle-Font-Bold="True"
-                        RootNodeStyle-ForeColor="Blue" DataSourceID="SiteMapDataSource">
-                        <Nodes>
-                        </Nodes>
-                        <HoverNodeStyle Font-Bold="True"></HoverNodeStyle>
-                        <RootNodeStyle ForeColor="Blue"></RootNodeStyle>
-                    </asp:TreeView>
-                    <cc1:RoundedCornersExtender ID="NavigationTree_RoundedCornersExtender" runat="server"
-                        Enabled="True" TargetControlID="NavigationTree">
-                    </cc1:RoundedCornersExtender>
-                    <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
-                    <asp:LoginStatus ID="loginStatus" runat="server" />
-                </div>
-            </div>
-        </div>
-    </div>
+    <asp:Panel runat="server" CssClass="menuPanel" ID="menuPanel">
+    <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
+        <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" /> 
+        <asp:LoginName ID="LoginName1" runat="server" /> !
+        <asp:TreeView ID="NavigationTree" runat="Server" ImageSet="Arrows" HoverNodeStyle-Font-Bold="True"
+            RootNodeStyle-ForeColor="Blue" DataSourceID="SiteMapDataSource">
+            <HoverNodeStyle Font-Bold="True"></HoverNodeStyle>
+            <RootNodeStyle ForeColor="Blue"></RootNodeStyle>
+        </asp:TreeView>
+        <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
+        <asp:LoginStatus ID="loginStatus" runat="server" />
+        </asp:Panel>
+    </asp:Panel>
+    <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
+            TargetControlID="menuContent" >
+        </cc1:RoundedCornersExtender>
     <div id="maincontentPanel">
         <asp:ContentPlaceHolder ID="mainContent" runat="server">
         </asp:ContentPlaceHolder>

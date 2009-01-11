@@ -7,34 +7,15 @@ html>body .menu {
   position: fixed
 }
 
-#menuUpperLeft {
+.menuPanel {
 	position: absolute;
 	top: 50px;
 	left: 20px;
 	width: 150px;
+}
+
+.menuContent {
 	background-color: #d3d7cf;
-	
-	background-image : url('/App_Themes/default/images/boxupperleft.png');
-	background-repeat : no-repeat;
-	background-position : top left;
-}
-
-#menuUpperRight {
-	background-image : url('/App_Themes/default/images/boxupperright.png');
-	background-repeat : no-repeat;
-	background-position : top right;
-}
-
-#menuLowerLeft{
-	background-image : url('/App_Themes/default/images/boxlowerleft.png');
-	background-repeat : no-repeat;
-	background-position : bottom left;
-}
-
-#menuLowerRight{
-	background-image : url('/App_Themes/default/images/boxlowerright.png');
-	background-repeat : no-repeat;
-	background-position : bottom right;
 }
 
 #maincontentPanel {

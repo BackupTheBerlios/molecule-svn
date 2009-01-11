@@ -185,10 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="App_Themes\default\images\boxlowerleft.png" />
-    <Content Include="App_Themes\default\images\boxlowerright.png" />
-    <Content Include="App_Themes\default\images\boxupperleft.png" />
-    <Content Include="App_Themes\default\images\boxupperright.png" />
     <Content Include="Login.aspx" />
     <Content Include="App_Themes\default\molecule.css" />
   </ItemGroup>
@@ -247,6 +243,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Themes\default\AjaxExtenders.skin" />
     <None Include="Atome.xsd" />
     <Content Include="atomes\webmusic\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
@@ -286,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\bloup\" />
+    <Folder Include="App_Themes\default\images\" />
     <Folder Include="atomes\webmusic\bin\providers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

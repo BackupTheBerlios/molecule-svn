@@ -37,7 +37,7 @@
     <asp:Login ID="Login1" runat="server" CssClass="loginPanel" Width="300px">
     </asp:Login>
     <cc1:RoundedCornersExtender ID="Login1_RoundedCornersExtender" runat="server" 
-        Enabled="True" TargetControlID="Login1" Corners="All" Radius="6">
+        TargetControlID="Login1">
     </cc1:RoundedCornersExtender>
     </form>
 </body>

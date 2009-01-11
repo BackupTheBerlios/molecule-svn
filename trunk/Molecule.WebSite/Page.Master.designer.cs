@@ -41,6 +41,24 @@ namespace Molecule.WebSite {
         protected global::System.Web.UI.ScriptManager MasterScriptManager;
         
         /// <summary>
+        /// menuPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel menuPanel;
+        
+        /// <summary>
+        /// menuContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel menuContent;
+        
+        /// <summary>
         /// welcomeLabel control.
         /// </summary>
         /// <remarks>
@@ -68,15 +86,6 @@ namespace Molecule.WebSite {
         protected global::System.Web.UI.WebControls.TreeView NavigationTree;
         
         /// <summary>
-        /// NavigationTree_RoundedCornersExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.RoundedCornersExtender NavigationTree_RoundedCornersExtender;
-        
-        /// <summary>
         /// SiteMapDataSource control.
         /// </summary>
         /// <remarks>
@@ -93,6 +102,15 @@ namespace Molecule.WebSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginStatus loginStatus;
+        
+        /// <summary>
+        /// menuContent_RoundedCornersExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.RoundedCornersExtender menuContent_RoundedCornersExtender;
         
         /// <summary>
         /// mainContent control.
