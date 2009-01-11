@@ -1,0 +1,316 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Molecule.WebSite</RootNamespace>
+    <AssemblyName>Molecule.WebSite</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Molecule.WebSite</AssemblyName>
+    <RootNamespace>Molecule.WebSite</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1702;-Microsoft.Naming#CA1700;-Microsoft.Naming#CA1712;-Microsoft.Naming#CA1713;-Microsoft.Naming#CA1714;-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1704;-Microsoft.Naming#CA1708;-Microsoft.Naming#CA1715;-Microsoft.Naming#CA1710;-Microsoft.Naming#CA1720;-Microsoft.Naming#CA1707;-Microsoft.Naming#CA1722;-Microsoft.Naming#CA1711;-Microsoft.Naming#CA1716;-Microsoft.Naming#CA1717;-Microsoft.Naming#CA1725;-Microsoft.Naming#CA1719;-Microsoft.Naming#CA1721;-Microsoft.Naming#CA1701;-Microsoft.Naming#CA1703;-Microsoft.Naming#CA1724;-Microsoft.Naming#CA1726</CodeAnalysisRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Molecule.WebSite</AssemblyName>
+    <DebugSymbols>true</DebugSymbols>
+    <RootNamespace>Molecule.WebSite</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\references\System.Web.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\CreateUser.aspx" />
+    <Content Include="admin\Default.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\AdminWebControlContainer.ascx.cs">
+      <DependentUpon>AdminWebControlContainer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AdminWebControlContainer.ascx.designer.cs">
+      <DependentUpon>AdminWebControlContainer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AtomeSiteMapProvider.cs" />
+    <Compile Include="atomes\webmusic\admin\AdminControl.ascx.cs">
+      <DependentUpon>AdminControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\webmusic\admin\AdminControl.ascx.designer.cs">
+      <DependentUpon>AdminControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\webmusic\admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\IO\CompressionHelper.cs" />
+    <Compile Include="atomes\webmusic\Services\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\webmusic\Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\Lastfm\Account.cs" />
+    <Compile Include="atomes\webmusic\Lastfm\AudioscrobblerConnection.cs" />
+    <Compile Include="atomes\webmusic\Lastfm\IQueue.cs" />
+    <Compile Include="atomes\webmusic\Lastfm\LastfmCore.cs" />
+    <Compile Include="atomes\webmusic\Lastfm\Queue.cs" />
+    <Compile Include="atomes\webmusic\Lastfm\LastfmService.cs" />
+    <Compile Include="atomes\webmusic\MediaFileHandler.ashx.cs">
+      <DependentUpon>MediaFileHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\Services\MusicLibrary.cs" />
+    <Compile Include="atomes\webmusic\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\webmusic\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\Services\ProviderException.cs" />
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page.Master.cs">
+      <DependentUpon>Page.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page.Master.designer.cs">
+      <DependentUpon>Page.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AtomeInfo.cs" />
+    <Compile Include="Services\AtomeService.cs" />
+    <Compile Include="Services\IAtomeInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="App_Themes\default\images\boxlowerleft.png" />
+    <Content Include="App_Themes\default\images\boxlowerright.png" />
+    <Content Include="App_Themes\default\images\boxupperleft.png" />
+    <Content Include="App_Themes\default\images\boxupperright.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="App_Themes\default\molecule.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Page.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\references\sqlite3.dll">
+      <Link>sqlite3.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="atomes\webmusic\admin\Default.aspx" />
+    <Content Include="atomes\webmusic\Atome.xml" />
+    <Content Include="atomes\webmusic\Download.aspx" />
+    <Content Include="atomes\webmusic\images\audio-volume-high.png" />
+    <Content Include="atomes\webmusic\images\audio-volume-low.png" />
+    <Content Include="atomes\webmusic\images\list-add.png" />
+    <Content Include="atomes\webmusic\images\media-playback-pause.png" />
+    <Content Include="atomes\webmusic\images\media-playback-start-small.png" />
+    <Content Include="atomes\webmusic\images\media-playback-start.png" />
+    <Content Include="atomes\webmusic\images\media-skip-backward.png" />
+    <Content Include="atomes\webmusic\images\media-skip-forward.png" />
+    <Content Include="atomes\webmusic\images\system-search.png" />
+    <Content Include="atomes\webmusic\scripts\default.js" />
+    <Content Include="atomes\webmusic\scripts\silverlightPlayer.js" />
+    <Content Include="atomes\webmusic\scripts\sm2player.js" />
+    <Content Include="atomes\webmusic\scripts\soundmanager2-nodebug-jsmin.js" />
+    <Content Include="atomes\webmusic\scripts\soundmanager2.js" />
+    <Content Include="atomes\webmusic\soundmanager2.swf" />
+    <Content Include="atomes\webmusic\stublibrary\song1.mp3" />
+    <Content Include="atomes\webmusic\stublibrary\song2.mp3" />
+    <Content Include="atomes\webmusic\MediaFileHandler.ashx" />
+    <Content Include="atomes\webmusic\style\webmusic.css" />
+    <Content Include="atomes\webmusic\Default.aspx" />
+    <Content Include="Log4Net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Molecule\Molecule.csproj">
+      <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
+      <Name>Molecule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Todo\Todo.Providers.Sqlite\Todo.Providers.Sqlite.csproj">
+      <Project>{8D9908EE-2DBA-4E3A-B5C5-0D7BCDF1FF46}</Project>
+      <Name>Todo.Providers.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Todo\Todo.Providers\Todo.Providers.csproj">
+      <Project>{51F0E605-1C69-4E8F-BD6A-18FB7C8901C8}</Project>
+      <Name>Todo.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebMusic\WebMusic.Providers\WebMusic.Providers.csproj">
+      <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
+      <Name>WebMusic.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Atome.xsd" />
+    <Content Include="atomes\webmusic\images\dialog-warning.png" />
+    <Content Include="Web.sitemap" />
+    <Content Include="atomes\webmusic\admin\Web.sitemap" />
+    <Content Include="atomes\webmusic\Web.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Page.Master.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\AdminWebControlContainer.ascx" />
+    <Content Include="App_LocalResources\Page.Master.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="atomes\webmusic\admin\AdminControl.ascx" />
+    <Content Include="atomes\webmusic\images\document-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Error.aspx" />
+    <EmbeddedResource Include="atomes\webmusic\Services\Messages.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Themes\bloup\" />
+    <Folder Include="atomes\webmusic\bin\providers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3565</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
