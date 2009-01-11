@@ -22,11 +22,14 @@
  THE SOFTWARE.
  --%>
 
-<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="Molecule.WebSite.Error" Title="Untitled Page" %>
 
+<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
+    Inherits="Molecule.WebSite.Error" Title="Molecule Error Handler" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <h2><asp:Label runat="server" ID="LabelAtomeName" /></h2>
 <p>
@@ -38,12 +41,12 @@
                 <asp:RoleGroup Roles="admin">
                     <ContentTemplate>
 
-                        <asp:HyperLink id="linkDetails" runat="server">
-                            <asp:Label ID="labelDetails" runat="server"/>
+                        <asp:HyperLink ID="linkDetails" runat="server">
+                            <asp:Label ID="labelDetails" CssClass="errorDetails" runat="server" Text="Details" />
                         </asp:HyperLink>
                         
                         <asp:Panel runat="server" ID="errorDetails">
-                            <%= Server.HtmlEncode(this.exceptionDetails.Replace("\n","<br/>")) %></asp:Panel>
+                            <%= Server.HtmlEncode(this.exceptionDetails).Replace("\n","<br/>") %></asp:Panel>
                         
                         <cc1:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server"
                             TargetControlID="errorDetails" CollapsedSize="0"

@@ -229,14 +229,6 @@
       <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
       <Name>Molecule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Todo\Todo.Providers.Sqlite\Todo.Providers.Sqlite.csproj">
-      <Project>{8D9908EE-2DBA-4E3A-B5C5-0D7BCDF1FF46}</Project>
-      <Name>Todo.Providers.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Todo\Todo.Providers\Todo.Providers.csproj">
-      <Project>{51F0E605-1C69-4E8F-BD6A-18FB7C8901C8}</Project>
-      <Name>Todo.Providers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebMusic\WebMusic.Providers\WebMusic.Providers.csproj">
       <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
       <Name>WebMusic.Providers</Name>

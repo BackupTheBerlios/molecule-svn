@@ -40,10 +40,7 @@ namespace Molecule.WebSite
     public partial class Error : System.Web.UI.Page
     {
         
-        protected override void OnInit(EventArgs e)
-        {
-            
-        }
+       
         protected string exceptionDetails;
 
         protected void Page_Load(object sender, EventArgs e)
