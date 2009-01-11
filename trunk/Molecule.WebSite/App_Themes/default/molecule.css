@@ -47,3 +47,30 @@ h2 { font-size: 160%; }
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.customtabstyle .ajax__tab_outer 
+{
+	text-align: center;
+	vertical-align: middle;
+	border:1px 
+	solid #999999;
+}
+
+.customtabstyle .ajax__tab_inner 
+{
+	text-align: center; 
+	vertical-align: middle; 
+}
+.customtabstyle .ajax__tab_body 
+{
+}
+.customtabstyle .ajax__tab_header 
+{
+}
+.customtabstyle .ajax__tab_active .ajax__tab_outer 
+{
+	background:#d3d7cf;
+}
+.customtabstyle .ajax__tab_body {
+	background:#d3d7cf;
+}

@@ -26,7 +26,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" runat="server">
 
-    <cc1:TabContainer ID="TabContainer" runat="server" ActiveTabIndex="0" 
+    <cc1:TabContainer ID="TabContainer" runat="server" ActiveTabIndex="0" CssClass="customtabstyle" 
     xmlns:cc1="ajaxcontroltoolkit">
           <cc1:TabPanel runat="server" HeaderText="Users" ID="TabPanel1"> <ContentTemplate> <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
         AutoGenerateColumns="False" DataSourceID="usersObjectDataSource" 
