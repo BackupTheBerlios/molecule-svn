@@ -83,14 +83,14 @@
                         DataValueField="Id" OnInit="albumsListBox_Init" SelectionMode="Multiple" OnSelectedIndexChanged="albumsListBox_SelectedIndexChanged" />
                 </div>
             </div>
-            <asp:TextBox ID="searchTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="searchTextBox" runat="server" Visible="false"></asp:TextBox>
             <asp:CheckBox ID="searchInArtistsCheckBox" runat="server" Text="<%$ Resources:Artists %>"
                 Checked="True" Visible="false" />
             <asp:CheckBox ID="searchInAlbumsCheckBox" runat="server" Text="<%$ Resources:Albums %>"
                 Checked="True" Visible="false" />
             <asp:CheckBox ID="searchInTitlesCheckBox" runat="server" Text="<%$ Resources:Titles %>"
                 Checked="True" Visible="false" />
-            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" />
+            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="false" />
             <div id="songscontainer">
                 <table id="songsView">
                     <asp:Repeater ID="SongsView" runat="server">
