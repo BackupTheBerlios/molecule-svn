@@ -7,7 +7,8 @@ REFERENCES = \
 
 SUBDIRS = \
 	Molecule \
-	Molecule.Console
+	Molecule.Console \
+	WebMusic
 
 EXTRA_DIST = \
 	$(REFERENCES) \

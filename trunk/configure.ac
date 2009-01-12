@@ -19,5 +19,7 @@ Makefile
 Molecule/Makefile
 Molecule.Console/Makefile
 Molecule.Console/molecule-admin
+WebMusic/Makefile
+WebMusic/WebMusic.Providers/Makefile
 ])
 AC_OUTPUT
