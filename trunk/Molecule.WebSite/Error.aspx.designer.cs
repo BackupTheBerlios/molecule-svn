@@ -39,5 +39,10 @@ namespace Molecule.WebSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginView LoginView1;
+        protected System.Web.UI.WebControls.Content Content2;
+        protected System.Web.UI.WebControls.Content Content1;
+        protected System.Web.UI.WebControls.HyperLink linkDetails;
+        protected System.Web.UI.WebControls.Label labelDetails;
+        protected System.Web.UI.WebControls.Panel errorDetails;
     }
 }
