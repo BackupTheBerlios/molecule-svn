@@ -3,6 +3,7 @@ TARGET = library
 SOURCES =  \
 	$(srcdir)/DateTimeUtil.cs \
 	$(srcdir)/Services.cs \
+	$(srcdir)/IO/XdgBaseDirectorySpec.cs \
 	$(srcdir)/Web/Singleton.cs \
 	$(srcdir)/Web/Security/SQLiteMembershipProvider.cs \
 	$(srcdir)/Web/Security/SQLiteProvidersHelper.cs \

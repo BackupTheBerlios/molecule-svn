@@ -1,2 +1,5 @@
 SUBDIRS = \
-	WebMusic.Providers
+	WebMusic.Providers \
+	WebMusic.Base \
+	WebMusic.Providers.Banshee
+

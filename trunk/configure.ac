@@ -21,5 +21,7 @@ Molecule.Console/Makefile
 Molecule.Console/molecule-admin
 WebMusic/Makefile
 WebMusic/WebMusic.Providers/Makefile
+WebMusic/WebMusic.Base/Makefile
+WebMusic/WebMusic.Providers.Banshee/Makefile
 ])
 AC_OUTPUT
