@@ -1,0 +1,2 @@
+LINK_MOLECULE_LIB =					\
+	$(top_builddir)/Molecule/Molecule.dll
