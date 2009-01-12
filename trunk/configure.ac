@@ -17,5 +17,7 @@ PKG_CHECK_MODULES(SQLITE, sqlite3 >= 3.4)
 AC_CONFIG_FILES([
 Makefile
 Molecule/Makefile
+Molecule.Console/Makefile
+Molecule.Console/molecule-admin
 ])
 AC_OUTPUT

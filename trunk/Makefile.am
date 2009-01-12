@@ -6,7 +6,8 @@ REFERENCES = \
 
 
 SUBDIRS = \
-	Molecule 
+	Molecule \
+	Molecule.Console
 
 EXTRA_DIST = \
 	$(REFERENCES) \

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export MONO_PATH=$MONO_PATH:@expanded_libdir@/@PACKAGE@
+
+exec mono "@expanded_libdir@/@PACKAGE@/Molecule.Console.exe" "$@"
+
