@@ -192,10 +192,6 @@
     <Content Include="Page.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\references\sqlite3.dll">
-      <Link>sqlite3.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="atomes\webmusic\admin\Default.aspx" />
     <Content Include="atomes\webmusic\Atome.xml" />
     <Content Include="atomes\webmusic\Download.aspx" />
@@ -303,4 +299,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>copy /Y "../../references/sqlite3.dll" "../bin/sqlite3.dll"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
