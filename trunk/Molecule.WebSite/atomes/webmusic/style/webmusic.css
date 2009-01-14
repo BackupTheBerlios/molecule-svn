@@ -129,3 +129,13 @@ img
 	display:none;
 }
 
+
+#songsListRow:hover { 
+	background-color:#babdb6;
+	border-width : 0px;
+}
+
+#songscontainer table
+{
+    border-collapse: collapse;
+}

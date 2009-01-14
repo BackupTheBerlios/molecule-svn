@@ -122,7 +122,7 @@
                             <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <tr>
+                            <tr id="songsListRow">
                                 <td style="display: none"><%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%></td>
                                 <td>
                                     <%# Server.HtmlEncode(((ISong)Container.DataItem).Title) %>
