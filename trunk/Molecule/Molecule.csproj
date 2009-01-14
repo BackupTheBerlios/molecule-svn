@@ -93,6 +93,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Web\Security\InitDb.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\extern\win32\sqlite3.dll">
+      <Link>sqlite3.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
