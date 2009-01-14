@@ -1,0 +1,94 @@
+﻿body {
+  background-color: #eeeeec;
+}
+
+
+html>body .menu {
+  position: fixed
+}
+
+#menuUpperLeft {
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	width: 150px;
+	background-color: #d3d7cf;
+	
+	background-image : url('../images/default/boxupperleft.png');
+	background-repeat : no-repeat;
+	background-position : top left;
+}
+
+#menuUpperRight {
+	background-image : url('../images/default/boxupperright.png');
+	background-repeat : no-repeat;
+	background-position : top right;
+}
+
+#menuLowerLeft{
+	background-image : url('../images/default/boxlowerleft.png');
+	background-repeat : no-repeat;
+	background-position : bottom left;
+}
+
+#menuLowerRight{
+	background-image : url('../images/default/boxlowerright.png');
+	background-repeat : no-repeat;
+	background-position : bottom right;
+}
+
+#maincontentPanel {
+	margin: 0 50px 50px 200px;
+	padding: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	background:transparent none repeat scro	ll 0 0;
+	color:#d3d7cf;
+	font-family:luxi serif,georgia,times new roman,times,serif;
+	font-weight:normal;
+	line-height:1.1em;
+	margin:0;
+}
+
+h2
+{
+  color:#888a85;
+  min-height:28px;
+  overflow:visible;
+}
+
+h2 { font-size: 160%; }
+
+
+.upperleft{
+	width : 30%;
+	margin-left : auto;
+	margin-right : auto;
+
+	margin-top : 30%;
+	margin-bottom : 30%;
+	background-color : #d3d7cf;
+	background-image : url('../images/default/boxupperleft.png');
+	background-repeat : no-repeat;
+	background-position : top left;
+}
+
+.upperright{
+	background-image : url('../images/default/boxupperright.png');
+	background-repeat : no-repeat;
+	background-position : top right;
+}
+
+.lowerleft{
+	background-image : url('../images/default/boxlowerleft.png');
+	background-repeat : no-repeat;
+	background-position : bottom left;
+}
+
+.lowerright{
+	background-image : url('../images/default/boxlowerright.png');
+	background-repeat : no-repeat;
+	background-position : bottom right;
+	padding : 3% 3% 3% 3%;
+}

@@ -1,0 +1,80 @@
+﻿body {
+  background-color: #eeeeec;
+}
+
+
+html>body .menu {
+  position: fixed
+}
+
+.menuPanel {
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	width: 150px;
+}
+
+.menuContent {
+	background-color: #d3d7cf;
+}
+
+#maincontentPanel {
+	margin: 0 50px 50px 200px;
+	padding: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	background:transparent none repeat scro	ll 0 0;
+	color:#d3d7cf;
+	font-family:luxi serif,georgia,times new roman,times,serif;
+	font-weight:normal;
+	line-height:1.1em;
+	margin:0;
+}
+
+h2
+{
+  color:#888a85;
+  min-height:28px;
+  overflow:visible;
+}
+
+h2 { font-size: 160%; }
+
+.loginPanel
+{
+	background-color: #d3d7cf;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.customtabstyle .ajax__tab_outer 
+{
+	text-align: center;
+	vertical-align: middle;
+	border:1px solid #999999;
+}
+
+.customtabstyle .ajax__tab_inner 
+{
+	text-align: center; 
+	vertical-align: middle; 
+}
+.customtabstyle .ajax__tab_body 
+{
+}
+.customtabstyle .ajax__tab_header 
+{
+}
+.customtabstyle .ajax__tab_active .ajax__tab_outer 
+{
+	background:#d3d7cf;
+}
+.customtabstyle .ajax__tab_body {
+	background:#d3d7cf;
+}
+.errorDetails
+{
+	font-weight: bold;
+	cursor:pointer;
+}
