@@ -47,9 +47,11 @@
         onclick="createUserButton_Click" />
   
       <asp:CreateUserWizard ID="createUserWizard" runat="server" 
-        RequireEmail="False" Visible="False" 
-    oncreateduser="createUserWizard_CreatedUser" LoginCreatedUser="False" 
-        ContinueDestinationPageUrl="~/admin/Default.aspx"><WizardSteps><asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"><ContentTemplate><table border="0"><tr><td align="center" colspan="2" class="style1">Create a new user account</td></tr><tr><td align="right"><asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User 
+                            RequireEmail="False" Visible="False" 
+                            oncreateduser="createUserWizard_CreatedUser" 
+                            LoginCreatedUser="False" ContinueDestinationPageUrl="~/admin/Default.aspx" 
+                            CancelDestinationPageUrl="~/admin/Default.aspx" 
+                            DisplayCancelButton="True"><WizardSteps><asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"><ContentTemplate><table border="0"><tr><td align="center" colspan="2" class="style1">Create a new user account</td></tr><tr><td align="right"><asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User 
                                 Name:</asp:Label></td><td><asp:TextBox ID="UserName" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                                     ControlToValidate="UserName" ErrorMessage="User Name is required." 
                                     ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator></td></tr><tr><td align="right"><asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label></td><td><asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox><asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 

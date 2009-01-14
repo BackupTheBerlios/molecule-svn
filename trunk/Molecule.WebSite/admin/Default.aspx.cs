@@ -54,6 +54,7 @@ namespace Molecule.WebSite.Admin
         protected void createUserButton_Click(object sender, EventArgs e)
         {
             createUserWizard.Visible = true;
+            createUserButton.Visible = false;
         }
 
         protected void createUserWizard_CreatedUser(object sender, EventArgs e)
