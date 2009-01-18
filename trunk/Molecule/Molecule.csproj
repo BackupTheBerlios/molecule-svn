@@ -82,6 +82,7 @@
     <Compile Include="Runtime\Plugin.cs" />
     <Compile Include="Runtime\PluginAttribute.cs" />
     <Compile Include="Runtime\PluginContainer.cs" />
+    <Compile Include="Runtime\IsUsablePluginAttribute.cs" />
     <Compile Include="Security\CryptoUtil.cs" />
     <Compile Include="Serialization\Atome.cs" />
     <Compile Include="Services.cs" />

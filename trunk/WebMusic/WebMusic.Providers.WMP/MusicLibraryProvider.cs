@@ -16,6 +16,16 @@ namespace WebMusic.Providers.WMP
     {
         Dictionary<string, Artist> artistDictionary;
 
+
+        [IsUsablePlugin]
+        public static bool IsUsable
+        {
+            get
+            {
+                //not very clean... should not work with Windows "N Edition".
+                return Environment.OSVersion.Platform == PlatformID.Win32NT;
+            }
+        }
         #region IMusicLibraryProvider Members
 
         public void Initialize()

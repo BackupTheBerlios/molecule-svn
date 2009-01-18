@@ -43,14 +43,22 @@ namespace WebMusic.Providers.Banshee
 	{
 		
 		private Dictionary<string, Artist> artists;
-		private string bansheeDatabase;
+		private static string bansheeDatabase = bansheeDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".config/banshee-1/banshee.db");
 		private string defaultLibraryPath;
 		
 		public BansheeProvider()
 		{
-			bansheeDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".config/banshee-1/banshee.db");	
 			artists = new Dictionary<string, Artist>();
 		}
+
+        [IsUsablePlugin]
+        public static bool IsUsable
+        {
+            get
+            {
+                return File.Exists(bansheeDatabase);
+            }
+        }
 
 		public void Initialize ()
 		{

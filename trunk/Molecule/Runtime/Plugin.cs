@@ -153,8 +153,17 @@ namespace Molecule.Runtime
                     if (IsSubclassOfOrImplements(type, pluginType))
                     {
                         if (log.IsInfoEnabled)
-                            log.Info("Found plugin " + type.Name + " of type " + pluginType.Name + " in assembly " + fileName);
-                        yield return new Plugin<T>(type, false, attr);
+                            log.Info("Found plugin " + type.Name + " of type " + pluginType.Name + " in assembly " + fileName
+                                + ". Check if it can be used.");
+
+                        //check if plugin is usable (IsUsablePlugin static boolean property)
+                        var isUsable = type.GetProperties(BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.Public)
+                                       .Any(prop => prop.PropertyType == typeof(Boolean)
+                                        && prop.GetCustomAttributes(typeof(IsUsablePluginAttribute), false).Length > 0
+                                        && (bool)prop.GetValue(null, null));
+                            
+                        if(isUsable)
+                            yield return new Plugin<T>(type, false, attr);
                     }
                 }    
             }

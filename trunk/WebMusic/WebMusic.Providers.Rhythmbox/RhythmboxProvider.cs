@@ -39,16 +39,24 @@ namespace WebMusic.Providers.Rhythmbox
 	[Plugin("Rhythmbox Music Player")]
 	public class RhythmboxProvider :IMusicLibraryProvider
 	{
-		private string rhythmboxDatabase;
+        private static string rhythmboxDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".gnome2/rhythmbox/rhythmdb.xml");
 		private Dictionary<string, Artist> artists;
 		
 		private static log4net.ILog log = log4net.LogManager.GetLogger( typeof( RhythmboxProvider ) );     
 		
 		public RhythmboxProvider()
 		{
-			rhythmboxDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".gnome2/rhythmbox/rhythmdb.xml");
 			artists = new Dictionary<string, Artist>();
 		}
+
+        [IsUsablePlugin]
+        public static bool IsUsable
+        {
+            get
+            {
+                return File.Exists(rhythmboxDatabase);
+            }
+        }
 
 		public void Initialize()
 		{

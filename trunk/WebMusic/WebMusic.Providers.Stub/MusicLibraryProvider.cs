@@ -39,11 +39,20 @@ namespace WebMusic.Providers.Stub
         const int nbAlbumsByArtist = 3;
         const int nbSongsByAlbum = 10;
 
+
+        [IsUsablePlugin]
+        public static bool IsUsablePlugin
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         #region IMusicLibraryProvider Members
 
         public void Initialize()
         {
-            throw new ApplicationException("test");
         }
 
         public System.Collections.Generic.IEnumerable<IArtist> GetArtists()
