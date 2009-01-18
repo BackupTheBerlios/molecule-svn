@@ -27,10 +27,10 @@ namespace Molecule.WebSite.Services
 {
     public interface IAtomeInfo
     {
-        string AdminWebControlPath { get; }
+        string PreferencesPagePath { get; }
         string Name { get; }
         string Path { get; }
         string SiteMapPath { get; }
-        bool HasAdminWebControl{get;}
+        bool HasPreferencesPage{get;}
     }
 }

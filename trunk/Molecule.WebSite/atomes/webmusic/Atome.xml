@@ -2,5 +2,5 @@
 <Atome>
   <Name>Web Music</Name>
   <SiteMap>Web.sitemap</SiteMap>
-  <AdminWebControl>admin/AdminControl.ascx</AdminWebControl>
+  <PreferencesPage>admin/Default.aspx</PreferencesPage>
 </Atome>

@@ -22,8 +22,26 @@
  THE SOFTWARE.
  --%>
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic.Preferences" MasterPageFile="~/Page.Master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="mainContent" runat="server">
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic.Preferences" MasterPageFile="~/PreferencesPage.Master" %>
+
+<asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
+
+<asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
+Récupérer la musique depuis :
+    <asp:DropDownList ID="playerDropDownList" runat="server"
+    DataValueField="Id" DataTextField="Name" />
+
+<br/>
+Last.Fm :<br />
+    <asp:CheckBox ID="lastfmEnabledCheckBox" runat="server" AutoPostBack="True" 
+        oncheckedchanged="lastfmEnabledCheckBox_CheckedChanged" Text="Enable Lastfm" />
+<br/>
+User : <asp:TextBox ID="lastFmUsername"  runat="server"></asp:TextBox>
+<br/>
+Password :<asp:TextBox ID="lastFmUserPassword"  TextMode="password" runat="server"></asp:TextBox>
+<br/>
+
+<asp:Button ID="preferencesButton" runat="server" Text="Save preferences" OnCommand="preferencesButton_Click" >
+</asp:Button>
 </asp:Content>

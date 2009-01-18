@@ -48,7 +48,7 @@ h2 { font-size: 160%; }
 	margin-right: auto;
 }
 
-.customtabstyle .ajax__tab_outer 
+/*.customtabstyle .ajax__tab_outer 
 {
 	text-align: center;
 	vertical-align: middle;
@@ -72,9 +72,25 @@ h2 { font-size: 160%; }
 }
 .customtabstyle .ajax__tab_body {
 	background:#d3d7cf;
-}
+}*/
+
 .errorDetails
 {
 	font-weight: bold;
 	cursor:pointer;
+}
+
+.tabTitle
+{
+	margin:5px;
+	float:left;
+	position:relative;
+}
+
+.tabSelectedTitle
+{
+	float:left;
+	margin:5px;
+	position:relative;
+	font-weight:bold;
 }

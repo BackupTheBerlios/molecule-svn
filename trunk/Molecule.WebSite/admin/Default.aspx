@@ -22,13 +22,13 @@
  THE SOFTWARE.
  --%>
 
-<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/PreferencesPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Untitled Page" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="mainContent" runat="server">
+<asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
-    <cc1:TabContainer ID="TabContainer" runat="server" ActiveTabIndex="0" CssClass="customtabstyle" 
-    xmlns:cc1="ajaxcontroltoolkit">
-          <cc1:TabPanel runat="server" HeaderText="Users" ID="TabPanel1"> <ContentTemplate> <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
+    <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
         AutoGenerateColumns="False" DataSourceID="usersObjectDataSource" 
         DataKeyNames="UserName"><Columns><asp:BoundField DataField="UserName" HeaderText="User Name" ReadOnly="True" 
                 SortExpression="UserName" />
@@ -51,7 +51,7 @@
                             oncreateduser="createUserWizard_CreatedUser" 
                             LoginCreatedUser="False" ContinueDestinationPageUrl="~/admin/Default.aspx" 
                             CancelDestinationPageUrl="~/admin/Default.aspx" 
-                            DisplayCancelButton="True"><WizardSteps><asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"><ContentTemplate><table border="0"><tr><td align="center" colspan="2" class="style1">Create a new user account</td></tr><tr><td align="right"><asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User 
+                            DisplayCancelButton="True"><WizardSteps><asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"><ContentTemplate><table border="0"><tr><td align="center" colspan="2">Create a new user account</td></tr><tr><td align="right"><asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User 
                                 Name:</asp:Label></td><td><asp:TextBox ID="UserName" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                                     ControlToValidate="UserName" ErrorMessage="User Name is required." 
                                     ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator></td></tr><tr><td align="right"><asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label></td><td><asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox><asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
@@ -69,28 +69,7 @@
             </asp:CreateUserWizardStep><asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"></asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>  
-    </ContentTemplate> </cc1:TabPanel> </cc1:TabContainer>
-    
     
     <br />
-    
-    
-    <asp:PlaceHolder ID="atomesAdminPlaceHolder" runat="server" 
-        oninit="atomesAdminPlaceHolder_Init"></asp:PlaceHolder>
-    
-    
-</asp:Content>
-
-
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
-
-    
-    <style type="text/css">
-        .style1
-        {
-            height: 23px;
-        }
-    </style>
-
     
 </asp:Content>

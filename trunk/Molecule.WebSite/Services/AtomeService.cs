@@ -81,11 +81,27 @@ namespace Molecule.WebSite.Services
             return instance.atomes.Cast<IAtomeInfo>();
         }
 
-        static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>.+)/", RegexOptions.Compiled);
+        static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>\w+)/.*$", RegexOptions.Compiled);
 
         public static bool IsAtomeVirtualPath(string virtualPath)
         {
             return virtualPathRegex.Match(virtualPath).Success;
+        }
+
+        public static IAtomeInfo CurrentAtome
+        {
+            get
+            {
+                return GetAtomeByVirtualPath(HttpContext.Current.Request.Path);
+            }
+        }
+
+        public static bool CurrentPathIsAtome
+        {
+            get
+            {
+                return IsAtomeVirtualPath(HttpContext.Current.Request.Path);
+            }
         }
 
         public static IAtomeInfo GetAtomeByVirtualPath(string virtualPath)
@@ -103,7 +119,7 @@ namespace Molecule.WebSite.Services
         public static IEnumerable<IAtomeInfo> GetAtomesWithAdminWebControl()
         {
             return from atome in GetAtomes()
-                   where atome.HasAdminWebControl
+                   where atome.HasPreferencesPage
                    select atome;
         }
     }

@@ -55,15 +55,22 @@ namespace Molecule.WebSite.Services
                 return null;
             return System.IO.Path.Combine(atomePath, relativePath);
         }
-        public string AdminWebControlPath { get { return mapAtomeRelativePath(atome.AdminWebControl); } }
+        public string PreferencesPagePath { get { return mapAtomeRelativePath(atome.PreferencesPage); } }
 
-        #region IAtomeInfo Members
-
-        public bool HasAdminWebControl
+        public bool HasPreferencesPage
         {
-            get { return !String.IsNullOrEmpty(atome.AdminWebControl); }
+            get { return !String.IsNullOrEmpty(atome.PreferencesPage); }
         }
 
-        #endregion
+        public override bool Equals(object obj)
+        {
+            AtomeInfo tobj = obj as AtomeInfo;
+            return tobj != null && tobj.Name == Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
 }

@@ -26,10 +26,71 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Web.UI.WebControls;
+using WebMusic.Services;
 
 namespace WebMusic
 {
     public partial class Preferences : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                playerDropDownList.DataSource = MusicLibrary.Providers;
+                playerDropDownList.DataBind();
+                playerDropDownList.SelectedValue = MusicLibrary.CurrentProvider;
+
+                lastFmUsername.Text = Lastfm.LastfmService.Username;
+
+
+                lastfmEnabledCheckBox.Checked = Lastfm.LastfmService.ScrobblingEnabled;
+                if (!Lastfm.LastfmService.ScrobblingEnabled)
+                {
+                    lastFmUserPassword.Enabled = false;
+                    lastFmUsername.Enabled = false;
+                }
+            }
+        }
+
+        protected void preferencesButton_Click(Object sender, CommandEventArgs e)
+        {
+            MusicLibrary.CurrentProvider = playerDropDownList.SelectedValue;
+
+            Lastfm.LastfmService.ScrobblingEnabled = lastfmEnabledCheckBox.Checked;
+            if (Lastfm.LastfmService.ScrobblingEnabled)
+            {
+                bool changed = false;
+                if (!String.IsNullOrEmpty(lastFmUserPassword.Text))
+                {
+                    changed = true;
+                    Lastfm.LastfmService.Password = lastFmUserPassword.Text;
+                }
+                if (!String.IsNullOrEmpty(lastFmUsername.Text) && !lastFmUsername.Text.Equals(Lastfm.LastfmService.Username))
+                {
+                    changed = true;
+                    Lastfm.LastfmService.Username = lastFmUsername.Text;
+                }
+                if (changed)
+                {
+                    Lastfm.LastfmService.Update();
+                }
+
+            }
+        }
+
+        protected void lastfmEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (lastfmEnabledCheckBox.Checked)
+            {
+                lastFmUserPassword.Enabled = true;
+                lastFmUsername.Enabled = true;
+            }
+            else
+            {
+                lastFmUserPassword.Enabled = false;
+                lastFmUsername.Enabled = false;
+            }
+        }
     }
 }

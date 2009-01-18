@@ -61,19 +61,5 @@ namespace Molecule.WebSite.Admin
         {
             usersGridView.DataBind();
         }
-
-        protected void atomesAdminPlaceHolder_Init(object sender, EventArgs e)
-        {
-            
-            foreach (var atome in AtomeService.GetAtomesWithAdminWebControl())
-            {
-                TabPanel tabPanel = new TabPanel();
-                var ctrl = (AdminWebControlContainer)LoadControl("AdminWebControlContainer.ascx");
-                ctrl.AtomeInfo = atome;
-                tabPanel.Controls.Add(ctrl);
-                tabPanel.HeaderText = atome.Name;
-                this.TabContainer.Tabs.Add(tabPanel);
-            }
-        }
     }
 }

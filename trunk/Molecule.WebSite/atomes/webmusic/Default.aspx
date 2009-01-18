@@ -40,7 +40,7 @@
         </Scripts>
     </asp:ScriptManagerProxy>
     <div id="fileNotFoundPanel">
-        <img src="images/dialog-warning.png" />
+        <img alt="Warning" src="images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
     </div>
     <div id="playerpanel">
