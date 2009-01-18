@@ -32,7 +32,7 @@ Last.Fm :<br />
     <asp:CheckBox ID="lastfmEnabledCheckBox" runat="server" AutoPostBack="True" 
         oncheckedchanged="lastfmEnabledCheckBox_CheckedChanged" Text="Enable Lastfm" />
 <br/>
-User : <asp:TextBox ID="lastFmUsername"  runat="server" Height="22px"></asp:TextBox>
+User : <asp:TextBox ID="lastFmUsername"  runat="server"></asp:TextBox>
 <br/>
 Password :<asp:TextBox ID="lastFmUserPassword"  TextMode="password" runat="server"></asp:TextBox>
 <br/>
