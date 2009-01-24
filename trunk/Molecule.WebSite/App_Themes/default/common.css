@@ -1,0 +1,50 @@
+﻿body {
+  background-color: #eeeeec;
+}
+
+img
+{
+	border-style:none;
+}
+
+select
+{
+	border:1px solid #888888;
+}
+
+
+
+tr:hover { 
+    background-color:#babdb6;
+    border-width : 0px;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+	background:transparent none repeat scro	ll 0 0;
+	color:#d3d7cf;
+	font-family:luxi serif,georgia,times new roman,times,serif;
+	font-weight:normal;
+	line-height:1.1em;
+	margin:0;
+}
+
+h2
+{
+  color:#888a85;
+  min-height:28px;
+  overflow:visible;
+}
+
+h2 { font-size: 160%; }
+
+thead
+{
+	background-color :#D3D7CF;
+}
+
+.invisible
+{
+    display:none;
+}

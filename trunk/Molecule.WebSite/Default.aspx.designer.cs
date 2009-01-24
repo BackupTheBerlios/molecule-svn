@@ -12,34 +12,5 @@ namespace Molecule.WebSite {
     
     
     public partial class WebForm1 {
-        
-        /// <summary>
-        /// LabelAtomeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelAtomeName;
-        
-        /// <summary>
-        /// LabelError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelError;
-        
-        /// <summary>
-        /// LoginView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView LoginView1;
-        protected System.Web.UI.WebControls.Content Content2;
-        protected System.Web.UI.WebControls.Content Content1;
     }
 }

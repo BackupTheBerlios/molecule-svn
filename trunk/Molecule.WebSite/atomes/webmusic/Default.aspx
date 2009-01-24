@@ -1,41 +1,17 @@
-﻿<%--
- Default.aspx
-
- Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- --%>
-
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
-    MasterPageFile="~/Page.Master" EnableViewState="false" Culture="auto" UICulture="auto"
+    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true"
     Title="Music" %>
 
 <%@ Import Namespace="WebMusic.Providers" %>
-<asp:Content runat="server" ContentPlaceHolderID="head">
-    <link rel="stylesheet" type="text/css" href="style/webmusic.css" />
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
+    <link href="style/layout.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ContentPlaceHolderID="mainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
         <Scripts>
             <asp:ScriptReference Path="scripts/default.js" />
-            <asp:ScriptReference Path="scripts/soundmanager2.js" />
-            <%--<asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />--%>
+            <%--<asp:ScriptReference Path="scripts/soundmanager2.js" />--%>
+            <asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
@@ -77,20 +53,15 @@
                         SelectionMode="Multiple" />
                 </div>
                 <div id="albumscontainer">
-                    <h2>
-                        <asp:Label runat="server" ID="labelAlbums" Text="<%$ Resources:Albums %>" /></h2>
-                    <asp:ListBox ID="albumsListBox" runat="server" AutoPostBack="True" DataTextField="Name"
-                        DataValueField="Id" OnInit="albumsListBox_Init" SelectionMode="Multiple" OnSelectedIndexChanged="albumsListBox_SelectedIndexChanged" />
-                </div>
+                        <h2>
+                            <asp:Label ID="labelAlbums" runat="server" Text="<%$ Resources:Albums %>" />
+                        </h2>
+                        <asp:ListBox ID="albumsListBox" runat="server" AutoPostBack="True" 
+                            DataTextField="Name" DataValueField="Id" OnInit="albumsListBox_Init" 
+                            OnSelectedIndexChanged="albumsListBox_SelectedIndexChanged" 
+                            SelectionMode="Multiple" />
+                    </div>
             </div>
-            <asp:TextBox ID="searchTextBox" runat="server" Visible="false"></asp:TextBox>
-            <asp:CheckBox ID="searchInArtistsCheckBox" runat="server" Text="<%$ Resources:Artists %>"
-                Checked="True" Visible="false" />
-            <asp:CheckBox ID="searchInAlbumsCheckBox" runat="server" Text="<%$ Resources:Albums %>"
-                Checked="True" Visible="false" />
-            <asp:CheckBox ID="searchInTitlesCheckBox" runat="server" Text="<%$ Resources:Titles %>"
-                Checked="True" Visible="false" />
-            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="false" />
             <div id="songscontainer">
                 <table id="songsView">
                     <asp:Repeater ID="SongsView" runat="server">
@@ -154,11 +125,7 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:UpdateProgress ID="UpdateProgress" runat="server">
-        <ProgressTemplate>
-            <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
-        </ProgressTemplate>
-    </asp:UpdateProgress>
+    
 
     <script type="text/javascript">
     init();

@@ -197,12 +197,12 @@ namespace WebMusic
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            songsList = Services.MusicLibrary.SearchSongs(searchTextBox.Text,
-                searchInAlbumsCheckBox.Checked,
-                searchInTitlesCheckBox.Checked,
-                searchInArtistsCheckBox.Checked);
-            this.SongsView.DataSource = songsList;
-            this.SongsView.DataBind();
+            //songsList = Services.MusicLibrary.SearchSongs(searchTextBox.Text,
+            //    searchInAlbumsCheckBox.Checked,
+            //    searchInTitlesCheckBox.Checked,
+            //    searchInArtistsCheckBox.Checked);
+            //this.SongsView.DataSource = songsList;
+            //this.SongsView.DataBind();
         }
 
         public void RaiseCallbackEvent(string eventArgument)

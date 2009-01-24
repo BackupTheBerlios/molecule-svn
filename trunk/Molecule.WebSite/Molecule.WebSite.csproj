@@ -206,7 +206,7 @@
     <Content Include="atomes\webmusic\stublibrary\song1.mp3" />
     <Content Include="atomes\webmusic\stublibrary\song2.mp3" />
     <Content Include="atomes\webmusic\MediaFileHandler.ashx" />
-    <Content Include="atomes\webmusic\style\webmusic.css" />
+    <Content Include="atomes\webmusic\style\layout.css" />
     <Content Include="atomes\webmusic\Default.aspx" />
     <Content Include="Log4Net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -253,6 +253,8 @@
     <Content Include="atomes\webmusic\images\document-save.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Themes\bloup\molecule.css" />
+    <Content Include="App_Themes\default\common.css" />
     <Content Include="Error.aspx" />
     <EmbeddedResource Include="atomes\webmusic\Services\Messages.resx">
       <SubType>Designer</SubType>
@@ -261,7 +263,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Themes\bloup\" />
     <Folder Include="App_Themes\default\images\" />
     <Folder Include="atomes\webmusic\bin\providers\" />
   </ItemGroup>

@@ -1,0 +1,45 @@
+﻿body
+{
+    font-family: Candara, Arial, Helvetica, sans-serif;
+}
+
+img
+{
+	border-style:none;
+}
+
+.menuPanel
+{
+	float: left;
+    width: 170px;
+    position: absolute;
+}
+
+.maincontentPanel
+{
+	position:absolute;
+	right:5px;
+	left:180px;
+	float:right;
+	max-width: 800px;
+    min-height: 300px;
+    right: 5px;
+}
+
+.invisible
+{
+    display:none;
+}
+
+h2
+{
+	font-size:large;
+	text-transform:uppercase;
+}
+
+table thead
+{
+	font-size:large;
+	text-transform:uppercase;
+	font-weight:bold;
+}

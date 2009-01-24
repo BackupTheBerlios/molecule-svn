@@ -132,9 +132,6 @@
   <data name="DownloadSongs" xml:space="preserve">
     <value>Download songs</value>
   </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Loading...</value>
-  </data>
   <data name="NaviguationMode" xml:space="preserve">
     <value>Naviguation mode</value>
   </data>

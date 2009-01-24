@@ -52,10 +52,17 @@
     <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
             TargetControlID="menuContent" >
         </cc1:RoundedCornersExtender>
-    <div id="maincontentPanel">
+    <div id="maincontentPanel" class="maincontentPanel">
         <asp:ContentPlaceHolder ID="mainContent" runat="server">
         </asp:ContentPlaceHolder>
     </div>
+    <asp:UpdateProgress ID="UpdateProgress" runat="server">
+        <ProgressTemplate>
+        <div id="updateProgress">
+            <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
+        </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
     </form>
 </body>
 </html>

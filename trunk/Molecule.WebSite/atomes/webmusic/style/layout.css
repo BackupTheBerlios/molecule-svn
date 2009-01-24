@@ -1,0 +1,94 @@
+select
+        {
+            width: 100%;
+            height:150px;
+        }
+        
+        #artistscontainer
+        {
+            width: 48%;
+            height: 180px;
+            position: relative;
+            float: left;
+        }
+
+        #albumscontainer
+        {
+            position: relative;
+            float: right;
+            width: 49%;
+            height: 180px;
+            display: block;
+            top: 0px;
+            left: 0px;
+        }
+
+        #navigationPanel
+        {
+            position: static;
+            height: 300px;
+            top: 300px;
+        }
+
+        #playlistcontainer
+        {
+            width: 49%;
+            float: right;
+            position: relative;
+            height: 230px;
+        }
+        #playerpanel
+        {
+            height: 147px;
+        }
+        #playerControls
+        {
+        	top:10px;
+            height: 230px;
+            float: left;
+            width: 49%;
+            position: relative;
+        }
+        
+        #songscontainer img
+        {
+	        cursor:pointer;
+        }
+
+        #playerControls img
+        {
+	        cursor:pointer;
+        }
+        
+        #fileNotFoundPanel
+        {
+	        display : none;
+	        background-color : #fce94f;
+	        border-color : #ef2929;
+	        border-width:1px;
+	        border-style:solid;
+	        min-height: 100%;
+	        height: 100%;
+	        width:100%;
+        }
+
+        #fileNotFoundPanel img
+        {
+	        float: left; 
+	        margin: 0 6px 6px 0;
+        }
+
+        #songscontainer
+        {
+        	position: static;
+            top: 500px;
+        }
+        
+        #songscontainer table
+        {
+            border-collapse: collapse;
+            width:100%;
+        }
+        
+        
+
