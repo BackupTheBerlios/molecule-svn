@@ -1,6 +1,9 @@
 ﻿body
 {
+	background-color: #0e2426;
     font-family: Candara, Arial, Helvetica, sans-serif;
+    font-size:13px;
+    color:White;
 }
 
 img
@@ -13,17 +16,51 @@ img
 	float: left;
     width: 170px;
     position: absolute;
+    background-color: #0e2426;
+    padding:10px;
 }
 
-.maincontentPanel
+#maincontentPanel
 {
-	position:absolute;
-	right:5px;
-	left:180px;
-	float:right;
-	max-width: 800px;
-    min-height: 300px;
+	position:relative;
     right: 5px;
+    width:695px;
+    left:200px;
+    
+    
+}
+
+#maincontentPlaceHolder
+{
+	padding:16px;
+	margin-bottom:20px;
+	
+}
+
+#pagePanel
+{
+	float:left;
+	position:relative;
+	margin-top:40px;
+	margin-bottom:40px;
+	left:50px;
+	right:50px;
+	width:900px;
+	max-width: 980px;
+    min-height: 300px;
+    background-color:#2e3436;
+}
+
+#footer
+{
+	float:left;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	left:0px;
+	background-color:#111111;
+	padding:5px;
+	text-align:center;
 }
 
 .invisible
@@ -33,13 +70,40 @@ img
 
 h2
 {
+	color:#999999;
 	font-size:large;
 	text-transform:uppercase;
 }
 
+a:link
+{
+	text-decoration:none;
+	color:#f57900;
+	font-weight:bolder;
+}
+
+a:active{text-decoration:none; color:#f57900;	font-weight:bolder;}
+a:visited{text-decoration:none; color:#f57900;	font-weight:bolder;}
+a:hover{text-decoration:none; font-weight:normal;}
+
+
 table thead
 {
-	font-size:large;
-	text-transform:uppercase;
-	font-weight:bold;
+	font-weight:bolder;
+	background-color:#f57900;
+}
+
+tr:hover { 
+    background-color:#999999;
+    border-width : 0px;
+}
+
+table tr
+{
+	height:22px;
+}
+
+table td
+{
+	padding:4px;
 }

@@ -225,6 +225,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\default\AjaxExtenders.skin" />
+    <Content Include="App_Themes\bloup\TreeView.skin" />
+    <Content Include="App_Themes\default\TreeView.skin" />
     <None Include="Atome.xsd" />
     <Content Include="PreferencesPage.Master" />
     <Content Include="atomes\webmusic\images\dialog-warning.png" />

@@ -83,7 +83,7 @@
                                     <td>
                                         <asp:Label runat="server" ID="durationLabel" Text="<%$ Resources:Duration %>" />
                                     </td>
-                                    <td>
+                                    <td style="text-align:right">
                                         <img alt="Play all" src="images/media-playback-start-small.png" onclick="songsView_onclick('playAll')">
                                         <img alt="Enqueue all" src="images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
                                         <img alt="Download all" src="images/document-save.png" onclick="songsView_onclick('downloadAll')"/>
@@ -110,7 +110,7 @@
                                 <td>
                                     <%# FormatDuration(((ISong)Container.DataItem).Duration) %>
                                 </td>
-                                <td>
+                                <td style="text-align:right">
                                     <img alt="Play" src="images/media-playback-start-small.png" onclick="songsViewItem_onclick(this,'play')">
                                     <img alt="Enqueue" src="images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
                                     <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>"><img alt="Download all" src="images/document-save.png"/></a>

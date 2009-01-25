@@ -1,4 +1,4 @@
-﻿    <%--
+﻿<%--
  Page.Master
 
  Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
@@ -36,33 +36,41 @@
 <body>
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
-    <asp:Panel runat="server" CssClass="menuPanel" ID="menuPanel">
-    <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
-        <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" /> 
-        <asp:LoginName ID="LoginName1" runat="server" /> !
-        <asp:TreeView ID="NavigationTree" runat="Server" ImageSet="Arrows" HoverNodeStyle-Font-Bold="True"
-            RootNodeStyle-ForeColor="Blue" DataSourceID="SiteMapDataSource">
-            <HoverNodeStyle Font-Bold="True"></HoverNodeStyle>
-            <RootNodeStyle ForeColor="Blue"></RootNodeStyle>
-        </asp:TreeView>
-        <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
-        <asp:LoginStatus ID="loginStatus" runat="server" />
+    <div id="pagePanel">
+        <asp:Panel runat="server" CssClass="menuPanel" ID="menuPanel">
+            <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
+                <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
+                <asp:LoginName ID="LoginName1" runat="server" />
+                !
+                <asp:TreeView id="NavigationTree" runat="Server"
+                     DataSourceID="SiteMapDataSource" ImageSet="Arrows">
+                    
+                </asp:TreeView>
+                <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
+                <asp:LoginStatus ID="loginStatus" runat="server" />
+            </asp:Panel>
         </asp:Panel>
-    </asp:Panel>
-    <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
-            TargetControlID="menuContent" >
+        <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
+            TargetControlID="menuContent">
         </cc1:RoundedCornersExtender>
-    <div id="maincontentPanel" class="maincontentPanel">
-        <asp:ContentPlaceHolder ID="mainContent" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-    <asp:UpdateProgress ID="UpdateProgress" runat="server">
-        <ProgressTemplate>
-        <div id="updateProgress">
-            <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
+        <div id="maincontentPanel">
+            <div id="maincontentPlaceHolder">
+                <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
+        <div id="footer">
+                © 2008 by <a href="Default.aspx">Molecule Builder</a> | <a href="Default.aspx">About</a>
+                | <a href="Default.aspx">Sitemap</a>
+         </div>
+        <asp:UpdateProgress ID="UpdateProgress" runat="server">
+            <ProgressTemplate>
+                <div id="updateProgress">
+                    <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     </form>
 </body>
 </html>
