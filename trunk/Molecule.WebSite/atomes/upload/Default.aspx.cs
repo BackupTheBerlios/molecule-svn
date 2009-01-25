@@ -25,7 +25,9 @@
 using System;
 using System.Web;
 using System.IO;
+using System.Threading;
 using System.Web.UI;
+using Molecule.IO;
 using System.Web.UI.WebControls;
 using Brettle.Web.NeatUpload;
 
@@ -34,14 +36,35 @@ namespace Upload
 	public partial class Default : System.Web.UI.Page
 	{
 		private static log4net.ILog log = log4net.LogManager.GetLogger( typeof( Default ) );
+		
         protected void Page_Load(object sender, EventArgs e)
         {
-			
-        }		
+			this.multiUploadFile.FileUploaded += onUploadedFile;
+		}
 		
+		private void onUploadedFile(Object sender, EventArgs e)
+		{
+			Console.WriteLine("uploadedFile");
+		}
+				
 		protected void submitButton_Click(Object sender, EventArgs e)
 		{
-          //this.uploadProgressBar.Visible = true;
+			uploadProgressBar.ProcessingProgress = new ProgressInfo(multiUploadFile.Files.Length,"files"); 
+			string defaultdownloadPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_DOWNLOAD_DIR", "Downloads");
+
+			int i = 0;
+			foreach(UploadedFile uploadedFile in this.multiUploadFile.Files)
+            {
+			    if (IsValid)
+				{
+					uploadedFile.MoveTo(Path.Combine(defaultdownloadPath, uploadedFile.FileName ),MoveToOptions.Overwrite);			
+					uploadProgressBar.ProcessingProgress.Value = i;
+					i++;
+				}
+
+			}
+			uploadProgressBar.ProcessingProgress.Text = "Upload complete";
 		}
 	}
 }
+	

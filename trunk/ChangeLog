@@ -1,4 +1,8 @@
 2009-01-25  Mickaël Renault <mickaelrenault@free.fr> 
 
+	* Molecule.WebSite/atomes/upload/Default.aspx.cs: Enabled progress bar
+
+2009-01-25  Mickaël Renault <mickaelrenault@free.fr> 
+
 	
 

@@ -23,7 +23,7 @@
  --%>
 
 ﻿<%@ Page Language="C#" AutoEventWireup="false" CodeBehind="Default.aspx.cs" Inherits="Upload.Default"
-    MasterPageFile="~/Page.Master" EnableViewState="false" Culture="auto" UICulture="auto"
+    MasterPageFile="~/Page.Master" EnableViewState="false" EnableSessionState="false" Culture="auto" UICulture="auto"
     Title="Upload file" %>
 <%@ Register TagPrefix="Upload" Namespace="Brettle.Web.NeatUpload" Assembly="Brettle.Web.NeatUpload" %>
 <asp:Content runat="server" ContentPlaceHolderID="head">
@@ -37,8 +37,8 @@
     </asp:ScriptManagerProxy>
     
     <Upload:MultiFile id="multiUploadFile" runat="server" />
-    <Upload:ProgressBar id="uploadProgressBar" runat="server" inline="true"  width="500px" height="100px" Triggers="submitButton" /> 
-    <asp:Button id="submitButton" runat="server" Text="Submit"  />
+    <Upload:ProgressBar id="uploadProgressBar" runat="server" inline="true"  width="500px" height="100px"/> 
+    <asp:Button id="submitButton" runat="server" Text="Submit" onclick="submitButton_Click"  />
 <%--        
     <script type="text/javascript">
             init();
