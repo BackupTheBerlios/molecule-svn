@@ -39,9 +39,9 @@ namespace Upload
 			
         }		
 		
-		protected void submitButton_Click(Object sender, CommandEventArgs e)
+		protected void submitButton_Click(Object sender, EventArgs e)
 		{
-			
+          //this.uploadProgressBar.Visible = true;
 		}
 	}
 }
