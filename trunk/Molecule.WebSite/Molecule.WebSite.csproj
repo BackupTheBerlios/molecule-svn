@@ -238,6 +238,7 @@
     <Content Include="App_Themes\default\AjaxExtenders.skin" />
     <Content Include="App_Themes\bloup\TreeView.skin" />
     <Content Include="App_Themes\default\TreeView.skin" />
+    <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
     <None Include="Atome.xsd" />
     <Content Include="atomes\upload\Web.sitemap" />
     <Content Include="PreferencesPage.Master" />
@@ -274,6 +275,12 @@
     <Content Include="atomes\upload\scripts\default.js" />
     <Content Include="atomes\upload\style\layout.css" />
     <Content Include="Error.aspx" />
+    <Content Include="App_LocalResources\PreferencesPage.Master.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\PreferencesPage.Master.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="NeatUpload\NeatUpload.js" />
     <Content Include="NeatUpload\Progress.aspx" />
     <Content Include="NeatUpload\Progress.js" />

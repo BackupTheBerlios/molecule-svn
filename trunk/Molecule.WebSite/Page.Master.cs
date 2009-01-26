@@ -33,6 +33,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Molecule.WebSite.Services;
 
 namespace Molecule.WebSite
 {
@@ -40,6 +41,10 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(Page.Title) || Page.Title.StartsWith("Untitle"))
+                if (AtomeService.CurrentPathIsAtome)
+                    Page.Title = AtomeService.CurrentAtome.Name;
+                else Page.Title = "Molecule";
         }
     }
 }

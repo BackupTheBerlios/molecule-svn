@@ -4,7 +4,7 @@ html>body .menu {
   position: fixed
 }
 
-.menuPanel {
+#menuPanel {
 	position: absolute;
 	top: 50px;
 	left: 20px;

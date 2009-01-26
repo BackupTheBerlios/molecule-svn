@@ -24,12 +24,11 @@
 
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Molecule.WebSite.Page"
     EnableTheming="true" %>
-
+<%@ Import Namespace="Molecule.WebSite.Services" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Molecule</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -37,7 +36,11 @@
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
     <div id="pagePanel">
-        <asp:Panel runat="server" CssClass="menuPanel" ID="menuPanel">
+        <div id="header">
+        <div id="moleculeTitle"><h1>Molecule</h1></div>
+        <div id="pageTitle"><h1><asp:Label ID="pageTitleLabel" runat="server"><%=Page.Title%></asp:Label></h1></div>
+        </div>
+        <div id="menuPanel">
             <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
                 <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
                 <asp:LoginName ID="LoginName1" runat="server" />
@@ -49,18 +52,17 @@
                 <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
                 <asp:LoginStatus ID="loginStatus" runat="server" />
             </asp:Panel>
-        </asp:Panel>
+        </div>
         <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
             TargetControlID="menuContent">
         </cc1:RoundedCornersExtender>
         <div id="maincontentPanel">
-            <div id="maincontentPlaceHolder">
-                <asp:ContentPlaceHolder ID="mainContent" runat="server">
-                </asp:ContentPlaceHolder>
-            </div>
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
         <div id="footer">
-                © 2008 by <a href="Default.aspx">Molecule Builder</a> | <a href="Default.aspx">About</a>
+                © 2008 by <a href="Default.aspx">Molecule Builder</a> 
+                | <a href="Default.aspx">About</a>
                 | <a href="Default.aspx">Sitemap</a>
          </div>
         <asp:UpdateProgress ID="UpdateProgress" runat="server">

@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
-    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true"
-    Title="Music" %>
+    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" %>
 
 <%@ Import Namespace="WebMusic.Providers" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
@@ -27,9 +26,9 @@
                 onclick="return pauseButton_onclick()" />
             <img id="nextButton" alt="Suivant" src="images/media-skip-forward.png" onclick="return nextButton_onclick()" />
             <br />
-            <div id="currentSongInfoLabel">
+            <div id="currentSongInfoLabel" style="font-size:120%">
             </div>
-            <div id="currentSongPositionLabel">
+            <div id="currentSongPositionLabel" style="font-family:Courier New">
             </div>
         </div>
         <div id="playlistcontainer">

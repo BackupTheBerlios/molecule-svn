@@ -41,13 +41,13 @@ namespace Molecule.WebSite {
         protected global::System.Web.UI.ScriptManager MasterScriptManager;
         
         /// <summary>
-        /// menuPanel control.
+        /// pageTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel menuPanel;
+        protected global::System.Web.UI.WebControls.Label pageTitleLabel;
         
         /// <summary>
         /// menuContent control.

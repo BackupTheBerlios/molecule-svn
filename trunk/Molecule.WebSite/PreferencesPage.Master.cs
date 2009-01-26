@@ -18,7 +18,9 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             this.tabDefault.CssClass = AtomeService.CurrentPathIsAtome ? "tabTitle" : "tabSelectedTitle";
+            Page.Title = this.GetLocalResourceObject("Preferences").ToString();
         }
     }
 }
