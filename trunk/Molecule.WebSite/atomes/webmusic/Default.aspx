@@ -125,6 +125,9 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     
+     <script type="text/javascript">
+    init();
+    </script>
 
 
 
