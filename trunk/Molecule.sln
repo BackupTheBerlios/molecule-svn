@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMusic.Providers.WMP", "WebMusic\WebMusic.Providers.WMP\WebMusic.Providers.WMP.csproj", "{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -67,9 +71,5 @@ Global
 		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
 		{089A5D23-335F-4DDE-BCFC-9C4C795BC659} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
 		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal

@@ -2,5 +2,5 @@
 <Atome>
   <Name>Upload</Name>
   <SiteMap>Web.sitemap</SiteMap>
-  <AdminWebControl></AdminWebControl>
+  <PreferencesPage></PreferencesPage>
 </Atome>
