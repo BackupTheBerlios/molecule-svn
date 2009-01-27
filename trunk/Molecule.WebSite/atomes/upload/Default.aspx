@@ -37,11 +37,7 @@
     </asp:ScriptManagerProxy>
     
     <Upload:MultiFile id="multiUploadFile" runat="server" />
-    <Upload:ProgressBar id="uploadProgressBar" runat="server" inline="true"  width="500px" height="100px"/> 
+    <Upload:ProgressBar id="uploadProgressBar" runat="server" inline="false"  width="500px" height="100px" EnableTheming="true"/> 
     <asp:Button id="submitButton" runat="server" Text="Submit" onclick="submitButton_Click"  />
-<%--        
-    <script type="text/javascript">
-            init();
-        </script>--%>
 </asp:Content>
 

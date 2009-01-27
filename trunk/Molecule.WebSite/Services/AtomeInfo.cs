@@ -55,11 +55,11 @@ namespace Molecule.WebSite.Services
                 return null;
             return System.IO.Path.Combine(atomePath, relativePath);
         }
-        public string PreferencesPagePath { get { return mapAtomeRelativePath(atome.PreferencesPage); } }
+        public string PreferencesPagePath { get { return mapAtomeRelativePath(null /*atome.PreferencesPage*/); } }
 
         public bool HasPreferencesPage
         {
-            get { return !String.IsNullOrEmpty(atome.PreferencesPage); }
+            get { return !String.IsNullOrEmpty(null /*atome.PreferencesPage*/); }
         }
 
         public override bool Equals(object obj)

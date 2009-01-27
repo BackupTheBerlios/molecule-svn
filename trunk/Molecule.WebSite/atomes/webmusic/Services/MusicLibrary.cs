@@ -194,5 +194,34 @@ namespace WebMusic.Services
                    orderby song.Artist.Name                   
                    select song;
         }
+
+        public static IEnumerable<string> SearchStringContainingPattern(string pattern, bool inAlbums, bool inTitles, bool inArtists)
+        {
+            pattern = pattern.ToLower();
+            return (from artist in instance.artists.Values
+                    where artist.Name.ToLower().Contains(pattern)
+                    select artist.Name).Union<string>(
+                   from album in instance.albums.Values
+                   where album.Name.ToLower().Contains(pattern)
+                   select album.Name);
+ 
+            /*
+            return from song in instance.songs.Values
+                   let artists = from artist in instance.artists.Values
+                                 where artist.Name.ToLower().Contains(pattern)
+                                 select artist.Name
+                   let albums = from album in instance.albums.Values
+                                where album.Name.ToLower().Contains(pattern)
+                                select album.Name
+                   where inTitles && song.Title.ToLower().Contains(pattern)
+                   || inAlbums && albums.Contains(song.Album)
+                   || inArtists && artists.Contains(song.Artist)
+                   orderby song.AlbumTrack
+                   orderby song.Album.Name
+                   orderby song.Artist.Name
+                   select song;
+             * */
+        }
+
     }
 }

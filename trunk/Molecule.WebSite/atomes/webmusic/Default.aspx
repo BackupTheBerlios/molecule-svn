@@ -1,7 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
     MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" %>
-
+    
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" 
+             TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="WebMusic.Providers" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="style/layout.css" rel="stylesheet" type="text/css" />
 </asp:Content>
@@ -43,6 +46,28 @@
     <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+        
+            <asp:TextBox ID="searchTextBox" runat="server" Visible="true"></asp:TextBox>
+            
+            <ajaxToolkit:AutoCompleteExtender ID="searchSongAutoComplete" runat="server"
+                                              TargetControlID="searchTextBox" ServiceMethod="GetCompletionList" 
+                                              ServicePath="SearchSongAutoComplete.asmx"
+                                              CompletionInterval="100" EnableCaching="true" CompletionSetCount="20"
+                                              DelimiterCharacters=";, :" 
+                                              CompletionListCssClass="autocomplete_completionListElement" 
+                                              CompletionListItemCssClass="autocomplete_listItem" 
+                                              CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"
+                                              ShowOnlyCurrentWordInCompletionListItem="true">                                 
+            </ajaxToolkit:AutoCompleteExtender>
+
+            <asp:CheckBox ID="searchInArtistsCheckBox" runat="server" Text="<%$ Resources:Artists %>"
+                Checked="True" Visible="false" />
+            <asp:CheckBox ID="searchInAlbumsCheckBox" runat="server" Text="<%$ Resources:Albums %>"
+                Checked="True" Visible="false" />
+            <asp:CheckBox ID="searchInTitlesCheckBox" runat="server" Text="<%$ Resources:Titles %>"
+                Checked="True" Visible="false" />
+            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="true" />
+            
             <div id="navigationPanel">
                 <div id="artistscontainer">
                     <h2>

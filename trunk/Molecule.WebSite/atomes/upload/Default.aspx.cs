@@ -39,31 +39,27 @@ namespace Upload
 		
         protected void Page_Load(object sender, EventArgs e)
         {
-			this.multiUploadFile.FileUploaded += onUploadedFile;
 		}
-		
-		private void onUploadedFile(Object sender, EventArgs e)
-		{
-			Console.WriteLine("uploadedFile");
-		}
-				
+
 		protected void submitButton_Click(Object sender, EventArgs e)
 		{
-			uploadProgressBar.ProcessingProgress = new ProgressInfo(multiUploadFile.Files.Length,"files"); 
 			string defaultdownloadPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_DOWNLOAD_DIR", "Downloads");
-
-			int i = 0;
+            if (!Directory.Exists(defaultdownloadPath))
+            {
+                Directory.CreateDirectory(defaultdownloadPath);
+            }
 			foreach(UploadedFile uploadedFile in this.multiUploadFile.Files)
             {
 			    if (IsValid)
 				{
-					uploadedFile.MoveTo(Path.Combine(defaultdownloadPath, uploadedFile.FileName ),MoveToOptions.Overwrite);			
-					uploadProgressBar.ProcessingProgress.Value = i;
-					i++;
+                    string fileDestination = Path.Combine(defaultdownloadPath, uploadedFile.FileName );
+					uploadedFile.MoveTo(fileDestination,MoveToOptions.Overwrite);
+                    if (log.IsInfoEnabled)
+                    {
+                        log.InfoFormat("File {0} saved to {1}", uploadedFile.FileName, fileDestination);
+                    }
 				}
-
 			}
-			uploadProgressBar.ProcessingProgress.Text = "Upload complete";
 		}
 	}
 }
