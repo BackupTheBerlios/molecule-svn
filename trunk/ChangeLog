@@ -1,3 +1,8 @@
+2009-01-27  Mickaël Renault <mickaelrenault@free.fr> 
+
+	* Molecule.WebSite/atomes/webmusic/Default.aspx: removed search text box
+	  from WebMusic page
+
 2009-01-25  Mickaël Renault <mickaelrenault@free.fr> 
 
 	* Molecule.WebSite/atomes/upload/Default.aspx.cs: Enabled progress bar

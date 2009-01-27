@@ -47,7 +47,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
         
-            <asp:TextBox ID="searchTextBox" runat="server" Visible="true"></asp:TextBox>
+            <asp:TextBox ID="searchTextBox" runat="server" Visible="false"></asp:TextBox>
             
             <ajaxToolkit:AutoCompleteExtender ID="searchSongAutoComplete" runat="server"
                                               TargetControlID="searchTextBox" ServiceMethod="GetCompletionList" 
@@ -66,7 +66,7 @@
                 Checked="True" Visible="false" />
             <asp:CheckBox ID="searchInTitlesCheckBox" runat="server" Text="<%$ Resources:Titles %>"
                 Checked="True" Visible="false" />
-            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="true" />
+            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="false" />
             
             <div id="navigationPanel">
                 <div id="artistscontainer">
