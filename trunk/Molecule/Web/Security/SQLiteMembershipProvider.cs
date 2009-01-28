@@ -765,7 +765,11 @@ namespace Molecule.Web.Security
                 if (reader != null) { reader.Close(); }
                 conn.Close();
             }
-
+			if( isValid )
+			{
+				Molecule.Log.LogService logService = Molecule.Log.LogService.Instance ;
+				logService.AddEvent(username + " successfully logged");
+			}
             return isValid;
         }
 

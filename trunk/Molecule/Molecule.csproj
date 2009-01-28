@@ -90,6 +90,8 @@
     <Compile Include="Web\Security\SQLiteProvidersHelper.cs" />
     <Compile Include="Web\Security\SQLiteRoleProvider.cs" />
     <Compile Include="Web\Singleton.cs" />
+    <Compile Include="Log\LogService.cs" />
+    <Compile Include="Log\Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Web\Security\InitDb.sql" />
