@@ -25,7 +25,7 @@
     </asp:Repeater>
 
     <asp:ObjectDataSource ID="AtomeDataSource" runat="server" 
-        SelectMethod="GetAtomes" TypeName="Molecule.WebSite.Services.AtomeService">
+        SelectMethod="GetAtomesWithAdminWebControl" TypeName="Molecule.WebSite.Services.AtomeService">
     </asp:ObjectDataSource>
     <br/><br />
     <asp:ContentPlaceHolder runat="server" ID="preferencesContent">
