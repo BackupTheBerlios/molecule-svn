@@ -92,6 +92,7 @@ namespace Molecule.WebSite.Services
         {
             get
             {
+                
                 return GetAtomeByVirtualPath(HttpContext.Current.Request.Path);
             }
         }

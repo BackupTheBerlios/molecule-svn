@@ -68,13 +68,22 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Label aristsLabel2;
         
         /// <summary>
-        /// artistsListBox control.
+        /// ArtistList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox artistsListBox;
+        protected global::System.Web.UI.WebControls.DataList ArtistList;
+        
+        /// <summary>
+        /// ArtistDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ArtistDataSource;
         
         /// <summary>
         /// labelAlbums control.
@@ -86,13 +95,22 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Label labelAlbums;
         
         /// <summary>
-        /// albumsListBox control.
+        /// AlbumList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox albumsListBox;
+        protected global::System.Web.UI.WebControls.DataList AlbumList;
+        
+        /// <summary>
+        /// AlbumDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AlbumDataSource;
         
         /// <summary>
         /// SongsView control.
@@ -102,5 +120,14 @@ namespace WebMusic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater SongsView;
+        
+        /// <summary>
+        /// SongDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SongDataSource;
     }
 }

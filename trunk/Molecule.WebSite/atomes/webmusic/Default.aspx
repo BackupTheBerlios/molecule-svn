@@ -1,8 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
-    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" %>
+    MasterPageFile="~/Page.Master" EnableViewState="true" EnableTheming="true" EnableEventValidation="false" %>
     
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" 
-             TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="WebMusic.Providers" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
@@ -17,7 +16,7 @@
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
-    <div id="fileNotFoundPanel">
+    <div id="fileNotFoundPanel" style="visibility:hidden">
         <img alt="Warning" src="images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
     </div>
@@ -42,53 +41,60 @@
             <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
         </div>
     </div>
-    <br />
-    <br />
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-        
-            <asp:TextBox ID="searchTextBox" runat="server" Visible="false"></asp:TextBox>
-            
-            <ajaxToolkit:AutoCompleteExtender ID="searchSongAutoComplete" runat="server"
-                                              TargetControlID="searchTextBox" ServiceMethod="GetCompletionList" 
-                                              ServicePath="SearchSongAutoComplete.asmx"
-                                              CompletionInterval="100" EnableCaching="true" CompletionSetCount="20"
-                                              DelimiterCharacters=";, :" 
-                                              CompletionListCssClass="autocomplete_completionListElement" 
-                                              CompletionListItemCssClass="autocomplete_listItem" 
-                                              CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"
-                                              ShowOnlyCurrentWordInCompletionListItem="true">                                 
-            </ajaxToolkit:AutoCompleteExtender>
-
-            <asp:CheckBox ID="searchInArtistsCheckBox" runat="server" Text="<%$ Resources:Artists %>"
-                Checked="True" Visible="false" />
-            <asp:CheckBox ID="searchInAlbumsCheckBox" runat="server" Text="<%$ Resources:Albums %>"
-                Checked="True" Visible="false" />
-            <asp:CheckBox ID="searchInTitlesCheckBox" runat="server" Text="<%$ Resources:Titles %>"
-                Checked="True" Visible="false" />
-            <asp:Button ID="searchButton" runat="server" OnClick="searchButton_Click" Text="<%$ Resources:Search %>" Visible="false" />
-            
             <div id="navigationPanel">
                 <div id="artistscontainer">
                     <h2>
                         <asp:Label runat="server" ID="aristsLabel2" Text="<%$ Resources:Artists %>" /></h2>
-                    <asp:ListBox ID="artistsListBox" runat="server" AutoPostBack="True" DataTextField="Name"
-                        DataValueField="Id" OnInit="artistsListBox_Init" OnSelectedIndexChanged="artistsListBox_SelectedIndexChanged"
-                        SelectionMode="Multiple" />
+                    
+                    <div id="artistList" style="overflow: auto; height:150px;" class="thinBox">
+                        <asp:DataList ID="ArtistList" runat="server" DataSourceID="ArtistDataSource" 
+                            DataKeyField="Id" onselectedindexchanged="ArtistList_SelectedIndexChanged" CssClass="itemList">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="ArtistItemButton" runat="server" Text='<%# Eval("Name") %>'
+                                    CommandArgument='<%# Eval("Id") %>' 
+                                    CommandName="Select" />
+                            </ItemTemplate>
+                            <SelectedItemTemplate>
+                                <asp:Label ID="ArtistItemLabel" runat="server" Text='<%# Eval("Name") %>' />
+                            </SelectedItemTemplate>
+                        </asp:DataList>
+                        <asp:ObjectDataSource ID="ArtistDataSource" runat="server" 
+                            SelectMethod="GetArtists" TypeName="WebMusic.Services.MusicLibrary">
+                        </asp:ObjectDataSource>
+                    </div>
                 </div>
                 <div id="albumscontainer">
                         <h2>
                             <asp:Label ID="labelAlbums" runat="server" Text="<%$ Resources:Albums %>" />
                         </h2>
-                        <asp:ListBox ID="albumsListBox" runat="server" AutoPostBack="True" 
-                            DataTextField="Name" DataValueField="Id" OnInit="albumsListBox_Init" 
-                            OnSelectedIndexChanged="albumsListBox_SelectedIndexChanged" 
-                            SelectionMode="Multiple" />
+                            
+                      <div id="albumList" style="overflow: auto; height:150px;" class="thinBox">
+                        <asp:DataList ID="AlbumList" runat="server" DataSourceID="AlbumDataSource" 
+                              DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="AlbumItemButton" runat="server" Text='<%# Eval("Name") %>'
+                                    CommandArgument='<%# Eval("Id") %>' 
+                                    CommandName="Select" />
+                            </ItemTemplate>
+                            <SelectedItemTemplate>
+                             <asp:Label ID="AlbumItemLabel" runat="server" Text='<%# Eval("Name") %>' />
+                            </SelectedItemTemplate>
+                        </asp:DataList>
+                        <asp:ObjectDataSource ID="AlbumDataSource" runat="server" 
+                            SelectMethod="GetAlbumsByArtist" TypeName="WebMusic.Services.MusicLibrary">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ArtistList" Name="artist" 
+                                    PropertyName="SelectedValue" Type="String" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
                     </div>
             </div>
             <div id="songscontainer">
                 <table id="songsView">
-                    <asp:Repeater ID="SongsView" runat="server">
+                    <asp:Repeater ID="SongsView" runat="server" DataSourceID="SongDataSource">
                         <HeaderTemplate>
                             <thead>
                                 <tr>
@@ -145,11 +151,17 @@
                             </tbody>
                         </FooterTemplate>
                     </asp:Repeater>
+                    <asp:ObjectDataSource ID="SongDataSource" runat="server" 
+                        SelectMethod="GetSongsByAlbum" TypeName="WebMusic.Services.MusicLibrary">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="AlbumList" Name="album" 
+                                PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
                 </table>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    
      <script type="text/javascript">
     init();
     </script>

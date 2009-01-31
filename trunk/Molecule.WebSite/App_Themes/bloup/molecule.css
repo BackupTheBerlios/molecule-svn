@@ -13,7 +13,6 @@ img
 
 #menuPanel
 {
-	float: left;
     width: 170px;
     position: absolute;
     background-color: #0e2426;
@@ -28,35 +27,27 @@ img
 #maincontentPanel
 {
 	position:relative;
-    right: 5px;
     width:665px;
     left:200px;
-    padding:16px;
-    margin-top:40px;
-	margin-bottom:20px;   
+    min-height: 250px;
+    padding:16px; 
 }
 
 #pagePanel
 {
-	float:left;
 	position:relative;
 	margin-top:40px;
 	margin-bottom:40px;
-	left:50px;
-	right:50px;
+	margin-left: auto;
+    margin-right: auto;
 	width:900px;
-	max-width: 980px;
-    min-height: 300px;
     background-color:#2e3436;
 }
 
 #footer
 {
-	float:left;
-	position:absolute;
+	position:relative;
 	bottom:0px;
-	right:0px;
-	left:0px;
 	background-color:#111111;
 	padding:5px;
 	text-align:center;
@@ -64,13 +55,9 @@ img
 
 #header
 {
-	float:left;
-	position:absolute;
-	top:0px;
-	right:0px;
-	left:0px;
-	height:30px;
+	position:relative;
 	padding:5px;
+	height:30px;
 	line-height:0px;
 	background-color:#f57900;
 }
@@ -82,6 +69,12 @@ img
 	position:relative;
 }
 
+.thinBox
+{
+	border:1px;
+	border-style:solid;
+	border-color:#444444;
+}
 
 
 
@@ -184,4 +177,10 @@ table td
 	font-weight: bold;
 	cursor:pointer;
 	color:#f57900;
+}
+
+#updateProgress  
+{
+	position:relative;
+
 }

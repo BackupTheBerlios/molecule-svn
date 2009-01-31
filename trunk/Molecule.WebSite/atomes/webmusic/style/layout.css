@@ -23,6 +23,11 @@ select
     left: 0px;
 }
 
+.itemList
+{
+	width:100%;
+}
+
 #navigationPanel
 {
     position: static;
@@ -80,8 +85,8 @@ select
 
 #songscontainer
 {
-	position: static;
-    top: 500px;
+	position: relative;
+	margin-top:10px;
 }
 
 #songscontainer table

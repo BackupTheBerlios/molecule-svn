@@ -162,18 +162,42 @@ namespace WebMusic.Services
             return res;
         }
 
-        public static IEnumerable<IAlbum> GetAlbumsByArtists(IEnumerable<string> artists)
+        public static IEnumerable<IAlbum> GetAlbumsByArtist(string artist)
         {
-            foreach (var artist in artists)
+            if (artist != null)
+            {
                 foreach (var album in instance.artists[artist].Albums.OrderBy(album => album.Name))
                     yield return album;
+            }
+        }
+
+        public static IEnumerable<IAlbum> GetAlbumsByArtists(IEnumerable<string> artists)
+        {
+            if (artists != null)
+            {
+                foreach (var artist in artists)
+                    foreach (var album in GetAlbumsByArtist(artist))
+                        yield return album;
+            }
+        }
+
+        public static IEnumerable<ISong> GetSongsByAlbum(string album)
+        {
+            if (album != null)
+            {
+                foreach (var song in instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
+                    yield return song;
+            }
         }
 
         public static IEnumerable<ISong> GetSongsByAlbums(IEnumerable<string> albums)
         {
-            foreach (var album in albums)
-                foreach (var song in instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
-                    yield return song;
+            if (albums != null)
+            {
+                foreach (var album in albums)
+                    foreach (var song in GetSongsByAlbum(album))
+                        yield return song;
+            }
         }
 
         public static IEnumerable<ISong> SearchSongs(string pattern, bool inAlbums, bool inTitles, bool inArtists)

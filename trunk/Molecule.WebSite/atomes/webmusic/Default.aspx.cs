@@ -83,116 +83,69 @@ namespace WebMusic
 			}
 		}
 		
-		private void HandleParameters()
-		{	
-			string action = Request.Params["action"];
-
-			// two case 
-			if( ! string.IsNullOrEmpty(action))
-			{
-				if( action.Equals("search".ToLower()))
-				{
-					log.Warn("Search parameter not implemented");
-				}
-			}
-		}
-		
-		// actually just support the download of one song
-		private void HandleDownloadActionParameter()
-		{
-			string songId = Request.Params["songid"];
-			if( ! string.IsNullOrEmpty(songId))
-			{
-				//search the song
-				ISong song = MusicLibrary.GetSong(songId);
-				if( song != null)
-				{
-					if( log.IsInfoEnabled)
-					{
-						log.Info("Send file "+song.MediaFilePath);
-					}
-					System.IO.FileInfo file = new System.IO.FileInfo(song.MediaFilePath);
-					Response.Clear();
-					Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(file.Name));
-					Response.AddHeader("Content-Length", file.Length.ToString());
-					Response.ContentType = "application/octet-stream";
-					Response.WriteFile(file.FullName);
-					Response.End();				
-				}
-				else
-				{
-					log.Error("Can't find song with Id : "+ songId);
-					Response.Clear();
-					Response.Status = "404 Not Found" ;
-					Response.End();	
-				}
-			}
-		}
-
         protected void albumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<string> selectedAlbums = new List<string>();
-            foreach (ListItem item in albumsListBox.Items)
-                if (item.Selected)
-                    selectedAlbums.Add(item.Value);
+            //List<string> selectedAlbums = new List<string>();
+            //foreach (ListItem item in albumsListBox.Items)
+            //    if (item.Selected)
+            //        selectedAlbums.Add(item.Value);
 
-            IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(selectedAlbums);
-            songsList = songsAlbum;
-            this.SongsView.DataSource = songsList;
-            this.SongsView.DataBind();
+            //IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(selectedAlbums);
+            //songsList = songsAlbum;
+            //this.SongsView.DataSource = songsList;
+            //this.SongsView.DataBind();
         }
-
 
         protected void artistsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<string> selectedArtists = new List<string>();
-            foreach (ListItem item in artistsListBox.Items)
-                if (item.Selected)
-                    selectedArtists.Add(item.Value);
+            //List<string> selectedArtists = new List<string>();
+            //foreach (ListItem item in artistsListBox.Items)
+            //    if (item.Selected)
+            //        selectedArtists.Add(item.Value);
 
-            List<string> selectedAlbums = new List<string>();
-            foreach (ListItem item in albumsListBox.Items)
-                if (item.Selected)
-			    {
-                    selectedAlbums.Add(item.Value);
-			    }
+            //List<string> selectedAlbums = new List<string>();
+            //foreach (ListItem item in albumsListBox.Items)
+            //    if (item.Selected)
+            //    {
+            //        selectedAlbums.Add(item.Value);
+            //    }
 			
-            this.albumsListBox.DataSource = MusicLibrary.GetAlbumsByArtists(selectedArtists);
-            this.albumsListBox.DataBind();
+            //this.albumsListBox.DataSource = MusicLibrary.GetAlbumsByArtists(selectedArtists);
+            //this.albumsListBox.DataBind();
 
-            //restore selected albums, overriden by previous databinding.
-            List<string> newSelectedAlbums = new List<string>();
-            foreach (string album in selectedAlbums)
-            {
-                var item = this.albumsListBox.Items.FindByValue(album);
-                if (item != null)
-                {
-                    item.Selected = true;
-					if( log.IsDebugEnabled)
-					{
-						log.Debug("New selected album "+album);
-					}
-                    newSelectedAlbums.Add(album);
-                }
-            }
+            ////restore selected albums, overriden by previous databinding.
+            //List<string> newSelectedAlbums = new List<string>();
+            //foreach (string album in selectedAlbums)
+            //{
+            //    var item = this.albumsListBox.Items.FindByValue(album);
+            //    if (item != null)
+            //    {
+            //        item.Selected = true;
+            //        if( log.IsDebugEnabled)
+            //        {
+            //            log.Debug("New selected album "+album);
+            //        }
+            //        newSelectedAlbums.Add(album);
+            //    }
+            //}
 
 			
-			IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(newSelectedAlbums);
-            songsList = songsAlbum;
-            this.SongsView.DataSource = songsList;
-            this.SongsView.DataBind();
+            //IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(newSelectedAlbums);
+            //songsList = songsAlbum;
+            //this.SongsView.DataSource = songsList;
+            //this.SongsView.DataBind();
         }
 
         protected void artistsListBox_Init(object sender, EventArgs e)
         {
-            this.artistsListBox.DataSource = MusicLibrary.GetArtists();
-            this.artistsListBox.DataBind();
+            //this.artistsListBox.DataSource = MusicLibrary.GetArtists();
+            //this.artistsListBox.DataBind();
         }
 
         protected void albumsListBox_Init(object sender, EventArgs e)
         {
-            this.albumsListBox.DataSource = MusicLibrary.GetAlbums();
-            this.albumsListBox.DataBind();
+            //this.albumsListBox.DataSource = MusicLibrary.GetAlbums();
+            //this.albumsListBox.DataBind();
         }
 
         protected void searchButton_Click(object sender, EventArgs e)
@@ -229,6 +182,16 @@ namespace WebMusic
         public string GetCallbackResult()
         {
             return null;
+        }
+
+        protected void ArtistList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ArtistList.DataBind();
+        }
+
+        protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AlbumList.DataBind();
         }
     }
 }
