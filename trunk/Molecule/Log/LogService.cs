@@ -46,9 +46,8 @@ namespace Molecule.Log
 		
 		public void AddEvent(string content)
 		{
-			Console.WriteLine(content);
 			events.Add(new Event(content));
-			events.Sort((x, y) =>  x.CreationDate.CompareTo(y.CreationDate));
+			events.Sort((x, y) =>  x.CreationDate.CompareTo(y.CreationDate)*-1);
 		}		
 			           
 		public IEnumerable<Event> Events

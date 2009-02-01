@@ -40,18 +40,38 @@
         <div id="moleculeTitle"><h1>Molecule</h1></div>
         <div id="pageTitle"><h1><asp:Label ID="pageTitleLabel" runat="server"><%=Page.Title%></asp:Label></h1></div>
         </div>
-        <div id="menuPanel">
-            <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
-                <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
-                <asp:LoginName ID="LoginName1" runat="server" />
-                !
-                <asp:TreeView id="NavigationTree" runat="Server"
-                     DataSourceID="SiteMapDataSource" ImageSet="Arrows">
+        <div id="sideBar">
+            <div id="menuPanel">
+                <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
+                    <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
+                    <asp:LoginName ID="LoginName1" runat="server" />
+                    !
+                    <asp:TreeView id="NavigationTree" runat="Server"
+                         DataSourceID="SiteMapDataSource" ImageSet="Arrows">
                     
-                </asp:TreeView>
-                <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
-                <asp:LoginStatus ID="loginStatus" runat="server" />
-            </asp:Panel>
+                    </asp:TreeView>
+                    <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
+                    <asp:LoginStatus ID="loginStatus" runat="server" />
+                </asp:Panel>
+               <%-- <asp:TextBox id="logTextBox" TextMode="multiline" runat="server" /> --%>
+            </div>
+		    <div id="logPanel">
+                <asp:Repeater ID="logsView" runat="server">
+                    <HeaderTemplate>
+                        <thead>
+                        </thead>
+                        <tbody>
+						    <ul>
+                     </HeaderTemplate>
+                     <ItemTemplate>
+                         <li id="logListRow"><%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %> : <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %></li>
+                      </ItemTemplate>
+                      <FooterTemplate>
+					      </ul>
+                          </tbody>
+                      </FooterTemplate>
+                 </asp:Repeater>
+	        </div>
         </div>
         <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
             TargetControlID="menuContent">
@@ -76,3 +96,7 @@
     </form>
 </body>
 </html>
+
+
+
+

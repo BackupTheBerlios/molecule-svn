@@ -45,6 +45,10 @@ namespace Molecule.WebSite
                 if (AtomeService.CurrentPathIsAtome)
                     Page.Title = AtomeService.CurrentAtome.Name;
                 else Page.Title = "Molecule";
+			
+            this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
+            this.logsView.DataBind();			
+			
         }
     }
 }

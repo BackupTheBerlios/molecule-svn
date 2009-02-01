@@ -11,13 +11,47 @@ img
 	border-style:none;
 }
 
-#menuPanel
+
+#sideBar
 {
+	float: left;
     width: 170px;
     position: absolute;
+    top:40px;
+}
+
+#menuPanel
+{
     background-color: #0e2426;
     padding:10px;
-    top:40px;
+    z-index : 1;
+}
+
+#logPanel
+{
+    background-color: #0e2426;
+    padding:10px;
+    z-index : 2;
+    margin-top : 2px;
+}
+
+#logPanel ul
+{
+    padding-left : 0px;
+    margin-top : 0px;
+}
+
+#logPanel li
+{
+    list-style-type : none;
+    border-bottom: 1px solid #f57900;
+    margin-left : 0px;
+    width : 100%;
+}
+
+#logPanel li:hover
+{
+    background-color: #999999;
 }
 
 .menuContent

@@ -768,7 +768,7 @@ namespace Molecule.Web.Security
 			if( isValid )
 			{
 				Molecule.Log.LogService logService = Molecule.Log.LogService.Instance ;
-				logService.AddEvent(username + " successfully logged");
+				logService.AddEvent(username + " logged on");
 			}
             return isValid;
         }
