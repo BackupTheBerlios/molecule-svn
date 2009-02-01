@@ -43,7 +43,9 @@ namespace WebMusic
     public partial class _Default : System.Web.UI.Page, ICallbackEventHandler
     {
 		private static log4net.ILog log = log4net.LogManager.GetLogger( typeof( _Default ) );
-        private IEnumerable<ISong> songsList;
+
+        const string sessionCurrentArtist = "music.currentArtist";
+        const string sessionCurrentAlbum = "music.currentAlbum";
 
         public _Default()
         {
@@ -187,11 +189,13 @@ namespace WebMusic
         protected void ArtistList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArtistList.DataBind();
+            Session[sessionCurrentArtist] = (string)ArtistList.SelectedValue;
         }
 
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
         {
             AlbumList.DataBind();
+            Session[sessionCurrentAlbum] = (string)AlbumList.SelectedValue;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
-    MasterPageFile="~/Page.Master" EnableViewState="true" EnableTheming="true" EnableEventValidation="false" %>
+    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" EnableEventValidation="false" %>
     
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="WebMusic.Providers" %>
@@ -85,8 +85,8 @@
                         <asp:ObjectDataSource ID="AlbumDataSource" runat="server" 
                             SelectMethod="GetAlbumsByArtist" TypeName="WebMusic.Services.MusicLibrary">
                             <SelectParameters>
-                                <asp:ControlParameter ControlID="ArtistList" Name="artist" 
-                                    PropertyName="SelectedValue" Type="String" />
+                                <asp:SessionParameter Name="artist" SessionField="music.currentArtist" 
+                                    Type="String" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
@@ -154,8 +154,8 @@
                     <asp:ObjectDataSource ID="SongDataSource" runat="server" 
                         SelectMethod="GetSongsByAlbum" TypeName="WebMusic.Services.MusicLibrary">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="AlbumList" Name="album" 
-                                PropertyName="SelectedValue" Type="String" />
+                            <asp:SessionParameter Name="album" SessionField="music.currentAlbum" 
+                                Type="String" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </table>
