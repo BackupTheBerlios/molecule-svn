@@ -114,9 +114,9 @@
                                         <asp:Label runat="server" ID="durationLabel" Text="<%$ Resources:Duration %>" />
                                     </td>
                                     <td style="text-align:right">
-                                        <img alt="Play all" src="images/media-playback-start-small.png" onclick="songsView_onclick('playAll')">
-                                        <img alt="Enqueue all" src="images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
-                                        <img alt="Download all" src="images/document-save.png" onclick="songsView_onclick('downloadAll')"/>
+                                        <asp:Image runat="server" AlternateText="<%$ Resources:PlayAll %>" ToolTip="<%$ Resources:PlayAll %>" ImageUrl="images/media-playback-start-small.png" onclick="songsView_onclick('playAll')" />
+                                        <asp:Image runat="server" AlternateText="<%$ Resources:EnqueueAll %>" ToolTip="<%$ Resources:EnqueueAll %>" ImageUrl="images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
+                                        <asp:Image runat="server" AlternateText="<%$ Resources:DownloadAll %>" ToolTip="<%$ Resources:DownloadAll %>" ImageUrl="images/document-save.png" onclick="songsView_onclick('downloadAll')"/>
                                     </td>
                                 </tr>
                             </thead>
@@ -141,9 +141,9 @@
                                     <%# FormatDuration(((ISong)Container.DataItem).Duration) %>
                                 </td>
                                 <td style="text-align:right">
-                                    <img alt="Play" src="images/media-playback-start-small.png" onclick="songsViewItem_onclick(this,'play')">
-                                    <img alt="Enqueue" src="images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
-                                    <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>"><img alt="Download all" src="images/document-save.png"/></a>
+                                    <asp:Image runat="server" AlternateText="<%$ Resources:Play %>" ToolTip="<%$ Resources:Play %>" ImageUrl="images/media-playback-start-small.png" onclick="songsViewItem_onclick(this,'play')" />
+                                    <asp:Image runat="server" AlternateText="<%$ Resources:Enqueue %>" ToolTip="<%$ Resources:Enqueue %>" ImageUrl="images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
+                                    <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>"><asp:Image runat="server" AlternateText="<%$ Resources:Download %>" ToolTip="<%$ Resources:Download %>" ImageUrl="images/document-save.png"/></a>
                                 </td>
                             </tr>
                         </ItemTemplate>

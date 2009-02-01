@@ -165,4 +165,22 @@
   <data name="Duration" xml:space="preserve">
     <value>Durée</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="DownloadAll" xml:space="preserve">
+    <value>Télécharger tout</value>
+  </data>
+  <data name="Enqueue" xml:space="preserve">
+    <value>Mettre en file</value>
+  </data>
+  <data name="EnqueueAll" xml:space="preserve">
+    <value>Tout mettre en file</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Jouer</value>
+  </data>
+  <data name="PlayAll" xml:space="preserve">
+    <value>Jouer tout</value>
+  </data>
 </root>
