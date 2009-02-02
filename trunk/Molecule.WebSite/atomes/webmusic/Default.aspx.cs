@@ -84,81 +84,6 @@ namespace WebMusic
 				Lastfm.LastfmService.Scrobble(song.Artist.Name, song.Album.Name, song.Title, (int)song.AlbumTrack.GetValueOrDefault(), (int)song.Duration.TotalSeconds, DateTime.Now.Subtract(song.Duration));
 			}
 		}
-		
-        protected void albumsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //List<string> selectedAlbums = new List<string>();
-            //foreach (ListItem item in albumsListBox.Items)
-            //    if (item.Selected)
-            //        selectedAlbums.Add(item.Value);
-
-            //IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(selectedAlbums);
-            //songsList = songsAlbum;
-            //this.SongsView.DataSource = songsList;
-            //this.SongsView.DataBind();
-        }
-
-        protected void artistsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //List<string> selectedArtists = new List<string>();
-            //foreach (ListItem item in artistsListBox.Items)
-            //    if (item.Selected)
-            //        selectedArtists.Add(item.Value);
-
-            //List<string> selectedAlbums = new List<string>();
-            //foreach (ListItem item in albumsListBox.Items)
-            //    if (item.Selected)
-            //    {
-            //        selectedAlbums.Add(item.Value);
-            //    }
-			
-            //this.albumsListBox.DataSource = MusicLibrary.GetAlbumsByArtists(selectedArtists);
-            //this.albumsListBox.DataBind();
-
-            ////restore selected albums, overriden by previous databinding.
-            //List<string> newSelectedAlbums = new List<string>();
-            //foreach (string album in selectedAlbums)
-            //{
-            //    var item = this.albumsListBox.Items.FindByValue(album);
-            //    if (item != null)
-            //    {
-            //        item.Selected = true;
-            //        if( log.IsDebugEnabled)
-            //        {
-            //            log.Debug("New selected album "+album);
-            //        }
-            //        newSelectedAlbums.Add(album);
-            //    }
-            //}
-
-			
-            //IEnumerable<WebMusic.Providers.ISong> songsAlbum = MusicLibrary.GetSongsByAlbums(newSelectedAlbums);
-            //songsList = songsAlbum;
-            //this.SongsView.DataSource = songsList;
-            //this.SongsView.DataBind();
-        }
-
-        protected void artistsListBox_Init(object sender, EventArgs e)
-        {
-            //this.artistsListBox.DataSource = MusicLibrary.GetArtists();
-            //this.artistsListBox.DataBind();
-        }
-
-        protected void albumsListBox_Init(object sender, EventArgs e)
-        {
-            //this.albumsListBox.DataSource = MusicLibrary.GetAlbums();
-            //this.albumsListBox.DataBind();
-        }
-
-        protected void searchButton_Click(object sender, EventArgs e)
-        {
-            //songsList = Services.MusicLibrary.SearchSongs(searchTextBox.Text,
-            //    searchInAlbumsCheckBox.Checked,
-            //    searchInTitlesCheckBox.Checked,
-            //    searchInArtistsCheckBox.Checked);
-            //this.SongsView.DataSource = songsList;
-            //this.SongsView.DataBind();
-        }
 
         public void RaiseCallbackEvent(string eventArgument)
         {
@@ -188,14 +113,14 @@ namespace WebMusic
 
         protected void ArtistList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ArtistList.DataBind();
-            Session[sessionCurrentArtist] = (string)ArtistList.SelectedValue;
+            arl.DataBind();
+            Session[sessionCurrentArtist] = (string)arl.SelectedValue;
         }
 
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            AlbumList.DataBind();
-            Session[sessionCurrentAlbum] = (string)AlbumList.SelectedValue;
+            all.DataBind();
+            Session[sessionCurrentAlbum] = (string)all.SelectedValue;
         }
     }
 }

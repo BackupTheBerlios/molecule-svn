@@ -68,13 +68,13 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Label aristsLabel2;
         
         /// <summary>
-        /// ArtistList control.
+        /// arl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList ArtistList;
+        protected global::System.Web.UI.WebControls.DataList arl;
         
         /// <summary>
         /// ArtistDataSource control.
@@ -95,13 +95,13 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Label labelAlbums;
         
         /// <summary>
-        /// AlbumList control.
+        /// all control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList AlbumList;
+        protected global::System.Web.UI.WebControls.DataList all;
         
         /// <summary>
         /// AlbumDataSource control.
@@ -113,13 +113,13 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.ObjectDataSource AlbumDataSource;
         
         /// <summary>
-        /// SongsView control.
+        /// sv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater SongsView;
+        protected global::System.Web.UI.WebControls.Repeater sv;
         
         /// <summary>
         /// SongDataSource control.
