@@ -41,8 +41,7 @@
             <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
         </div>
     </div>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+    
             <div id="navigationPanel">
                 <div id="artistscontainer">
                     <h2>
@@ -71,7 +70,9 @@
                         </h2>
                             
                       <div id="albumList" style="overflow: auto; height:150px;" class="thinBox">
-                        <asp:DataList ID="all" runat="server" DataSourceID="AlbumDataSource" 
+                      <asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
+                      <ContentTemplate>
+                        <asp:DataList ID="all" runat="server" DataSourceID="AlbumDataSource"
                               DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList">
                             <ItemTemplate>
                                 <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>'
@@ -89,10 +90,17 @@
                                     Type="String" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
+                        </ContentTemplate>
+                        <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="arl" EventName="ItemCommand" />
+                        </Triggers>
+                        </asp:UpdatePanel>
                     </div>
                     </div>
             </div>
             <div id="songscontainer">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+        <ContentTemplate>
                 <table id="songsView">
                     <asp:Repeater ID="sv" runat="server" DataSourceID="SongDataSource">
                         <HeaderTemplate>
@@ -159,9 +167,13 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </table>
-            </div>
-        </ContentTemplate>
+                </ContentTemplate>
+                <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="all" EventName="ItemCommand" />
+                </Triggers>
     </asp:UpdatePanel>
+            </div>
+        
      <script type="text/javascript">
     init();
     </script>

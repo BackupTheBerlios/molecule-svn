@@ -50,15 +50,6 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Literal repeatAllCheckBoxLiteral;
         
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// aristsLabel2 control.
         /// </summary>
         /// <remarks>
@@ -95,6 +86,15 @@ namespace WebMusic {
         protected global::System.Web.UI.WebControls.Label labelAlbums;
         
         /// <summary>
+        /// albumUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel albumUpdatePanel;
+        
+        /// <summary>
         /// all control.
         /// </summary>
         /// <remarks>
@@ -111,6 +111,15 @@ namespace WebMusic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource AlbumDataSource;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// sv control.
