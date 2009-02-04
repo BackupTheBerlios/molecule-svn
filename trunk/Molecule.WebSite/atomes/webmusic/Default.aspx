@@ -37,7 +37,7 @@
             <h2>
                 <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>
             <select size="10" multiple="multiple" id="playListBox" ondblclick="playSelectedSong()"
-                onkeydown="playlist_onkeydown(event)" /> 
+                onkeydown="playlist_onkeydown(event)"></select> 
             <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
         </div>
     </div>
