@@ -85,9 +85,9 @@ function playNextSong()
 function enqueueSong(id, artist, title)
 { 
     var option = document.createElement("option");
-    option.text = artist + " - "+ title;
     option.value = id;
     playlist.appendChild(option);
+    option.text = artist + " - "+ title; //must be done after appendChild (IE8 workaround)
 }
 
 function onEnded()
