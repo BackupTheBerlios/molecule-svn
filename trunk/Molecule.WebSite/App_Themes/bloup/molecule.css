@@ -11,6 +11,37 @@ img
 	border-style:none;
 }
 
+.messagesPanelTitle
+{
+	color:#999999;
+	font-size:medium;
+}
+
+.messagesPanel
+{
+	margin-top : 10px;
+	margin-left : 10px;
+	float:left;
+	width : 45%;
+}
+
+.message
+{
+	border-bottom: 1px solid #f57900;
+}
+
+.messageDate
+{
+	color:#999999;
+    font-size :10px;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.spacer {
+  clear: both;
+}
+
 
 #sideBar
 {
