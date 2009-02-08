@@ -115,10 +115,13 @@ namespace WebMusic.Services
 				// update informations about the albums recently added
 				System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded = provider.AlbumsRecentlyAdded;
 			    Molecule.Log.LogService.Instance.ClearType("Music");
-				foreach(string recentlyAdded in albumsRecentlyAdded)
-				{
-					Molecule.Log.LogService.Instance.AddSemanticEvent("Music", DateTime.Now, recentlyAdded+" added", null, null, null);
-				}
+                if (albumsRecentlyAdded != null)
+                {
+                    foreach (string recentlyAdded in albumsRecentlyAdded)
+                    {
+                        Molecule.Log.LogService.Instance.AddSemanticEvent("Music", DateTime.Now, recentlyAdded + " added", null, null, null);
+                    }
+                }
             }
             catch (Exception e)
             {
