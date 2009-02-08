@@ -26,6 +26,14 @@ namespace WebMusic.Providers.WMP
                 return Environment.OSVersion.Platform == PlatformID.Win32NT;
             }
         }
+
+        public System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
+        {
+            get
+            {
+                return null;
+            }
+        }		
         #region IMusicLibraryProvider Members
 
         public void Initialize()
