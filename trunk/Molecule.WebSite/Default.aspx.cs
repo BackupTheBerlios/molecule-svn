@@ -27,6 +27,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Collections.Generic;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -40,7 +41,16 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+			List<string> types = Molecule.Log.LogService.Instance.GetSemanticTypes();
+			this.typesRepeater.DataSource = types;
+			this.typesRepeater.DataBind();
         }
+		
+		protected void typesRepeater_ItemDatabound(Object sender, RepeaterItemEventArgs e)
+		{
+			Repeater messagesRepeater = (Repeater)e.Item.FindControl("messagesRepeater");
+			messagesRepeater.DataSource = Molecule.Log.LogService.Instance.GetSemanticEventByType(e.Item.DataItem.ToString());
+			messagesRepeater.DataBind();
+		}		
     }
 }

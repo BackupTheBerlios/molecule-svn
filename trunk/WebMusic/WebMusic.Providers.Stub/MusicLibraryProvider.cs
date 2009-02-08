@@ -55,6 +55,14 @@ namespace WebMusic.Providers.Stub
         {
         }
 
+		public System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
+		{
+			get
+			{
+				return null;
+			}
+		}		
+		
         public System.Collections.Generic.IEnumerable<IArtist> GetArtists()
         {
             for (int i = 0; i < nbArtists; i++)

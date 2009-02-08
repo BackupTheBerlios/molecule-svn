@@ -33,5 +33,9 @@ namespace WebMusic.Providers
     {
 		void Initialize();
         IEnumerable<IArtist> GetArtists();
+		System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
+		{
+			get;
+		}
     }
 }

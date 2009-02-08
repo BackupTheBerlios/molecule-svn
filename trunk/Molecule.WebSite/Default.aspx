@@ -24,10 +24,27 @@
 
 <%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
     Inherits="Molecule.WebSite.WebForm1" Title="Untitled Page" EnableTheming="true" %>
+<%@ Import Namespace="Molecule.Log" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+
+<div class="messagesPanel">
+    <asp:Repeater ID="typesRepeater" runat="server" OnItemDatabound="typesRepeater_ItemDatabound">
+        <ItemTemplate>
+                <div class="messagesPanelTitle"><%# (string)Container.DataItem %></div>
+                <asp:Repeater ID="messagesRepeater" runat="server">
+                    <ItemTemplate>
+                        <div  class="message">
+						    <%# ((SemanticEvent)Container.DataItem).Title %>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
+
 <%--<div>
 <div class="messagesPanel">
 <div class="messagesPanelTitle">Music</div>

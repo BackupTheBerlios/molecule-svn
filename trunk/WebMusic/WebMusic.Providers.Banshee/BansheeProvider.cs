@@ -45,6 +45,7 @@ namespace WebMusic.Providers.Banshee
 		private Dictionary<string, Artist> artists;
 		private static string bansheeDatabase = bansheeDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".config/banshee-1/banshee.db");
 		private string defaultLibraryPath;
+		public List<string> albumsRecentlyAdded;
 		
 		public BansheeProvider()
 		{
@@ -73,11 +74,47 @@ namespace WebMusic.Providers.Banshee
 			this.FillArtistsList(dbcon);
 			this.FillAlbumsList(dbcon);
 			this.FillSongsList(dbcon);
+			this.UpdateRecentlyAddedAlbums(dbcon);
 			
 			dbcon.Close();
 			dbcon = null;
 		}
 
+		private void UpdateRecentlyAddedAlbums(IDbConnection dbcon)
+		{
+			albumsRecentlyAdded = new List<string>();
+			IDbCommand dbcmd = dbcon.CreateCommand();			
+			string sql =
+			"SELECT  DISTINCT albums.albumTitle "+
+            "FROM ( "+
+            "SELECT CoreAlbums.Title albumTitle, CoreTracks.DateAddedStamp dateAddedTimeStamp  "+
+            "FROM CoreArtists, CoreTracks, CoreAlbums  "+
+            "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 "+
+            "ORDER BY CoreTracks.DateAddedStamp DESC   "+
+            ") albums "+
+            "LIMIT 5; ";
+			dbcmd.CommandText = sql;
+ 
+
+			IDataReader reader = dbcmd.ExecuteReader();
+			while(reader.Read()) {
+				albumsRecentlyAdded.Add(reader.GetValue (0).ToString());
+			}
+			// clean up
+			reader.Close();
+			reader = null;
+			dbcmd.Dispose();
+			dbcmd = null;
+		}
+		
+		public System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
+		{
+			get
+			{
+				return albumsRecentlyAdded;
+				
+			}
+		}
 		
 		private void FillArtistsList(IDbConnection dbcon)
 		{

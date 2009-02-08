@@ -87,14 +87,12 @@
     <Compile Include="Serialization\Atome.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="Web\Security\SQLiteMembershipProvider.cs" />
-    <Compile Include="Web\Security\SQLiteProvidersHelper.cs" />
     <Compile Include="Web\Security\SQLiteRoleProvider.cs" />
     <Compile Include="Web\Singleton.cs" />
     <Compile Include="Log\LogService.cs" />
     <Compile Include="Log\Event.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Web\Security\InitDb.sql" />
+    <Compile Include="SQLiteProvidersHelper.cs" />
+    <Compile Include="Log\SemanticEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\extern\win32\sqlite3.dll">
@@ -110,4 +108,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <EmbeddedResource Include="InitDb.sql" />
+  </ItemGroup>
 </Project>

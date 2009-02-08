@@ -99,6 +99,14 @@ namespace WebMusic.Providers.Rhythmbox
 			log.Debug(entryCount+ " entries found in rhythmbox user database.");
 		}
 		
+		public System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
+		{
+			get
+			{
+				return null;
+			}
+		}		
+		
 		public IEnumerable<IArtist> GetArtists()
 		{
             foreach(System.Collections.Generic.KeyValuePair<string,  Artist> key in artists)

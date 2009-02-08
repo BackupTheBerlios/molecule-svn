@@ -29,7 +29,7 @@ using System.Web.Security;
 using Mono.Data.Sqlite;
 using System.IO;
 
-namespace Molecule.Web.Security
+namespace Molecule
 {
     public class SQLiteProvidersHelper
     {
@@ -42,7 +42,7 @@ namespace Molecule.Web.Security
             // the folder of webmusic exist ?
             string configDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string applicationConfigDir = Path.Combine(configDir, ApplicationName);
-            string databasePath = Path.Combine(applicationConfigDir, "users.db");
+            string databasePath = Path.Combine(applicationConfigDir, "molecule.db");
             ConnectionString = String.Format("URI=file:{0},version=3", databasePath);
             
             if (!File.Exists(databasePath))
@@ -70,7 +70,7 @@ namespace Molecule.Web.Security
         {
             IDbCommand dbcmd = dbcon.CreateCommand();
 
-            var initDbSqlStream = typeof(SQLiteProvidersHelper).Assembly.GetManifestResourceStream("Molecule.Web.Security.InitDb.sql");
+            var initDbSqlStream = typeof(SQLiteProvidersHelper).Assembly.GetManifestResourceStream("Molecule.InitDb.sql");
             using (var reader = new System.IO.StreamReader(initDbSqlStream))
             {
                 dbcmd.CommandText = reader.ReadToEnd();
@@ -78,7 +78,7 @@ namespace Molecule.Web.Security
             dbcmd.ExecuteNonQuery();
         }
 
-        public static void CreateRole(string rolename)
+        private static void CreateRole(string rolename)
         {
             SqliteConnection conn = new SqliteConnection(ConnectionString);
             SqliteCommand cmd = new SqliteCommand("INSERT INTO `Roles`" +
