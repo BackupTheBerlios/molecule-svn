@@ -139,6 +139,7 @@ img
 	border:1px;
 	border-style:solid;
 	border-color:#444444;
+	padding:2px;
 }
 
 
@@ -179,9 +180,15 @@ table thead
 	background-color:#f57900;
 }
 
+
 #maincontentPanel tr:hover { 
     background-color:#999999;
     border-width : 0px;
+}
+
+.selectedRow
+{
+	background-color:#999999;
 }
 
 #pageTitle

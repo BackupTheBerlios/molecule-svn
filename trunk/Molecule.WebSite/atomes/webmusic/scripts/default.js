@@ -1,22 +1,29 @@
-﻿var playlist;
+﻿
 var player;
 var playButton;
 var pauseButton;
 var repeatAllCheckBox;
-var currentSongInfoLabel;
+var currentSongArtistLabel;
+var currentSongTitleLabel;
 var currentSongPositionLabel;
 var currentVolumeLabel;
 var errorLoadingMessage;
-var currentSongId;
+var currentSong;
+var playlist = new Array();
+var playlistView;
+var playlistSelectedIndex;
+var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this)\">$songDesc</a>";
 
 function init()
 {
     soundManager.url = ".";
-    playlist = $get("playListBox");
+    playlist = new Array();
+    playlistView = $get("playlistTable");
     playButton = $get("playButton");
     pauseButton = $get("pauseButton");
     repeatAllCheckBox = $get("repeatAllCheckBox");
-    currentSongInfoLabel = $get("currentSongInfoLabel");
+    currentSongArtistLabel = $get("currentSongArtistLabel");
+    currentSongTitleLabel = $get("currentSongTitleLabel");
     currentSongPositionLabel = $get("currentSongPositionLabel");
     currentVolumeLabel = $get("currentVolumeLabel");
     updateCurrentVolume(getVolume());
@@ -25,11 +32,11 @@ function init()
 
 function playSelectedSong()
 {
-    var selectedOption = playlist.options.item(playlist.selectedIndex);
-    currentSongId = selectedOption.value;
-    playSong(getUrlForSong(currentSongId));
-    currentSongInfoLabel.innerHTML = selectedOption.text;
-    UseCallback('idSongCurrentlyPlaying;'+currentSongId,null);    
+    var currentSong = playlist[playlistSelectedIndex];
+    playSong(currentSong.getUrl());
+    currentSongArtistLabel.innerHTML = currentSong.artist;
+    currentSongTitleLabel.innerHTML = currentSong.title;
+    UseCallback('idSongCurrentlyPlaying;'+currentSong.id,null);    
 }
 function SongEvent(arg, context)
     {
@@ -39,78 +46,87 @@ function SongEvent(arg, context)
 
 function removeSelectedSong()
 {
-    var i = playlist.selectedIndex;
+    var i = playlistSelectedIndex;
     if(i >= 0)
     {
-        var selectedOption = playlist.options.item(i);
-        playlist.removeChild(selectedOption);
-        var nbItem = playlist.options.length;
+        var selectedRow = playlistView.rows.item(i);
+        playlistView.removeChild(selectedRow);
+        playlist.splice(i, 1);
+        var nbItem = playlist.length;
         if(nbItem > 0)
             if(i < nbItem)
-                 playlist.selectedIndex = i;
-            else playlist.selectedIndex = nbItem - 1;
+                 setPlaylistSelectedIndex(i);
+            else setPlaylistSelectedIndex(nbItem - 1);
      }
 }
 
-function getUrlForSong(songId)
+function setPlaylistSelectedIndex(index)
 {
-    return "/"+songId+".media";
+    if(playlist.length > 0 && playlistSelectedIndex >= 0)
+        playlistView.rows[playlistSelectedIndex].className = "";
+    playlistSelectedIndex = index;
+    playlistView.rows[playlistSelectedIndex].className = "selectedRow";
 }
+
+
 
 function playLastSong()
 {
-    playlist.selectedIndex = playlist.options.length -1;
+    setPlaylistSelectedIndex(playlist.length -1);
     playSelectedSong();
 }
 
 function playPreviousSong()
 {
-    if(playlist.selectedIndex > 0)
+    if(playlistSelectedIndex > 0)
     {
-        playlist.selectedIndex--;
+        setPlaylistSelectedIndex(playlistSelectedIndex-1);
         playSelectedSong();
     }
 }
 
 function playNextSong()
 {
-    var nbItem = playlist.options.length;
+    var nbItem = playlist.length;
     if(nbItem > 0)
     {
-        playlist.selectedIndex = (playlist.selectedIndex + 1) % nbItem;
+        setPlaylistSelectedIndex((playlistSelectedIndex + 1) % nbItem);
         playSelectedSong();
     }   
 }
 
 function enqueueSong(id, artist, title)
-{ 
-    var option = document.createElement("option");
-    option.value = id;
-    playlist.appendChild(option);
-    option.text = artist + " - "+ title; //must be done after appendChild (IE8 workaround)
+{
+    playlist[playlist.length] = new Song(id, artist, title);
+    var row = playlistView.insertRow(playlist.length - 1);
+    var mainCell = row.insertCell(0);
+    var mainCellContent = playlistMainCellTemplate.replace('$songId', id);
+    mainCellContent = mainCellContent.replace('$songDesc', artist + ' - ' + title);
+    mainCell.innerHTML = mainCellContent;
 }
+
+
 
 function onEnded()
 {
-    UseCallback('idSongPlayed;'+currentSongId,null);    
+    UseCallback('idSongPlayed;'+currentSong.id,null);    
     onPause();
-    var nbItem = playlist.options.length;
-    if(playlist.selectedIndex < nbItem -1)
+    var nbItem = playlist.length;
+    if(playlistSelectedIndex < nbItem -1)
     {
         //todo : implémenter repeat one
-        playlist.selectedIndex += 1;
+        setPlaylistSelectedIndex(playlistSelectedIndex + 1);
         playSelectedSong();
     }
     else if(repeatAllCheckBox.checked)
     {
-        playlist.selectedIndex = 0;
+        setPlaylistSelectedIndex(0);
         playSelectedSong();
     }     
 }
 
 function onPlay()
 {
-
     playButton.style.display = "none";
     pauseButton.style.display = "inline";
 }
@@ -166,6 +182,12 @@ function playlist_onkeydown(event)
         
     if(keyCode == 46)
         removeSelectedSong();
+}
+
+function playlistItem_onclick(item)
+{
+    setPlaylistSelectedIndex(item.parentNode.parentNode.rowIndex);
+    playSelectedSong();
 }
 
 function songsView_onclick(action)
@@ -236,8 +258,19 @@ function volumeDownButton_onclick() {
 }
 
 function playButton_onclick() {
-    if(playlist.selectedIndex == -1 && playlist.options.length > 0)
+    if(playlist.selectedIndex == -1 && playlist.length > 0)
         playNextSong();
     else
         resume();
 }
+
+
+function Song(id, artist, title) {
+    this.id = id;
+    this.artist = artist;
+    this.title = title;
+    this.getUrl = function()
+    {
+        return "/"+id+".media";
+    }
+};

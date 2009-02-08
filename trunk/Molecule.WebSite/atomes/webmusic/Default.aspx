@@ -28,7 +28,9 @@
                 onclick="return pauseButton_onclick()" />
             <img id="nextButton" alt="Suivant" src="images/media-skip-forward.png" onclick="return nextButton_onclick()" />
             <br />
-            <div id="currentSongInfoLabel" style="font-size:120%">
+            <div id="currentSongTitleLabel">
+            </div>
+            <div id="currentSongArtistLabel">
             </div>
             <div id="currentSongPositionLabel" style="font-family:Courier New">
             </div>
@@ -36,8 +38,11 @@
         <div id="playlistcontainer">
             <h2>
                 <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>
-            <select size="10" multiple="multiple" id="playListBox" ondblclick="playSelectedSong()"
-                onkeydown="playlist_onkeydown(event)"></select> 
+            
+                <div id="playListPanel" style="overflow: auto; height:150px;" class="thinBox">
+                    <table id="playlistTable" class="itemList" onkeydown="playlist_onkeydown(event)">
+                    </table>
+                </div>
             <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
         </div>
     </div>
@@ -55,9 +60,6 @@
                                     CommandArgument='<%# Eval("Id") %>' 
                                     CommandName="Select" />
                             </ItemTemplate>
-                            <SelectedItemTemplate>
-                                <asp:Label ID="ail" runat="server" Text='<%# Eval("Name") %>' />
-                            </SelectedItemTemplate>
                         </asp:DataList>
                         <asp:ObjectDataSource ID="ArtistDataSource" runat="server" 
                             SelectMethod="GetArtists" TypeName="WebMusic.Services.MusicLibrary">
@@ -67,8 +69,7 @@
                 <div id="albumscontainer">
                         <h2>
                             <asp:Label ID="labelAlbums" runat="server" Text="<%$ Resources:Albums %>" />
-                        </h2>
-                            
+                        </h2> 
                       <div id="albumList" style="overflow: auto; height:150px;" class="thinBox">
                       <asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
                       <ContentTemplate>
@@ -79,9 +80,6 @@
                                     CommandArgument='<%# Eval("Id") %>' 
                                     CommandName="Select" />
                             </ItemTemplate>
-                            <SelectedItemTemplate>
-                             <asp:Label ID="ail" runat="server" Text='<%# Eval("Name") %>' />
-                            </SelectedItemTemplate>
                         </asp:DataList>
                         <asp:ObjectDataSource ID="AlbumDataSource" runat="server" 
                             SelectMethod="GetAlbumsByArtist" TypeName="WebMusic.Services.MusicLibrary">

@@ -66,6 +66,11 @@ select
     cursor:pointer;
 }
 
+#playlistTable a
+{
+	cursor:pointer;
+}
+
 #fileNotFoundPanel
 {
     display : none;
@@ -99,5 +104,17 @@ select
 #currentSongPositionLabel
 {
 	margin-top:10px;
+}
+
+#currentSongArtistLabel
+{
+	margin-top:8px;
+}
+
+#currentSongTitleLabel
+{
+	margin-top:15px;
+	font-size:110%;
+	font-weight:bolder;
 }
 
