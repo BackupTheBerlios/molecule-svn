@@ -179,7 +179,7 @@ namespace WebMusic.Providers.Stub
             {
                 get
                 {
-                    string virtualPath = AlbumTrack % 2 == 1 ? "atomes/webmusic/stublibrary/song1.mp3" : "atomes/webmusic/stublibrary/song2.mp3";
+                    string virtualPath = AlbumTrack % 2 == 1 ? "stublibrary/song1.mp3" : "stublibrary/song2.mp3";
                     return System.Web.HttpContext.Current.Request.MapPath(virtualPath);
                 }
             }
