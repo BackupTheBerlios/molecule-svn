@@ -12,13 +12,15 @@ var currentSong;
 var playlist = new Array();
 var playlistView;
 var playlistSelectedIndex;
+var coverArtImage;
 var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this)\">$songDesc</a>";
 
 function init()
 {
     soundManager.url = ".";
     playlist = new Array();
-    playlistView = $get("playlistTable");
+    playlistView = $get("playlistTable");    
+    coverArtImage = $get("coverArtImage");
     playButton = $get("playButton");
     pauseButton = $get("pauseButton");
     repeatAllCheckBox = $get("repeatAllCheckBox");
@@ -36,6 +38,8 @@ function playSelectedSong()
     playSong(currentSong.getUrl());
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
+    coverArtImage.src = "~/atomes/webmusic/CoverArt/"+currentSong.id+".jpg";
+    coverArtImage.style.display ="inline";
     UseCallback('idSongCurrentlyPlaying;'+currentSong.id,null);    
 }
 function SongEvent(arg, context)
@@ -133,7 +137,6 @@ function onPlay()
 
 function onPause()
 {
-
     playButton.style.display = "inline";
     pauseButton.style.display = "none";
 }

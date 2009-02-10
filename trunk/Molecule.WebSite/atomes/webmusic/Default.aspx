@@ -27,14 +27,22 @@
             <img id="pauseButton" alt="Pause" src="images/media-playback-pause.png" style="display: none;"
                 onclick="return pauseButton_onclick()" />
             <img id="nextButton" alt="Suivant" src="images/media-skip-forward.png" onclick="return nextButton_onclick()" />
-            <br />
-            <div id="currentSongTitleLabel">
-            </div>
-            <div id="currentSongArtistLabel">
-            </div>
-            <div id="currentSongPositionLabel" style="font-family:Courier New">
+            <div id="songInformationPanel">
+         
+                <div id="songsLabelPanel">
+                    <div id="currentSongTitleLabel">
+                    </div>
+                    <div id="currentSongArtistLabel">
+                    </div>
+                    <div id="currentSongPositionLabel" style="font-family:Courier New">
+                    </div>
+                </div>
+                <div id="coverArtPanel">
+                    <img id="coverArtImage" src="" style="display: none;"/>
+                </div>
             </div>
         </div>
+
         <div id="playlistcontainer">
             <h2>
                 <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>

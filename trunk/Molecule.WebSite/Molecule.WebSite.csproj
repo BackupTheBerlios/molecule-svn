@@ -109,6 +109,11 @@
     <Compile Include="atomes\webmusic\admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx.cs">
+      <DependentUpon>CoverArtFileHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\CoverArt\CoverArtService.cs" />
+    <Compile Include="atomes\webmusic\CoverArt\CoverArtSpec.cs" />
     <Compile Include="atomes\webmusic\IO\CompressionHelper.cs" />
     <Compile Include="atomes\webmusic\Services\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -243,6 +248,7 @@
     <Content Include="App_Themes\default\TreeView.skin" />
     <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
     <None Include="Atome.xsd" />
+    <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
     <Content Include="atomes\upload\Web.sitemap" />
     <Content Include="PreferencesPage.Master" />
     <Content Include="atomes\webmusic\images\dialog-warning.png" />

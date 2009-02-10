@@ -127,6 +127,25 @@ img
 	background-color:#f57900;
 }
 
+#songInformationPanel
+{
+	clear:both;
+}
+
+#songsLabelPanel
+{
+	float:left;
+}
+
+#coverArtPanel img
+{
+	width: 100px;
+	height: 100px;
+	cursor:move;
+	margin-left:10px;
+	
+}
+
 .tabTitle
 {
 	margin:5px;
