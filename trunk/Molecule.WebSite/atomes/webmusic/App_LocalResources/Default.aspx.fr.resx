@@ -183,4 +183,7 @@
   <data name="PlayAll" xml:space="preserve">
     <value>Jouer tout</value>
   </data>
+  <data name="SongsAdded" xml:space="preserve">
+    <value>Morceaux ajoutés à la playlist</value>
+  </data>
 </root>

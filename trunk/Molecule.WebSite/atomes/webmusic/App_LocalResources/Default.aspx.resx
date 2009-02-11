@@ -180,4 +180,7 @@
   <data name="PlayAll" xml:space="preserve">
     <value>Play all</value>
   </data>
+  <data name="SongsAdded" xml:space="preserve">
+    <value>Songs added to the playlist</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ var currentSongTitleLabel;
 var currentSongPositionLabel;
 var currentVolumeLabel;
 var errorLoadingMessage;
+var songAddedToPlaylist;
 var currentSong;
 var playlist = new Array();
 var playlistView;
@@ -30,6 +31,7 @@ function init()
     currentVolumeLabel = $get("currentVolumeLabel");
     updateCurrentVolume(getVolume());
     errorLoadingMessage = $get("fileNotFoundPanel");
+    songAddedToPlaylist = $get("fileAddedToPlaylistPanel");
 }
 
 function playSelectedSong()
@@ -107,6 +109,8 @@ function enqueueSong(id, artist, title)
     var mainCellContent = playlistMainCellTemplate.replace('$songId', id);
     mainCellContent = mainCellContent.replace('$songDesc', artist + ' - ' + title);
     mainCell.innerHTML = mainCellContent;
+    songAddedToPlaylist.style.display ="inline-block";
+    setTimeout('songAddedToPlaylist.style.display="none"',7000); 
 }
 
 
