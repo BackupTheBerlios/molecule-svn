@@ -14,7 +14,8 @@ var playlist = new Array();
 var playlistView;
 var playlistSelectedIndex;
 var coverArtImage;
-var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this)\">$songDesc</a>";
+var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this, 'play')\">$songDesc</a>";
+var playlistActionCellTemplate = "<img alt=\"\" src=\"images/list-remove.png\" onclick=\"playlistItem_onclick(this, 'remove')\" />";
 
 function init()
 {
@@ -53,10 +54,8 @@ function SongEvent(arg, context)
 function removeSelectedSong()
 {
     var i = playlistSelectedIndex;
-    if(i >= 0)
-    {
-        var selectedRow = playlistView.rows.item(i);
-        playlistView.removeChild(selectedRow);
+    if(i >= 0) {
+        playlistView.deleteRow(i);
         playlist.splice(i, 1);
         var nbItem = playlist.length;
         if(nbItem > 0)
@@ -105,12 +104,16 @@ function enqueueSong(id, artist, title)
 {
     playlist[playlist.length] = new Song(id, artist, title);
     var row = playlistView.insertRow(playlist.length - 1);
+    row.className = "playlistItem";
+    var actionCell = row.insertCell(0);
+    actionCell.innerHTML = playlistActionCellTemplate;
     var mainCell = row.insertCell(0);
     var mainCellContent = playlistMainCellTemplate.replace('$songId', id);
     mainCellContent = mainCellContent.replace('$songDesc', artist + ' - ' + title);
     mainCell.innerHTML = mainCellContent;
+
     songAddedToPlaylist.style.display ="inline-block";
-    setTimeout('songAddedToPlaylist.style.display="none"',7000); 
+    setTimeout('songAddedToPlaylist.style.display="none"',5000); 
 }
 
 
@@ -191,10 +194,17 @@ function playlist_onkeydown(event)
         removeSelectedSong();
 }
 
-function playlistItem_onclick(item)
+function playlistItem_onclick(item, action)
 {
     setPlaylistSelectedIndex(item.parentNode.parentNode.rowIndex);
-    playSelectedSong();
+    if(action == "play")
+    {
+        playSelectedSong();
+    }
+    else if(action = "remove")
+    {
+        removeSelectedSong();
+    }
 }
 
 function songsView_onclick(action)
