@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Atome>
-  <Name>Web Music</Name>
-  <SiteMap>Web.sitemap</SiteMap>
+  <Name>Music</Name>
   <PreferencesPage>admin/Default.aspx</PreferencesPage>
 </Atome>

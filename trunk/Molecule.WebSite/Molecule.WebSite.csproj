@@ -253,11 +253,9 @@
     <None Include="Atome.xsd" />
     <Content Include="CacheHandler.ashx" />
     <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
-    <Content Include="atomes\upload\Web.sitemap" />
     <Content Include="PreferencesPage.Master" />
     <Content Include="atomes\webmusic\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
-    <Content Include="atomes\webmusic\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.resx">
@@ -313,6 +311,7 @@
   <ItemGroup>
     <Folder Include="App_Themes\default\images\" />
     <Folder Include="App_Themes\raw\" />
+    <Folder Include="atomes\photo\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

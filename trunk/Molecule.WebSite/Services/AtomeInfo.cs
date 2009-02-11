@@ -47,7 +47,6 @@ namespace Molecule.WebSite.Services
         }
         public string Path { get {return atomePath; } }
         public string Name { get { return atome.Name; } }
-        public string SiteMapPath { get { return mapAtomeRelativePath(atome.SiteMap); } }
 
         private string mapAtomeRelativePath(string relativePath)
         {

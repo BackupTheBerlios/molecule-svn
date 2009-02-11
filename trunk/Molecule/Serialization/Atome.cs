@@ -34,7 +34,6 @@ namespace Molecule.Serialization
     public class Atome
     {
         public string Name { get; set; }
-        public string SiteMap { get; set; }
         public string PreferencesPage { get; set; }
 
         public static Atome LoadFrom(string xmlFilePath)

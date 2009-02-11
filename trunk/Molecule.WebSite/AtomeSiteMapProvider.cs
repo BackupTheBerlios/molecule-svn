@@ -68,16 +68,14 @@ namespace Molecule.WebSite
                         if (log.IsDebugEnabled)
                             log.Debug("Dynamically filling site map with atome site maps...");
                         rootNode = BuildRootNode();
-                        foreach (string siteMap in GetSiteMapPaths())
+                        int i = 0;
+                        foreach (AtomeInfo atome in AtomeService.GetAtomes())
                         {
-                            var provider = new XmlSiteMapProvider();
-                            var attributes = new NameValueCollection();
-                            attributes.Add("siteMapFile", siteMap);
-                            provider.Initialize("test", attributes);
-                            AddNode(provider.RootNode, rootNode);
-                            if (log.IsDebugEnabled)
-                                log.Debug("site map " + siteMap + " added.");
+                            var node = new SiteMapNode(this, "atome" + i++, atome.Path, atome.Name);
+                            AddNode(node, rootNode);
                         }
+                        var prefNode = new SiteMapNode(this, "preferences", "admin", "Préférences");
+                        AddNode(prefNode, rootNode);
                     }
                 }
             return rootNode;
@@ -88,12 +86,6 @@ namespace Molecule.WebSite
             return new SiteMapNode(this, rootTitle, rootUrl, rootTitle, rootDescription);
         }
 
-        protected virtual IEnumerable<string> GetSiteMapPaths()
-        {
-            return from atome in AtomeService.GetAtomes()
-                   where !String.IsNullOrEmpty(atome.SiteMapPath)
-                   select atome.SiteMapPath;
-        }
 
         public override SiteMapNode RootNode
         {

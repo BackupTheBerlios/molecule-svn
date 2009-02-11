@@ -30,7 +30,6 @@ namespace Molecule.WebSite.Services
         string PreferencesPagePath { get; }
         string Name { get; }
         string Path { get; }
-        string SiteMapPath { get; }
         bool HasPreferencesPage{get;}
     }
 }
