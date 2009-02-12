@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div id="coverArtPanel">
-                    <img id="coverArtImage" src="" style="display: none;"/>
+                    <img alt="" id="coverArtImage" src="" style="display: none;" />
                 </div>
             </div>
         </div>

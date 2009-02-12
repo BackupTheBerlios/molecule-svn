@@ -44,6 +44,8 @@ function playSelectedSong()
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
     coverArtImage.src = "~/atomes/webmusic/CoverArt/"+currentSong.id+".jpg";
+    coverArtImage.alt = currentSong.album;
+    coverArtImage.title = currentSong.album;
     coverArtImage.style.display ="inline";
     UseCallback('idSongCurrentlyPlaying;'+currentSong.id,null);    
 }
@@ -102,9 +104,9 @@ function playNextSong()
     }   
 }
 
-function enqueueSong(id, artist, title)
+function enqueueSong(id, artist, title, album)
 {
-    playlist[playlist.length] = new Song(id, artist, title);
+    playlist[playlist.length] = new Song(id, artist, title, album);
     var row = playlistView.insertRow(playlist.length - 1);
     row.className = "playlistItem";
     var actionCell = row.insertCell(0);
@@ -240,8 +242,9 @@ function songsViewRowAction(row, action)
     var songId = row.cells[0].innerHTML;
     var songTitle = row.cells[1].innerHTML;
     var songArtist = row.cells[2].innerHTML;
+    var songAlbum = trim(row.cells[3].innerHTML);
     if(action == 'play' || action == 'enqueue')
-        enqueueSong(songId, songArtist, songTitle);
+        enqueueSong(songId, songArtist, songTitle, songAlbum);
     if(action == 'play')
         playLastSong();
 }
@@ -283,12 +286,27 @@ function playButton_onclick() {
 }
 
 
-function Song(id, artist, title) {
+function Song(id, artist, title, album) {
     this.id = id;
     this.artist = artist;
     this.title = title;
+    this.album = album;
     this.getUrl = function()
     {
         return "/"+id+".media";
     }
 };
+
+function trim(str, chars) {
+    return ltrim(rtrim(str, chars), chars);
+}
+
+function ltrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+}
+
+function rtrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
