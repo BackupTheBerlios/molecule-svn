@@ -115,13 +115,20 @@ select
 
 #songsLabelPanel
 {
+	width:75%;
 	float:left;
+}
+
+#covertArtPanel
+{
+	width:20%;
+	right:0px;
+	position:relative;
 }
 
 #coverArtPanel img
 {
-	width: 100px;
-	height: 100px;
 	cursor:move;
+	margin-top:12px;
 	margin-left:10px;
 }

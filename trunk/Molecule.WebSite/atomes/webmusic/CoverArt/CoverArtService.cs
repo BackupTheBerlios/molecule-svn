@@ -9,7 +9,6 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using Molecule.Web;
 using System.Net;
 using System.Threading;
@@ -23,6 +22,7 @@ namespace WebMusic.CoverArt
 
         private const string lastFmKey = "a08cec1d1d471b5bed7ad21a1aafcced";
         private const string lastFmUrl = "http://ws.audioscrobbler.com/2.0/{0}";
+        private const string coverSizeName = "medium";
 
         public static ManualResetEvent allDone = new ManualResetEvent(false);
         private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtService));
@@ -69,9 +69,9 @@ namespace WebMusic.CoverArt
  	        settings.CheckCharacters = false;
             System.Xml.Linq.XDocument xmlDoc = XDocument.Load(XmlReader.Create(response.GetResponseStream(),settings));
 
-            // we will just get the extra large. Perhaps a problem will raise :)
+            // we will just get the medium size. Perhaps a problem will raise :)
             var result = (from e in xmlDoc.Descendants("image")
-                          where ((string)e.Attribute("size")).Equals("extralarge")
+                          where ((string)e.Attribute("size")).Equals(coverSizeName)
                           select (string)e).ToArray<string>();
             if (!string.IsNullOrEmpty(result[0]))
             {
