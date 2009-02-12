@@ -50,7 +50,11 @@ namespace WebMusic.Providers.WMP
                 IWMPMedia media = items.get_Item(i);
                 string albumArtistName = media.getItemInfo("AlbumArtist").Trim();
                 if (albumArtistName == "")
-                    albumArtistName = "Unknown";
+                {
+                    albumArtistName = media.getItemInfo("Artist").Trim();
+                    if(albumArtistName == "")
+                        albumArtistName = "Unknown";
+                }
                 string albumName = media.getItemInfo("Album").Trim();
                 if (albumName == "")
                     albumName = "Unknown";
