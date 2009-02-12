@@ -56,17 +56,10 @@ select
     position: relative;
 }
 
-#songscontainer img
-{
-    cursor:pointer;
-}
-
-#playerControls img
-{
-    cursor:pointer;
-}
-
-#playlistTable a
+#songscontainer img,
+#playerControls img,
+#playlistTable a,
+#playlistTable img
 {
 	cursor:pointer;
 }
@@ -84,11 +77,6 @@ select
 #playlistTable
 {
 	border-collapse: collapse;
-}
-
-#playlistTable img
-{
-	cursor:pointer;
 }
 
 #songscontainer

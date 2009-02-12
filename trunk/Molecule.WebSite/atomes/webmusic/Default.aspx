@@ -20,10 +20,7 @@
         <img alt="Warning" src="images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
     </div>
-    
-    <div id="fileAddedToPlaylistPanel" class="informationPanel" style="display: none;">
-       <asp:Literal runat="server" Text="<%$ Resources:SongsAdded %>" />
-    </div>
+
     
     <div id="playerpanel">
         <div id="playerControls">
@@ -52,7 +49,7 @@
             <h2>
                 <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>
             
-                <div id="playListPanel" style="overflow: auto; height:150px;" class="thinBox">
+                <div id="playlistPanel" style="overflow: auto; height:150px;" class="thinBox">
                     <table id="playlistTable" class="itemList" onkeydown="playlist_onkeydown(event)">
                     </table>
                 </div>

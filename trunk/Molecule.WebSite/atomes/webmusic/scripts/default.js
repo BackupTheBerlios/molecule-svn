@@ -12,6 +12,7 @@ var songAddedToPlaylist;
 var currentSong;
 var playlist = new Array();
 var playlistView;
+var playlistPanel;
 var playlistSelectedIndex;
 var coverArtImage;
 var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this, 'play')\">$songDesc</a>";
@@ -21,7 +22,8 @@ function init()
 {
     soundManager.url = ".";
     playlist = new Array();
-    playlistView = $get("playlistTable");    
+    playlistView = $get("playlistTable");
+    playlistPanel = $get("playlistPanel"); 
     coverArtImage = $get("coverArtImage");
     playButton = $get("playButton");
     pauseButton = $get("pauseButton");
@@ -111,9 +113,7 @@ function enqueueSong(id, artist, title)
     var mainCellContent = playlistMainCellTemplate.replace('$songId', id);
     mainCellContent = mainCellContent.replace('$songDesc', artist + ' - ' + title);
     mainCell.innerHTML = mainCellContent;
-
-    songAddedToPlaylist.style.display ="inline-block";
-    setTimeout('songAddedToPlaylist.style.display="none"',5000); 
+    playlistPanel.scrollTop = playlistPanel.scrollHeight;
 }
 
 
