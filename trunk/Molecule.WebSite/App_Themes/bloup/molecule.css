@@ -181,6 +181,7 @@ h2
 	color:#999999;
 	font-size:large;
 	text-transform:uppercase;
+	margin-left:4px;
 }
 
 h1
@@ -198,7 +199,7 @@ a:link
 
 a:active{text-decoration:none; color:#f57900;	font-weight:bolder;}
 a:visited{text-decoration:none; color:#f57900;	font-weight:bolder;}
-a:hover{text-decoration:none; font-weight:normal;}
+a:hover{text-decoration:none; color:White;}
 
 
 table thead
@@ -232,6 +233,12 @@ table thead
 table tr
 {
 	
+}
+
+table a:link
+{
+	font-weight:normal;
+	color:White;
 }
 
 table td
