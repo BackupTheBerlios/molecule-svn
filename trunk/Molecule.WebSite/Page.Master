@@ -35,6 +35,16 @@
 <body>
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
+    <asp:UpdateProgress ID="UpdateProgress" runat="server">
+            <ProgressTemplate>
+                <div id="updateProgress" class="updatePanel">
+                    <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+        <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender1" runat="server"
+    TargetControlID="UpdateProgress" HorizontalSide="Left" VerticalSide="Top" HorizontalOffset="0">
+</cc1:AlwaysVisibleControlExtender>
     <div id="pagePanel">
         <div id="header">
         <div id="moleculeTitle"><h1>Molecule</h1></div>
@@ -85,13 +95,7 @@
                 | <a href="Default.aspx">About</a>
                 | <a href="Default.aspx">Sitemap</a>
          </div>
-        <asp:UpdateProgress ID="UpdateProgress" runat="server">
-            <ProgressTemplate>
-                <div id="updateProgress">
-                    <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
-                </div>
-            </ProgressTemplate>
-        </asp:UpdateProgress>
+        
     </div>
     </form>
 </body>

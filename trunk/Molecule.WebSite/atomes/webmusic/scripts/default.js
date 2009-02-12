@@ -113,7 +113,8 @@ function enqueueSong(id, artist, title)
     var mainCellContent = playlistMainCellTemplate.replace('$songId', id);
     mainCellContent = mainCellContent.replace('$songDesc', artist + ' - ' + title);
     mainCell.innerHTML = mainCellContent;
-    playlistPanel.scrollTop = playlistPanel.scrollHeight;
+    songAddedToPlaylist.style.display ="inline";
+    setTimeout('songAddedToPlaylist.style.display="none"',3000); 
 }
 
 
@@ -201,7 +202,7 @@ function playlistItem_onclick(item, action)
     {
         playSelectedSong();
     }
-    else if(action = "remove")
+    else if(action == "remove")
     {
         removeSelectedSong();
     }

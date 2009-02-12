@@ -137,15 +137,26 @@ img
 	background-color:#f57900;
 }
 
+
 .informationPanel
 {
-    display : none;
+	display:none;
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+.informationPanel,
+.updatePanel
+{
+	z-index:1;
+	padding:6px;
+	background-color:#2e3436;
     border-color : #f57900;
     border-width:1px;
     border-style:solid;
-    min-height: 100%;
-    height: 100%;
-    width:100%;
+    border-top:none;
+    border-left:none;
 }
 
 .informationPanel img

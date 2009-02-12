@@ -16,11 +16,14 @@
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
-    <div id="fileNotFoundPanel"  class="informationPanel" style="visibility:hidden">
+    <div id="fileNotFoundPanel"  class="informationPanel">
         <img alt="Warning" src="images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
     </div>
-
+    
+    <div id="fileAddedToPlaylistPanel" class="informationPanel">
+       <asp:Literal runat="server" Text="<%$ Resources:SongsAdded %>" />
+    </div>
     
     <div id="playerpanel">
         <div id="playerControls">
