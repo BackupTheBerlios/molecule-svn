@@ -15,7 +15,7 @@ var playlistView;
 var playlistSelectedIndex;
 var coverArtImage;
 var playlistMainCellTemplate = "<a onclick=\"playlistItem_onclick(this, 'play')\">$songDesc</a>";
-var playlistActionCellTemplate = "<img alt=\"\" src=\"images/list-remove.png\" onclick=\"playlistItem_onclick(this, 'remove')\" />";
+var playlistActionCellTemplate = "<a class=\"listRemove\" onclick=\"playlistItem_onclick(this, 'remove')\"><span>__</span></a>";
 
 function init()
 {

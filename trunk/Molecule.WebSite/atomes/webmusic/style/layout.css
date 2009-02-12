@@ -71,6 +71,26 @@ select
 	cursor:pointer;
 }
 
+#playlistTable tr:hover .listRemove
+{
+	background: url("../images/list-remove.png") no-repeat;
+}
+
+.listRemove span
+{
+	visibility:hidden;
+}
+
+#playlistTable
+{
+	border-collapse: collapse;
+}
+
+#playlistTable img
+{
+	cursor:pointer;
+}
+
 #songscontainer
 {
 	position: relative;

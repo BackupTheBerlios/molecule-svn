@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -291,6 +291,7 @@
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Banshee.dll" />
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Rhythmbox.dll" />
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
+    <Content Include="atomes\webmusic\images\list-remove.png" />
     <Content Include="Error.aspx" />
     <Content Include="App_LocalResources\PreferencesPage.Master.resx">
       <SubType>Designer</SubType>
@@ -309,7 +310,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Themes\default\images\" />
     <Folder Include="App_Themes\raw\" />
     <Folder Include="atomes\photo\" />
   </ItemGroup>
@@ -333,6 +333,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

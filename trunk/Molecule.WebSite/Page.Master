@@ -47,7 +47,7 @@
                     <asp:LoginName ID="LoginName1" runat="server" />
                     !
                     
-                    <ul style="list-style-type:none">
+                    <ul>
                     <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource">
                     <ItemTemplate>
                         <li><asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>

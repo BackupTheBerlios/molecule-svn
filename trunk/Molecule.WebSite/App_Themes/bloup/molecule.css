@@ -58,6 +58,16 @@ img
     z-index : 1;
 }
 
+#menuPanel ul
+{
+	margin-top:5px;
+	margin-bottom:5px;
+	list-style-type:none;
+	padding: 0;
+	border: none;
+
+}
+
 #logPanel
 {
     background-color: #0e2426;
@@ -205,7 +215,8 @@ table thead
 
 .selectedRow
 {
-	background-color:#999999;
+	color:#f57900;
+	font-weight:bolder;
 }
 
 #pageTitle
