@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebMusic._Default"
-    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" EnableEventValidation="false" %>
+    MasterPageFile="~/Page.Master" EnableViewState="false" EnableTheming="true" EnableEventValidation="false"%>
     
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="WebMusic.Providers" %>
@@ -17,7 +17,7 @@
         </Scripts>
     </asp:ScriptManagerProxy>
     <div id="fileNotFoundPanel"  class="informationPanel">
-        <img alt="Warning" src="images/dialog-warning.png" />
+        <img alt="Warning" src="/App_Themes/<%= Theme %>/images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
     </div>
     
@@ -27,11 +27,12 @@
     
     <div id="playerpanel">
         <div id="playerControls">
-            <img id="previousButton" alt="Précédent" src="images/media-skip-backward.png" onclick="return previousButton_onclick()" />&nbsp;
-            <img id="playButton" alt="Jouer" src="images/media-playback-start.png" onclick="return playButton_onclick()" />
-            <img id="pauseButton" alt="Pause" src="images/media-playback-pause.png" style="display: none;"
+        
+            <img id="previousButton" alt="Précédent" src="/App_Themes/<%= Theme %>/images/media-skip-backward.png" onclick="return previousButton_onclick()" />&nbsp;
+            <img id="playButton" alt="Jouer" src="/App_Themes/<%= Theme %>/images/media-playback-start.png" onclick="return playButton_onclick()" />
+            <img id="pauseButton" alt="Pause" src="/App_Themes/<%= Theme %>/images/media-playback-pause.png" style="display: none;"
                 onclick="return pauseButton_onclick()" />
-            <img id="nextButton" alt="Suivant" src="images/media-skip-forward.png" onclick="return nextButton_onclick()" />
+            <img id="nextButton" alt="Suivant" src="/App_Themes/<%= Theme %>/images/media-skip-forward.png" onclick="return nextButton_onclick()" />
             <div id="songInformationPanel">
          
                 <div id="songsLabelPanel">
@@ -133,9 +134,9 @@
                                         <asp:Label runat="server" ID="dl" Text="<%$ Resources:Duration %>" />
                                     </td>
                                     <td style="text-align:right">
-                                        <asp:Image runat="server" AlternateText="<%$ Resources:PlayAll %>" ToolTip="<%$ Resources:PlayAll %>" ImageUrl="images/media-playback-start-small.png" onclick="songsView_onclick('playAll')" />
-                                        <asp:Image runat="server" AlternateText="<%$ Resources:EnqueueAll %>" ToolTip="<%$ Resources:EnqueueAll %>" ImageUrl="images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
-                                        <asp:Image runat="server" AlternateText="<%$ Resources:DownloadAll %>" ToolTip="<%$ Resources:DownloadAll %>" ImageUrl="images/document-save.png" onclick="songsView_onclick('downloadAll')"/>
+                                        <img alt="" src="/App_Themes/<%= Theme %>/images/media-playback-start-small.png" onclick="songsView_onclick('playAll')" />
+                                        <img alt="" src="/App_Themes/<%= Theme %>/images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
+                                        <img alt="" src="/App_Themes/<%= Theme %>/images/document-save.png" onclick="songsView_onclick('downloadAll')"/>
                                     </td>
                                 </tr>
                             </thead>
@@ -160,9 +161,9 @@
                                     <%# FormatDuration(((ISong)Container.DataItem).Duration) %>
                                 </td>
                                 <td style="text-align:right">
-                                    <img alt="" src="images/media-playback-start-small.png" onclick="songsViewItem_onclick(this,'play')" />
-                                    <img alt="" src="images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
-                                    <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>"><img alt="" src="images/document-save.png"/></a>
+                                    <img alt="" src="/App_Themes/<%= Theme %>/images/media-playback-start-small.png" onclick="songsViewItem_onclick(this,'play')" />
+                                    <img alt="" src="/App_Themes/<%= Theme %>/images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
+                                    <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>"><img alt="" src="/App_Themes/<%= Theme %>/images/document-save.png"/></a>
                                 </td>
                             </tr>
                         </ItemTemplate>
