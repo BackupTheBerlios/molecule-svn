@@ -35,25 +35,22 @@ namespace Molecule.WebSite
 
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class CacheHandler : IHttpHandler
+    public class ImageHandler : IHttpHandler
     {
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.Cache.SetExpires(DateTime.Now.Add(new TimeSpan(365,0,0,0)));
+            context.Response.Cache.SetExpires(DateTime.Now.Add(new TimeSpan(2,0,0,0)));
             context.Response.Cache.SetCacheability(HttpCacheability.Public);
             context.Response.Cache.SetValidUntilExpires(false);
             context.Response.WriteFile(context.Request.Path);
-
-
-
         }
 
         public bool IsReusable
         {
             get
             {
-                return false;
+                return true;
             }
         }
     }

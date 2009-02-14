@@ -23,7 +23,7 @@
  --%>
 
 <%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs"
-    Inherits="Molecule.WebSite.WebForm1" Title="Untitled Page" EnableTheming="true" %>
+    Inherits="Molecule.WebSite.WebForm1" Title="Untitled Page" EnableTheming="true" EnableViewState="false" %>
 <%@ Import Namespace="Molecule.Log" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

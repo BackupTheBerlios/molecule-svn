@@ -23,7 +23,7 @@
  --%>
 
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Molecule.WebSite.Page"
-    EnableTheming="true" %>
+    EnableTheming="true"%>
 <%@ Import Namespace="Molecule.WebSite.Services" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -69,23 +69,23 @@
                 </asp:Panel>
                <%-- <asp:TextBox id="logTextBox" TextMode="multiline" runat="server" /> --%>
             </div>
-		    <div id="logPanel">
-                <asp:Repeater ID="logsView" runat="server">
-                    <HeaderTemplate>
-						    <ul>
-                     </HeaderTemplate>
-                     <ItemTemplate>
-                         <li id="logListRow"><%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %> : <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %></li>
-                      </ItemTemplate>
-                      <FooterTemplate>
-					      </ul>
-                      </FooterTemplate>
-                 </asp:Repeater>
-	        </div>
+            <div id="logPanel">
+                <ul>
+                    <asp:Repeater ID="logsView" runat="server">
+                        <HeaderTemplate>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %>
+                                :
+                                <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %></li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </ul>
+            </div>
         </div>
-        <cc1:RoundedCornersExtender ID="menuContent_RoundedCornersExtender" runat="server"
-            TargetControlID="menuContent">
-        </cc1:RoundedCornersExtender>
         <div id="maincontentPanel">
             <asp:ContentPlaceHolder ID="mainContent" runat="server">
             </asp:ContentPlaceHolder>
