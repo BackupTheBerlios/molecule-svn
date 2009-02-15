@@ -174,7 +174,7 @@ namespace WebMusic.Services
 
         public static IEnumerable<IAlbum> GetAlbumsByArtist(string artist)
         {
-            if (artist != null)
+            if (!String.IsNullOrEmpty(artist) && instance.artists.ContainsKey(artist))
             {
                 foreach (var album in instance.artists[artist].Albums.OrderBy(album => album.Name))
                     yield return album;
@@ -193,7 +193,7 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongsByAlbum(string album)
         {
-            if (album != null)
+            if (!String.IsNullOrEmpty(album) && instance.albums.ContainsKey(album))
             {
                 foreach (var song in instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
                     yield return song;
@@ -238,24 +238,6 @@ namespace WebMusic.Services
                    from album in instance.albums.Values
                    where album.Name.ToLower().Contains(pattern)
                    select album.Name);
- 
-            /*
-            return from song in instance.songs.Values
-                   let artists = from artist in instance.artists.Values
-                                 where artist.Name.ToLower().Contains(pattern)
-                                 select artist.Name
-                   let albums = from album in instance.albums.Values
-                                where album.Name.ToLower().Contains(pattern)
-                                select album.Name
-                   where inTitles && song.Title.ToLower().Contains(pattern)
-                   || inAlbums && albums.Contains(song.Album)
-                   || inArtists && artists.Contains(song.Artist)
-                   orderby song.AlbumTrack
-                   orderby song.Album.Name
-                   orderby song.Artist.Name
-                   select song;
-             * */
         }
-
     }
 }
