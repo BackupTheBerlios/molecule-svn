@@ -39,9 +39,7 @@ namespace WebMusic.CoverArt
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtFileHandler));
 
-        private static string unknown_artist_tr = "Unknown Artist";
         private static string unknown_artist = "Unknown Artist";
-        private static string unknown_album_tr = "Unknown Album";
         private static string unknown_album = "Unknown Album";
 
         public static bool CoverExists(string artist, string album)
@@ -78,7 +76,7 @@ namespace WebMusic.CoverArt
 
         public static string CreateArtistAlbumId(string artist, string album, bool asUriPart)
         {
-            if (artist == unknown_artist || artist == unknown_artist_tr || album == unknown_album || album == unknown_album_tr)
+            if (artist == unknown_artist || album == unknown_album )
             {
                 return null;
             }
