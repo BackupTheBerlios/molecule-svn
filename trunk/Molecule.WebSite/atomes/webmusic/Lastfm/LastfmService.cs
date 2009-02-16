@@ -70,7 +70,8 @@ namespace WebMusic.Lastfm
 				Lastfm.LastfmCore.Audioscrobbler.Start();
 			}
         }
-
+
+
         public static string Username
         {
             get
@@ -122,6 +123,7 @@ namespace WebMusic.Lastfm
 				if( instance.queue == null )
 				{
 					instance.queue = new Queue();
+                    Lastfm.LastfmCore.AudioscrobblerQueue = instance.queue;
 				}
 				Lastfm.LastfmCore.Audioscrobbler.Stop();
 				Lastfm.LastfmCore.AudioscrobblerQueue = instance.queue;
