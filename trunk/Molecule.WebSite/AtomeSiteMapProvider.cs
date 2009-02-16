@@ -69,6 +69,8 @@ namespace Molecule.WebSite
                             log.Debug("Dynamically filling site map with atome site maps...");
                         rootNode = BuildRootNode();
                         int i = 0;
+                        var homeNode = new SiteMapNode(this, "home", "/", "Accueil");
+                        AddNode(homeNode, rootNode);
                         foreach (AtomeInfo atome in AtomeService.GetAtomes())
                         {
                             var node = new SiteMapNode(this, "atome" + i++, atome.Path, atome.Name);
