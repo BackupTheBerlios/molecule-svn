@@ -64,11 +64,6 @@ select
 	cursor:pointer;
 }
 
-#playlistTable tr:hover .listRemove
-{
-	background: url("../images/list-remove.png") no-repeat;
-}
-
 .listRemove span
 {
 	visibility:hidden;

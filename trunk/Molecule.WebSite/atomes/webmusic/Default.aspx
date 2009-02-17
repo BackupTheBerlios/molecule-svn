@@ -6,6 +6,12 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="style/layout.css" rel="stylesheet" type="text/css" />
+    <style type="text/css" runat="server">
+    #playlistTable tr:hover .listRemove
+    {
+	    background: url("/App_Themes/<%= Theme %>/images/list-remove.png") no-repeat;
+    }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
