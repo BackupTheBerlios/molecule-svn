@@ -65,124 +65,88 @@ namespace Molecule.Log
 		}
 		
 		public void AddSemanticEvent(string type, DateTime creationDate,string title, string description, string imageUri, string url)
-		{			
-			SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString);
-			SqliteCommand cmd = new SqliteCommand("INSERT INTO semantic_event_messages " +
-			                                      " (PKID, Type, Title, CreationDate, ImageUri, Description, " +
-			                                      " Url) " +
-			                                      " Values(NULL, $Type, $Title, $CreationDate, $ImageUri, $Description, " +
-			                                      " $Url)", conn);
-			cmd.Parameters.Add("$Type", DbType.String).Value = type;
-			cmd.Parameters.Add("$Title", DbType.String).Value = title;
-			cmd.Parameters.Add("$CreationDate", DbType.DateTime).Value = creationDate;
-			cmd.Parameters.Add("$ImageUri", DbType.String).Value = imageUri;
-			cmd.Parameters.Add("$Description", DbType.String).Value = description;
-			cmd.Parameters.Add("$Url", DbType.String).Value = url;
-			try
-			{
-				conn.Open();
-				int recAdded = cmd.ExecuteNonQuery();
-				
-				if (recAdded <= 0)
-				{
-					throw new System.Data.DataException(@"Cant insert message on the database.");
-				}
-			}
-			catch (Exception ex)
-			{
-				log.Error(ex.Message, ex.InnerException);
-				throw;
-			}
-			finally
-			{
-				conn.Close();
-			}
+		{
+            using (SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString))
+            {
+                SqliteCommand cmd = new SqliteCommand("INSERT INTO semantic_event_messages " +
+                                                      " (PKID, Type, Title, CreationDate, ImageUri, Description, " +
+                                                      " Url) " +
+                                                      " Values(NULL, $Type, $Title, $CreationDate, $ImageUri, $Description, " +
+                                                      " $Url)", conn);
+                cmd.Parameters.Add("$Type", DbType.String).Value = type;
+                cmd.Parameters.Add("$Title", DbType.String).Value = title;
+                cmd.Parameters.Add("$CreationDate", DbType.DateTime).Value = creationDate;
+                cmd.Parameters.Add("$ImageUri", DbType.String).Value = imageUri;
+                cmd.Parameters.Add("$Description", DbType.String).Value = description;
+                cmd.Parameters.Add("$Url", DbType.String).Value = url;
+
+                conn.Open();
+                int recAdded = cmd.ExecuteNonQuery();
+
+                if (recAdded <= 0)
+                {
+                    throw new System.Data.DataException(@"Cant insert message on the database.");
+                }
+            }
 		}
 		
 		
 		public List<string> GetSemanticTypes()
 		{
-			SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString);
-			SqliteCommand cmd = new SqliteCommand("SELECT DISTINCT Type FROM semantic_event_messages", conn);			
-			List<string> types = new List<string>();
-			
-			SqliteDataReader reader = null;
-		    try
-		    {
-			    conn.Open();				reader = cmd.ExecuteReader();
-				while (reader.Read())
-				{
-			        types.Add(reader.GetString(0));
+            using (SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString))
+            {
+                SqliteCommand cmd = new SqliteCommand("SELECT DISTINCT Type FROM semantic_event_messages", conn);
+
+                List<string> types = new List<string>();
+
+                SqliteDataReader reader = null;
+
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    types.Add(reader.GetString(0));
                 }
-            }
-            catch (Exception e)
-            {
-                log.Error(e.Message, e.InnerException);
-				throw;
-            }
-            finally
-            {
-                if (reader != null) { reader.Close(); }
-                conn.Close();
-            }
-            return types;	
+                return types;
+            }	
     	}
 		
 		public List<SemanticEvent> GetSemanticEventByType(string type)
 		{
-			SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString);
-			SqliteCommand cmd = new SqliteCommand("SELECT Type, CreationDate,Title ,Description, ImageUri,  Url  FROM semantic_event_messages "+			                                      "WHERE type = $Type", conn);                                 
+            using (SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString))
+            {
+                SqliteCommand cmd = new SqliteCommand("SELECT Type, CreationDate,Title ,Description, ImageUri,  Url  FROM semantic_event_messages " +
+                                                      "WHERE type = $Type", conn);
 
-			cmd.Parameters.Add("$Type", DbType.String).Value = type;
-			List<SemanticEvent> semanticEvents = new List<SemanticEvent>();
-			
-			SqliteDataReader reader = null;
-		    try
-		    {
-				conn.Open();			    reader = cmd.ExecuteReader();
-			    while (reader.Read())
-		        {
-					 SemanticEvent ev = new SemanticEvent(reader.GetString(0), reader.GetDateTime(1), 
-					                                      reader.GetString(2), 
-                                                          reader.IsDBNull(3)?String.Empty: reader.GetString(3),
-                                                          reader.IsDBNull(4)?String.Empty:reader.GetString(4), 
-                                                          reader.IsDBNull(5)?String.Empty:reader.GetString(5));
+                cmd.Parameters.Add("$Type", DbType.String).Value = type;
+                List<SemanticEvent> semanticEvents = new List<SemanticEvent>();
+
+                SqliteDataReader reader = null;
+
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    SemanticEvent ev = new SemanticEvent(reader.GetString(0), reader.GetDateTime(1),
+                                                         reader.GetString(2),
+                                                         reader.IsDBNull(3) ? String.Empty : reader.GetString(3),
+                                                         reader.IsDBNull(4) ? String.Empty : reader.GetString(4),
+                                                         reader.IsDBNull(5) ? String.Empty : reader.GetString(5));
                     semanticEvents.Add(ev);
                 }
+                return semanticEvents;	
             }
-            catch (Exception e)
-            {
-                log.Error(e.Message, e.InnerException);
-				throw;
-            }
-            finally
-            {
-                if (reader != null) { reader.Close(); }
-		        conn.Close();
-	        }
-            return semanticEvents;	
     	}
 
 		public void ClearType(string type)
 		{
-			SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString);
-			SqliteCommand cmd = new SqliteCommand("DELETE  FROM semantic_event_messages WHERE type = $Type", conn);			
-		    cmd.Parameters.Add("$Type", DbType.String).Value = type;
-			SqliteDataReader reader = null;
-		    try
-		    {
-				conn.Open();
-				cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
+            using (SqliteConnection conn = new SqliteConnection(SQLiteProvidersHelper.ConnectionString))
             {
-                log.Error(e.Message, e.InnerException);
-				throw;
-            }
-            finally
-            {
-                if (reader != null) { reader.Close(); }
-                conn.Close();
+                SqliteCommand cmd = new SqliteCommand("DELETE  FROM semantic_event_messages WHERE type = $Type", conn);
+
+                cmd.Parameters.Add("$Type", DbType.String).Value = type;
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
     	}
 	}

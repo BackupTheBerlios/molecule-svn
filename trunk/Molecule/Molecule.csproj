@@ -58,11 +58,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="PdnLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\PdnLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -77,6 +82,7 @@
     <Compile Include="Configuration\SchemaEntry.cs" />
     <Compile Include="Configuration\XmlConfigurationClient.cs" />
     <Compile Include="DateTimeUtil.cs" />
+    <Compile Include="Drawing\BitmapExtensions.cs" />
     <Compile Include="IO\XdgBaseDirectorySpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Plugin.cs" />
