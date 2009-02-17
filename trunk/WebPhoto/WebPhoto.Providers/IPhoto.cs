@@ -1,7 +1,4 @@
-﻿//
-// IAlbum.cs
-//
-// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
+﻿// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,14 +22,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Molecule.Collections;
 
-namespace WebMusic.Providers
+namespace WebPhoto.Providers
 {
-    public interface IAlbum
+    public interface IPhoto
     {
-        IEnumerable<ISong> Songs { get; }
-        string Name { get; }
-        IArtist Artist { get; }
+        IEnumerable<ITag> Tags { get; }
         string Id { get; }
+        string MediaFilePath { get; }
+        IKeyedEnumerable<string, string> Metadatas { get; }
     }
 }

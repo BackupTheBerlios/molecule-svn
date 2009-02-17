@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace WebMusic.Providers.WMP
 {
-    [Plugin("Windows Media Player")]
+    [Plugin("Stub")]
     public class MusicLibraryProvider : IMusicLibraryProvider
     {
         Dictionary<string, Artist> artistDictionary;

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecule.Console", "Molecul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecule.WebSite", "Molecule.WebSite\Molecule.WebSite.csproj", "{99FF5204-4E9F-4B34-9185-72BF089FC4BD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebMusic", "WebMusic", "{FE2280FB-1C8D-4986-9BC4-C510F40C0E62}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicAtome", "MusicAtome", "{FE2280FB-1C8D-4986-9BC4-C510F40C0E62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMusic.Providers", "WebMusic\WebMusic.Providers\WebMusic.Providers.csproj", "{63C6457A-B924-41DB-AA55-07BA6482F7F1}"
 EndProject
@@ -19,7 +19,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMusic.Providers.Stub", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMusic.Providers.WMP", "WebMusic\WebMusic.Providers.WMP\WebMusic.Providers.WMP.csproj", "{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhotoAtome", "PhotoAtome", "{F5147590-903E-444D-B2E0-C6C230C5050A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPhoto.Providers", "WebPhoto\WebPhoto.Providers\WebPhoto.Providers.csproj", "{6432DC42-CF0D-437A-909C-41E416F531B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPhoto.Providers.Stub", "WebPhoto\WebPhoto.Providers.Stub\WebPhoto.Providers.Stub.csproj", "{72D247CB-1535-412A-B20C-38A6C898341A}"
+EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -57,6 +67,14 @@ Global
 		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6432DC42-CF0D-437A-909C-41E416F531B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6432DC42-CF0D-437A-909C-41E416F531B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6432DC42-CF0D-437A-909C-41E416F531B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6432DC42-CF0D-437A-909C-41E416F531B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D247CB-1535-412A-B20C-38A6C898341A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D247CB-1535-412A-B20C-38A6C898341A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D247CB-1535-412A-B20C-38A6C898341A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D247CB-1535-412A-B20C-38A6C898341A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,9 +85,7 @@ Global
 		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
 		{089A5D23-335F-4DDE-BCFC-9C4C795BC659} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
 		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
+		{6432DC42-CF0D-437A-909C-41E416F531B2} = {F5147590-903E-444D-B2E0-C6C230C5050A}
+		{72D247CB-1535-412A-B20C-38A6C898341A} = {F5147590-903E-444D-B2E0-C6C230C5050A}
 	EndGlobalSection
 EndGlobal

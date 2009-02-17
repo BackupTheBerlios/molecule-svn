@@ -56,7 +56,7 @@ namespace WebMusic.Providers.Banshee
         public static bool IsUsable
         {
             get
-            {
+           { 
                 return File.Exists(bansheeDatabase);
             }
         }
@@ -223,7 +223,7 @@ namespace WebMusic.Providers.Banshee
 		
 		public System.Collections.Generic.IEnumerable<WebMusic.Providers.IArtist> GetArtists ()
 		{
-			foreach(System.Collections.Generic.KeyValuePair<string,Artist> key in artists)
+			foreach(var key in artists)
 			{
                 yield return key.Value;
 			}
