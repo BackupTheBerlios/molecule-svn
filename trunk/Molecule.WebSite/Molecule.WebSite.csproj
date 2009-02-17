@@ -103,6 +103,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
+    <Compile Include="atomes\photo\Services\ProviderInfo.cs" />
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -153,6 +154,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\webmusic\Services\ProviderException.cs" />
+    <Compile Include="atomes\webmusic\Services\ProviderInfo.cs" />
     <Compile Include="ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
@@ -251,6 +253,10 @@
       <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
       <Name>WebMusic.Providers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebPhoto\WebPhoto.Providers\WebPhoto.Providers.csproj">
+      <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
+      <Name>WebPhoto.Providers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\default\AjaxExtenders.skin" />
@@ -291,6 +297,16 @@
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\Atome.xml" />
     <Content Include="atomes\photo\Default.aspx" />
+    <Content Include="atomes\photo\stublibrary\photo1.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo9.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo8.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo7.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo6.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo5.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo4.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo3.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo2.jpg" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />
@@ -315,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
+    <Folder Include="atomes\photo\bin\providers\" />
     <Folder Include="atomes\webmusic\bin\providers\" />
     <Folder Include="images\" />
   </ItemGroup>

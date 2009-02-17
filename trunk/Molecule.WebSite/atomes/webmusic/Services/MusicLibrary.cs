@@ -31,6 +31,7 @@ using WebMusic.Providers;
 using System.IO;
 using Molecule.Web;
 using System.Web;
+using Molecule.Runtime;
 
 
 namespace WebMusic.Services
@@ -77,11 +78,12 @@ namespace WebMusic.Services
             }
         }
 
-        public static IEnumerable<MusicLibraryProviderInfo> Providers
+        public static IEnumerable<ProviderInfo> Providers
         {
             get
             {
-                return MusicLibraryProviderLoader.GetProviders(providerDirectory);
+                foreach(var provider in Plugin<IMusicLibraryProvider>.List(providerDirectory))
+                    yield return new ProviderInfo() { Description = provider.Description, Name = provider.Name };
             }
         }
 
@@ -103,7 +105,7 @@ namespace WebMusic.Services
             IEnumerable<IArtist> providerArtists;
             try
             {
-                var provider = MusicLibraryProviderLoader.CreateInstance(
+                var provider = Plugin<IMusicLibraryProvider>.CreateInstance(
                    providerName, providerDirectory);
                 provider.Initialize();
                 providerArtists = provider.GetArtists();

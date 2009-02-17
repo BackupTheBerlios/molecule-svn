@@ -11,11 +11,11 @@ using System.Timers;
 
 namespace WebMusic.Providers.WMP
 {
-    [Plugin("Stub")]
+    [Plugin("Windows Media Player")]
     public class MusicLibraryProvider : IMusicLibraryProvider
     {
         Dictionary<string, Artist> artistDictionary;
-
+        
 
         [IsUsablePlugin]
         public static bool IsUsable

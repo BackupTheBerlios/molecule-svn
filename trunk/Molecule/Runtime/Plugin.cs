@@ -175,5 +175,12 @@ namespace Molecule.Runtime
                     || baseType.IsInterface && type.GetInterface(baseType.Name) != null
                     || baseType.IsSubclassOf(baseType);
         }
+
+        public static T CreateInstance(string pluginName, string baseDirectory)
+        {
+            return Plugin<T>.List(baseDirectory)
+                .First((plugin) => plugin.Name == pluginName)
+                .CreateInstance();
+        }
     }
 }
