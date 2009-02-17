@@ -124,4 +124,5 @@ select
 #coverArtPanel img
 {
 	margin-top:12px;
+    width: 80px;
 }

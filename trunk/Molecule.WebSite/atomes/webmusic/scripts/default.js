@@ -162,10 +162,7 @@ function onLoad()
        if( state == 2)
        {
               errorLoadingMessage.style.display = "inline-block";
-       }
-       else
-       {
-            errorLoadingMessage.style.display = "none";
+              setTimeout('errorLoadingMessage.style.display="none"',5000); 
        }
 }
 

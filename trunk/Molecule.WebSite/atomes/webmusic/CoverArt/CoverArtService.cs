@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Data;
 using System.Configuration;
 using System.Linq;
@@ -14,6 +15,8 @@ using System.Net;
 using System.Threading;
 using System.Xml;
 using System.IO;
+using Molecule.Drawing;
+using PaintDotNet.SystemLayer;
 
 namespace WebMusic.CoverArt
 {
@@ -23,34 +26,25 @@ namespace WebMusic.CoverArt
         private const string lastFmKey = "a08cec1d1d471b5bed7ad21a1aafcced";
         private const string lastFmUrl = "http://ws.audioscrobbler.com/2.0/{0}";
         private const string coverSizeName = "medium";
-
+		private const int imageSize = 100;
+		
         public static ManualResetEvent allDone = new ManualResetEvent(false);
-        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtService));
-        private CoverArtService()
+        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtService));
+        public static string FetchCoverArt(string artist, string albumTitle)
         {
-        }
-
-        public static CoverArtService Instance
-        {
-            get
+			string aaid = CoverArtSpec.CreateArtistAlbumId(artist, albumTitle);
+			
+            if (CoverArtSpec.CoverExistsForSize(aaid,imageSize))
             {
-                return Singleton<CoverArtService>.Instance;
-            }
-        }
-
-        public string FetchCoverArt(string artist, string albumTitle)
-        {
-
-            if (CoverArtSpec.CoverExists(artist, albumTitle))
-            {
-                return CoverArtSpec.GetPath(CoverArtSpec.CreateArtistAlbumId(artist, albumTitle));
+                return CoverArtSpec.GetPathForSize(aaid, imageSize);
             }
 
             string lastfmArtist = HttpUtility.UrlEncode(artist);
             string lastfmAlbum = HttpUtility.UrlEncode(albumTitle);
 
             string parameters = String.Format("?method={0}&api_key={1}&artist={2}&album={3}", "album.getinfo", lastFmKey, lastfmArtist, lastfmAlbum);
-            HttpWebRequest request = HttpWebRequest.Create(String.Format(lastFmUrl, parameters)) as HttpWebRequest;
+			Console.WriteLine(String.Format(lastFmUrl, parameters));
+			HttpWebRequest request = HttpWebRequest.Create(String.Format(lastFmUrl, parameters)) as HttpWebRequest;
             WebResponse response = null;
             try
             {
@@ -75,8 +69,9 @@ namespace WebMusic.CoverArt
                           select (string)e).ToArray<string>();
             if (!string.IsNullOrEmpty(result[0]))
             {
-                string destination = CoverArtSpec.GetPath(CoverArtSpec.CreateArtistAlbumId(artist, albumTitle));
-                this.saveCoverArt(artist, albumTitle, result[0], destination);
+                string destination = CoverArtSpec.GetPathForSize(CoverArtSpec.CreateArtistAlbumId(artist, albumTitle),imageSize);			
+				
+				saveCoverArt(artist, albumTitle, result[0], destination);
                 return destination;
             }
             else
@@ -85,7 +80,7 @@ namespace WebMusic.CoverArt
             }
         }
 
-        private void saveCoverArt(string artist, string albumTitle, string sourceUrl, string destination)
+        private static void saveCoverArt(string artist, string albumTitle, string sourceUrl, string destination)
         {
             if (sourceUrl != null)
             {
@@ -101,6 +96,10 @@ namespace WebMusic.CoverArt
                     byte[] data = client.DownloadData(sourceUrl);
                     bw.Write(data, 0, data.Length);
                 }
+				Console.WriteLine(destination);
+                Bitmap bmp = new Bitmap(destination);
+                Bitmap resizedBmp = bmp.GetResized(100,100);
+                resizedBmp.Save(destination);		
             }
         }
 

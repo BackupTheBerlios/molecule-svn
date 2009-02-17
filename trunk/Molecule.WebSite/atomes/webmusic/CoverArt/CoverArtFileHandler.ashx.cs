@@ -27,7 +27,7 @@ namespace WebMusic.CoverArt
             ISong song = Services.MusicLibrary.GetSong(id);
             if (song == null)
                 throw new ApplicationException("Unknown media with id " + id);
-            string coverArtPath = CoverArtService.Instance.FetchCoverArt(song.Artist.Name, song.Album.Name);
+            string coverArtPath = CoverArtService.FetchCoverArt(song.Artist.Name, song.Album.Name);
 
             if (!String.IsNullOrEmpty(coverArtPath) && File.Exists(coverArtPath))
             {
@@ -37,12 +37,6 @@ namespace WebMusic.CoverArt
                 context.Response.AddHeader("Content-Length", file.Length.ToString());
                 context.Response.ContentType = "application/octet-stream";
                 context.Response.WriteFile(coverArtPath);
-
-                /*
-                HTTP/1.1 301 Moved Permanently
-      Location: http://example.com/newuri
-      Content-Type: text/html
-                */
             }
             else
             {
