@@ -24,7 +24,7 @@ namespace WebMusic.CoverArt
     {
         static CoverArtService()
         {
-            GlobalProxySelection.Select = new WebProxy("www-cache.aql.fr:3128", true, null, new NetworkCredential("hjcf5187", "mDp@oCt#2M8"));
+            
         }
 
         private const string lastFmKey = "a08cec1d1d471b5bed7ad21a1aafcced";
