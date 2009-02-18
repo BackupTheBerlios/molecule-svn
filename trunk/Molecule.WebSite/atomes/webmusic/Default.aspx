@@ -178,9 +178,11 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:ObjectDataSource ID="SongDataSource" runat="server" 
-                        SelectMethod="GetSongsByAlbum" TypeName="WebMusic.Services.MusicLibrary">
+                        SelectMethod="GetSongByArtistAndAlbum" TypeName="WebMusic.Services.MusicLibrary">
                         <SelectParameters>
                             <asp:SessionParameter Name="album" SessionField="music.currentAlbum" 
+                                Type="String" />
+                            <asp:SessionParameter Name="artist" SessionField="music.currentArtist" 
                                 Type="String" />
                         </SelectParameters>
                     </asp:ObjectDataSource>

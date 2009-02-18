@@ -33,7 +33,7 @@ namespace WebMusic.Providers.Base
 		private string id;
 		
 		private Dictionary<string, Album> albums;
-		
+		private static Dictionary<string, Album> allAlbums = new Dictionary<string,Album>();
 		public System.Collections.Generic.IEnumerable<WebMusic.Providers.IAlbum> Albums {
 			get {
 				foreach(System.Collections.Generic.KeyValuePair<string,  Album> key in albums)
@@ -60,12 +60,22 @@ namespace WebMusic.Providers.Base
 		
 		public Album AddAlbum(string AlbumId, string AlbumName)
 		{
+			Album album = null;
+			if( !allAlbums.ContainsKey(AlbumId))
+			{
+			    album = new Album(AlbumId, AlbumName, this);
+				allAlbums.Add(AlbumId, album);
+			}
+			else
+			{
+				album = allAlbums[AlbumId];
+			}
 			if( !albums.ContainsKey(AlbumId))
 			{
-                Album album = new Album(AlbumId, AlbumName, this);
                 albums.Add(AlbumId, album);
                 return album;
-			}
+			 }
+
             return null;
 		}
 	

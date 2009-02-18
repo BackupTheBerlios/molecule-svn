@@ -220,6 +220,16 @@ namespace WebMusic.Services
             }
         }
 
+        public static IEnumerable<ISong> GetSongByArtistAndAlbum(string artist, string album)
+        {
+            if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && instance.artists.ContainsKey(artist) && instance.albums.ContainsKey(album))
+            {
+                foreach (var song in instance.albums[album].Songs.Where(song => song.Artist.Id == artist).OrderBy(song => song.AlbumTrack))
+                    yield return song;
+            }		
+        }
+		
+		
         public static IEnumerable<ISong> SearchSongs(string pattern, bool inAlbums, bool inTitles, bool inArtists)
         {
             pattern = pattern.ToLower();
