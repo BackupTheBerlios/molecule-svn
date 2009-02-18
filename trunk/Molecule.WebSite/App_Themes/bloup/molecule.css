@@ -172,11 +172,15 @@ img
 	position:relative;
 }
 
+.thinBorder,
 .thinBox
 {
 	border:1px;
 	border-style:solid;
 	border-color:#444444;
+}
+.thinBox
+{
 	padding:2px;
 }
 

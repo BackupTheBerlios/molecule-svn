@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div id="coverArtPanel">
-                    <img alt="" id="coverArtImage" src="" style="display: none;" />
+                    <img alt="" id="coverArtImage" class="thinBorder" src="" style="display: none;" />
                 </div>
             </div>
         </div>

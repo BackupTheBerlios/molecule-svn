@@ -49,10 +49,10 @@ select
 }
 #playerControls
 {
-	top:10px;
+	top:17px;
     height: 230px;
     float: left;
-    width: 49%;
+    width: 48%;
     position: relative;
 }
 
@@ -110,19 +110,21 @@ select
 
 #songsLabelPanel
 {
-	width:75%;
+	width:68%;
 	float:left;
+	position: relative;
 }
 
 #covertArtPanel
 {
-	width:20%;
-	right:0px;
 	position:relative;
+	float:right;
+	display:block;
+	top:0px;
+	left:0px;
 }
 
 #coverArtPanel img
 {
-	margin-top:12px;
-    width: 80px;
+    width: 100px;
 }

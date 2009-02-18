@@ -16,16 +16,20 @@ using System.Threading;
 using System.Xml;
 using System.IO;
 using Molecule.Drawing;
-using PaintDotNet.SystemLayer;
+using System.Drawing.Imaging;
 
 namespace WebMusic.CoverArt
 {
     public class CoverArtService
     {
+        static CoverArtService()
+        {
+            GlobalProxySelection.Select = new WebProxy("www-cache.aql.fr:3128", true, null, new NetworkCredential("hjcf5187", "mDp@oCt#2M8"));
+        }
 
         private const string lastFmKey = "a08cec1d1d471b5bed7ad21a1aafcced";
         private const string lastFmUrl = "http://ws.audioscrobbler.com/2.0/{0}";
-        private const string coverSizeName = "medium";
+        private const string coverSizeName = "large";
 		private const int imageSize = 100;
 		
         public static ManualResetEvent allDone = new ManualResetEvent(false);
@@ -45,7 +49,9 @@ namespace WebMusic.CoverArt
             string parameters = String.Format("?method={0}&api_key={1}&artist={2}&album={3}", "album.getinfo", lastFmKey, lastfmArtist, lastfmAlbum);
 			Console.WriteLine(String.Format(lastFmUrl, parameters));
 			HttpWebRequest request = HttpWebRequest.Create(String.Format(lastFmUrl, parameters)) as HttpWebRequest;
+            
             WebResponse response = null;
+            
             try
             {
                  response = request.GetResponse();
@@ -91,15 +97,21 @@ namespace WebMusic.CoverArt
                     Directory.CreateDirectory(destinationDirectory);
                 }
                 WebClient client = new WebClient();
-                using (BinaryWriter bw = new BinaryWriter(File.Open(destination, FileMode.Create)))
+                Stream imgStream;
+                try
                 {
-                    byte[] data = client.DownloadData(sourceUrl);
-                    bw.Write(data, 0, data.Length);
+                    imgStream = client.OpenRead(sourceUrl);
                 }
-				Console.WriteLine(destination);
-                Bitmap bmp = new Bitmap(destination);
-                Bitmap resizedBmp = bmp.GetResized(100,100);
-                resizedBmp.Save(destination);		
+                catch (WebException ex)
+                {
+                    if (log.IsErrorEnabled)
+                        log.Error(ex.Message, ex.InnerException);
+                    return;
+                }
+
+                Bitmap bmp = new Bitmap(System.Drawing.Image.FromStream(imgStream));
+                Bitmap resizedBmp = bmp.GetResized(imageSize);
+                resizedBmp.Save(destination, ImageFormat.Jpeg);
             }
         }
 
