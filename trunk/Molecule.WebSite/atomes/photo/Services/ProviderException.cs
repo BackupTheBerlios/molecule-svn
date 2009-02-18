@@ -1,4 +1,7 @@
-﻿// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
+﻿//
+// ProviderException.cs
+//
+// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,19 +22,30 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Configuration;
 using System.Linq;
-using System.Text;
-using Molecule.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using Molecule.WebSite.atomes.webmusic.Services;
 
-namespace WebPhoto.Providers
+namespace WebPhoto.Services
 {
-    public interface IPhoto
+    [global::System.Serializable]
+    public class ProviderException : Exception
     {
-        IEnumerable<ITag> Tags { get; }
-        string Id { get; }
-        string MediaFilePath { get; }
-        IKeyedEnumerable<string, string> Metadatas { get; }
-        DateTime Date { get; }
+
+        public ProviderException(string providerName, Exception inner)
+            : base(formatMessage(providerName), inner) { }
+        public string ProviderName { get; set; }
+        static string formatMessage(string providerName)
+        {
+            return String.Format(Messages.ProviderError, providerName);
+        }
     }
 }

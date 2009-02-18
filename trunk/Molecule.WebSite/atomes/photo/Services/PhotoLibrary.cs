@@ -16,6 +16,9 @@ namespace WebPhoto.Services
 
         static string providerName;
 
+        Dictionary<string, ITag> tags;
+        Dictionary<string, IPhoto> photos;
+
         static PhotoLibrary()
         {
             providerName = Molecule.Configuration.ConfigurationClient.Client.Get<string>("WebPhoto", "LibraryProvider", "Stub");
@@ -32,11 +35,6 @@ namespace WebPhoto.Services
         private PhotoLibrary()
         {
             UpdateProvider();
-        }
-
-        private void UpdateProvider()
-        {
-            throw new NotImplementedException();
         }
 
         public static string CurrentProvider
@@ -67,5 +65,100 @@ namespace WebPhoto.Services
             }
         }
 
+        protected void UpdateProvider()
+        {
+            if (log.IsDebugEnabled)
+                log.Debug("Provider used : " + providerName);
+
+            updateProviderTags();
+            
+        }
+
+        private void updateProviderTags()
+        {
+            IEnumerable<ITag> providerRootTags;
+            try
+            {
+                var provider = Plugin<IPhotoLibraryProvider>.CreateInstance(
+                   providerName, providerDirectory);
+                provider.Initialize();
+                providerRootTags = provider.GetRootTags();
+
+                // TODO : recent tags
+
+            }
+            catch (Exception e)
+            {
+                throw new ProviderException(providerName, e);
+            }
+
+            buildIndexTables(providerRootTags);
+        }
+
+        protected static IEnumerable<ITag> GetAllTags(IEnumerable<ITag> tags)
+        {
+            foreach (ITag tag in tags)
+            {
+                yield return tag;
+                foreach (ITag subTag in tag.ChildTags)
+                    yield return subTag;
+            }
+        }
+        
+        
+        private void buildIndexTables(IEnumerable<ITag> providerRootTags)
+        {
+            tags = new Dictionary<string, ITag>();
+            photos = new Dictionary<string, IPhoto>();
+
+            foreach (var tag in GetAllTags(providerRootTags))
+            {
+                tags[tag.Id] = tag;
+                foreach (var photo in tag.Photos)
+                    photos[photo.Id] = photo;
+            }
+            
+            if (log.IsDebugEnabled)
+            {
+                log.Debug(String.Format("Statistics : {0} tags, {1} photos"
+                , tags.Count, photos.Count));
+            }
+        }
+
+        public static ITag GetTag(string tag)
+        {
+            return instance.tags[tag];
+        }
+
+        public static IPhoto GetPhoto(string photo)
+        {
+            return instance.photos[photo];
+        }
+
+        public static IEnumerable<ITag> GetTags()
+        {
+            return instance.tags.Values;
+        }
+
+        public static IEnumerable<IPhoto> GetPhotos()
+        {
+            return instance.photos.Values;
+        }
+
+        public static IEnumerable<IPhoto> GetPhotosByTag(string tag)
+        {
+            if (!String.IsNullOrEmpty(tag) && instance.tags.ContainsKey(tag))
+            {
+                foreach(var photo in instance.tags[tag].Photos.OrderBy(photo => photo.Date))
+                    yield return photo;
+            }
+        }
+
+        public static IEnumerable<IPhoto> GetPhotosByTags(IEnumerable<string> tags)
+        {
+            foreach (var tag in tags)
+                foreach (var photo in GetPhotosByTag(tag))
+                    yield return photo;
+        }
     }
 }

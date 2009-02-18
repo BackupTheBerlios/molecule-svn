@@ -123,6 +123,7 @@ namespace WebPhoto.Providers.Stub
                 this.Id = id;
                 this.parentTag = parentTag;
                 Metadatas = new Molecule.Collections.Dictionary<string, string>();
+                Date = DateTime.Today - TimeSpan.FromDays(new Random(this.Id.GetHashCode()).Next(180));
             }
             #region IPhoto Members
 
@@ -144,6 +145,8 @@ namespace WebPhoto.Providers.Stub
             }
 
             public IKeyedEnumerable<string, string> Metadatas { get; set; }
+
+            public DateTime Date { get; set; }
 
             #endregion
         }

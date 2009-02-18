@@ -98,34 +98,14 @@ namespace WebMusic.Services
         protected void UpdateProvider()
         {
             if (log.IsDebugEnabled)
-            {
                 log.Debug("Provider used : " + providerName);
-            }
 
-            IEnumerable<IArtist> providerArtists;
-            try
-            {
-                var provider = Plugin<IMusicLibraryProvider>.CreateInstance(
-                   providerName, providerDirectory);
-                provider.Initialize();
-                providerArtists = provider.GetArtists();
-				// update informations about the albums recently added
-				System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded = provider.AlbumsRecentlyAdded;
-			    Molecule.Log.LogService.Instance.ClearType("Music");
-                if (albumsRecentlyAdded != null)
-                {
-                    foreach (string recentlyAdded in albumsRecentlyAdded)
-                    {
-                        Molecule.Log.LogService.Instance.AddSemanticEvent("Music", DateTime.Now, recentlyAdded + " added", null, null, null);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw new ProviderException(providerName, e);
-            }
+            updateProviderArtists();
             
-            //build index tables
+        }
+
+        private void buildIndexTables(IEnumerable<IArtist> providerArtists)
+        {
             artists = new Dictionary<string, IArtist>();
             albums = new Dictionary<string, IAlbum>();
             songs = new Dictionary<string, ISong>();
@@ -144,6 +124,39 @@ namespace WebMusic.Services
             {
                 log.Debug(String.Format("Statistics : {0} artists, {1} albums and {2} songs"
                 , artists.Count, albums.Count, songs.Count));
+            }
+        }
+
+        private void updateProviderArtists()
+        {
+            IEnumerable<IArtist> providerArtists;
+            System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded;
+            try
+            {
+                var provider = Plugin<IMusicLibraryProvider>.CreateInstance(
+                   providerName, providerDirectory);
+                provider.Initialize();
+                providerArtists = provider.GetArtists();
+                albumsRecentlyAdded = provider.AlbumsRecentlyAdded;
+            }
+            catch (Exception e)
+            {
+                throw new ProviderException(providerName, e);
+            }
+
+            buildIndexTables(providerArtists);
+            updateAlbumsRecentlyAdded(albumsRecentlyAdded);
+        }
+
+        private static void updateAlbumsRecentlyAdded(System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded)
+        {
+            Molecule.Log.LogService.Instance.ClearType("Music");
+            if (albumsRecentlyAdded != null)
+            {
+                foreach (string recentlyAdded in albumsRecentlyAdded)
+                {
+                    Molecule.Log.LogService.Instance.AddSemanticEvent("Music", DateTime.Now, recentlyAdded + " added", null, null, null);
+                }
             }
         }
 
