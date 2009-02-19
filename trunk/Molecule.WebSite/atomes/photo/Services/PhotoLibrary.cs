@@ -18,6 +18,7 @@ namespace WebPhoto.Services
 
         Dictionary<string, ITag> tags;
         Dictionary<string, IPhoto> photos;
+        List<IPhoto> timelinePhotos;
 
         static PhotoLibrary()
         {
@@ -110,6 +111,7 @@ namespace WebPhoto.Services
         {
             tags = new Dictionary<string, ITag>();
             photos = new Dictionary<string, IPhoto>();
+            timelinePhotos = new List<IPhoto>();
 
             foreach (var tag in GetAllTags(providerRootTags))
             {
@@ -123,6 +125,9 @@ namespace WebPhoto.Services
                 log.Debug(String.Format("Statistics : {0} tags, {1} photos"
                 , tags.Count, photos.Count));
             }
+
+            timelinePhotos = new List<IPhoto>(photos.Values);
+            timelinePhotos.Sort((p1, p2) => p1.Date.CompareTo(p2));
         }
 
         public static ITag GetTag(string tag)
@@ -142,8 +147,9 @@ namespace WebPhoto.Services
 
         public static IEnumerable<IPhoto> GetPhotos()
         {
-            return instance.photos.Values;
+            return instance.timelinePhotos;
         }
+
 
         public static IEnumerable<IPhoto> GetPhotosByTag(string tag)
         {
