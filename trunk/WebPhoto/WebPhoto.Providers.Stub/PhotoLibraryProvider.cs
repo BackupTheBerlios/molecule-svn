@@ -28,6 +28,7 @@ using Molecule.Collections;
 
 namespace WebPhoto.Providers.Stub
 {
+    [Plugin("Stub")]
     public class PhotoLibraryProvider : IPhotoLibraryProvider
     {
         const int nbRootTags = 5;

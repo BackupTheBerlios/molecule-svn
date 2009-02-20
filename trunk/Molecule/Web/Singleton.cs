@@ -71,9 +71,20 @@ namespace Molecule.Web
                                       BindingFlags.NonPublic,
                                       null, null, null);
             }
-            catch (TargetInvocationException e)
-            {
-                throw e.InnerException;
+            catch (TargetInvocationException tiex)
+            {//http://www.dotnetjunkies.com/WebLog/chris.taylor/archive/2004/03/03/8353.aspx
+                // NB: Error checking etc. excluded
+                // Get the _remoteStackTraceString of the Exception class
+                FieldInfo remoteStackTraceString = typeof(Exception).GetField("_remoteStackTraceString",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+
+                // Set the InnerException._remoteStackTraceString to the current InnerException.StackTrace
+                remoteStackTraceString.SetValue(tiex.InnerException,
+                tiex.InnerException.StackTrace + Environment.NewLine);
+
+                // Throw the new exception
+                throw tiex.InnerException;
+
             }
         }
 

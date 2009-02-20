@@ -27,6 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
+using Mono.Rocks;
 using log4net;
 
 namespace Molecule.Runtime
@@ -92,7 +93,25 @@ namespace Molecule.Runtime
 
         public T CreateInstance()
         {
-            return (T)Activator.CreateInstance(Type);
+            try
+            {
+                return (T)Activator.CreateInstance(Type);
+            }
+            catch (TargetInvocationException tiex)
+            {//http://www.dotnetjunkies.com/WebLog/chris.taylor/archive/2004/03/03/8353.aspx
+                // NB: Error checking etc. excluded
+                // Get the _remoteStackTraceString of the Exception class
+                FieldInfo remoteStackTraceString = typeof(Exception).GetField("_remoteStackTraceString",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+
+                // Set the InnerException._remoteStackTraceString to the current InnerException.StackTrace
+                remoteStackTraceString.SetValue(tiex.InnerException,
+                tiex.InnerException.StackTrace + Environment.NewLine);
+
+                // Throw the new exception
+                throw tiex.InnerException;
+
+            }
         }
 
         public static IEnumerable<Plugin<T>> List(string baseDirectory)
@@ -178,9 +197,14 @@ namespace Molecule.Runtime
 
         public static T CreateInstance(string pluginName, string baseDirectory)
         {
-            return Plugin<T>.List(baseDirectory)
-                .First((plugin) => plugin.Name == pluginName)
-                .CreateInstance();
+            var plugins = Plugin<T>.List(baseDirectory)
+                .Where((plugin) => plugin.Name == pluginName);
+            int nbPlugins = plugins.Count();
+            if (nbPlugins == 0)
+                throw new ApplicationException("Can't find plugin " + pluginName + " in " + baseDirectory);
+            if (nbPlugins > 1)
+                log.Warn("More than one plugin is named " + pluginName + ", will use first found.");
+            return plugins.First().CreateInstance();
         }
     }
 }

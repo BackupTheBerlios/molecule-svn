@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -57,6 +57,10 @@
     <Reference Include="Mono.Data.Sqlite">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\Mono.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="PdnLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
