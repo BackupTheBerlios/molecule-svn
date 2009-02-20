@@ -47,8 +47,7 @@ namespace WebMusic.CoverArt
         private const string lastFmUrl = "http://ws.audioscrobbler.com/2.0/{0}";
         private const string coverSizeName = "large";
 		private const int imageSize = 100;
-		
-        public static ManualResetEvent allDone = new ManualResetEvent(false);
+
         private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtService));
         public static string FetchCoverArt(string artist, string albumTitle)
         {

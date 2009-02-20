@@ -62,7 +62,7 @@ namespace WebPhoto.Services
         {
             get
             {
-                return HttpContext.Current.Server.MapPath("~/atomes/webphoto/bin/providers");
+                return HttpContext.Current.Server.MapPath("~/atomes/photo/bin/providers");
             }
         }
 

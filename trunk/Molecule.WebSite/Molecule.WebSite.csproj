@@ -59,6 +59,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\Mono.Rocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -105,6 +109,7 @@
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
     <Compile Include="atomes\photo\Services\ProviderException.cs" />
     <Compile Include="atomes\photo\Services\ProviderInfo.cs" />
+    <Compile Include="atomes\photo\Thumbnail\ThumbnailService.cs" />
     <Compile Include="atomes\photo\Thumbnail\ThumbnailSpec.cs" />
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

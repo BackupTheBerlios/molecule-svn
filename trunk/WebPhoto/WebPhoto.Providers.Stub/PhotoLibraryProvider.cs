@@ -24,6 +24,8 @@ using System.Text;
 using Molecule.Runtime;
 using Molecule.Collections;
 
+[assembly:PluginContainer]
+
 namespace WebPhoto.Providers.Stub
 {
     public class PhotoLibraryProvider : IPhotoLibraryProvider
