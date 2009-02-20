@@ -127,7 +127,7 @@ namespace WebPhoto.Services
             }
 
             timelinePhotos = new List<IPhoto>(photos.Values);
-            timelinePhotos.Sort((p1, p2) => p1.Date.CompareTo(p2));
+            timelinePhotos.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
         }
 
         public static ITag GetTag(string tag)
