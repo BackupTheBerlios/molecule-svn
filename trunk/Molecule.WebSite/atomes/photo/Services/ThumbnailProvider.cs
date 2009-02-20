@@ -55,7 +55,7 @@ namespace WebPhoto.Services
             Bitmap bmp = new Bitmap(imagePath);
             Bitmap resizedBmp = clip == ThumbnailClip.Square ? bmp.GetSquare((int)size) : bmp.GetResized((int)size);
             string thumbnailTempPath = thumbnailPath + ".tmp";
-            resizedBmp.Save(thumbnailTempPath, ImageFormat.Png);
+            resizedBmp.Save(thumbnailTempPath, ImageFormat.Jpeg);
             File.Move(thumbnailTempPath, thumbnailPath);
         }
     }

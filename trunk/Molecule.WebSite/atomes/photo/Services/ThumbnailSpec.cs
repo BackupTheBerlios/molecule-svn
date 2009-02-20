@@ -77,7 +77,7 @@ namespace WebPhoto.Services
             if (clip == ThumbnailClip.Square)
                 folderPath = Path.Combine(folderPath, "square");
 
-            return Path.Combine(folderPath, String.Format("{0}.png", fileid));
+            return Path.Combine(folderPath, String.Format("{0}.jpg", fileid));
         }
 
         private static string getIdForFilePath(string filePath)
