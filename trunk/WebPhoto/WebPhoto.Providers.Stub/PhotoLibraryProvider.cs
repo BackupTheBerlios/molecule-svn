@@ -50,7 +50,7 @@ namespace WebPhoto.Providers.Stub
 
         public void Initialize()
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<string> TagsRecentlyAdded
@@ -100,7 +100,7 @@ namespace WebPhoto.Providers.Stub
             {
                 get
                 {
-                    int nbItem = new Random(Id.GetHashCode()).Next(nbMaxPhotosByTags);
+                    int nbItem = new Random(Math.Abs(Id.GetHashCode())).Next(nbMaxPhotosByTags);
                     for (int i = 0; i < nbItem; i++)
                         yield return new Photo(Id+".photo"+i, this);
                 }
@@ -141,7 +141,7 @@ namespace WebPhoto.Providers.Stub
             {
                 get
                 {
-                    int r = Id.GetHashCode() % nbJpg;
+                    int r = Math.Abs(Id.GetHashCode()) % nbJpg;
                     string virtualPath = "stublibrary/photo"+r+".jpg";
                     return System.Web.HttpContext.Current.Request.MapPath(virtualPath);
                 }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebPhoto.Services;
 using System.IO;
+using WebPhoto.Providers;
 
 namespace Molecule.WebSite.atomes.photo
 {
@@ -22,6 +23,11 @@ namespace Molecule.WebSite.atomes.photo
             Response.AddHeader("Content-Length", thumbInfo.Length.ToString());
             Response.ContentType = "application/octet-stream";
             Response.WriteFile(thumbInfo.FullName);
+        }
+
+        public static string GetUrlFor(IPhoto photo)
+        {
+            return String.Format("Thumbnail.aspx?id={0}", HttpUtility.UrlEncode(photo.Id));
         }
     }
 }
