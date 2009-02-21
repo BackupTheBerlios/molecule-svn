@@ -11,7 +11,7 @@
         <td id="Td1" runat="server" />
         </EmptyItemTemplate>
         <ItemTemplate>
-            <td id="Td2" runat="server">
+            <td id="Td2" runat="server" style="height:80px; vertical-align:top">
                 <div style="position:absolute;padding-left:4px;padding-top:0px; font-size:large; font-weight:bolder;z-index:3;vertical-align:top;"><asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Day") %>' /></div>
                 <asp:Image ID="img" runat="server" Visible='<%# Eval("HasThumbnail") %>' ImageUrl='<%# Eval("ThumbnailUrl") %>' style="position:relative;z-index:1;" />
                 
