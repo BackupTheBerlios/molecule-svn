@@ -126,7 +126,7 @@ namespace WebPhoto.Providers.Stub
                 this.Id = id;
                 this.parentTag = parentTag;
                 Metadatas = new Molecule.Collections.Dictionary<string, string>();
-                Date = DateTime.Today - TimeSpan.FromDays(new Random(this.Id.GetHashCode()).Next(180));
+                Date = DateTime.Today - TimeSpan.FromDays(new Random(this.Id.GetHashCode()).Next(60));
             }
             #region IPhoto Members
 

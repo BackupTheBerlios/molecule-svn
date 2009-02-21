@@ -12,11 +12,12 @@ namespace Molecule.WebSite.atomes.photo
 {
     public partial class Thumbnail : System.Web.UI.Page
     {
+        public const int thumbnailSize = 80;
         protected void Page_Load(object sender, EventArgs e)
         {
             var id = Request.QueryString["id"];
             var photo = PhotoLibrary.GetPhoto(id);
-            var thumbFile = ThumbnailProvider.GetThumbnailForImage(photo.MediaFilePath, 120);
+            var thumbFile = ThumbnailProvider.GetThumbnailForImage(photo.MediaFilePath, thumbnailSize);
             var thumbInfo = new FileInfo(thumbFile);
             Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(thumbInfo.Name));
             Response.ExpiresAbsolute = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0));
