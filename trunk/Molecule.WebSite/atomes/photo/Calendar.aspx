@@ -12,20 +12,13 @@
         </EmptyItemTemplate>
         <ItemTemplate>
             <td id="Td2" runat="server">
-                <div style="display:block">
-                <asp:Image ID="img" runat="server" ImageUrl='<%# Eval("ThumbnailUrl") %>' />
-                <div style="position:relative;"><asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Day") %>' /></div>
+                <div style="position:absolute;padding-left:4px;padding-top:0px; font-size:large; font-weight:bolder;z-index:3;vertical-align:top;"><asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Day") %>' /></div>
+                <asp:Image ID="img" runat="server" Visible='<%# Eval("HasThumbnail") %>' ImageUrl='<%# Eval("ThumbnailUrl") %>' style="position:relative;z-index:1;" />
                 
-                </div>
             </td>
         </ItemTemplate>
         <EmptyDataTemplate>
-            <table id="Table1" runat="server" style="">
-                <tr>
-                    <td>
-                        No data was returned.</td>
-                </tr>
-            </table>
+            <td></td>
         </EmptyDataTemplate>
         <LayoutTemplate>
             <table ID="groupPlaceholderContainer" runat="server">

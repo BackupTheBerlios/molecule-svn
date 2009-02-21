@@ -57,7 +57,14 @@ namespace Molecule.WebSite.atomes.photo
             for (DateTime d = firstVisibleDay;
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
-                items.Add(new CalendarItem() { Day = d.Day, ThumbnailUrl = Thumbnail.GetUrlFor(photos[i++]) });
+            {
+                if (d.Month == day.Month)
+                    items.Add(new CalendarItem() { Day = d.Day, ThumbnailUrl = Thumbnail.GetUrlFor(photos[i]) });
+                else
+                    items.Add(new CalendarItem() { Day = d.Day, ThumbnailUrl = null });
+                i++;
+            }
+            
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
             this.LabelMonth.Text = String.Format("{0} {1}",
@@ -74,6 +81,7 @@ namespace Molecule.WebSite.atomes.photo
 
     public class CalendarItem
     {
+        public bool HasThumbnail { get { return !String.IsNullOrEmpty(ThumbnailUrl); } }
         public string ThumbnailUrl { get; set; }
         public int Day { get; set; }
     }
