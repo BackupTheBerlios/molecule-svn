@@ -18,7 +18,8 @@ namespace WebPhoto.Services
 
         Dictionary<string, ITag> tags;
         Dictionary<string, IPhoto> photos;
-        List<IPhoto> timelinePhotos;
+        LinkedList<IPhoto> timelinePhotos;
+        Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDay;
 
         static PhotoLibrary()
         {
@@ -111,8 +112,8 @@ namespace WebPhoto.Services
         {
             tags = new Dictionary<string, ITag>();
             photos = new Dictionary<string, IPhoto>();
-            timelinePhotos = new List<IPhoto>();
 
+            //id index
             foreach (var tag in GetAllTags(providerRootTags))
             {
                 tags[tag.Id] = tag;
@@ -126,8 +127,16 @@ namespace WebPhoto.Services
                 , tags.Count, photos.Count));
             }
 
-            timelinePhotos = new List<IPhoto>(photos.Values);
-            timelinePhotos.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
+            //timeline
+            var tempTimeline = new List<IPhoto>(photos.Values);
+            tempTimeline.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
+            timelinePhotos = new LinkedList<IPhoto>(tempTimeline);
+            photosByDay = new Dictionary<DateTime, LinkedListNode<IPhoto>>();
+
+            //day index
+            for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
+                if (item == timelinePhotos.First || item.Previous.Value.Date.Date != item.Value.Date.Date)
+                    photosByDay[item.Value.Date.Date] = item;
         }
 
         public static ITag GetTag(string tag)
@@ -165,6 +174,17 @@ namespace WebPhoto.Services
             foreach (var tag in tags)
                 foreach (var photo in GetPhotosByTag(tag))
                     yield return photo;
+        }
+
+        public static IEnumerable<IPhoto> GetPhotosByDay(DateTime d)
+        {
+            LinkedListNode<IPhoto> current;
+            instance.photosByDay.TryGetValue(d, out current);
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
         }
     }
 }

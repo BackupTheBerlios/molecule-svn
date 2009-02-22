@@ -60,7 +60,7 @@
                 <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>
             
                 <div id="playlistPanel" style="overflow: auto; height:150px;" class="thinBox">
-                    <table id="playlistTable" class="itemList" onkeydown="playlist_onkeydown(event)">
+                    <table id="playlistTable" class="itemList hoverTable" onkeydown="playlist_onkeydown(event)">
                     </table>
                 </div>
             <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
@@ -73,8 +73,8 @@
                         <asp:Label runat="server" ID="aristsLabel2" Text="<%$ Resources:Artists %>" /></h2>
                     
                     <div id="artistList" style="overflow: auto; height:150px;" class="thinBox">
-                        <asp:DataList ID="arl" runat="server" DataSourceID="ArtistDataSource" 
-                            DataKeyField="Id" onselectedindexchanged="ArtistList_SelectedIndexChanged" CssClass="itemList">
+                        <asp:DataList ID="arl" runat="server" DataSourceID="ArtistDataSource"
+                            DataKeyField="Id" onselectedindexchanged="ArtistList_SelectedIndexChanged" CssClass="itemList hoverTable">
                             <ItemTemplate>
                                 <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>'
                                     CommandArgument='<%# Eval("Id") %>' 
@@ -94,7 +94,7 @@
                       <asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
                       <ContentTemplate>
                         <asp:DataList ID="all" runat="server" DataSourceID="AlbumDataSource"
-                              DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList">
+                              DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList hoverTable">
                             <ItemTemplate>
                                 <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>'
                                     CommandArgument='<%# Eval("Id") %>' 
@@ -119,7 +119,7 @@
             <div id="songscontainer">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
         <ContentTemplate>
-                <table id="songsView">
+                <table id="songsView" class="hoverTable">
                     <asp:Repeater ID="sv" runat="server" DataSourceID="SongDataSource">
                         <HeaderTemplate>
                             <thead>

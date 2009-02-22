@@ -29,7 +29,17 @@ namespace Molecule.WebSite.atomes.photo
                 day = DateTime.ParseExact(date, "yyyy/MM", null);
 
             fillCalendar(day);
+            initMonthLinks(day);
 
+        }
+
+        private void getPhotos(DateTime day)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void initMonthLinks(DateTime day)
+        {
             var previousMonth = day.Month == 1 ? 12 : day.Month - 1;
             var previousYear = day.Month == 1 ? day.Year - 1 : day.Year;
             this.HyperLinkPrevious.NavigateUrl = String.Format(requestFormat,
@@ -37,9 +47,8 @@ namespace Molecule.WebSite.atomes.photo
 
             var nextMonth = day.Month == 12 ? 1 : day.Month + 1;
             var nextYear = day.Month == 12 ? day.Year + 1 : day.Year;
-            this.HyperLinkNext.NavigateUrl= String.Format(requestFormat,
+            this.HyperLinkNext.NavigateUrl = String.Format(requestFormat,
                 Request.Path, nextYear, nextMonth);
-
         }
 
         private void fillCalendar(DateTime day)
@@ -52,24 +61,32 @@ namespace Molecule.WebSite.atomes.photo
 
             //fake data
             var photos = PhotoLibrary.GetPhotos().ToArray();
-            int i = 0;
 
             for (DateTime d = firstVisibleDay;
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
-            {
-                if (d.Month == day.Month)
-                    items.Add(new CalendarItem() { Day = d.Day, ThumbnailUrl = Thumbnail.GetUrlFor(photos[i]) });
-                else
-                    items.Add(new CalendarItem() { Day = d.Day, ThumbnailUrl = null });
-                i++;
-            }
+                items.Add(new CalendarItem(){
+                    Day = d.Day,
+                    ThumbnailUrl = getThumbnailUrlForDay(d,day.Month) 
+                });
             
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
             this.LabelMonth.Text = String.Format("{0} {1}",
                 DateTimeFormatInfo.CurrentInfo.GetMonthName(firstDayOfMonth.Month),
                 firstDayOfMonth.Year.ToString());
+        }
+
+        private string getThumbnailUrlForDay(DateTime d, int month)
+        {
+            if (d.Month != month)
+                return null;
+
+            var photo = PhotoLibrary.GetPhotosByDay(d).FirstOrDefault();
+            if (photo == null)
+                return null;
+
+            return Thumbnail.GetUrlFor(photo);
         }
 
         public static string FormatDay(int weekDay)

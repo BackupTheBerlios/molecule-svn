@@ -224,7 +224,7 @@ table thead
 }
 
 
-#maincontentPanel tr:hover { 
+.hoverTable tr:hover { 
     background-color:#999999;
     border-width : 0px;
 }

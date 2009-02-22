@@ -319,6 +319,7 @@
     <Content Include="atomes\photo\Atome.xml" />
     <Content Include="atomes\photo\Calendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
+    <Content Include="atomes\photo\layout.css" />
     <Content Include="atomes\photo\stublibrary\photo1.jpg" />
     <Content Include="atomes\photo\stublibrary\photo9.jpg" />
     <Content Include="atomes\photo\stublibrary\photo8.jpg" />

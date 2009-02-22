@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<link href="layout.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 <asp:HyperLink ID="HyperLinkPrevious" runat="server">&lt;</asp:HyperLink>
@@ -11,9 +12,10 @@
         <td id="Td1" runat="server" />
         </EmptyItemTemplate>
         <ItemTemplate>
-            <td id="Td2" runat="server" style="height:80px; vertical-align:top">
-                <div style="position:absolute;padding-left:4px;padding-top:0px; font-size:large; font-weight:bolder;z-index:3;vertical-align:top;"><asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Day") %>' /></div>
-                <asp:Image ID="img" runat="server" Visible='<%# Eval("HasThumbnail") %>' ImageUrl='<%# Eval("ThumbnailUrl") %>' style="position:relative;z-index:1;" />
+            <td runat="server" class="calendarItem">
+                <div class="number"><asp:Label runat="server" Text='<%# Eval("Day") %>' /></div>
+                <div class="numberShadow"><asp:Label runat="server" Text='<%# Eval("Day") %>' /></div>
+                <asp:Image ID="img" runat="server" Visible='<%# Eval("HasThumbnail") %>' ImageUrl='<%# Eval("ThumbnailUrl") %>' />
                 
             </td>
         </ItemTemplate>
