@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs"
+Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableViewState="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link href="layout.css" rel="stylesheet" type="text/css" />
 </asp:Content>
