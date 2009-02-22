@@ -13,10 +13,11 @@
         </EmptyItemTemplate>
         <ItemTemplate>
             <td runat="server" class="calendarItem">
-                <div class="number"><asp:Label runat="server" Text='<%# Eval("Day") %>' /></div>
-                <div class="numberShadow"><asp:Label runat="server" Text='<%# Eval("Day") %>' /></div>
-                <asp:Image ID="img" runat="server" Visible='<%# Eval("HasThumbnail") %>' ImageUrl='<%# Eval("ThumbnailUrl") %>' />
-                
+                <asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
+                    <div class="number"><asp:Literal runat="server" Visible='<%# Eval("HasThumbnail")%>' Text='<%# Eval("Day") %>' /></div>
+                    <div class="numberShadow"><asp:Literal runat="server" Text='<%# Eval("Day") %>' /></div>
+                    <asp:Image runat="server" Visible='<%# Eval("HasThumbnail")%>' ImageUrl='<%# Eval("ThumbnailUrl") %>' />
+                </asp:PlaceHolder>
             </td>
         </ItemTemplate>
         <EmptyDataTemplate>

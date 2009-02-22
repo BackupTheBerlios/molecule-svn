@@ -66,7 +66,7 @@ namespace Molecule.WebSite.atomes.photo
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
                 items.Add(new CalendarItem(){
-                    Day = d.Day,
+                    Day = d.Month == day.Month ? (int?)d.Day : null,
                     ThumbnailUrl = getThumbnailUrlForDay(d,day.Month) 
                 });
             
@@ -99,7 +99,8 @@ namespace Molecule.WebSite.atomes.photo
     public class CalendarItem
     {
         public bool HasThumbnail { get { return !String.IsNullOrEmpty(ThumbnailUrl); } }
+        public bool IsCurrentMonth { get { return Day.HasValue; } }
         public string ThumbnailUrl { get; set; }
-        public int Day { get; set; }
+        public int? Day { get; set; }
     }
 }
