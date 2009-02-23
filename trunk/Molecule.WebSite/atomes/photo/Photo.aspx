@@ -3,8 +3,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 
-    <asp:Image ID="ImagePrevious" runat="server" />
+    <asp:HyperLink ID="ImagePreviousLink" runat="server">
+        <asp:Image ID="ImagePrevious" runat="server" />
+    </asp:HyperLink>
     <asp:Image ID="ImageCurrent" runat="server" />
-    <asp:Image ID="ImageNext" runat="server" />
+    <asp:HyperLink ID="ImageNextLink" runat="server">
+        <asp:Image ID="ImageNext" runat="server" />
+    </asp:HyperLink>
 
 </asp:Content>

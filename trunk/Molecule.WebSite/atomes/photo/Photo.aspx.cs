@@ -19,13 +19,19 @@ namespace Molecule.WebSite.atomes.photo
 
             var nextPhoto = PhotoLibrary.GetNextPhoto(photoId);
             if (nextPhoto != null)
+            {
                 ImageNext.ImageUrl = PhotoFile.GetUrlFor(nextPhoto.Id, PhotoFileSize.Thumbnail);
+                ImageNextLink.NavigateUrl = GetUrlFor(nextPhoto.Id);
+            }
             else
                 ImageNext.Visible = false;
 
             var previousPhoto = PhotoLibrary.GetPreviousPhoto(photoId);
             if (previousPhoto != null)
+            {
                 ImagePrevious.ImageUrl = PhotoFile.GetUrlFor(previousPhoto.Id, PhotoFileSize.Thumbnail);
+                ImagePreviousLink.NavigateUrl = GetUrlFor(previousPhoto.Id);
+            }
             else
                 ImagePrevious.Visible = false;
         }
