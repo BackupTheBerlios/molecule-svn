@@ -17,8 +17,8 @@ Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableV
                 <asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
                     <div class="number"><asp:Literal runat="server" Visible='<%# Eval("HasThumbnail")%>' Text='<%# Eval("Day") %>' /></div>
                     <div class="numberShadow"><asp:Literal runat="server" Text='<%# Eval("Day") %>' /></div>
-                    <asp:HyperLink runat="server" Visible='<%# Eval("HasThumbnail")%>' NavigateUrl='<%# "Photo.aspx?id="+Eval("PhotoId") %>'>
-                        <asp:Image runat="server" ImageUrl='<%# Eval("ThumbnailUrl") %>' />
+                    <asp:HyperLink runat="server" Visible='<%# Eval("HasThumbnail")%>' NavigateUrl='<%# Eval("NavigateUrl") %>'>
+                        <img alt="" runat="server" src='<%# Eval("ThumbnailUrl") %>' />
                     </asp:HyperLink>
                 </asp:PlaceHolder>
             </td>
@@ -30,13 +30,13 @@ Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableV
             <table ID="groupPlaceholderContainer" runat="server">
             <thead>
                 <tr>
-                    <td id="Td3" runat="server"><%= FormatDay(0) %></td>
-                    <td id="Td4" runat="server"><%= FormatDay(1) %></td>
-                    <td id="Td5" runat="server"><%= FormatDay(2) %></td>
-                    <td id="Td6" runat="server"><%= FormatDay(3) %></td>
-                    <td id="Td7" runat="server"><%= FormatDay(4) %></td>
-                    <td id="Td8" runat="server"><%= FormatDay(5) %></td>
-                    <td id="Td9" runat="server"><%= FormatDay(6) %></td>
+                    <td runat="server"><%= FormatDay(0) %></td>
+                    <td runat="server"><%= FormatDay(1) %></td>
+                    <td runat="server"><%= FormatDay(2) %></td>
+                    <td runat="server"><%= FormatDay(3) %></td>
+                    <td runat="server"><%= FormatDay(4) %></td>
+                    <td runat="server"><%= FormatDay(5) %></td>
+                    <td runat="server"><%= FormatDay(6) %></td>
                 </tr>
             </thead>
                 <tbody>

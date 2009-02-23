@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -123,14 +123,14 @@
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
     <Compile Include="atomes\photo\Services\ProviderException.cs" />
     <Compile Include="atomes\photo\Services\ProviderInfo.cs" />
-    <Compile Include="atomes\photo\Services\ThumbnailProvider.cs" />
-    <Compile Include="atomes\photo\Services\ThumbnailSpec.cs" />
-    <Compile Include="atomes\photo\Thumbnail.aspx.cs">
-      <DependentUpon>Thumbnail.aspx</DependentUpon>
+    <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
+    <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />
+    <Compile Include="atomes\photo\PhotoFile.aspx.cs">
+      <DependentUpon>PhotoFile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\photo\Thumbnail.aspx.designer.cs">
-      <DependentUpon>Thumbnail.aspx</DependentUpon>
+    <Compile Include="atomes\photo\PhotoFile.aspx.designer.cs">
+      <DependentUpon>PhotoFile.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -338,7 +338,7 @@
     <Content Include="atomes\photo\stublibrary\photo0.jpg" />
     <Content Include="atomes\photo\stublibrary\photo3.jpg" />
     <Content Include="atomes\photo\stublibrary\photo2.jpg" />
-    <Content Include="atomes\photo\Thumbnail.aspx" />
+    <Content Include="atomes\photo\PhotoFile.aspx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />
@@ -387,9 +387,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

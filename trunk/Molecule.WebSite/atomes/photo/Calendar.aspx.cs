@@ -93,8 +93,8 @@ namespace Molecule.WebSite.atomes.photo
                 var photo = PhotoLibrary.GetPhotosByDay(d).FirstOrDefault();
                 if (photo != null)
                 {
-                    PhotoId = photo.Id;
-                    ThumbnailUrl = Thumbnail.GetUrlFor(photo);
+                    NavigateUrl = Photo.GetUrlFor(photo.Id);
+                    ThumbnailUrl = PhotoFile.GetUrlFor(photo.Id, PhotoFileSize.Thumbnail);
                 }
             }
         }
@@ -103,6 +103,6 @@ namespace Molecule.WebSite.atomes.photo
         public bool IsCurrentMonth { get { return Day.HasValue; } }
         public string ThumbnailUrl { get; set; }
         public int? Day { get; set; }
-        public string PhotoId { get; set; }
+        public string NavigateUrl { get; set; }
     }
 }

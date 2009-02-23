@@ -14,20 +14,25 @@ namespace Molecule.WebSite.atomes.photo
         protected void Page_Load(object sender, EventArgs e)
         {
             var photoId = Request.QueryString["id"];
-            var photo = PhotoLibrary.GetPhoto(photoId);
-            ImageCurrent.ImageUrl = Thumbnail.GetUrlFor(photo);
+
+            ImageCurrent.ImageUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Normal);
 
             var nextPhoto = PhotoLibrary.GetNextPhoto(photoId);
             if (nextPhoto != null)
-                ImageNext.ImageUrl = Thumbnail.GetUrlFor(nextPhoto);
+                ImageNext.ImageUrl = PhotoFile.GetUrlFor(nextPhoto.Id, PhotoFileSize.Thumbnail);
             else
                 ImageNext.Visible = false;
 
             var previousPhoto = PhotoLibrary.GetPreviousPhoto(photoId);
             if (previousPhoto != null)
-                ImagePrevious.ImageUrl = Thumbnail.GetUrlFor(previousPhoto);
+                ImagePrevious.ImageUrl = PhotoFile.GetUrlFor(previousPhoto.Id, PhotoFileSize.Thumbnail);
             else
                 ImagePrevious.Visible = false;
+        }
+
+        public static string GetUrlFor(string photoId)
+        {
+            return String.Format("Photo.aspx?id={0}", photoId);
         }
     }
 }
