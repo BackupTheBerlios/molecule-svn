@@ -65,10 +65,7 @@ namespace Molecule.WebSite.atomes.photo
             for (DateTime d = firstVisibleDay;
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
-                items.Add(new CalendarItem(){
-                    Day = d.Month == day.Month ? (int?)d.Day : null,
-                    ThumbnailUrl = getThumbnailUrlForDay(d,day.Month) 
-                });
+                items.Add(new CalendarItem(d, day.Month));
             
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
@@ -77,17 +74,7 @@ namespace Molecule.WebSite.atomes.photo
                 firstDayOfMonth.Year.ToString());
         }
 
-        private string getThumbnailUrlForDay(DateTime d, int month)
-        {
-            if (d.Month != month)
-                return null;
-
-            var photo = PhotoLibrary.GetPhotosByDay(d).FirstOrDefault();
-            if (photo == null)
-                return null;
-
-            return Thumbnail.GetUrlFor(photo);
-        }
+       
 
         public static string FormatDay(int weekDay)
         {
@@ -98,9 +85,24 @@ namespace Molecule.WebSite.atomes.photo
 
     public class CalendarItem
     {
+        public CalendarItem(DateTime d, int month)
+        {
+            if (d.Month == month)
+            {
+                Day = d.Day;
+                var photo = PhotoLibrary.GetPhotosByDay(d).FirstOrDefault();
+                if (photo != null)
+                {
+                    PhotoId = photo.Id;
+                    ThumbnailUrl = Thumbnail.GetUrlFor(photo);
+                }
+            }
+        }
+
         public bool HasThumbnail { get { return !String.IsNullOrEmpty(ThumbnailUrl); } }
         public bool IsCurrentMonth { get { return Day.HasValue; } }
         public string ThumbnailUrl { get; set; }
         public int? Day { get; set; }
+        public string PhotoId { get; set; }
     }
 }

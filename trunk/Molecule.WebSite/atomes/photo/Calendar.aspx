@@ -17,7 +17,9 @@ Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableV
                 <asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
                     <div class="number"><asp:Literal runat="server" Visible='<%# Eval("HasThumbnail")%>' Text='<%# Eval("Day") %>' /></div>
                     <div class="numberShadow"><asp:Literal runat="server" Text='<%# Eval("Day") %>' /></div>
-                    <asp:Image runat="server" Visible='<%# Eval("HasThumbnail")%>' ImageUrl='<%# Eval("ThumbnailUrl") %>' />
+                    <asp:HyperLink runat="server" Visible='<%# Eval("HasThumbnail")%>' NavigateUrl='<%# "Photo.aspx?id="+Eval("PhotoId") %>'>
+                        <asp:Image runat="server" ImageUrl='<%# Eval("ThumbnailUrl") %>' />
+                    </asp:HyperLink>
                 </asp:PlaceHolder>
             </td>
         </ItemTemplate>
