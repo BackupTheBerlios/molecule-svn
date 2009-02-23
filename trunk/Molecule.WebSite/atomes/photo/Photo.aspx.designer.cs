@@ -29,16 +29,7 @@ namespace Molecule.WebSite.atomes.photo {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImagePrevious;
-        
-        /// <summary>
-        /// ImageCurrent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageCurrent;
+        protected global::System.Web.UI.HtmlControls.HtmlImage ImagePrevious;
         
         /// <summary>
         /// ImageNextLink control.
@@ -56,6 +47,15 @@ namespace Molecule.WebSite.atomes.photo {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageNext;
+        protected global::System.Web.UI.HtmlControls.HtmlImage ImageNext;
+        
+        /// <summary>
+        /// ImageCurrent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageCurrent;
     }
 }

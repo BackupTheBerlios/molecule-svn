@@ -1,0 +1,43 @@
+﻿#photoNext,
+#photoPrevious
+{
+	position:relative;
+	margin:12px;
+	vertical-align:top;
+}
+
+#photoNext
+{
+	float:right;
+}
+
+#photoPrevious
+{
+	float:left;
+}
+
+#photoCurrent
+{
+	text-align:center;
+}
+
+#previousLinkIcon img,
+#nextLinkIcon img
+{
+	border-style:none;
+	opacity:0.5;
+}
+
+#previousLinkIcon,
+#nextLinkIcon
+{
+	position:absolute;
+	border-style:none;
+	vertical-align:top;
+	top:0px;
+}
+
+#nextLinkIcon
+{
+	right:0px;
+}
