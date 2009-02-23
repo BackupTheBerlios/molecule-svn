@@ -17,7 +17,7 @@ namespace WebPhoto.Services
         static string providerName;
 
         Dictionary<string, ITag> tags;
-        Dictionary<string, IPhoto> photos;
+        Dictionary<string, LinkedListNode<IPhoto>> photosByIds;
         LinkedList<IPhoto> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDay;
 
@@ -111,32 +111,39 @@ namespace WebPhoto.Services
         private void buildIndexTables(IEnumerable<ITag> providerRootTags)
         {
             tags = new Dictionary<string, ITag>();
-            photos = new Dictionary<string, IPhoto>();
+            Dictionary<string, IPhoto> tempPhotos = new Dictionary<string,IPhoto>();
 
             //id index
             foreach (var tag in GetAllTags(providerRootTags))
             {
                 tags[tag.Id] = tag;
                 foreach (var photo in tag.Photos)
-                    photos[photo.Id] = photo;
+                    tempPhotos[photo.Id] = photo;
             }
             
             if (log.IsDebugEnabled)
             {
                 log.Debug(String.Format("Statistics : {0} tags, {1} photos"
-                , tags.Count, photos.Count));
+                , tags.Count, tempPhotos.Count));
             }
-
+            
             //timeline
-            var tempTimeline = new List<IPhoto>(photos.Values);
+            var tempTimeline = new List<IPhoto>(tempPhotos.Values);
             tempTimeline.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
             timelinePhotos = new LinkedList<IPhoto>(tempTimeline);
-            photosByDay = new Dictionary<DateTime, LinkedListNode<IPhoto>>();
+            
 
             //day index
+            photosByDay = new Dictionary<DateTime, LinkedListNode<IPhoto>>();
             for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
                 if (item == timelinePhotos.First || item.Previous.Value.Date.Date != item.Value.Date.Date)
                     photosByDay[item.Value.Date.Date] = item;
+
+            //id index
+            photosByIds = new Dictionary<string, LinkedListNode<IPhoto>>();
+            for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
+                photosByIds[item.Value.Id] = item;
+
         }
 
         public static ITag GetTag(string tag)
@@ -144,9 +151,9 @@ namespace WebPhoto.Services
             return instance.tags[tag];
         }
 
-        public static IPhoto GetPhoto(string photo)
+        public static IPhoto GetPhoto(string photoId)
         {
-            return instance.photos[photo];
+            return instance.photosByIds[photoId].Value;
         }
 
         public static IEnumerable<ITag> GetTags()
@@ -185,6 +192,24 @@ namespace WebPhoto.Services
                 yield return current.Value;
                 current = current.Next;
             }
+        }
+
+
+
+        internal static IPhoto GetNextPhoto(string photoId)
+        {
+            var next = instance.photosByIds[photoId].Next;
+            if (next == null)
+                return null;
+            return next.Value;
+        }
+
+        internal static IPhoto GetPreviousPhoto(string photoId)
+        {
+            var previous = instance.photosByIds[photoId].Previous;
+            if (previous == null)
+                return null;
+            return previous.Value;
         }
     }
 }
