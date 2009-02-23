@@ -151,6 +151,8 @@ namespace WebPhoto.Providers.Stub
 
             public DateTime Date { get; set; }
 
+            public string Description { get; set; }
+
             #endregion
         }
     }

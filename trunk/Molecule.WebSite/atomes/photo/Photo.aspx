@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Photo.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Photo" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Photo.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link href="style/common.css" rel="stylesheet" type="text/css" />
 <link href="style/photo.css" rel="stylesheet" type="text/css" />
