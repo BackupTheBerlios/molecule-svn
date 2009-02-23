@@ -2,24 +2,17 @@
 #photoPrevious
 {
 	position:relative;
-	margin:12px;
+	margin:10px;
 	vertical-align:top;
-}
-
-#photoNext
-{
 	float:right;
-}
-
-#photoPrevious
-{
-	float:left;
+	margin-bottom:20px;
 }
 
 #photoCurrent
 {
 	text-align:center;
 }
+
 
 #previousLinkIcon img,
 #nextLinkIcon img

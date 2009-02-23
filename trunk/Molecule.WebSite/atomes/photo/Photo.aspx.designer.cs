@@ -14,24 +14,6 @@ namespace Molecule.WebSite.atomes.photo {
     public partial class Photo {
         
         /// <summary>
-        /// ImagePreviousLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ImagePreviousLink;
-        
-        /// <summary>
-        /// ImagePrevious control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ImagePrevious;
-        
-        /// <summary>
         /// ImageNextLink control.
         /// </summary>
         /// <remarks>
@@ -48,6 +30,24 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage ImageNext;
+        
+        /// <summary>
+        /// ImagePreviousLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ImagePreviousLink;
+        
+        /// <summary>
+        /// ImagePrevious control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage ImagePrevious;
         
         /// <summary>
         /// ImageCurrent control.
