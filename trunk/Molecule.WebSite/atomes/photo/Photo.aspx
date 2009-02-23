@@ -25,6 +25,6 @@
     </asp:HyperLink>
     
     <div id="photoCurrent">
-        <asp:Image ID="ImageCurrent" runat="server" />
+        <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server" />
     </div>
 </asp:Content>
