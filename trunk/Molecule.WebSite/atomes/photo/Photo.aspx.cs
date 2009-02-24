@@ -29,22 +29,6 @@ namespace Molecule.WebSite.atomes.photo
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
             NextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
             PreviousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
-            //if (NextPhoto != null)
-            //{
-            //    ImageNext.Src = PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Thumbnail);
-            //    ImageNextLink.NavigateUrl = GetUrlFor(NextPhoto.Id);
-            //}
-            //else
-            //    ImageNext.Visible = false;
-
-            
-            //if (PreviousPhoto != null)
-            //{
-            //    ImagePrevious.Src = PhotoFile.GetUrlFor(PreviousPhoto.Id, PhotoFileSize.Thumbnail);
-            //    ImagePreviousLink.NavigateUrl = GetUrlFor(PreviousPhoto.Id);
-            //}
-            //else
-            //    ImagePrevious.Visible = false;
         }
 
         public static string GetUrlFor(string photoId)

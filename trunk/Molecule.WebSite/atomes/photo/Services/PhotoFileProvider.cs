@@ -37,6 +37,8 @@ namespace WebPhoto.Services
     public class PhotoFileProvider
     {
         static PhotoFileClip thumbnailClip = PhotoFileClip.Square;
+        static ImageCodecInfo jgpEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
+        const long qualityLevel = 50L;
 
         public static string GetResizedPhoto(string imagePath, PhotoFileSize size)
         {
@@ -56,7 +58,9 @@ namespace WebPhoto.Services
             Bitmap bmp = new Bitmap(imagePath);
             Bitmap resizedBmp = clip == PhotoFileClip.Square ? bmp.GetSquare((int)size) : bmp.GetResized((int)size);
             string thumbnailTempPath = resizedPath + ".tmp";
-            resizedBmp.Save(thumbnailTempPath, ImageFormat.Jpeg);
+            var encodeParams = new EncoderParameters(1);
+            encodeParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qualityLevel);
+            resizedBmp.Save(thumbnailTempPath, jgpEncoder, encodeParams);
             File.Move(thumbnailTempPath, resizedPath);
         }
     }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Photo.aspx.cs"
+ EnableViewState="False" EnableEventValidation="false"
     Inherits="Molecule.WebSite.atomes.photo.Photo" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Services" %>
@@ -42,7 +43,7 @@
         <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server"
             ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
         <div id="photoDescriptionContainer">
-
+            <asp:Label ID="descriptionLabel" runat="server"><%= CurrentPhoto.Description %></asp:Label>
         </div>
     </div>
     

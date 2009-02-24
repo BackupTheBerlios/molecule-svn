@@ -37,6 +37,8 @@ namespace WebPhoto.Providers.Stub
         const int maxDepth = 2;
         const int nbJpg = 10;
 
+        const string fakeText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae lorem ornare erat rhoncus gravida. Nam non arcu. Sed accumsan risus a nulla. Cras ante. Nullam varius eros a dolor. Praesent pretium. Nullam mollis, est elementum cursus facilisis, orci purus euismod turpis, vel facilisis quam erat id velit. Morbi lacus justo, vestibulum et, aliquet sed, blandit non, nulla. Aenean molestie. Mauris nunc. ";
+
         [IsUsablePlugin]
         public static bool IsUsable
         {
@@ -120,13 +122,17 @@ namespace WebPhoto.Providers.Stub
         class Photo : IPhoto
         {
             ITag parentTag;
+            Random random;
+            string description;
 
             public Photo(string id, ITag parentTag)
             {
                 this.Id = id;
+                this.random = new Random(this.Id.GetHashCode());
+                this.description = fakeText.Substring(random.Next(50), 10 + random.Next(40));
                 this.parentTag = parentTag;
                 Metadatas = new Molecule.Collections.Dictionary<string, string>();
-                Date = DateTime.Today - TimeSpan.FromDays(new Random(this.Id.GetHashCode()).Next(180));
+                Date = DateTime.Today - TimeSpan.FromDays(random.Next(180));
             }
             #region IPhoto Members
 
@@ -151,7 +157,13 @@ namespace WebPhoto.Providers.Stub
 
             public DateTime Date { get; set; }
 
-            public string Description { get; set; }
+            public string Description
+            {
+                get
+                {
+                    return description;
+                }
+            }
 
             #endregion
         }
