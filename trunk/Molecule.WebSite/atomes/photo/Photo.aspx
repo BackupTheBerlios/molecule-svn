@@ -43,7 +43,11 @@
         <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server"
             ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
         <div id="photoDescriptionContainer">
-            <asp:Label ID="descriptionLabel" runat="server"><%= CurrentPhoto.Description %></asp:Label>
+            <p>
+                <asp:Label ID="descriptionLabel" runat="server"><%= CurrentPhoto.Description %></asp:Label>
+            </p>
+            <asp:GridView ID="MetadatasGridView" runat="server" AutoGenerateColumns="true" ShowHeader="false">
+            </asp:GridView>
         </div>
     </div>
     

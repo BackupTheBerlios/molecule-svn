@@ -29,6 +29,8 @@ namespace Molecule.WebSite.atomes.photo
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
             NextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
             PreviousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
+            MetadatasGridView.DataSource = CurrentPhoto.Metadatas;
+            MetadatasGridView.DataBind();
         }
 
         public static string GetUrlFor(string photoId)
