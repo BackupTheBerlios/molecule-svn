@@ -25,10 +25,14 @@ using System.Text;
 
 namespace WebPhoto.Providers
 {
-    public interface ITag
+    public interface ITagInfo
     {
         string Id { get; }
         string Name { get; }
+    }
+
+    public interface ITag : ITagInfo
+    {
         IEnumerable<ITag> ChildTags { get; }
         ITag Parent { get; set; }
         IEnumerable<IPhoto> Photos { get; }

@@ -26,13 +26,17 @@ using Molecule.Collections;
 
 namespace WebPhoto.Providers
 {
-    public interface IPhoto
+    public interface IPhotoInfo
     {
-        IEnumerable<ITag> Tags { get; }
         string Id { get; }
         string MediaFilePath { get; }
         IKeyedEnumerable<string, string> Metadatas { get; }
         DateTime Date { get; }
         string Description { get; }
+    }
+
+    public interface IPhoto : IPhotoInfo
+    {
+        IEnumerable<ITag> Tags { get; }
     }
 }

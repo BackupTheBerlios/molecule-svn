@@ -1,14 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.Default" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <asp:TreeView ID="TreeView1" runat="server" DataSourceID="tagSiteMapDataSource">
+    </asp:TreeView>
+    <asp:SiteMapDataSource ID="tagSiteMapDataSource" runat="server" 
+        SiteMapProvider="tagSiteMapProvider" />
     <asp:ListView ID="ListView1" runat="server" DataSourceID="PhotoDataSource">
             <ItemTemplate>
                 <span style="">
                     <asp:Image ID="Image1" runat="server"
-                        ImageUrl='<%# Thumbnail.GetUrlFor((IPhoto)Container.DataItem) %>' />
+                        ImageUrl='<%# PhotoFile.GetUrlFor(((IPhoto)Container.DataItem).Id, WebPhoto.Services.PhotoFileSize.Thumbnail) %>' />
                 </span>
             </ItemTemplate>
             

@@ -33,8 +33,8 @@ namespace WebPhoto.Providers.Stub
     {
         const int nbRootTags = 5;
         const int nbMaxSubTagsByTags = 3;
-        const int nbMaxPhotosByTags = 30;
-        const int maxDepth = 3;
+        const int nbMaxPhotosByTags = 40;
+        const int maxDepth = 2;
         const int nbJpg = 10;
 
         [IsUsablePlugin]

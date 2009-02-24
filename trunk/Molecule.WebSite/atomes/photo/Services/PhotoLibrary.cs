@@ -17,6 +17,7 @@ namespace WebPhoto.Services
         static string providerName;
 
         Dictionary<string, ITag> tags;
+        IEnumerable<ITag> rootTags;
         Dictionary<string, LinkedListNode<IPhoto>> photosByIds;
         LinkedList<IPhoto> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDay;
@@ -78,13 +79,12 @@ namespace WebPhoto.Services
 
         private void updateProviderTags()
         {
-            IEnumerable<ITag> providerRootTags;
             try
             {
                 var provider = Plugin<IPhotoLibraryProvider>.CreateInstance(
                    providerName, providerDirectory);
                 provider.Initialize();
-                providerRootTags = provider.GetRootTags();
+                rootTags = provider.GetRootTags();
 
                 // TODO : recent tags
 
@@ -94,7 +94,7 @@ namespace WebPhoto.Services
                 throw new ProviderException(providerName, e);
             }
 
-            buildIndexTables(providerRootTags);
+            buildIndexTables();
         }
 
         protected static IEnumerable<ITag> GetAllTags(IEnumerable<ITag> tags)
@@ -108,13 +108,13 @@ namespace WebPhoto.Services
         }
         
         
-        private void buildIndexTables(IEnumerable<ITag> providerRootTags)
+        private void buildIndexTables()
         {
             tags = new Dictionary<string, ITag>();
             Dictionary<string, IPhoto> tempPhotos = new Dictionary<string,IPhoto>();
 
             //id index
-            foreach (var tag in GetAllTags(providerRootTags))
+            foreach (var tag in GetAllTags(rootTags))
             {
                 tags[tag.Id] = tag;
                 foreach (var photo in tag.Photos)
@@ -146,28 +146,33 @@ namespace WebPhoto.Services
 
         }
 
-        public static ITag GetTag(string tag)
+        public static ITagInfo GetTag(string tag)
         {
             return instance.tags[tag];
         }
 
-        public static IPhoto GetPhoto(string photoId)
+        public static IPhotoInfo GetPhoto(string photoId)
         {
             return instance.photosByIds[photoId].Value;
         }
 
-        public static IEnumerable<ITag> GetTags()
+        public static IEnumerable<ITagInfo> GetTags()
         {
-            return instance.tags.Values;
+            return instance.tags.Values.Cast<ITagInfo>();
         }
 
-        public static IEnumerable<IPhoto> GetPhotos()
+        public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
         {
-            return instance.timelinePhotos;
+            return instance.photosByIds[photoId].Value.Tags.Cast<ITagInfo>();
+        }
+
+        public static IEnumerable<IPhotoInfo> GetPhotos()
+        {
+            return instance.timelinePhotos.Cast<IPhotoInfo>();
         }
 
 
-        public static IEnumerable<IPhoto> GetPhotosByTag(string tag)
+        public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tag)
         {
             if (!String.IsNullOrEmpty(tag) && instance.tags.ContainsKey(tag))
             {
@@ -176,14 +181,14 @@ namespace WebPhoto.Services
             }
         }
 
-        public static IEnumerable<IPhoto> GetPhotosByTags(IEnumerable<string> tags)
+        public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
         {
             foreach (var tag in tags)
                 foreach (var photo in GetPhotosByTag(tag))
                     yield return photo;
         }
 
-        public static IEnumerable<IPhoto> GetPhotosByDay(DateTime d)
+        public static IEnumerable<IPhotoInfo> GetPhotosByDay(DateTime d)
         {
             LinkedListNode<IPhoto> current;
             instance.photosByDay.TryGetValue(d, out current);
@@ -196,20 +201,32 @@ namespace WebPhoto.Services
 
 
 
-        internal static IPhoto GetNextPhoto(string photoId)
+        public static IPhotoInfo GetNextPhoto(string photoId, string tagId)
         {
-            var next = instance.photosByIds[photoId].Next;
-            if (next == null)
-                return null;
-            return next.Value;
+            return getNeighborPhoto(photoId, tagId, p => p.Next);
         }
 
-        internal static IPhoto GetPreviousPhoto(string photoId)
+        public static IPhotoInfo GetPreviousPhoto(string photoId, string tagId)
         {
-            var previous = instance.photosByIds[photoId].Previous;
-            if (previous == null)
-                return null;
-            return previous.Value;
+            return getNeighborPhoto(photoId, tagId, p => p.Previous);
+        }
+
+        private static IPhotoInfo getNeighborPhoto(string photoId, string tagId
+            , Func<LinkedListNode<IPhoto>, LinkedListNode<IPhoto>> neighbor)
+        {
+            var current = neighbor(instance.photosByIds[photoId]);
+            while (current != null)
+            {
+                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
+                    return current.Value;
+                current = neighbor(current);
+            }
+            return null;
+        }
+
+        public static IEnumerable<ITag> GetRootTags()
+        {
+            return instance.rootTags;
         }
     }
 }
