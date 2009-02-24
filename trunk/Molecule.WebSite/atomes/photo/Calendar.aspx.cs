@@ -44,17 +44,7 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initTitle()
         {
-            if (!String.IsNullOrEmpty(tagId))
-            {
-                var tag = PhotoLibrary.GetTag(tagId);
-                string title = "";
-                while (tag != null)
-                {
-                    title = " > " + tag.Name + title;
-                    tag = tag.Parent;
-                }
-                Title = "Photos " + title;
-            }
+            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
         }
 
         private void initMonthLinks(DateTime day)

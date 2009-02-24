@@ -200,6 +200,22 @@ namespace WebPhoto.Services
             }
         }
 
+        public static string GetTagFullPath(string tagId)
+        {
+            if (!String.IsNullOrEmpty(tagId))
+            {
+                var tag = GetTag(tagId);
+                string path = "";
+                while (tag != null)
+                {
+                    title = " > " + tag.Name + title;
+                    tag = tag.Parent;
+                }
+                return path;
+            }
+            return null;
+        }
+
 
 
         public static IPhotoInfo GetNextPhoto(string photoId, string tagId)
