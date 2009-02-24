@@ -21,8 +21,19 @@ namespace Molecule.WebSite.atomes.photo
         protected void Page_Load(object sender, EventArgs e)
         {
             tagId = Request.QueryString["id"];
+            initContent();
+            initTitle();
+        }
+
+        private void initContent()
+        {
             this.PhotoListView.DataSource = PhotoLibrary.GetPhotosByTag(tagId).ToList();
             this.PhotoListView.DataBind();
+        }
+
+        private void initTitle()
+        {
+            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
         }
     }
 }
