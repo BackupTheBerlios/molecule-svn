@@ -12,12 +12,12 @@
     
     <% if (NextPhoto != null){ %>
     <div id="photoNext">
-        <a href='<%= GetUrlFor(NextPhoto.Id) %>'>
+        <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
             <img src="<%= PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Thumbnail) %>"
                 alt="" class="photoLink" />
         </a>
             <div id="nextLinkIcon">
-                <a href='<%= GetUrlFor(NextPhoto.Id) %>'>
+                <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
                     <img src="/App_Themes/<%= Theme %>/images/go-next.png" alt="" />
                     </a>
             </div>
@@ -27,12 +27,12 @@
     
     <% if (PreviousPhoto != null){ %>
     <div id="photoPrevious">
-        <a href='<%= GetUrlFor(PreviousPhoto.Id) %>'>
+        <a href='<%= GetUrlFor(PreviousPhoto.Id, tagId) %>'>
             <img src="<%= PhotoFile.GetUrlFor(PreviousPhoto.Id, PhotoFileSize.Thumbnail) %>"
                 alt="" class="photoLink" />
         </a>
         <div id="previousLinkIcon">
-            <a href='<%= GetUrlFor(PreviousPhoto.Id) %>'>
+            <a href='<%= GetUrlFor(PreviousPhoto.Id, tagId) %>'>
                 <img src="/App_Themes/<%= Theme %>/images/go-previous.png" alt="" />
                 </a>
         </div>
@@ -46,6 +46,15 @@
             <p>
                 <asp:Label ID="descriptionLabel" runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
+            <h2>Tags</h2>
+            <ul id="tagList">
+            <asp:Repeater ID="TagsView" runat="server">
+            <ItemTemplate>
+                <li><asp:HyperLink runat="server"><asp:Label runat="server"><%#Eval("Name")%></asp:Label></asp:HyperLink></li>
+            </ItemTemplate>
+            </asp:Repeater>
+            </ul>
+            <h2>Metadatas</h2>
             <asp:GridView ID="MetadatasGridView" runat="server" AutoGenerateColumns="true" ShowHeader="false">
             </asp:GridView>
         </div>

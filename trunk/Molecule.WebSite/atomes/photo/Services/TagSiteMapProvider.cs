@@ -67,7 +67,7 @@ namespace WebPhoto.Services
 
         public static string GetUrlFor(string tagId)
         {
-            return "~/Tag.aspx?id=" + System.Web.HttpUtility.UrlEncode(tagId);
+            return "Tag.aspx?id=" + System.Web.HttpUtility.UrlEncode(tagId);
         }
 
         private SiteMapNode createTag(ITag tag)

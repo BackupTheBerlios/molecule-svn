@@ -171,15 +171,15 @@ namespace WebPhoto.Services
             return instance.timelinePhotos.Cast<IPhotoInfo>();
         }
 
-
         public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tag)
         {
-            if (!String.IsNullOrEmpty(tag) && instance.tags.ContainsKey(tag))
-            {
-                foreach(var photo in instance.tags[tag].Photos.OrderBy(photo => photo.Date))
-                    yield return photo;
-            }
+            if (!String.IsNullOrEmpty(tag))
+                return instance.tags[tag].Photos.OrderBy(photo => photo.Date).Cast<IPhotoInfo>();
+            else
+                return GetPhotos();
         }
+
+
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
         {
@@ -188,13 +188,14 @@ namespace WebPhoto.Services
                     yield return photo;
         }
 
-        public static IEnumerable<IPhotoInfo> GetPhotosByDay(DateTime d)
+        public static IEnumerable<IPhotoInfo> GetPhotosByDayAndTag(DateTime d, string tagId)
         {
             LinkedListNode<IPhoto> current;
             instance.photosByDay.TryGetValue(d, out current);
-            while (current != null)
+            while (current != null && current.Value.Date.Date == d)
             {
-                yield return current.Value;
+                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
+                    yield return current.Value;
                 current = current.Next;
             }
         }

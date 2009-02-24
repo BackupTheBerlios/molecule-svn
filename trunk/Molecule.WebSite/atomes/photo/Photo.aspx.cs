@@ -11,19 +11,24 @@ namespace Molecule.WebSite.atomes.photo
 {
     public partial class Photo : System.Web.UI.Page
     {
+        protected string tagId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var photoId = Request.QueryString["id"];
-            var tagId = Request.QueryString["tag"];
+            tagId = Request.QueryString["tag"];
 
-            init(photoId, tagId);
+            initContent(photoId);
+            initTitle();
         }
+
+        
 
         public IPhotoInfo CurrentPhoto { get; set; }
         public IPhotoInfo PreviousPhoto { get; set; }
         public IPhotoInfo NextPhoto { get; set; }
 
-        private void init(string photoId, string tagId)
+        private void initContent(string photoId)
         {
             ImageCurrent.ImageUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Normal);
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
@@ -31,11 +36,36 @@ namespace Molecule.WebSite.atomes.photo
             PreviousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
             MetadatasGridView.DataSource = CurrentPhoto.Metadatas;
             MetadatasGridView.DataBind();
+            TagsView.DataSource = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
+            TagsView.DataBind();
+            
+        }
+
+        private void initTitle()
+        {
+            if (!String.IsNullOrEmpty(tagId))
+            {
+                var tag = PhotoLibrary.GetTag(tagId);
+                string title = "";
+                while (tag != null)
+                {
+                    title = " > " + tag.Name + title;
+                    tag = tag.Parent;
+                }
+                Title = "Photos " + title;
+            }
         }
 
         public static string GetUrlFor(string photoId)
         {
             return String.Format("Photo.aspx?id={0}", photoId);
+        }
+
+        public static string GetUrlFor(string photoId, string tagId)
+        {
+            if(String.IsNullOrEmpty(tagId))
+                return GetUrlFor(photoId);
+            return String.Format("Photo.aspx?id={0}&tag={1}", photoId, tagId);
         }
     }
 }

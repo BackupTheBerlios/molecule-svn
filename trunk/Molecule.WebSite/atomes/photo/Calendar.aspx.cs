@@ -21,8 +21,11 @@ namespace Molecule.WebSite.atomes.photo
     {
         const string requestFormat = "{0}?date={1}/{2:00}";
 
+        string tagId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            tagId = Request.QueryString["tag"];
             DateTime day = DateTime.Today;
             string date = Request.QueryString["date"];
             if (!String.IsNullOrEmpty(date))
@@ -30,6 +33,7 @@ namespace Molecule.WebSite.atomes.photo
 
             fillCalendar(day);
             initMonthLinks(day);
+            initTitle();
 
         }
 
@@ -38,17 +42,36 @@ namespace Molecule.WebSite.atomes.photo
             throw new NotImplementedException();
         }
 
+        private void initTitle()
+        {
+            if (!String.IsNullOrEmpty(tagId))
+            {
+                var tag = PhotoLibrary.GetTag(tagId);
+                string title = "";
+                while (tag != null)
+                {
+                    title = " > " + tag.Name + title;
+                    tag = tag.Parent;
+                }
+                Title = "Photos " + title;
+            }
+        }
+
         private void initMonthLinks(DateTime day)
         {
             var previousMonth = day.Month == 1 ? 12 : day.Month - 1;
             var previousYear = day.Month == 1 ? day.Year - 1 : day.Year;
             this.HyperLinkPrevious.NavigateUrl = String.Format(requestFormat,
                 Request.Path, previousYear, previousMonth);
+            if (!String.IsNullOrEmpty(tagId))
+                this.HyperLinkPrevious.NavigateUrl += "&tag=" + HttpUtility.UrlEncode(tagId);
 
             var nextMonth = day.Month == 12 ? 1 : day.Month + 1;
             var nextYear = day.Month == 12 ? day.Year + 1 : day.Year;
             this.HyperLinkNext.NavigateUrl = String.Format(requestFormat,
                 Request.Path, nextYear, nextMonth);
+            if (!String.IsNullOrEmpty(tagId))
+                this.HyperLinkNext.NavigateUrl += "&tag=" + HttpUtility.UrlEncode(tagId);
         }
 
         private void fillCalendar(DateTime day)
@@ -59,13 +82,10 @@ namespace Molecule.WebSite.atomes.photo
                 firstVisibleDay -= TimeSpan.FromDays(1);
             List<CalendarItem> items = new List<CalendarItem>();
 
-            //fake data
-            var photos = PhotoLibrary.GetPhotos().ToArray();
-
             for (DateTime d = firstVisibleDay;
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
-                items.Add(new CalendarItem(d, day.Month));
+                items.Add(new CalendarItem(d, day.Month, tagId));
             
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
@@ -85,16 +105,21 @@ namespace Molecule.WebSite.atomes.photo
 
     public class CalendarItem
     {
-        public CalendarItem(DateTime d, int month)
+        public CalendarItem(DateTime d, int month, string tagId)
         {
             if (d.Month == month)
             {
                 Day = d.Day;
-                var photo = PhotoLibrary.GetPhotosByDay(d).FirstOrDefault();
+                var photo = PhotoLibrary.GetPhotosByDayAndTag(d, tagId).FirstOrDefault();
                 if (photo != null)
                 {
-                    NavigateUrl = Photo.GetUrlFor(photo.Id);
+                    NavigateUrl = Photo.GetUrlFor(photo.Id, tagId);
                     ThumbnailUrl = PhotoFile.GetUrlFor(photo.Id, PhotoFileSize.Thumbnail);
+                }
+                else
+                {
+                    NavigateUrl = null;
+                    ThumbnailUrl = null;
                 }
             }
         }
