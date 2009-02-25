@@ -37,6 +37,14 @@ namespace Molecule.WebSite.atomes.photo
 
         }
 
+        public static string GetUrlFor(DateTime month, string tagId)
+        {
+            string url = String.Format(requestFormat, "Calendar.aspx", month.Year, month.Month);
+            if(!String.IsNullOrEmpty(tagId))
+                url += "&tag=" + HttpUtility.UrlEncode(tagId);
+            return url;
+        }
+
         private void getPhotos(DateTime day)
         {
             throw new NotImplementedException();
@@ -51,17 +59,11 @@ namespace Molecule.WebSite.atomes.photo
         {
             var previousMonth = day.Month == 1 ? 12 : day.Month - 1;
             var previousYear = day.Month == 1 ? day.Year - 1 : day.Year;
-            this.HyperLinkPrevious.NavigateUrl = String.Format(requestFormat,
-                Request.Path, previousYear, previousMonth);
-            if (!String.IsNullOrEmpty(tagId))
-                this.HyperLinkPrevious.NavigateUrl += "&tag=" + HttpUtility.UrlEncode(tagId);
+            this.HyperLinkPrevious.NavigateUrl = GetUrlFor(new DateTime(previousYear, previousMonth, 1), tagId);
 
             var nextMonth = day.Month == 12 ? 1 : day.Month + 1;
             var nextYear = day.Month == 12 ? day.Year + 1 : day.Year;
-            this.HyperLinkNext.NavigateUrl = String.Format(requestFormat,
-                Request.Path, nextYear, nextMonth);
-            if (!String.IsNullOrEmpty(tagId))
-                this.HyperLinkNext.NavigateUrl += "&tag=" + HttpUtility.UrlEncode(tagId);
+            this.HyperLinkNext.NavigateUrl = GetUrlFor(new DateTime(nextYear, nextMonth, 1), tagId);
         }
 
         private void fillCalendar(DateTime day)

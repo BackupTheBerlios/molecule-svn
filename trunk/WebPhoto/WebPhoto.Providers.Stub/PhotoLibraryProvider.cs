@@ -96,7 +96,8 @@ namespace WebPhoto.Providers.Stub
                 }
             }
 
-            public ITag Parent { get; set; }
+            ITag ITag.Parent { get { return parentTag; } }
+            ITagInfo ITagInfo.Parent { get { return parentTag; } }
 
             public IEnumerable<IPhoto> Photos
             {
@@ -133,6 +134,11 @@ namespace WebPhoto.Providers.Stub
                 this.parentTag = parentTag;
                 Metadatas = new Molecule.Collections.Dictionary<string, string>();
                 Date = DateTime.Today - TimeSpan.FromDays(random.Next(180));
+                Metadatas = new Molecule.Collections.Dictionary<string, string>();
+                Metadatas["Name"] = Id + ".jpg";
+                Metadatas["Exposure"] = "f/2.8 1/100 sec.";
+                Metadatas["Size"] = "2592x1944";
+                Metadatas["Camera"] = "Canone PaweurShote";
             }
             #region IPhoto Members
 

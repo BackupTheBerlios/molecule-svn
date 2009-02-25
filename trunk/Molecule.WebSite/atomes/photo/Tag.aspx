@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Tag.aspx.cs"
-    Inherits="Molecule.WebSite.atomes.photo.Tag" Title="Untitled Page" %>
+    Inherits="Molecule.WebSite.atomes.photo.Tag" Title="Untitled Page" EnableViewState="false" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -32,4 +32,5 @@
             </div>
         </LayoutTemplate>
     </asp:ListView>
+<h2><a href="<%= Calendar1.GetUrlFor(DateTime.Now, tagId) %>">Calendrier</a></h2>
 </asp:Content>

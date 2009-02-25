@@ -29,12 +29,13 @@ namespace WebPhoto.Providers
     {
         string Id { get; }
         string Name { get; }
+        ITagInfo Parent { get; }
     }
 
     public interface ITag : ITagInfo
     {
         IEnumerable<ITag> ChildTags { get; }
-        ITag Parent { get; set; }
+        new ITag Parent { get; }
         IEnumerable<IPhoto> Photos { get; }
     }
 }
