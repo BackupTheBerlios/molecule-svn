@@ -208,7 +208,7 @@ namespace WebPhoto.Services
                 string path = "";
                 while (tag != null)
                 {
-                    title = " > " + tag.Name + title;
+                    path = " > " + tag.Name + path;
                     tag = tag.Parent;
                 }
                 return path;

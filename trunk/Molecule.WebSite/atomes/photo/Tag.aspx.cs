@@ -35,5 +35,10 @@ namespace Molecule.WebSite.atomes.photo
         {
             Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
         }
+
+        public static string GetUrlFor(string tagId)
+        {
+            return String.Format("Tag.aspx?id={0}", tagId);
+        }
     }
 }

@@ -22,7 +22,7 @@
                 <span id="itemPlaceholder" runat="server" />
             </div>
             <div>
-                <asp:DataPager ID="DataPager1" runat="server" QueryStringField="page">
+                <asp:DataPager ID="DataPager1" runat="server" QueryStringField="page" PageSize="32">
                     <Fields>
                         <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="false" ShowPreviousPageButton="True" />
                         <asp:NumericPagerField />

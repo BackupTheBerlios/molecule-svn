@@ -3,6 +3,7 @@
     Inherits="Molecule.WebSite.atomes.photo.Photo" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Services" %>
+<%@ Import Namespace="WebPhoto.Providers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="style/common.css" rel="stylesheet" type="text/css" />
@@ -50,7 +51,11 @@
             <ul id="tagList">
             <asp:Repeater ID="TagsView" runat="server">
             <ItemTemplate>
-                <li><asp:HyperLink runat="server"><asp:Label runat="server"><%#Eval("Name")%></asp:Label></asp:HyperLink></li>
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl='<%# Tag.GetUrlFor(((ITagInfo)Container.DataItem).Id) %>'>
+                        <asp:Label runat="server"><%#Eval("Name")%></asp:Label>
+                    </asp:HyperLink>
+                </li>
             </ItemTemplate>
             </asp:Repeater>
             </ul>
