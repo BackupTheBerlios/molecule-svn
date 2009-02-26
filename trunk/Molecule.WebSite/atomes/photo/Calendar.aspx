@@ -28,7 +28,7 @@ Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableV
             <td></td>
         </EmptyDataTemplate>
         <LayoutTemplate>
-            <table ID="groupPlaceholderContainer" runat="server">
+            <table>
             <thead>
                 <tr>
                     <td runat="server"><%= FormatDay(0) %></td>
