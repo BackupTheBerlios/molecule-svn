@@ -161,14 +161,22 @@ namespace WebPhoto.Services
             return instance.photosByIds[photoId].Value;
         }
 
-        public static IEnumerable<ITagInfo> GetTags()
+        public static IEnumerable<ITagInfo> GetAllTags()
         {
             return instance.tags.Values.Cast<ITagInfo>();
         }
 
+        public static IEnumerable<ITagInfo> GetTags()
+        {
+            return instance.rootTags.Cast<ITagInfo>();
+        }
+
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
-            return instance.tags[tagId].ChildTags.Where(t => t.Photos.Any()).Cast<ITagInfo>();
+            if (!String.IsNullOrEmpty(tagId))
+                return instance.tags[tagId].ChildTags.Where(t => t.Photos.Any()).Cast<ITagInfo>();
+            else
+                return GetTags();
         }
 
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
@@ -188,7 +196,6 @@ namespace WebPhoto.Services
             else
                 return GetPhotos();
         }
-
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
         {

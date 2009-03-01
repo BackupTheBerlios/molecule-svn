@@ -140,6 +140,13 @@
     <Compile Include="atomes\photo\Tag.aspx.designer.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\photo\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -352,6 +359,7 @@
     <Content Include="atomes\photo\style\common.css" />
     <Content Include="atomes\photo\style\photo.css" />
     <Content Include="atomes\photo\Tag.aspx" />
+    <Content Include="atomes\photo\test.aspx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />
