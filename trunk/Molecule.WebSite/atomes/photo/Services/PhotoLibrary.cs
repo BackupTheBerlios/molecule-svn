@@ -84,7 +84,7 @@ namespace WebPhoto.Services
                 var provider = Plugin<IPhotoLibraryProvider>.CreateInstance(
                    providerName, providerDirectory);
                 provider.Initialize();
-                rootTags = provider.GetRootTags();
+                rootTags = provider.GetRootTags().Where(t => t.Photos.Any());
 
                 // TODO : recent tags
 
@@ -102,12 +102,11 @@ namespace WebPhoto.Services
             foreach (ITag tag in tags)
             {
                 yield return tag;
-                foreach (ITag subTag in tag.ChildTags)
-                    yield return subTag;
+                foreach (ITag t in GetAllTags(tag.ChildTags))
+                    yield return t;
             }
         }
-        
-        
+
         private void buildIndexTables()
         {
             tags = new Dictionary<string, ITag>();
@@ -169,7 +168,7 @@ namespace WebPhoto.Services
 
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
-            return instance.tags[tagId].ChildTags.Cast<ITagInfo>();
+            return instance.tags[tagId].ChildTags.Where(t => t.Photos.Any()).Cast<ITagInfo>();
         }
 
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
