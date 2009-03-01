@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WebPhoto.Providers.Stub")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("FranceTelecom R&D")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WebPhoto.Providers.Stub")]
-[assembly: AssemblyCopyright("Copyright © FranceTelecom R&D 2009")]
+[assembly: AssemblyCopyright("Copyright © 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
