@@ -116,9 +116,15 @@ namespace WebPhoto.Services
             //id index
             foreach (var tag in GetAllTags(rootTags))
             {
-                tags[tag.Id] = tag;
+                bool hasPhotos = false;
                 foreach (var photo in tag.Photos)
+                {
+                    hasPhotos = true;
                     tempPhotos[photo.Id] = photo;
+                }
+                //only reference tags that contains photo.
+                if(hasPhotos)
+                    tags[tag.Id] = tag;
             }
             
             if (log.IsDebugEnabled)
@@ -146,9 +152,9 @@ namespace WebPhoto.Services
 
         }
 
-        public static ITagInfo GetTag(string tag)
+        public static ITagInfo GetTag(string tagId)
         {
-            return instance.tags[tag];
+            return instance.tags[tagId];
         }
 
         public static IPhotoInfo GetPhoto(string photoId)
@@ -159,6 +165,11 @@ namespace WebPhoto.Services
         public static IEnumerable<ITagInfo> GetTags()
         {
             return instance.tags.Values.Cast<ITagInfo>();
+        }
+
+        public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
+        {
+            return instance.tags[tagId].ChildTags.Cast<ITagInfo>();
         }
 
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
@@ -178,7 +189,6 @@ namespace WebPhoto.Services
             else
                 return GetPhotos();
         }
-
 
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
