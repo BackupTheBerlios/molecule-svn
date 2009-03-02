@@ -13,7 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 
-    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="id" />
+    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
     
     <% if(tag != null){ %>
     <div id="photoNext">
