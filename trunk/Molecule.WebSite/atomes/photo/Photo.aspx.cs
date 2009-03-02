@@ -12,6 +12,7 @@ namespace Molecule.WebSite.atomes.photo
     public partial class Photo : System.Web.UI.Page
     {
         protected string tagId;
+        protected ITagInfo tag;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,6 +31,8 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initContent(string photoId)
         {
+            if(!String.IsNullOrEmpty(tagId))
+                tag = PhotoLibrary.GetTag(tagId);
             ImageCurrent.ImageUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Normal);
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
             NextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);

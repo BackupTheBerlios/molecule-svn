@@ -10,6 +10,11 @@
     <link href="style/photo.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <% if(tag != null){ %>
+    Tag : <a href='<%= Tag.GetUrlFor(tagId) %>'>
+                        <asp:Label runat="server"><%= tag.Name %></asp:Label>
+                    </a>
+    <% } %>
     
     <% if (NextPhoto != null){ %>
     <div id="photoNext">
@@ -45,7 +50,7 @@
             ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
         <div id="photoDescriptionContainer">
             <p>
-                <asp:Label ID="descriptionLabel" runat="server"><%= CurrentPhoto.Description %></asp:Label>
+                <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
             <h2>Tags</h2>
             <ul id="tagList">

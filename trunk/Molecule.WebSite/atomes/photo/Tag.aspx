@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Tag.aspx.cs"
-    Inherits="Molecule.WebSite.atomes.photo.Tag" Title="Untitled Page" EnableViewState="true" %>
+    Inherits="Molecule.WebSite.atomes.photo.Tag" Title="Untitled Page" EnableViewState="false" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
 <%@ Import Namespace="WebPhoto.Services" %>
