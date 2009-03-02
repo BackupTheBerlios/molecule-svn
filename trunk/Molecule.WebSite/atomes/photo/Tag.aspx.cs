@@ -11,17 +11,21 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using WebPhoto.Services;
+using WebPhoto.Providers;
 
 namespace Molecule.WebSite.atomes.photo
 {
     public partial class Tag : System.Web.UI.Page
     {
         protected string tagId;
+        protected ITagInfo tag;
         ICollection photos;
         
         protected void Page_Load(object sender, EventArgs e)
         {
             tagId = Request.QueryString["id"];
+            if(!String.IsNullOrEmpty(tagId))
+                tag = PhotoLibrary.GetTag(tagId);
             photos = PhotoLibrary.GetPhotosByTag(tagId).ToList();
             initContent();
             initTitle();
@@ -31,6 +35,8 @@ namespace Molecule.WebSite.atomes.photo
         {
             this.PhotoListView.DataSource = photos;
             this.PhotoListView.DataBind();
+            this.TagHierarchyView.DataSource = PhotoLibrary.GetTagHierarchy(tagId);
+            this.TagHierarchyView.DataBind();
         }
 
         private void initTitle()

@@ -179,6 +179,21 @@ namespace WebPhoto.Services
                 return GetTags();
         }
 
+        public static IEnumerable<ITagInfo> GetTagHierarchy(string tagId)
+        {
+            var tags = new List<ITagInfo>();
+            if (instance.tags.ContainsKey(tagId))
+            {
+                var tag = instance.tags[tagId];
+                while (tag != null)
+                {
+                    tags.Add(tag);
+                    tag = tag.Parent;
+                }
+            }
+            return tags.Reverse<ITagInfo>();
+        }
+
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
         {
             return instance.photosByIds[photoId].Value.Tags.Cast<ITagInfo>();

@@ -7,7 +7,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <h2>Tags</h2>
+<h2>
+    <asp:Repeater runat="server" ID="TagHierarchyView">
+        <ItemTemplate>
+            <asp:HyperLink runat="server" NavigateUrl='<%# Tag.GetUrlFor(((ITagInfo)Container.DataItem).Id) %>'>
+                    <asp:Label runat="server"><%#Eval("Name")%></asp:Label>
+                </asp:HyperLink>
+        </ItemTemplate>
+        <SeparatorTemplate> > </SeparatorTemplate>
+    </asp:Repeater>
+</h2>
     <ul id="tagList">
         <asp:Repeater ID="TagsView" runat="server" DataSourceID="TagDataSource">
         <ItemTemplate>

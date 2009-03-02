@@ -14,6 +14,15 @@ namespace Molecule.WebSite.atomes.photo {
     public partial class Tag {
         
         /// <summary>
+        /// TagHierarchyView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater TagHierarchyView;
+        
+        /// <summary>
         /// TagsView control.
         /// </summary>
         /// <remarks>

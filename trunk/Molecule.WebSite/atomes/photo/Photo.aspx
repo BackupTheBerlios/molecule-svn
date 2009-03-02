@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <% if(tag != null){ %>
-    Tag : <a href='<%= Tag.GetUrlFor(tagId) %>'>
+    Tag courant : <a href='<%= Tag.GetUrlFor(tagId) %>'>
                         <asp:Label runat="server"><%= tag.Name %></asp:Label>
                     </a>
     <% } %>
