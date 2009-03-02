@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Molecule.WebSite.atomes.webmusic.Services {
+namespace Molecule.WebSite.atomes.photo.Services {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace Molecule.WebSite.atomes.webmusic.Services {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Messages {
+    internal class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Molecule.WebSite.atomes.webmusic.Services {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Molecule.WebSite.atomes.webmusic.Services.Messages", typeof(Messages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Molecule.WebSite.atomes.photo.Services.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Molecule.WebSite.atomes.webmusic.Services {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,11 +61,11 @@ namespace Molecule.WebSite.atomes.webmusic.Services {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to retrieve music information from {0}..
+        ///   Looks up a localized string similar to Failed to retrieve photo information from {0}..
         /// </summary>
-        public static string MusicProviderError {
+        internal static string PhotoProviderError {
             get {
-                return ResourceManager.GetString("MusicProviderError", resourceCulture);
+                return ResourceManager.GetString("PhotoProviderError", resourceCulture);
             }
         }
     }

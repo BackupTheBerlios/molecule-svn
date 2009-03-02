@@ -45,7 +45,7 @@ namespace WebMusic.Services
         public string ProviderName { get; set; }
         static string formatMessage(string providerName)
         {
-            return String.Format(Messages.ProviderError, providerName);
+            return String.Format(Messages.MusicProviderError, providerName);
         }
     }
 }
