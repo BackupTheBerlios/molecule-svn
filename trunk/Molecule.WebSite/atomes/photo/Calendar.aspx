@@ -1,15 +1,18 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Calendar.aspx.cs"
 Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableViewState="false" %>
+<%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<link href="style/calendar.css" rel="stylesheet" type="text/css" />
-<link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/calendar.css" rel="stylesheet" type="text/css" />
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-<asp:HyperLink ID="HyperLinkPrevious" runat="server">&lt;</asp:HyperLink>
-<asp:Label ID="LabelMonth" runat="server" Text="" />
-<asp:HyperLink ID="HyperLinkNext" runat="server">&gt;</asp:HyperLink>
-<asp:ListView ID="ListView1" runat="server" EnableViewState="false"
-    GroupItemCount="7">
+    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" /> > <asp:Label ID="LabelMonth" runat="server" Text="" />
+    <div style="display:block; position:relative">
+        <div style="float:left;"><asp:HyperLink ID="HyperLinkPrevious" runat="server">PreviousMonth</asp:HyperLink></div>
+        <div style="float:right;"><asp:HyperLink ID="HyperLinkNext" runat="server">NextMonth</asp:HyperLink></div>
+    </div>
+    <br />
+    <asp:ListView ID="ListView1" runat="server" EnableViewState="false" GroupItemCount="7">
         <EmptyItemTemplate>
             <td runat="server" />
         </EmptyItemTemplate>
@@ -28,7 +31,7 @@ Inherits="Molecule.WebSite.atomes.photo.Calendar1" Title="Untitled Page" EnableV
             <td></td>
         </EmptyDataTemplate>
         <LayoutTemplate>
-            <table>
+            <table style="">
             <thead>
                 <tr>
                     <td runat="server"><%= FormatDay(0) %></td>

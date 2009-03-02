@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -146,6 +146,20 @@
     </Compile>
     <Compile Include="atomes\photo\test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\TagLink.ascx.cs">
+      <DependentUpon>TagLink.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\TagLink.ascx.designer.cs">
+      <DependentUpon>TagLink.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\TagHierarchy.ascx.cs">
+      <DependentUpon>TagHierarchy.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\TagHierarchy.ascx.designer.cs">
+      <DependentUpon>TagHierarchy.ascx</DependentUpon>
     </Compile>
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -360,6 +374,8 @@
     <Content Include="atomes\photo\style\photo.css" />
     <Content Include="atomes\photo\Tag.aspx" />
     <Content Include="atomes\photo\test.aspx" />
+    <Content Include="atomes\photo\TagLink.ascx" />
+    <Content Include="atomes\photo\TagHierarchy.ascx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />
@@ -408,6 +424,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

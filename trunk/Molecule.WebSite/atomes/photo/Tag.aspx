@@ -1,29 +1,22 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Tag.aspx.cs"
+<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Tag.aspx.cs"
     Inherits="Molecule.WebSite.atomes.photo.Tag" Title="Untitled Page" EnableViewState="false" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
 <%@ Import Namespace="WebPhoto.Services" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
+<%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-<h2>
-    <asp:Repeater runat="server" ID="TagHierarchyView">
-        <ItemTemplate>
-            <asp:HyperLink runat="server" NavigateUrl='<%# Tag.GetUrlFor(((ITagInfo)Container.DataItem).Id) %>'>
-                    <asp:Label runat="server"><%#Eval("Name")%></asp:Label>
-                </asp:HyperLink>
-        </ItemTemplate>
-        <SeparatorTemplate> > </SeparatorTemplate>
-    </asp:Repeater>
+    <h2>
+    <photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />
 </h2>
     <ul id="tagList">
         <asp:Repeater ID="TagsView" runat="server" DataSourceID="TagDataSource">
         <ItemTemplate>
             <li>
-                <asp:HyperLink runat="server" NavigateUrl='<%# Tag.GetUrlFor(((ITagInfo)Container.DataItem).Id) %>'>
-                    <asp:Label runat="server"><%#Eval("Name")%></asp:Label>
-                </asp:HyperLink>
+                <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
             </li>
         </ItemTemplate>
         </asp:Repeater>

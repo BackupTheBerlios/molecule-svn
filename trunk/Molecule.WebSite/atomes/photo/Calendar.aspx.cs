@@ -59,11 +59,19 @@ namespace Molecule.WebSite.atomes.photo
         {
             var previousMonth = day.Month == 1 ? 12 : day.Month - 1;
             var previousYear = day.Month == 1 ? day.Year - 1 : day.Year;
-            this.HyperLinkPrevious.NavigateUrl = GetUrlFor(new DateTime(previousYear, previousMonth, 1), tagId);
+            initMonthLink(this.HyperLinkPrevious, previousMonth, previousYear);
 
             var nextMonth = day.Month == 12 ? 1 : day.Month + 1;
             var nextYear = day.Month == 12 ? day.Year + 1 : day.Year;
-            this.HyperLinkNext.NavigateUrl = GetUrlFor(new DateTime(nextYear, nextMonth, 1), tagId);
+            initMonthLink(this.HyperLinkNext, nextMonth, nextYear);
+        }
+
+        private void initMonthLink(HyperLink link, int month, int year)
+        {
+            link.NavigateUrl = GetUrlFor(new DateTime(year, month, 1), tagId);
+            link.Text = String.Format("{0} {1}",
+                DateTimeFormatInfo.CurrentInfo.GetMonthName(month),
+                year);
         }
 
         private void fillCalendar(DateTime day)

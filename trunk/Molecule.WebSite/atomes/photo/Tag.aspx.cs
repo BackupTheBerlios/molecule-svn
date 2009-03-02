@@ -35,8 +35,6 @@ namespace Molecule.WebSite.atomes.photo
         {
             this.PhotoListView.DataSource = photos;
             this.PhotoListView.DataBind();
-            this.TagHierarchyView.DataSource = PhotoLibrary.GetTagHierarchy(tagId);
-            this.TagHierarchyView.DataBind();
         }
 
         private void initTitle()

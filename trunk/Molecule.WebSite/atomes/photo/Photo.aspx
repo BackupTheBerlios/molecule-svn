@@ -4,19 +4,18 @@
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Services" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
+<%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
+<%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="style/common.css" rel="stylesheet" type="text/css" />
     <link href="style/photo.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <% if(tag != null){ %>
-    Tag courant : <a href='<%= Tag.GetUrlFor(tagId) %>'>
-                        <asp:Label runat="server"><%= tag.Name %></asp:Label>
-                    </a>
-    <% } %>
+
+    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="id" />
     
-    <% if (NextPhoto != null){ %>
+    <% if(tag != null){ %>
     <div id="photoNext">
         <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
             <img src="<%= PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Thumbnail) %>"
@@ -44,7 +43,6 @@
         </div>
     </div>
      <%} %>
-    
     <div id="photoCurrent">
         <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server"
             ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
@@ -57,9 +55,7 @@
             <asp:Repeater ID="TagsView" runat="server">
             <ItemTemplate>
                 <li>
-                    <asp:HyperLink runat="server" NavigateUrl='<%# Tag.GetUrlFor(((ITagInfo)Container.DataItem).Id) %>'>
-                        <asp:Label runat="server"><%#Eval("Name")%></asp:Label>
-                    </asp:HyperLink>
+                     <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
                 </li>
             </ItemTemplate>
             </asp:Repeater>
