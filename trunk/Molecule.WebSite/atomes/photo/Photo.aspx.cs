@@ -27,12 +27,12 @@ namespace Molecule.WebSite.atomes.photo
 
         public IPhotoInfo CurrentPhoto { get; set; }
 
+        public IPhotoInfo NextPhoto { get; set; }
 
         private void initContent(string photoId)
         {
             if(!String.IsNullOrEmpty(tagId))
                 tag = PhotoLibrary.GetTag(tagId);
-            ImageCurrent.ImageUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Normal);
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
             var nextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
             if (nextPhoto != null)
@@ -40,6 +40,7 @@ namespace Molecule.WebSite.atomes.photo
                 NextPhotoLink.PhotoId = nextPhoto.Id;
                 NextPhotoLink.TagId = tagId;
                 NextPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-next.png";
+                NextPhoto = nextPhoto;
             }
             else
                 NextPhotoLink.Visible = false;

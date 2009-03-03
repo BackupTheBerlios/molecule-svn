@@ -13,7 +13,12 @@
     <link href="style/photo.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-
+    <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="scripts/default.js" />
+        </Scripts>
+    </asp:ScriptManagerProxy>
+    
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
     
     <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
@@ -34,8 +39,8 @@
     </div>
      <%} %>--%>
     <div id="photoCurrent">
-        <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server"
-            ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
+        <img style="border:solid 1px" onload="preload('<%=PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Normal)%>')"  
+             src="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>" />
         <div id="photoDescriptionContainer">
             <p>
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
