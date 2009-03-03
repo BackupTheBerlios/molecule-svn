@@ -23,6 +23,24 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagHierarchy TagHierarchy;
         
         /// <summary>
+        /// NextPhotoLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Molecule.WebSite.atomes.photo.PhotoLink NextPhotoLink;
+        
+        /// <summary>
+        /// PreviousPhotoLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Molecule.WebSite.atomes.photo.PhotoLink PreviousPhotoLink;
+        
+        /// <summary>
         /// ImageCurrent control.
         /// </summary>
         /// <remarks>

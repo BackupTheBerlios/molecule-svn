@@ -26,8 +26,7 @@ namespace Molecule.WebSite.atomes.photo
         
 
         public IPhotoInfo CurrentPhoto { get; set; }
-        public IPhotoInfo PreviousPhoto { get; set; }
-        public IPhotoInfo NextPhoto { get; set; }
+
 
         private void initContent(string photoId)
         {
@@ -35,8 +34,24 @@ namespace Molecule.WebSite.atomes.photo
                 tag = PhotoLibrary.GetTag(tagId);
             ImageCurrent.ImageUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Normal);
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
-            NextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
-            PreviousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
+            var nextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
+            if (nextPhoto != null)
+            {
+                NextPhotoLink.PhotoId = nextPhoto.Id;
+                NextPhotoLink.TagId = tagId;
+                NextPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-next.png";
+            }
+            else
+                NextPhotoLink.Visible = false;
+            var previousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
+            if (previousPhoto != null)
+            {
+                PreviousPhotoLink.TagId = tagId;
+                PreviousPhotoLink.PhotoId = previousPhoto.Id;
+                PreviousPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-previous.png";
+            }
+            else
+                PreviousPhotoLink.Visible = false;
             MetadatasGridView.DataSource = CurrentPhoto.Metadatas;
             MetadatasGridView.DataBind();
             TagsView.DataSource = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);

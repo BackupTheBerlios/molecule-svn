@@ -99,12 +99,12 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="AtomeSiteMapProvider.cs" />
-    <Compile Include="atomes\photo\Calendar.aspx.cs">
-      <DependentUpon>Calendar.aspx</DependentUpon>
+    <Compile Include="atomes\photo\MonthCalendar.aspx.cs">
+      <DependentUpon>MonthCalendar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\photo\Calendar.aspx.designer.cs">
-      <DependentUpon>Calendar.aspx</DependentUpon>
+    <Compile Include="atomes\photo\MonthCalendar.aspx.designer.cs">
+      <DependentUpon>MonthCalendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -119,6 +119,13 @@
     </Compile>
     <Compile Include="atomes\photo\Photo.aspx.designer.cs">
       <DependentUpon>Photo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\PhotoLink.ascx.cs">
+      <DependentUpon>PhotoLink.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\PhotoLink.ascx.designer.cs">
+      <DependentUpon>PhotoLink.ascx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\Services\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -361,8 +368,9 @@
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\Atome.xml" />
-    <Content Include="atomes\photo\Calendar.aspx" />
+    <Content Include="atomes\photo\MonthCalendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
+    <Content Include="atomes\photo\PhotoLink.ascx" />
     <Content Include="atomes\photo\style\calendar.css" />
     <Content Include="atomes\photo\Photo.aspx" />
     <Content Include="atomes\photo\stublibrary\photo1.jpg" />

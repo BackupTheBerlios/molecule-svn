@@ -1,5 +1,4 @@
-﻿#photoNext,
-#photoPrevious
+﻿.PhotoLink
 {
 	position:relative;
 	margin:10px;
@@ -14,15 +13,13 @@
 }
 
 
-#previousLinkIcon img,
-#nextLinkIcon img
+.PhotoLink_HoverIcon img,
 {
 	border-style:none;
 	opacity:0.5;
 }
 
-#previousLinkIcon,
-#nextLinkIcon
+.PhotoLink_HoverIcon
 {
 	position:absolute;
 	border-style:none;

@@ -6,6 +6,7 @@
 <%@ Import Namespace="WebPhoto.Providers" %>
 <%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
+<%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="style/common.css" rel="stylesheet" type="text/css" />
@@ -15,22 +16,11 @@
 
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
     
-    <% if(NextPhoto != null){ %>
-    <div id="photoNext">
-        <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
-            <img src="<%= PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Thumbnail) %>"
-                alt="" class="photoLink" />
-        </a>
-            <div id="nextLinkIcon">
-                <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
-                    <img src="/App_Themes/<%= Theme %>/images/go-next.png" alt="" />
-                    </a>
-            </div>
-    </div>
-    <%} %>
+    <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
+    <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
     
     
-    <% if (PreviousPhoto != null){ %>
+    <%--<% if (PreviousPhoto != null){ %>
     <div id="photoPrevious">
         <a href='<%= GetUrlFor(PreviousPhoto.Id, tagId) %>'>
             <img src="<%= PhotoFile.GetUrlFor(PreviousPhoto.Id, PhotoFileSize.Thumbnail) %>"
@@ -42,7 +32,7 @@
                 </a>
         </div>
     </div>
-     <%} %>
+     <%} %>--%>
     <div id="photoCurrent">
         <asp:Image ID="ImageCurrent" style="border:solid 1px" runat="server"
             ImageUrl="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>"/>
