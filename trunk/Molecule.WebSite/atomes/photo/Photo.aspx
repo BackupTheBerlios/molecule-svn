@@ -15,7 +15,7 @@
 
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
     
-    <% if(tag != null){ %>
+    <% if(NextPhoto != null){ %>
     <div id="photoNext">
         <a href='<%= GetUrlFor(NextPhoto.Id, tagId) %>'>
             <img src="<%= PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Thumbnail) %>"

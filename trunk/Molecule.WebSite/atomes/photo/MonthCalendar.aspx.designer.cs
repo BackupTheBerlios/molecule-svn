@@ -11,7 +11,7 @@
 namespace Molecule.WebSite.atomes.photo {
     
     
-    public partial class Photo {
+    public partial class MonthCalendar {
         
         /// <summary>
         /// TagHierarchy control.
@@ -23,30 +23,39 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagHierarchy TagHierarchy;
         
         /// <summary>
-        /// ImageCurrent control.
+        /// LabelMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageCurrent;
+        protected global::System.Web.UI.WebControls.Label LabelMonth;
         
         /// <summary>
-        /// TagsView control.
+        /// HyperLinkPrevious control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater TagsView;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkPrevious;
         
         /// <summary>
-        /// MetadatasGridView control.
+        /// HyperLinkNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView MetadatasGridView;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkNext;
+        
+        /// <summary>
+        /// ListView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListView1;
     }
 }
