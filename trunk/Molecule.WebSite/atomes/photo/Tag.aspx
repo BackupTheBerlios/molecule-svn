@@ -13,9 +13,9 @@
     <link href="style/tag.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <h2>
+
     <photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />
-</h2>
+
     <ul id="tagList">
         <asp:Repeater ID="TagsView" runat="server" DataSourceID="TagDataSource">
         <ItemTemplate>
