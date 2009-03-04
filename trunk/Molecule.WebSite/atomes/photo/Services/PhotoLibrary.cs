@@ -5,6 +5,7 @@ using System.Web;
 using Molecule.Web;
 using WebPhoto.Providers;
 using Molecule.Runtime;
+using System.Globalization;
 
 namespace WebPhoto.Services
 {
@@ -222,8 +223,31 @@ namespace WebPhoto.Services
         public static IEnumerable<IPhotoInfo> GetPhotosByDayAndTag(DateTime d, string tagId)
         {
             LinkedListNode<IPhoto> current;
+
+            //search for a photo in current day.
             instance.photosByDay.TryGetValue(d, out current);
+
+            //search for a photo that match specified tag.
             while (current != null && current.Value.Date.Date == d)
+            {
+                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
+                    yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        public static IEnumerable<IPhoto> GetPhotosByMonthAndTag(DateTime month, string tagId)
+        {
+            LinkedListNode<IPhoto> current = null;
+
+            //search for a photo in current month.
+            for(DateTime dt = month; dt.Month == month.Month && current == null; dt = dt.AddDays(1))
+                instance.photosByDay.TryGetValue(month, out current);
+
+            //search for a photo that match specified tag.
+            while (current != null
+                && current.Value.Date.Month == month.Month
+                && current.Value.Date.Year == month.Year)
             {
                 if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
                     yield return current.Value;

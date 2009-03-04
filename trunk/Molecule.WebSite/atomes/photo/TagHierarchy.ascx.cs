@@ -27,10 +27,25 @@ namespace Molecule.WebSite.atomes.photo
                 this.TagHierarchyView.DataSource = PhotoLibrary.GetTagHierarchy(TagId);
                 this.TagHierarchyView.DataBind();
             }
+
+            if (Year.HasValue)
+                YearLink.NavigateUrl = YearCalendar.GetUrlFor(new DateTime(Year.Value, 1, 1), TagId);
+            else
+                YearLink.Visible = false;
+
+            if (Month.HasValue)
+                MonthLink.NavigateUrl = MonthCalendar.GetUrlFor(new DateTime(Year.Value, Month.Value, 1), TagId);
+            else
+                MonthLink.Visible = false;
+
         }
 
         public string TagId { get; set; }
 
         public string TagQueryStringField { get; set; }
+
+        public int? Year { get; set; }
+
+        public int? Month { get; set; }
     }
 }

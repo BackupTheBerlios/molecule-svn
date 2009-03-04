@@ -5,19 +5,62 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
+using WebPhoto.Services;
 
 namespace Molecule.WebSite.atomes.photo
 {
     public partial class YearCalendar : System.Web.UI.Page
     {
+        const string requestFormat = "{0}?date={1}";
+
+        protected string tagId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            tagId = Request.QueryString["tag"];
+            DateTime year = DateTime.Today;
+            string date = Request.QueryString["date"];
+            if (!String.IsNullOrEmpty(date))
+                year = DateTime.ParseExact(date, "yyyy", null);
 
+            fillCalendar(year);
+            initYearLinks(year);
+            initTitle();
+            this.TagHierarchy.Year = year.Year;
         }
 
-        protected static string FormatMonth(int month)
+        private void initTitle()
         {
-            return DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
         }
+
+        private void initYearLinks(DateTime year)
+        {
+            
+        }
+
+        public static string GetUrlFor(DateTime year, string tagId)
+        {
+            string url = String.Format(requestFormat, "YearCalendar.aspx", year.Year);
+            if (!String.IsNullOrEmpty(tagId))
+                url += "&tag=" + HttpUtility.UrlEncode(tagId);
+            return url;
+        }
+
+        private void fillCalendar(DateTime year)
+        {
+            var firstMonthOfYear = new DateTime(year.Year, 1, 1);
+            List<CalendarItem> items = new List<CalendarItem>();
+
+            for(int i = 1; i <= 12; i++)
+                items.Add(CalendarItem.CreateMonth(new DateTime(year.Year, i, 1), tagId));
+
+            this.ListView1.DataSource = items;
+            this.ListView1.DataBind();
+            //this.LabelMonth.Text = String.Format("{0} {1}",
+            //    DateTimeFormatInfo.CurrentInfo.GetMonthName(firstDayOfMonth.Month),
+            //    firstDayOfMonth.Year.ToString());
+        }
+
     }
 }

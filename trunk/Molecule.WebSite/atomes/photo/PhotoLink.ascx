@@ -7,13 +7,13 @@
     <div class="PhotoLink_HoverTextShadow"><%= HoverText%></div>
     <%} %>
     <%if (!String.IsNullOrEmpty(PhotoId)){ %>
-    <a href='<%= Photo.GetUrlFor(PhotoId, TagId) %>'>
+    <a href='<%= NavigateUrl ?? Photo.GetUrlFor(PhotoId, TagId) %>'>
         <img src="<%= PhotoFile.GetUrlFor(PhotoId, PhotoFileSize.Thumbnail) %>" title="<%= Description %>" alt="" class="photoLink" />
     </a>
     <%} %>
     <% if (!String.IsNullOrEmpty(HoverIconUrl)){ %>
     <div class="PhotoLink_HoverIcon">
-        <a href='<%= Photo.GetUrlFor(PhotoId, TagId) %>'>
+        <a href='<%= NavigateUrl ?? Photo.GetUrlFor(PhotoId, TagId) %>'>
             <img title="<%= Description %>" src="<%= HoverIconUrl %>" alt="" />
         </a>
     </div>

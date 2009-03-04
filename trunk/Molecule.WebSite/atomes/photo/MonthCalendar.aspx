@@ -7,7 +7,7 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
     <link href="style/common.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" /> > <asp:Label ID="LabelMonth" runat="server" Text="" />
+    <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag"/>
     <div style="display:block; position:relative">
         <div style="float:left;"><asp:HyperLink ID="HyperLinkPrevious" runat="server">PreviousMonth</asp:HyperLink></div>
         <div style="float:right;"><asp:HyperLink ID="HyperLinkNext" runat="server">NextMonth</asp:HyperLink></div>
@@ -16,8 +16,8 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
     <asp:ListView ID="ListView1" runat="server" EnableViewState="false" GroupItemCount="7">
         <ItemTemplate>
             <td>
-                <photo:PhotoLink runat="server" Description='<%# Eval("PhotoCount") + " photos" %>'
-                 HoverText='<%# Eval("Day") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>' />
+                <photo:PhotoLink runat="server" Description='<%# Eval("Description") %>'
+                 HoverText='<%# Eval("Name") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>' />
             </td>
         </ItemTemplate>
         <LayoutTemplate>

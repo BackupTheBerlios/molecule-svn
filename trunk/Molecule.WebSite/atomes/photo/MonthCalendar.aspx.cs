@@ -34,6 +34,8 @@ namespace Molecule.WebSite.atomes.photo
             fillCalendar(day);
             initMonthLinks(day);
             initTitle();
+            TagHierarchy.Year = day.Year;
+            TagHierarchy.Month = day.Month;
 
         }
 
@@ -43,11 +45,6 @@ namespace Molecule.WebSite.atomes.photo
             if(!String.IsNullOrEmpty(tagId))
                 url += "&tag=" + HttpUtility.UrlEncode(tagId);
             return url;
-        }
-
-        private void getPhotos(DateTime day)
-        {
-            throw new NotImplementedException();
         }
 
         private void initTitle()
@@ -69,9 +66,8 @@ namespace Molecule.WebSite.atomes.photo
         private void initMonthLink(HyperLink link, int month, int year)
         {
             link.NavigateUrl = GetUrlFor(new DateTime(year, month, 1), tagId);
-            link.Text = String.Format("{0} {1}",
-                DateTimeFormatInfo.CurrentInfo.GetMonthName(month),
-                year);
+            link.Text = String.Format("{0}",
+                DateTimeFormatInfo.CurrentInfo.GetMonthName(month));
         }
 
         private void fillCalendar(DateTime day)
@@ -85,13 +81,11 @@ namespace Molecule.WebSite.atomes.photo
             for (DateTime d = firstVisibleDay;
                 d < firstVisibleDay + TimeSpan.FromDays(42);
                 d += TimeSpan.FromDays(1))
-                items.Add(new CalendarItem(d, day.Month, tagId));
+                items.Add(CalendarItem.CreateDay(d, day.Month, tagId));
             
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
-            this.LabelMonth.Text = String.Format("{0} {1}",
-                DateTimeFormatInfo.CurrentInfo.GetMonthName(firstDayOfMonth.Month),
-                firstDayOfMonth.Year.ToString());
+            
         }
 
        
@@ -101,29 +95,5 @@ namespace Molecule.WebSite.atomes.photo
             var day = (DayOfWeek)(((int)DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek + weekDay) % 7);
             return DateTimeFormatInfo.CurrentInfo.GetAbbreviatedDayName(day);
         }
-    }
-
-    public class CalendarItem
-    {
-        public CalendarItem(DateTime d, int month, string tagId)
-        {
-            if (d.Month == month)
-            {
-                Day = d.Day.ToString();
-                var photos = PhotoLibrary.GetPhotosByDayAndTag(d, tagId);
-                var photo = photos.FirstOrDefault();
-                PhotoCount = photos.Count().ToString();
-                if (photo != null)
-                {
-                    PhotoId = photo.Id;
-                }
-            }
-        }
-
-        public string PhotoId { get; set; }
-        
-        public string Day { get; set; }
-        
-        public string PhotoCount { get; set; }
     }
 }

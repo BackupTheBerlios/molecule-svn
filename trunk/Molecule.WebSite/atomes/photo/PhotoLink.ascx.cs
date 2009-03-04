@@ -16,5 +16,6 @@ namespace Molecule.WebSite.atomes.photo
         public string Description { get; set; }
         public string HoverIconUrl { get; set; }
         public string HoverText { get; set; }
+        public string NavigateUrl { get; set; }
     }
 }
