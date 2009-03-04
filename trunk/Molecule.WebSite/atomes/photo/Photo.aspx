@@ -23,21 +23,7 @@
     
     <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
     <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
-    
-    
-    <%--<% if (PreviousPhoto != null){ %>
-    <div id="photoPrevious">
-        <a href='<%= GetUrlFor(PreviousPhoto.Id, tagId) %>'>
-            <img src="<%= PhotoFile.GetUrlFor(PreviousPhoto.Id, PhotoFileSize.Thumbnail) %>"
-                alt="" class="photoLink" />
-        </a>
-        <div id="previousLinkIcon">
-            <a href='<%= GetUrlFor(PreviousPhoto.Id, tagId) %>'>
-                <img src="/App_Themes/<%= Theme %>/images/go-previous.png" alt="" />
-                </a>
-        </div>
-    </div>
-     <%} %>--%>
+
     <div id="photoCurrent">
         <img style="border:solid 1px" onload="preload('<%=PhotoFile.GetUrlFor(NextPhoto.Id, PhotoFileSize.Normal)%>')"  
              src="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>" />

@@ -1,4 +1,54 @@
-﻿.photoLink
+﻿.PhotoLink
+{
+	height:82px;
+	width:82px;
+	position:relative;
+	vertical-align:top;
+}
+
+
+.PhotoLink img
 {
 	border:solid 1px;
+}
+
+.PhotoLink_HoverIcon img
+{
+	border:none;
+}
+
+.PhotoLink_HoverIcon
+{
+	position:absolute;
+	vertical-align:top;
+	top:0px;
+}
+
+.PhotoLink_HoverText,
+.PhotoLink_HoverTextShadow
+{
+	float:right;
+	position:absolute;
+	vertical-align:top;
+	width:auto;
+}
+
+.PhotoLink_HoverText
+{
+	z-index:3;
+	padding-left:4px;
+}
+
+.PhotoLink_HoverTextShadow
+{
+	z-index:2;
+	color:Black;
+	padding-left:5px;
+	padding-top:1px;
+}
+
+.PhotoLink img
+{
+	
+	z-index:1;
 }

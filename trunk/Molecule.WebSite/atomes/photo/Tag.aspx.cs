@@ -49,7 +49,7 @@ namespace Molecule.WebSite.atomes.photo
 
         protected void PhotoListView_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
-            this.PhotoDataPager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            this.PhotoDataPager.SetPageProperties(e.StartRowIndex, e.MaximumRows >= 1 ? e.MaximumRows:32, false);
             this.PhotoListView.DataSource = photos;
             this.PhotoListView.DataBind();
         }

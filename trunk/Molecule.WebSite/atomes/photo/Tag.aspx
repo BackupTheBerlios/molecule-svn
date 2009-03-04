@@ -6,7 +6,11 @@
 <%@ Import Namespace="System.Linq" %>
 <%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
+<%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/tag.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <h2>
@@ -32,10 +36,7 @@
     <asp:ListView ID="PhotoListView" runat="server" 
                         onpagepropertieschanging="PhotoListView_PagePropertiesChanging">
         <ItemTemplate>
-            <a href='<%# Photo.GetUrlFor(((IPhoto)Container.DataItem).Id, tagId) %>'>
-                <asp:Image runat="server"
-                    ImageUrl='<%# PhotoFile.GetUrlFor(((IPhoto)Container.DataItem).Id, PhotoFileSize.Thumbnail) %>' />
-            </a>
+            <photo:PhotoLink runat="server" TagId='<%# tagId %>' PhotoId='<%# Eval("Id") %>' />
         </ItemTemplate>
         <LayoutTemplate>
             <div id="itemPlaceholder" runat="server">

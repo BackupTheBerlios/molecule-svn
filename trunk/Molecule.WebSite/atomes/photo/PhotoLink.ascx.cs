@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
+using System.Collections;
 
 namespace Molecule.WebSite.atomes.photo
 {
@@ -14,5 +15,6 @@ namespace Molecule.WebSite.atomes.photo
         public string PhotoId { get; set; }
         public string Description { get; set; }
         public string HoverIconUrl { get; set; }
+        public string HoverText { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="MonthCalendar.aspx.cs"
 Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" EnableViewState="false" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
+<%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="style/calendar.css" rel="stylesheet" type="text/css" />
     <link href="style/common.css" rel="stylesheet" type="text/css" />
@@ -18,13 +19,15 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
         </EmptyItemTemplate>
         <ItemTemplate>
             <td runat="server" class="calendarItem">
-                <asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
+                <photo:PhotoLink runat="server" Description='<%# Eval("PhotoCount") + " photos" %>'
+                 HoverText='<%# Eval("Day") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>' />
+                <%--<asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
                     <div class="number"><asp:Literal runat="server" Visible='<%# Eval("HasThumbnail")%>' Text='<%# Eval("Day") %>' /></div>
                     <div class="numberShadow"><asp:Literal runat="server" Text='<%# Eval("Day") %>' /></div>
                     <asp:HyperLink runat="server" Visible='<%# Eval("HasThumbnail")%>' NavigateUrl='<%# Eval("NavigateUrl") %>'>
                         <img title='<%# Eval("PhotoCount") + " photos" %>' class="photoLink" runat="server" src='<%# Eval("ThumbnailUrl") %>' />
                     </asp:HyperLink>
-                </asp:PlaceHolder>
+                </asp:PlaceHolder>--%>
             </td>
         </ItemTemplate>
         <EmptyDataTemplate>

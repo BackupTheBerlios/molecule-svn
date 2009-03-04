@@ -1,35 +1,15 @@
-﻿.PhotoLink
-{
-	position:relative;
-	margin:10px;
-	vertical-align:top;
-	float:right;
-	margin-bottom:20px;
-}
-
-#photoCurrent
+﻿#photoCurrent
 {
 	text-align:center;
 }
 
 
-.PhotoLink_HoverIcon img,
+#NextPhotoLink,
+#PreviousPhotoLink
 {
-	border-style:none;
-	opacity:0.5;
-}
-
-.PhotoLink_HoverIcon
-{
-	position:absolute;
-	border-style:none;
-	vertical-align:top;
-	top:0px;
-}
-
-#nextLinkIcon
-{
-	right:0px;
+	float:right;
+	margin:10px;
+	margin-bottom:20px;
 }
 
 #tagList,

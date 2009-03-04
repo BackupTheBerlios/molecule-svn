@@ -21,7 +21,7 @@ namespace Molecule.WebSite.atomes.photo
     {
         const string requestFormat = "{0}?date={1}/{2:00}";
 
-        string tagId;
+        protected string tagId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -115,22 +115,17 @@ namespace Molecule.WebSite.atomes.photo
                 PhotoCount = photos.Count();
                 if (photo != null)
                 {
-                    NavigateUrl = Photo.GetUrlFor(photo.Id, tagId);
-                    ThumbnailUrl = PhotoFile.GetUrlFor(photo.Id, PhotoFileSize.Thumbnail);
-                }
-                else
-                {
-                    NavigateUrl = null;
-                    ThumbnailUrl = null;
+                    PhotoId = photo.Id;
                 }
             }
         }
 
-        public bool HasThumbnail { get { return !String.IsNullOrEmpty(ThumbnailUrl); } }
+        public string PhotoId { get; set; }
+        
         public bool IsCurrentMonth { get { return Day.HasValue; } }
-        public string ThumbnailUrl { get; set; }
+        
         public int? Day { get; set; }
-        public string NavigateUrl { get; set; }
+        
         public int PhotoCount { get; set; }
     }
 }
