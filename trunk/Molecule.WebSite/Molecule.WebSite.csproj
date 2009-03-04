@@ -99,6 +99,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="AtomeSiteMapProvider.cs" />
+    <Compile Include="atomes\photo\Calendar\Calendar.cs" />
     <Compile Include="atomes\photo\MonthCalendar.aspx.cs">
       <DependentUpon>MonthCalendar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="atomes\photo\TagHierarchy.ascx.designer.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\YearCalendar.aspx.cs">
+      <DependentUpon>YearCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\YearCalendar.aspx.designer.cs">
+      <DependentUpon>YearCalendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -391,6 +399,7 @@
     <Content Include="atomes\photo\test.aspx" />
     <Content Include="atomes\photo\TagLink.ascx" />
     <Content Include="atomes\photo\TagHierarchy.ascx" />
+    <Content Include="atomes\photo\YearCalendar.aspx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />

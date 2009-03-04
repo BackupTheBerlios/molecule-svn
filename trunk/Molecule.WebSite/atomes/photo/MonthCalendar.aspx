@@ -14,25 +14,12 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
     </div>
     <br />
     <asp:ListView ID="ListView1" runat="server" EnableViewState="false" GroupItemCount="7">
-        <EmptyItemTemplate>
-            <td runat="server" />
-        </EmptyItemTemplate>
         <ItemTemplate>
-            <td runat="server" class="calendarItem">
+            <td>
                 <photo:PhotoLink runat="server" Description='<%# Eval("PhotoCount") + " photos" %>'
                  HoverText='<%# Eval("Day") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>' />
-                <%--<asp:PlaceHolder runat="server" Visible='<%# Eval("IsCurrentMonth") %>'>
-                    <div class="number"><asp:Literal runat="server" Visible='<%# Eval("HasThumbnail")%>' Text='<%# Eval("Day") %>' /></div>
-                    <div class="numberShadow"><asp:Literal runat="server" Text='<%# Eval("Day") %>' /></div>
-                    <asp:HyperLink runat="server" Visible='<%# Eval("HasThumbnail")%>' NavigateUrl='<%# Eval("NavigateUrl") %>'>
-                        <img title='<%# Eval("PhotoCount") + " photos" %>' class="photoLink" runat="server" src='<%# Eval("ThumbnailUrl") %>' />
-                    </asp:HyperLink>
-                </asp:PlaceHolder>--%>
             </td>
         </ItemTemplate>
-        <EmptyDataTemplate>
-            <td></td>
-        </EmptyDataTemplate>
         <LayoutTemplate>
             <table style="">
             <thead>

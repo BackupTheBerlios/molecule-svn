@@ -109,10 +109,10 @@ namespace Molecule.WebSite.atomes.photo
         {
             if (d.Month == month)
             {
-                Day = d.Day;
+                Day = d.Day.ToString();
                 var photos = PhotoLibrary.GetPhotosByDayAndTag(d, tagId);
                 var photo = photos.FirstOrDefault();
-                PhotoCount = photos.Count();
+                PhotoCount = photos.Count().ToString();
                 if (photo != null)
                 {
                     PhotoId = photo.Id;
@@ -122,10 +122,8 @@ namespace Molecule.WebSite.atomes.photo
 
         public string PhotoId { get; set; }
         
-        public bool IsCurrentMonth { get { return Day.HasValue; } }
+        public string Day { get; set; }
         
-        public int? Day { get; set; }
-        
-        public int PhotoCount { get; set; }
+        public string PhotoCount { get; set; }
     }
 }
