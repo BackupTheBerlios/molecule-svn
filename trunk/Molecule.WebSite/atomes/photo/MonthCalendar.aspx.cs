@@ -66,8 +66,7 @@ namespace Molecule.WebSite.atomes.photo
         private void initMonthLink(HyperLink link, int month, int year)
         {
             link.NavigateUrl = GetUrlFor(new DateTime(year, month, 1), tagId);
-            link.Text = String.Format("{0}",
-                DateTimeFormatInfo.CurrentInfo.GetMonthName(month));
+            link.ToolTip = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
         }
 
         private void fillCalendar(DateTime day)
