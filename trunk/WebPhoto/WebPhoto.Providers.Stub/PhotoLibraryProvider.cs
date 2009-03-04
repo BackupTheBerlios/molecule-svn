@@ -23,6 +23,7 @@ using System.Linq;
 using System.Text;
 using Molecule.Runtime;
 using Molecule.Collections;
+using Mono.Rocks;
 
 [assembly:PluginContainer]
 
@@ -36,6 +37,7 @@ namespace WebPhoto.Providers.Stub
         const int nbMaxPhotosByTags = 40;
         const int maxDepth = 2;
         const int nbJpg = 10;
+        const int nbMaxTagByPhoto = 3;
 
         const string fakeText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae lorem ornare erat rhoncus gravida. Nam non arcu. Sed accumsan risus a nulla. Cras ante. Nullam varius eros a dolor. Praesent pretium. Nullam mollis, est elementum cursus facilisis, orci purus euismod turpis, vel facilisis quam erat id velit. Morbi lacus justo, vestibulum et, aliquet sed, blandit non, nulla. Aenean molestie. Mauris nunc. ";
 
@@ -64,7 +66,7 @@ namespace WebPhoto.Providers.Stub
         {
             for (int i = 0; i < nbRootTags; i++)
             {
-                yield return new Tag(i.ToString(), 0, null);
+                yield return new Tag(i, null);
             }
         }
 
@@ -75,12 +77,22 @@ namespace WebPhoto.Providers.Stub
             int depth;
             ITag parentTag;
 
-            public Tag(string id, int depth, ITag parentTag)
+            public Tag(int i, Tag parentTag)
             {
                 this.parentTag = parentTag;
-                this.Id = id;
+                if (parentTag != null)
+                {
+                    this.Id = parentTag.Id + "." + i;
+                    this.depth = parentTag.depth + 1;
+                }
+                else
+                    this.Id = i.ToString();
+
                 Name = "Tag" + Id;
-                this.depth = depth;
+                
+                int nbItem = new Random(Math.Abs(Id.GetHashCode())).Next(nbMaxPhotosByTags);
+                Photos = from nb in nbItem.Times()
+                         select new Photo(nb, this) as IPhoto;
             }
             #region ITag Members
 
@@ -88,26 +100,16 @@ namespace WebPhoto.Providers.Stub
             {
                 get
                 {
-                    if (depth < maxDepth)
-                    {
-                        for (int i = 0; i < nbMaxSubTagsByTags; i++)
-                            yield return new Tag(Id + "." + i, depth + 1, this);
-                    }
+                    return from i in nbMaxSubTagsByTags.Times()
+                        where depth < maxDepth
+                        select new Tag(i, this) as ITag;
                 }
             }
 
             ITag ITag.Parent { get { return parentTag; } }
             ITagInfo ITagInfo.Parent { get { return parentTag; } }
 
-            public IEnumerable<IPhoto> Photos
-            {
-                get
-                {
-                    int nbItem = new Random(Math.Abs(Id.GetHashCode())).Next(nbMaxPhotosByTags);
-                    for (int i = 0; i < nbItem; i++)
-                        yield return new Photo(Id+".photo"+i, this);
-                }
-            }
+            public IEnumerable<IPhoto> Photos{ get; set; }
 
             #endregion
 
@@ -126,9 +128,9 @@ namespace WebPhoto.Providers.Stub
             Random random;
             string description;
 
-            public Photo(string id, ITag parentTag)
+            public Photo(int i, ITag parentTag)
             {
-                this.Id = id;
+                this.Id = parentTag.Id + ".photo" + i;
                 this.random = new Random(this.Id.GetHashCode());
                 this.description = fakeText.Substring(random.Next(50), 10 + random.Next(40));
                 this.parentTag = parentTag;
