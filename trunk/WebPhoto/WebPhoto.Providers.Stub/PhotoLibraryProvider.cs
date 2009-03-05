@@ -40,8 +40,12 @@ namespace WebPhoto.Providers.Stub
         const int nbMaxTagByPhoto = 3;
         const int nbPhotos = 500;
 
-        const string fakeText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae lorem ornare erat rhoncus gravida. Nam non arcu. Sed accumsan risus a nulla. Cras ante. Nullam varius eros a dolor. Praesent pretium. Nullam mollis, est elementum cursus facilisis, orci purus euismod turpis, vel facilisis quam erat id velit. Morbi lacus justo, vestibulum et, aliquet sed, blandit non, nulla. Aenean molestie. Mauris nunc. ";
-
+        const string fakeText = @"Sed ut perspiciatis unde omnis iste natus error 
+            sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+            vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
+            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+            eos qui ratione voluptatem sequi nesciunt.";
         [IsUsablePlugin]
         public static bool IsUsable
         {
