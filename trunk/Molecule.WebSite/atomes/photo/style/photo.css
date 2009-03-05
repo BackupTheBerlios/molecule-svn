@@ -11,12 +11,3 @@
 	margin:10px;
 	margin-bottom:20px;
 }
-
-#tagList,
-#tagList li
-{
-	margin:0px;
-	padding:0px;
-	list-style-type:none;
-	display: inline;
-}

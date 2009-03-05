@@ -32,7 +32,7 @@
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
             <h2>Tags</h2>
-            <ul id="tagList">
+            <ul class="TagList">
             <asp:Repeater ID="TagsView" runat="server">
             <ItemTemplate>
                 <li>

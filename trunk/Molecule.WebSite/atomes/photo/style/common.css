@@ -6,7 +6,6 @@
 	vertical-align:top;
 }
 
-
 .PhotoLink img
 {
 	border:solid 1px;
@@ -49,6 +48,14 @@
 
 .PhotoLink img
 {
-	
 	z-index:1;
+}
+
+.TagList,
+.TagList li
+{
+	margin:0px;
+	padding:0px;
+	list-style-type:none;
+	display: inline;
 }

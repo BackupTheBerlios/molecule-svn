@@ -3,7 +3,10 @@
 <%@ Import Namespace="WebPhoto.Providers" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="System.Globalization" %>
+<asp:HyperLink runat="server" NavigateUrl="~/atomes/photo/Default.aspx" Text="Accueil" />
 <asp:Repeater runat="server" ID="TagHierarchyView">
+    <HeaderTemplate> > 
+    </HeaderTemplate>
     <ItemTemplate>
         <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
     </ItemTemplate>

@@ -135,7 +135,7 @@ namespace WebPhoto.Services
             
             //timeline
             var tempTimeline = new List<IPhoto>(tempPhotos.Values);
-            tempTimeline.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
+            tempTimeline.Sort((p1, p2) => p2.Date.CompareTo(p1.Date));
             timelinePhotos = new LinkedList<IPhoto>(tempTimeline);
             
 
@@ -208,7 +208,7 @@ namespace WebPhoto.Services
         public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tag)
         {
             if (!String.IsNullOrEmpty(tag))
-                return instance.tags[tag].Photos.OrderBy(photo => photo.Date).Cast<IPhotoInfo>();
+                return instance.tags[tag].Photos.Cast<IPhotoInfo>();
             else
                 return GetPhotos();
         }

@@ -153,6 +153,13 @@
     <Compile Include="atomes\photo\Tag.aspx.designer.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\photo\TagList.ascx.cs">
+      <DependentUpon>TagList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\TagList.ascx.designer.cs">
+      <DependentUpon>TagList.ascx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\photo\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -173,6 +180,13 @@
     </Compile>
     <Compile Include="atomes\photo\TagHierarchy.ascx.designer.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Timeline.aspx.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Timeline.aspx.designer.cs">
+      <DependentUpon>Timeline.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\YearCalendar.aspx.cs">
       <DependentUpon>YearCalendar.aspx</DependentUpon>
@@ -395,10 +409,13 @@
     <Content Include="atomes\photo\style\common.css" />
     <Content Include="atomes\photo\style\photo.css" />
     <Content Include="atomes\photo\style\tag.css" />
+    <Content Include="atomes\photo\style\timeline.css" />
     <Content Include="atomes\photo\Tag.aspx" />
+    <Content Include="atomes\photo\TagList.ascx" />
     <Content Include="atomes\photo\test.aspx" />
     <Content Include="atomes\photo\TagLink.ascx" />
     <Content Include="atomes\photo\TagHierarchy.ascx" />
+    <Content Include="atomes\photo\Timeline.aspx" />
     <Content Include="atomes\photo\YearCalendar.aspx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />

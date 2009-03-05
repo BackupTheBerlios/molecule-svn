@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="YearCalendar.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.YearCalendar" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true"
+    CodeBehind="YearCalendar.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.YearCalendar"
+    EnableViewState="false" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
