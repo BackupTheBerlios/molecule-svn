@@ -480,6 +480,7 @@
     </PreBuildEvent>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <RootNamespace>Molecule.WebSite</RootNamespace>
-    <PostBuildEvent>if not exist %25WINDIR%25\system32\sqlite3.dll copy "$(SolutionDir)extern\win32\sqlite3.dll" %25WINDIR%25\system32\</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
