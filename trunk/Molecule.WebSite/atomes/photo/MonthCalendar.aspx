@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="MonthCalendar.aspx.cs"
 Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" EnableViewState="false" %>
+<%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -8,20 +9,13 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag"/>
-    <div>
-        <div style="float:left;">
-            <asp:HyperLink ID="HyperLinkPrevious" runat="server">
-                <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-previous.png" />
-            </asp:HyperLink>
-        </div>
-        <div style="float:right;margin-right:48px">
-            <asp:HyperLink ID="HyperLinkNext" runat="server">
-                <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-next.png" />
-            </asp:HyperLink>
-        </div>
-
     <br />
-    
+    <div class="BlockItem">
+        <asp:HyperLink ID="HyperLinkPrevious" runat="server">
+            <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-previous.png" />
+        </asp:HyperLink>
+    </div>
+    <div class="BlockItem">
         <asp:ListView ID="ListView1" runat="server" EnableViewState="false" GroupItemCount="7">
             <ItemTemplate>
                 <td>
@@ -30,7 +24,7 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
                 </td>
             </ItemTemplate>
             <LayoutTemplate>
-                <table style="">
+                <table style="border-collapse:collapse">
                 <thead>
                     <tr>
                         <td runat="server"><%= FormatDay(0) %></td>
@@ -55,5 +49,10 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
                 </tr>
             </GroupTemplate>
         </asp:ListView>
+    </div>
+    <div class="BlockItem">
+        <asp:HyperLink ID="HyperLinkNext" runat="server">
+            <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-next.png" />
+        </asp:HyperLink>
     </div>
 </asp:Content>

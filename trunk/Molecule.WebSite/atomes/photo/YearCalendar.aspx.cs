@@ -36,8 +36,16 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initYearLinks(DateTime year)
         {
-            
+            initMonthLink(this.HyperLinkPrevious, year.Year - 1);
+            initMonthLink(this.HyperLinkNext, year.Year + 1);
         }
+
+        private void initMonthLink(HyperLink link, int year)
+        {
+            link.NavigateUrl = GetUrlFor(new DateTime(year, 1, 1), tagId);
+            link.ToolTip = year.ToString();
+        }
+        
 
         public static string GetUrlFor(DateTime year, string tagId)
         {

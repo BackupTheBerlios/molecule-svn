@@ -59,3 +59,8 @@
 	list-style-type:none;
 	display: inline;
 }
+
+.BlockItem
+{
+	display:inline-block;position:relative;
+}

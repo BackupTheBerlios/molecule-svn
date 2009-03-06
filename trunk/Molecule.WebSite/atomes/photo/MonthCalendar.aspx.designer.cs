@@ -32,15 +32,6 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkPrevious;
         
         /// <summary>
-        /// HyperLinkNext control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkNext;
-        
-        /// <summary>
         /// ListView1 control.
         /// </summary>
         /// <remarks>
@@ -48,5 +39,14 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListView1;
+        
+        /// <summary>
+        /// HyperLinkNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkNext;
     }
 }
