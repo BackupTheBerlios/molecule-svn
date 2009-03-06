@@ -354,6 +354,7 @@
     <Content Include="App_Themes\bloup\TreeView.skin" />
     <Content Include="App_Themes\default\TreeView.skin" />
     <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
+    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="Atome.xsd" />
     <Content Include="ImageHandler.ashx" />
     <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
@@ -386,6 +387,12 @@
   <ItemGroup>
     <Content Include="App_Themes\bloup\images\go-next.png" />
     <Content Include="App_Themes\bloup\images\go-previous.png" />
+    <Content Include="App_Themes\bloup\images\molecule-128.png" />
+    <Content Include="App_Themes\bloup\images\molecule-16.png" />
+    <Content Include="App_Themes\bloup\images\molecule-24.png" />
+    <Content Include="App_Themes\bloup\images\molecule-32.png" />
+    <Content Include="App_Themes\bloup\images\molecule-48.png" />
+    <Content Include="App_Themes\bloup\images\molecule-64.png" />
     <Content Include="App_Themes\bloup\molecule.css" />
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />

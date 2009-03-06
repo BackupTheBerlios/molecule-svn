@@ -198,6 +198,9 @@ h2
 h1
 {
 	font-size:x-large;
+	margin-left:45px;
+	font-style:italic;
+
 }
 
 a:link
@@ -301,4 +304,12 @@ table td
 {
 	position:relative;
 
+}
+
+#logo
+{
+	width:64px; height:64px;
+	position:absolute;
+	z-index:3;
+	top:-11px; left:-20px;
 }

@@ -49,7 +49,6 @@ namespace Molecule.WebSite
             this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
             this.logsView.DataBind();
 			
-			
         }
     }
 }
