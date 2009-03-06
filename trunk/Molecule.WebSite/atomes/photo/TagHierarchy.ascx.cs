@@ -24,7 +24,8 @@ namespace Molecule.WebSite.atomes.photo
 
             if (!String.IsNullOrEmpty(TagId))
             {
-                this.TagHierarchyView.DataSource = PhotoLibrary.GetTagHierarchy(TagId);
+                this.TagHierarchyView.DataSource =
+                    PhotoLibrary.GetTagHierarchy(TagId);
                 this.TagHierarchyView.DataBind();
             }
 

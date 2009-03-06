@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Timeline.aspx.cs"
  Inherits="Molecule.WebSite.atomes.photo.Timeline" EnableViewState="false" %>
+ <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Register Src="TagList.ascx" TagName="TagList" TagPrefix="photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
 <%@ Import Namespace="WebPhoto.Services" %>
@@ -13,8 +14,10 @@
         <ItemTemplate>
             <li class="PhotoItem">
                 <photo:PhotoLink runat="server" PhotoId='<%# Eval("Id") %>' />
+                <asp:HyperLink runat="server" NavigateUrl='<%# MonthCalendar.GetUrlFor((DateTime)Eval("Date"), null) %>'>
                 <%# ((DateTime)Eval("Date")).ToShortDateString() %>
-                <photo:TagList runat="server" Tags='<%# PhotoLibrary.GetTagsByPhoto((string)Eval("Id")) %>' />
+                </asp:HyperLink>
+                 - <photo:TagList runat="server" Tags='<%# PhotoLibrary.GetTagsByPhoto((string)Eval("Id")) %>' />
                 <p><%# Eval("Description") %></p>
             </li>
         </ItemTemplate>
