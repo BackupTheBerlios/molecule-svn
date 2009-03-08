@@ -1,4 +1,4 @@
-﻿﻿<%--
+﻿<%--
  Default.aspx
 
  Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
@@ -22,12 +22,14 @@
  THE SOFTWARE.
  --%>
 
-<%@ Page Language="C#" MasterPageFile="~/PreferencesPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/PreferencesPage.Master" AutoEventWireup="true" EnableViewState="true"
+ CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Général" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
+<h2><asp:Label ID="Label1" runat="server" Text="<%$Resources:Users%>" /></h2>
     <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
         AutoGenerateColumns="False" DataSourceID="usersObjectDataSource" 
         DataKeyNames="UserName"><Columns><asp:BoundField DataField="UserName" HeaderText="User Name" ReadOnly="True" 
@@ -69,7 +71,91 @@
             </asp:CreateUserWizardStep><asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"></asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>  
-    
-    <br />
+
+    <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
+    <p>
+        <asp:ListView ID="ListView1" runat="server" DataSourceID="CssVariablesSource" 
+            DataKeyNames="Key">
+            <ItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                    </td>
+                    <td>
+                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Eval("Key") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="ValueLabel" runat="server" Text='<%# Eval("Value") %>' />
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <EmptyDataTemplate>
+                <table runat="server" style="">
+                    <tr>
+                        <td>
+                            No data was returned.</td>
+                    </tr>
+                </table>
+            </EmptyDataTemplate>
+            <LayoutTemplate>
+                <table runat="server">
+                    <tr runat="server">
+                        <td runat="server">
+                            <table ID="itemPlaceholderContainer" runat="server" border="0" style="">
+                                <tr runat="server" style="">
+                                    <th runat="server">
+                                    </th>
+                                    <th runat="server">
+                                        Key</th>
+                                    <th runat="server">
+                                        Value</th>
+                                </tr>
+                                <tr ID="itemPlaceholder" runat="server">
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr runat="server">
+                        <td runat="server" style="">
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+            <EditItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" 
+                            Text="Update" />
+                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
+                            Text="Cancel" />
+                    </td>
+                    <td>
+                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Bind("Key") %>' />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="ValueTextBox" runat="server" Text='<%# Bind("Value") %>' />
+                    </td>
+                </tr>
+            </EditItemTemplate>
+            <SelectedItemTemplate>
+                <tr style="">
+                    <td>
+                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                    </td>
+                    <td>
+                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Eval("Key") %>' />
+                    </td>
+                    <td>
+                        <asp:Label ID="ValueLabel" runat="server" Text='<%# Eval("Value") %>' />
+                    </td>
+                </tr>
+            </SelectedItemTemplate>
+        </asp:ListView>
+        <asp:ObjectDataSource ID="CssVariablesSource" runat="server" 
+            DataObjectTypeName="Molecule.WebSite.Services.CssVariableInfo" 
+            SelectMethod="GetCssVariables" 
+            TypeName="Molecule.WebSite.Services.AdminService" 
+            UpdateMethod="UpdateCssVariable"></asp:ObjectDataSource>
+    </p>
     
 </asp:Content>

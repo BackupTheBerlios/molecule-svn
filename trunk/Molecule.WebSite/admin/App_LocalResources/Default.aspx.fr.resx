@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="General" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="Preferences" xml:space="preserve">
-    <value>Preferences</value>
+  <data name="Theme" xml:space="preserve">
+    <value>Thème</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Utilisateurs</value>
   </data>
 </root>
