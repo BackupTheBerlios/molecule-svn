@@ -38,25 +38,38 @@ namespace Molecule.Web
             });
         }
 
+        public static IDictionary<string, string> ExtractVariables(string variablesCss)
+        {
+            string outCss;
+            return ExtractVariables(variablesCss, out outCss);
+        }
+
+        public static IDictionary<string, string> ExtractVariables(string variablesCss, out string standardCss)
+        {
+            var pairs = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
+
+            standardCss = variablesRegex.Replace(variablesCss, delegate(Match m){
+                foreach (Match mkv in keyValueRegex.Matches(m.Groups[1].Value))
+                    pairs[mkv.Groups["key"].Value] = mkv.Groups["value"].Value;
+                return "";
+            });
+            return pairs;
+        }
+
         protected static string ExpandVariables(string variablesCss, Action<IDictionary<string,string>> overrideAction)
         {
             //TODO : cache
             //TODO : handle @import
 
             //search for variables definition & remove it from css
-            var pairs = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
-            string css = variablesCss;
-            css = variablesRegex.Replace(css, delegate(Match m){
-                foreach (Match mkv in keyValueRegex.Matches(m.Groups[1].Value))
-                    pairs[mkv.Groups["key"].Value] = mkv.Groups["value"].Value;
-                return "";
-            });
+            string standardCss;
+            var pairs = ExtractVariables(variablesCss, out standardCss);
 
             overrideAction(pairs);
 
             //search for variable reference & replace it by its definition.
-            css = variableRefRegex.Replace(css, m => pairs[m.Groups["var"].Value]);
-            return css;
+            standardCss = variableRefRegex.Replace(standardCss, m => pairs[m.Groups["var"].Value]);
+            return standardCss;
         }
     }
 }
