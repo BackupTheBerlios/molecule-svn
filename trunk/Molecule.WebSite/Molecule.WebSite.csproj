@@ -246,6 +246,9 @@
     </Compile>
     <Compile Include="atomes\webmusic\Services\ProviderException.cs" />
     <Compile Include="atomes\webmusic\Services\ProviderInfo.cs" />
+    <Compile Include="CssHandler.ashx.cs">
+      <DependentUpon>CssHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
@@ -362,6 +365,7 @@
     <Content Include="App_Themes\bloup\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
     <None Include="atomes\photo\scripts\default.js" />
+    <Content Include="CssHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.resx">
