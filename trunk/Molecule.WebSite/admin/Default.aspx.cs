@@ -61,5 +61,11 @@ namespace Molecule.WebSite.Admin
         {
             usersGridView.DataBind();
         }
+
+        protected void ButtonReset_Click(object sender, EventArgs e)
+        {
+            Services.AdminService.ResetCssVariables();
+            ListView1.DataBind();
+        }
     }
 }

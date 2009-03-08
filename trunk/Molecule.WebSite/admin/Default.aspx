@@ -156,6 +156,8 @@
             SelectMethod="GetCssVariables" 
             TypeName="Molecule.WebSite.Services.AdminService" 
             UpdateMethod="UpdateCssVariable"></asp:ObjectDataSource>
+        <asp:Button ID="ButtonReset" runat="server" Text="Réinitialiser" 
+            onclick="ButtonReset_Click" />    
     </p>
     
 </asp:Content>

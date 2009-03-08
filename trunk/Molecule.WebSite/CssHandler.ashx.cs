@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.IO;
 using Molecule.Web;
+using Mono.Rocks;
 
 namespace Molecule.WebSite
 {
@@ -26,7 +27,10 @@ namespace Molecule.WebSite
             context.Response.ContentType = "text/css";
             
             string css = File.ReadAllText(context.Request.PhysicalPath);
-            css = CssVariablesExtender.ExpandVariables(css, context.Request.QueryString);
+            css = CssVariablesExtender.ExpandVariables(css,
+                pairs => Services.AdminService.GetCssVariables().ForEach(
+                    cvi => pairs[cvi.Key] = cvi.Value)
+                );
 
             context.Response.Write(css);
         }

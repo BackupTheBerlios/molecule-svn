@@ -77,5 +77,11 @@ namespace Molecule.WebSite.Services
             string conf = CssVariableInfo.Serialize(cssVariables);
             ConfigurationClient.Client.Set<string>(confNamespace, cssVariablesKeyConf, conf);
         }
+
+        internal static void ResetCssVariables()
+        {
+            ConfigurationClient.Client.Set<string>(confNamespace, cssVariablesKeyConf, "");
+            instance.CssVariables = null;
+        }
     }
 }
