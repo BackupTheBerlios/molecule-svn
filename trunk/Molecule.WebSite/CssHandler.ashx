@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="CssHandler.ashx.cs" Class="Molecule.WebSite.CssxHandler" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="CssHandler.ashx.cs" Class="Molecule.WebSite.CssHandler" %>
