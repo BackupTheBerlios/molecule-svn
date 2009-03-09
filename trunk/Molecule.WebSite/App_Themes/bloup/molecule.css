@@ -255,20 +255,10 @@ table thead
 	float:left;
 }
 
-table tr
-{
-	
-}
-
 table a:link
 {
 	font-weight:normal;
 	color:White;
-}
-
-table td
-{
-	padding:2px;
 }
 
 .tabSelectedTitle

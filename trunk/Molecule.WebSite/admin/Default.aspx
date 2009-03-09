@@ -25,6 +25,7 @@
 <%@ Page Language="C#" MasterPageFile="~/PreferencesPage.Master" AutoEventWireup="true" EnableViewState="true"
  CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Général" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+<%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
@@ -134,6 +135,12 @@
                     </td>
                     <td>
                         <asp:TextBox ID="ValueTextBox" runat="server" Text='<%# Bind("Value") %>' />
+                        <asp:imagebutton id="ImageButton1" runat="server" 
+                          imageurl="~/Images/icon_colorpicker.gif" />
+                        <cdt:colorpickerextender id="cpe" runat="server"
+                             targetcontrolid="ValueTextBox"
+                             samplecontrolid="ImageButton1"
+                             popupbuttonid="ImageButton1" />
                     </td>
                 </tr>
             </EditItemTemplate>

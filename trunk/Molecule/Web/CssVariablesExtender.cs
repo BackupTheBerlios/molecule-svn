@@ -56,7 +56,7 @@ namespace Molecule.Web
             return pairs;
         }
 
-        protected static string ExpandVariables(string variablesCss, Action<IDictionary<string,string>> overrideAction)
+        public static string ExpandVariables(string variablesCss, Action<IDictionary<string,string>> overrideAction)
         {
             //TODO : cache
             //TODO : handle @import

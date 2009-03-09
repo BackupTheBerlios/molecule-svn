@@ -152,7 +152,8 @@ CDT.ColorPickerBehavior.prototype = {
         if (this._selectedColor == null) {
             var value = this._textbox.get_Value();
             if (this._validate(value)) {
-                this._selectedColor = value;
+            var toto = "truc";
+                this._selectedColor = value.replace("#", "");
             }
         }
         return this._selectedColor;
@@ -162,7 +163,7 @@ CDT.ColorPickerBehavior.prototype = {
             this._selectedColor = value;
             this._selectedColorChanging = true;
             if (value != this._textbox.get_Value()) {
-                this._textbox.set_Value(value);
+                this._textbox.set_Value("#"+value);
             }
             this._showSample(value);
             this._selectedColorChanging = false;
