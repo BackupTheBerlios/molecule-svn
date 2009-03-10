@@ -261,6 +261,11 @@ table a:link
 	color:White;
 }
 
+table td
+{
+	padding:2px;
+}
+
 .tabSelectedTitle
 {
 	float:left;

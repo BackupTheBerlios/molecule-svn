@@ -32,6 +32,10 @@
 {
 	z-index:3;
 }
+.ajax__cp_container table td
+{
+	padding:0px;
+}
 </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
@@ -81,51 +85,33 @@
 
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
-        <asp:ListView ID="ListView1" runat="server" DataSourceID="CssVariablesSource" 
-            DataKeyNames="Key">
+        <asp:ListView ID="ListView1" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">
             <ItemTemplate>
-                <tr style="">
+                <tr>
                     <td>
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                        <asp:Button runat="server" CommandName="Edit" Text="Edit" />
                     </td>
                     <td>
-                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Eval("Key") %>' />
+                        <asp:Label runat="server" Text='<%# Eval("Key") %>' />
                     </td>
                     <td>
-                        <asp:Label ID="ValueLabel" runat="server" Text='<%# Eval("Value") %>' />
+                        <asp:Label runat="server" Text='<%# Eval("Value") %>' />
                     </td>
                 </tr>
             </ItemTemplate>
-            <EmptyDataTemplate>
-                <table runat="server" style="">
-                    <tr>
-                        <td>
-                            No data was returned.</td>
-                    </tr>
-                </table>
-            </EmptyDataTemplate>
             <LayoutTemplate>
-                <table runat="server">
-                    <tr runat="server">
-                        <td runat="server">
-                            <table ID="itemPlaceholderContainer" runat="server" border="0" style="">
-                                <tr runat="server" style="">
-                                    <th runat="server">
-                                    </th>
-                                    <th runat="server">
-                                        Key</th>
-                                    <th runat="server">
-                                        Value</th>
-                                </tr>
-                                <tr ID="itemPlaceholder" runat="server">
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr runat="server">
-                        <td runat="server" style="">
-                        </td>
-                    </tr>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Actions</td>
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ID="itemPlaceholder" runat="server">
+                        </tr>
+                    </tbody>
                 </table>
             </LayoutTemplate>
             <EditItemTemplate>
@@ -152,19 +138,6 @@
                     </td>
                 </tr>
             </EditItemTemplate>
-            <SelectedItemTemplate>
-                <tr style="">
-                    <td>
-                        <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
-                    </td>
-                    <td>
-                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Eval("Key") %>' />
-                    </td>
-                    <td>
-                        <asp:Label ID="ValueLabel" runat="server" Text='<%# Eval("Value") %>' />
-                    </td>
-                </tr>
-            </SelectedItemTemplate>
         </asp:ListView>
         <asp:ObjectDataSource ID="CssVariablesSource" runat="server" 
             DataObjectTypeName="Molecule.WebSite.Services.CssVariableInfo" 
