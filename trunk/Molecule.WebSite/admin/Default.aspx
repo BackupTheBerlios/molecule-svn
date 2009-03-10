@@ -27,7 +27,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
-<style type="text/css">
+    <style type="text/css">
 .ajax__cp_container
 {
 	z-index:3;

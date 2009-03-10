@@ -34,6 +34,8 @@ namespace Molecule.WebSite.Services
 
         static object cssVariablesLock = new object();
 
+        public static DateTime LastCssVariablesUpdate { get; set; }
+
         public static IEnumerable<CssVariableInfo> GetCssVariables()
         {
             if (instance.CssVariables == null)
@@ -76,10 +78,12 @@ namespace Molecule.WebSite.Services
             cssVariables.First(cvi => cvi.Key == info.Key).Value = info.Value;
             string conf = CssVariableInfo.Serialize(cssVariables);
             ConfigurationClient.Client.Set<string>(confNamespace, cssVariablesKeyConf, conf);
+            LastCssVariablesUpdate = DateTime.Now;
         }
 
         internal static void ResetCssVariables()
         {
+            LastCssVariablesUpdate = DateTime.Now;
             ConfigurationClient.Client.Set<string>(confNamespace, cssVariablesKeyConf, "");
             instance.CssVariables = null;
         }
