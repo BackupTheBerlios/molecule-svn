@@ -58,5 +58,49 @@ namespace Molecule.Drawing
         {
             return resize(bitmap, maxSize, true);
         }
+
+        const int orientationPropertyId = 274;
+
+        //rotate image regarding Exif orientation metadata
+        public static void AutoRotate(this Image img)
+        {
+            bool orientationInfoPresent = img.PropertyIdList.Contains(orientationPropertyId);
+
+            if (orientationInfoPresent)
+            {
+                int orientation = BitConverter.ToInt16(img.GetPropertyItem(orientationPropertyId).Value, 0);
+
+                RotateFlipType rotateFlipType = RotateFlipType.RotateNoneFlipNone;
+
+                switch (orientation)
+                {
+                    case 1:
+                        rotateFlipType = RotateFlipType.RotateNoneFlipNone;
+                        break;
+                    case 2:
+                        rotateFlipType = RotateFlipType.RotateNoneFlipY;
+                        break;
+                    case 3:
+                        rotateFlipType = RotateFlipType.Rotate180FlipNone;
+                        break;
+                    case 4:
+                        rotateFlipType = RotateFlipType.Rotate180FlipX;
+                        break;
+                    case 5:
+                        rotateFlipType = RotateFlipType.Rotate90FlipY;
+                        break;
+                    case 6:
+                        rotateFlipType = RotateFlipType.Rotate90FlipNone;
+                        break;
+                    case 7:
+                        rotateFlipType = RotateFlipType.Rotate90FlipX;
+                        break;
+                    case 8:
+                        rotateFlipType = RotateFlipType.Rotate270FlipNone;
+                        break;
+                }
+                img.RotateFlip(rotateFlipType);
+            }
+        }
     }
 }

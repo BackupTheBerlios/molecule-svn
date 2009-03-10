@@ -56,6 +56,7 @@ namespace WebPhoto.Services
             var dir = new DirectoryInfo(Path.GetDirectoryName(resizedPath));
             dir.Create(true);
             Bitmap bmp = new Bitmap(imagePath);
+            bmp.AutoRotate();
             Bitmap resizedBmp = clip == PhotoFileClip.Square ? bmp.GetSquare((int)size) : bmp.GetResized((int)size);
             string thumbnailTempPath = resizedPath + ".tmp";
             var encodeParams = new EncoderParameters(1);
