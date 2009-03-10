@@ -51,7 +51,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Brettle.Web.NeatUpload.dll</HintPath>
     </Reference>
-    <Reference Include="CDT.ColorPickerExtender, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CDT.ColorPickerExtender, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\CDT.ColorPickerExtender.dll</HintPath>
     </Reference>
@@ -86,6 +86,9 @@
     <Content Include="admin\CreateUser.aspx" />
     <Content Include="admin\Default.aspx" />
     <Content Include="Web.config" />
+    <Content Include="atomes\photo\stublibrary\P1030553.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\CreateUser.aspx.cs">
@@ -420,7 +423,6 @@
     <Content Include="atomes\photo\stublibrary\photo6.jpg" />
     <Content Include="atomes\photo\stublibrary\photo5.jpg" />
     <Content Include="atomes\photo\stublibrary\photo4.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
     <Content Include="atomes\photo\stublibrary\photo3.jpg" />
     <Content Include="atomes\photo\stublibrary\photo2.jpg" />
     <Content Include="atomes\photo\PhotoFile.aspx" />
