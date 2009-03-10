@@ -397,6 +397,7 @@
   <ItemGroup>
     <Content Include="App_Themes\bloup\images\go-next.png" />
     <Content Include="App_Themes\bloup\images\go-previous.png" />
+    <Content Include="App_Themes\bloup\images\colorpicker.png" />
     <Content Include="App_Themes\bloup\images\molecule-128.png" />
     <Content Include="App_Themes\bloup\images\molecule-16.png" />
     <Content Include="App_Themes\bloup\images\molecule-24.png" />

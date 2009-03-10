@@ -27,6 +27,12 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
+<style type="text/css">
+.ajax__cp_container
+{
+	z-index:3;
+}
+</style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
@@ -123,7 +129,7 @@
                 </table>
             </LayoutTemplate>
             <EditItemTemplate>
-                <tr style="">
+                <tr>
                     <td>
                         <asp:Button ID="UpdateButton" runat="server" CommandName="Update" 
                             Text="Update" />
@@ -131,16 +137,18 @@
                             Text="Cancel" />
                     </td>
                     <td>
-                        <asp:Label ID="KeyLabel" runat="server" Text='<%# Bind("Key") %>' />
+                        <asp:Label runat="server" Text='<%# Eval("Key") %>' />
                     </td>
                     <td>
                         <asp:TextBox ID="ValueTextBox" runat="server" Text='<%# Bind("Value") %>' />
-                        <asp:imagebutton id="ImageButton1" runat="server" 
-                          imageurl="~/Images/icon_colorpicker.gif" />
-                        <cdt:colorpickerextender id="cpe" runat="server"
-                             targetcontrolid="ValueTextBox"
-                             samplecontrolid="ImageButton1"
-                             popupbuttonid="ImageButton1" />
+                        <asp:PlaceHolder runat="server" Visible='<%# ((string)Eval("Key")).Contains("Color") %>'>
+                            <asp:ImageButton id="cpb" runat="server" 
+                              ImageUrl='<%# "~/App_Themes/"+ Theme +"/images/colorpicker.png" %>' />
+                            <cdt:colorpickerextender runat="server"
+                                 targetcontrolid="ValueTextBox"
+                                 samplecontrolid="cpb"
+                                 popupbuttonid="cpb" SelectedColor='<%# ((string)Eval("Value")).Replace("#","") %>' />
+                        </asp:PlaceHolder>
                     </td>
                 </tr>
             </EditItemTemplate>
