@@ -361,8 +361,9 @@ namespace PaintDotNet
                         Memory.Free(new IntPtr(voidStar));
                     }
                 }
-
+				
                 parentBlock = null;
+				Memory.Free((IntPtr)voidStar);
                 voidStar = null;
                 this.valid = false;
             }
