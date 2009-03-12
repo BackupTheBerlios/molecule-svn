@@ -35,27 +35,22 @@ namespace WebPhoto.Providers.Stub
 		List<Tag> childTags;
 		int depth;
 		ITag parentTag;
-		
+		List<Photo> photos;
 		
 		public Tag(string id, string name)
 		{
 			this.Id = id;
 			this.Name = name;
 			childTags = new List<Tag>();
+			photos = new List<Photo>();
 		}			
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+		public void InitializeTag(SqliteConnection conn)
+		{
+			GetPhotos(conn);
+			
+		}
 		
 		public void RetrieveChildTagsFromDatabase(SqliteConnection conn)
 		{
@@ -72,13 +67,13 @@ namespace WebPhoto.Providers.Stub
 			
 			IDataReader reader = null;
 			try
-			{
-				//conn.Open();
-				
+			{				
 				reader = cmd.ExecuteReader();
 				
 				while(reader.Read()) {
 					
+					
+				
 					string tagId = reader.GetValue (0).ToString();
 					string tagName = reader.GetValue (1).ToString();
 
@@ -113,8 +108,6 @@ namespace WebPhoto.Providers.Stub
 			}
 			set
 			{
-			
-			
 			}
 		}
 		
@@ -122,44 +115,30 @@ namespace WebPhoto.Providers.Stub
 		ITagInfo ITagInfo.Parent { get { return parentTag; } }
 		
 		
-		// have to be optimized.
-		// We open and close the connexion each time we get photos of one tag
-		private List<Photo> GetPhotos()
+		private void GetPhotos(SqliteConnection conn)
 		{
 			if( log.IsDebugEnabled)
 			{
 				log.DebugFormat("Get photo list for the tag {0} with id {1}", this.Name, this.Id);
 			}
-
-			List<Photo> photos = new List<Photo>();
 				
-			SqliteConnection conn = new SqliteConnection(PhotoLibraryProvider.ConnectionString);
-			SqliteCommand cmd = new SqliteCommand("SELECT  photos.id , photos.uri, photos.time, photos.description " +
-			                                      "FROM  tags , photo_tags, photos "+
-			                                      "WHERE tags.id = photo_tags.tag_id and photos.id = photo_tags.photo_id  and tags.id = $TagId;", conn);
-			
+			SqliteCommand cmd = new SqliteCommand("SELECT  photo_tags.photo_id " +
+			                                      "FROM  photo_tags "+
+			                                      "WHERE photo_tags.tag_id = $TagId;", conn);			
 			
 			cmd.Parameters.Add("$TagId", DbType.String).Value = this.Id;
 			IDataReader reader = null;
-			try
+			try 
 			{
-				conn.Open();
-				
 				reader = cmd.ExecuteReader();
-				
+				System.Collections.Generic.IDictionary<string, Photo> allPhotos = PhotoLibraryProvider.AllPhotos;
 				while(reader.Read()) {
 					string photoId = reader.GetValue (0).ToString();
-					string photoUri = reader.GetValue (1).ToString();
-					string photoTime = reader.GetValue(2).ToString();
-					string photoDescription = reader.GetValue(3).ToString();					
-					if( photoUri.ToLower().EndsWith(".jpg") && File.Exists(new Uri(photoUri).LocalPath))
+					Photo p;
+					if( allPhotos.TryGetValue(photoId, out p))
 					{
-						Photo photo = new Photo(photoUri);
-						photo.Date =  new DateTime (1970, 1, 1).ToLocalTime ().AddSeconds(Convert.ToInt64 (photoTime));
-						photo.AddTag(this);
-						photo.Id = photoId;
-						photo.Description = photoDescription;
-						photos.Add(photo); 					
+					    this.photos.Add(p);
+						p.AddTag(this);
 					}
 				}
 			}
@@ -167,35 +146,27 @@ namespace WebPhoto.Providers.Stub
 			{
 				reader.Close();
 				reader = null;
-
-				conn.Close();
-				conn = null;
+				
+				cmd.Dispose();
+				cmd= null;
 			}			
 			
-			if( log.IsDebugEnabled)
+			if(log.IsDebugEnabled)
 			{
-				log.DebugFormat("Get photo list for the tag {0} with id {1} : Done",  this.Name,this.Id);
+				log.DebugFormat("Tag {0}  with id {1} contains {2} photos", this.Name, this.Id, photos.Count);
 			}
-			return photos;
 		}
 		
 		public IEnumerable<IPhoto> Photos{ 
 			get
-			{
-				List<Photo> photos = GetPhotos();
-				
-				if(log.IsDebugEnabled)
-				{
-					log.DebugFormat("Tag {0}  with id {1} contains {2} photos", this.Name, this.Id, photos.Count);
-				}
-				
+			{	
 				foreach(Photo photo in photos)
 				{
 					yield return (IPhoto) photo;
 				}
 			}
 		}
-
+		
 		
 		public string Id { get; set; }
 		public string Name { get; set; }

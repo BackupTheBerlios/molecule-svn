@@ -100,9 +100,19 @@ namespace WebPhoto.Providers.Stub
 				}
 				return connectionString;
 			}
-			
 		}
 		
+		
+		public 	static	IDictionary<string, Photo> AllPhotos
+		{
+			get
+			{
+			    return (IDictionary<string, Photo>) 		photos;	
+		    }	
+        }
+		
+		
+
         public IEnumerable<string> TagsRecentlyAdded
         {
             get { throw new NotImplementedException(); }
@@ -127,7 +137,9 @@ namespace WebPhoto.Providers.Stub
 				while(reader.Read()) {
 					string tagId = reader.GetValue (0).ToString();
 					string tagName = reader.GetValue (1).ToString();
-					rootTags.Add(new Tag(tagId, tagName));
+					Tag t = new Tag(tagId, tagName);
+                    t.InitializeTag(conn);
+					rootTags.Add(t);
 				}
 				//populate the childs
 				foreach ( Tag tag in  rootTags) 
