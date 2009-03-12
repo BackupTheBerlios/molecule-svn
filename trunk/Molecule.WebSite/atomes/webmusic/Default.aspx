@@ -17,8 +17,8 @@
     <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
         <Scripts>
             <asp:ScriptReference Path="scripts/default.js" />
-            <%--<asp:ScriptReference Path="scripts/soundmanager2.js" />--%>
-            <asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />
+            <asp:ScriptReference Path="scripts/soundmanager2.js" />
+            <%--<asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />--%>
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>

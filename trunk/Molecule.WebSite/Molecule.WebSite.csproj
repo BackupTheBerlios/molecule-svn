@@ -107,6 +107,13 @@
     </Compile>
     <Compile Include="AtomeSiteMapProvider.cs" />
     <Compile Include="atomes\photo\CalendarItem.cs" />
+    <Compile Include="atomes\photo\Map.ascx.cs">
+      <DependentUpon>Map.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Map.ascx.designer.cs">
+      <DependentUpon>Map.ascx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\photo\MonthCalendar.aspx.cs">
       <DependentUpon>MonthCalendar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -411,9 +418,11 @@
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\Atome.xml" />
+    <Content Include="atomes\photo\Map.ascx" />
     <Content Include="atomes\photo\MonthCalendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
     <Content Include="atomes\photo\PhotoLink.ascx" />
+    <Content Include="atomes\photo\scripts\osm.js" />
     <Content Include="atomes\photo\style\calendar.css" />
     <Content Include="atomes\photo\Photo.aspx" />
     <Content Include="atomes\photo\stublibrary\photo1.jpg" />
