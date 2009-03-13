@@ -9,5 +9,5 @@
 <div id="map">
 </div>
 <script type="text/javascript">
-loadMap(<%= Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>, <%= Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>);
+loadMap(<%=Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>, <%=Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>);
 </script>

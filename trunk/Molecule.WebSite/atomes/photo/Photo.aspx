@@ -26,7 +26,7 @@
     <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
 
     <div id="photoCurrent">
-        <img style="border:solid 1px"  
+        <img alt="<%=CurrentPhoto.Id %>"  
              src="<%=PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Normal) %>" />
         <div id="photoDescriptionContainer">
             <p>
