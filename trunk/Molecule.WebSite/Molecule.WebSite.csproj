@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -86,9 +86,6 @@
     <Content Include="admin\CreateUser.aspx" />
     <Content Include="admin\Default.aspx" />
     <Content Include="Web.config" />
-    <Content Include="atomes\photo\stublibrary\P1030553.JPG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\CreateUser.aspx.cs">
@@ -423,6 +420,7 @@
     <Content Include="atomes\photo\Default.aspx" />
     <Content Include="atomes\photo\PhotoLink.ascx" />
     <Content Include="atomes\photo\scripts\osm.js" />
+    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
     <Content Include="atomes\photo\style\calendar.css" />
     <Content Include="atomes\photo\Photo.aspx" />
     <Content Include="atomes\photo\stublibrary\photo1.jpg" />
@@ -505,6 +503,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
