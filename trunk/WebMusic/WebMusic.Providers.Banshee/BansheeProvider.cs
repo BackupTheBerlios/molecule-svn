@@ -79,45 +79,41 @@ namespace WebMusic.Providers.Banshee
 
             string connectionString = String.Format("URI=file:{0},version=3", bansheeDatabase);
             Console.WriteLine(connectionString);
-            IDbConnection dbcon;
-            dbcon = (IDbConnection)new SqliteConnection(connectionString);
-            dbcon.Open();
+            using (IDbConnection dbcon = new SqliteConnection(connectionString))
+            {
+                dbcon.Open();
 
-            this.FillArtistsList(dbcon);
-            this.FillAlbumsList(dbcon);
-            this.FillSongsList(dbcon);
-            this.UpdateRecentlyAddedAlbums(dbcon);
-
-            dbcon.Close();
-            dbcon = null;
+                this.FillArtistsList(dbcon);
+                this.FillAlbumsList(dbcon);
+                this.FillSongsList(dbcon);
+                this.UpdateRecentlyAddedAlbums(dbcon);
+            }
         }
 
         private void UpdateRecentlyAddedAlbums(IDbConnection dbcon)
         {
             albumsRecentlyAdded = new List<string>();
-            IDbCommand dbcmd = dbcon.CreateCommand();
-            string sql =
-            "SELECT  DISTINCT albums.albumTitle " +
-            "FROM ( " +
-            "SELECT CoreAlbums.Title albumTitle, CoreTracks.DateAddedStamp dateAddedTimeStamp  " +
-            "FROM CoreArtists, CoreTracks, CoreAlbums  " +
-            "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 " +
-            "ORDER BY CoreTracks.DateAddedStamp DESC   " +
-            ") albums " +
-            "LIMIT 5; ";
-            dbcmd.CommandText = sql;
-
-
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                albumsRecentlyAdded.Add(reader.GetValue(0).ToString());
+                string sql =
+                "SELECT  DISTINCT albums.albumTitle " +
+                "FROM ( " +
+                "SELECT CoreAlbums.Title albumTitle, CoreTracks.DateAddedStamp dateAddedTimeStamp  " +
+                "FROM CoreArtists, CoreTracks, CoreAlbums  " +
+                "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 " +
+                "ORDER BY CoreTracks.DateAddedStamp DESC   " +
+                ") albums " +
+                "LIMIT 5; ";
+                dbcmd.CommandText = sql;
+
+                using (IDataReader reader = dbcmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        albumsRecentlyAdded.Add(reader.GetValue(0).ToString());
+                    }
+                }
             }
-            // clean up
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
         }
 
         public System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
@@ -125,114 +121,103 @@ namespace WebMusic.Providers.Banshee
             get
             {
                 return albumsRecentlyAdded;
-
             }
         }
 
         private void FillArtistsList(IDbConnection dbcon)
         {
-            IDbCommand dbcmd = dbcon.CreateCommand();
-            string sql =
-                "SELECT ArtistID, Name " +
-                "FROM CoreArtists";
-            dbcmd.CommandText = sql;
-
-
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
+                string sql =
+                    "SELECT ArtistID, Name " +
+                    "FROM CoreArtists";
+                dbcmd.CommandText = sql;
 
-                Artist a;
-                string ArtistID = reader.GetValue(0).ToString();
-                string ArtistName = reader.GetValue(1).ToString();
-                if (artists.ContainsKey(ArtistID))
+                using (IDataReader reader = dbcmd.ExecuteReader())
                 {
-                    a = artists[ArtistID];
-                }
-                else
-                {
-                    a = new Artist(ArtistID, ArtistName);
-                    artists.Add(ArtistID, a);
+                    while (reader.Read())
+                    {
+
+                        Artist a;
+                        string ArtistID = reader.GetValue(0).ToString();
+                        string ArtistName = reader.GetValue(1).ToString();
+                        if (artists.ContainsKey(ArtistID))
+                        {
+                            a = artists[ArtistID];
+                        }
+                        else
+                        {
+                            a = new Artist(ArtistID, ArtistName);
+                            artists.Add(ArtistID, a);
+                        }
+                    }
                 }
             }
-            // clean up
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
-
         }
 
 
         private void FillAlbumsList(IDbConnection dbcon)
         {
-            IDbCommand dbcmd = dbcon.CreateCommand();
-            string sql =
-                "SELECT CoreTracks.ArtistID, CoreTracks.AlbumID, CoreAlbums.Title " +
-                "FROM CoreTracks, CoreAlbums " +
-                "where CoreTracks.AlbumID = CoreAlbums.AlbumID";
-            dbcmd.CommandText = sql;
-
-
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                string ArtistID = reader.GetValue(0).ToString();
-                string AlbumID = reader.GetValue(1).ToString();
-                string Title = reader.GetValue(2).ToString();
+                string sql =
+                    "SELECT CoreTracks.ArtistID, CoreTracks.AlbumID, CoreAlbums.Title " +
+                    "FROM CoreTracks, CoreAlbums " +
+                    "where CoreTracks.AlbumID = CoreAlbums.AlbumID";
+                dbcmd.CommandText = sql;
 
-                if (artists.ContainsKey(ArtistID))
+                using (IDataReader reader = dbcmd.ExecuteReader())
                 {
-                    artists[ArtistID].AddAlbum(AlbumID, Title);
+                    while (reader.Read())
+                    {
+                        string ArtistID = reader.GetValue(0).ToString();
+                        string AlbumID = reader.GetValue(1).ToString();
+                        string Title = reader.GetValue(2).ToString();
+
+                        if (artists.ContainsKey(ArtistID))
+                        {
+                            artists[ArtistID].AddAlbum(AlbumID, Title);
+                        }
+                    }
                 }
             }
-            // clean up
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
         }
 
         private void FillSongsList(IDbConnection dbcon)
         {
-
-            IDbCommand dbcmd = dbcon.CreateCommand();
-            string sql =
-                "SELECT CoreTracks.UriType, CoreTracks.TrackID, CoreArtists.ArtistID, CoreAlbums.AlbumID, CoreTracks.Title, CoreTracks.Uri, CoreTracks.TrackNumber, CoreTracks.Duration " +
-                "FROM CoreArtists, CoreTracks, CoreAlbums " +
-                "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1";
-            dbcmd.CommandText = sql;
-
-
-            IDataReader reader = dbcmd.ExecuteReader();
-            while (reader.Read())
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                int uriType = reader.GetInt32(0);
-                string trackId = reader.GetValue(1).ToString();
-                string artistId = reader.GetValue(2).ToString();
-                string albumId = reader.GetValue(3).ToString();
-                string title = reader.GetValue(4).ToString();
-                string uri = reader.GetValue(5).ToString();
-                uint trackNumber = UInt32.Parse(reader.GetValue(6).ToString());
-                var duration = TimeSpan.FromMilliseconds(Int32.Parse(reader.GetValue(7).ToString()));
-                if (uriType == 1)
+                string sql =
+                    "SELECT CoreTracks.UriType, CoreTracks.TrackID, CoreArtists.ArtistID, CoreAlbums.AlbumID, CoreTracks.Title, CoreTracks.Uri, CoreTracks.TrackNumber, CoreTracks.Duration " +
+                    "FROM CoreArtists, CoreTracks, CoreAlbums " +
+                    "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1";
+                dbcmd.CommandText = sql;
+
+
+                using (IDataReader reader = dbcmd.ExecuteReader())
                 {
-                    uri = Path.Combine(this.defaultLibraryPath, uri);
-                }
-                if (artists.ContainsKey(artistId))
-                {
-                    artists[artistId].AddSong(albumId, title, uri, trackNumber, trackId, duration);
+                    while (reader.Read())
+                    {
+                        int uriType = reader.GetInt32(0);
+                        string trackId = reader.GetValue(1).ToString();
+                        string artistId = reader.GetValue(2).ToString();
+                        string albumId = reader.GetValue(3).ToString();
+                        string title = reader.GetValue(4).ToString();
+                        string uri = reader.GetValue(5).ToString();
+                        uint trackNumber = UInt32.Parse(reader.GetValue(6).ToString());
+                        var duration = TimeSpan.FromMilliseconds(Int32.Parse(reader.GetValue(7).ToString()));
+                        if (uriType == 1)
+                        {
+                            uri = Path.Combine(this.defaultLibraryPath, uri);
+                        }
+                        if (artists.ContainsKey(artistId))
+                        {
+                            artists[artistId].AddSong(albumId, title, uri, trackNumber, trackId, duration);
+                        }
+                    }
                 }
             }
-            // clean up
-            reader.Close();
-            reader = null;
-            dbcmd.Dispose();
-            dbcmd = null;
-        }
-
-
-
+        }        
 
 
         public System.Collections.Generic.IEnumerable<WebMusic.Providers.IArtist> GetArtists()
