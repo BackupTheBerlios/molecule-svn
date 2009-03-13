@@ -26,8 +26,7 @@ namespace WebPhoto.Providers.Stub
 {
     public class Photo : IPhoto
 	{	
-        static int photoIdBase;
-        Random random;
+
         string uri;
 		
         public Photo(string uri)
