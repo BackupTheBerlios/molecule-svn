@@ -58,12 +58,12 @@ namespace WebPhoto.Services
             using (Bitmap bmp = new Bitmap(imagePath))
             {
                 bmp.AutoRotate();
-                using (Bitmap resizedBmp = clip == PhotoFileClip.Square ? bmp.GetSquare((int)size) : bmp.GetResized((int)size))
+                using (BitmapEx resizedBmp = clip == PhotoFileClip.Square ? bmp.GetSquare((int)size) : bmp.GetResized((int)size))
                 {
                     string thumbnailTempPath = resizedPath + ".tmp";
                     var encodeParams = new EncoderParameters(1);
                     encodeParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qualityLevel);
-                    resizedBmp.Save(thumbnailTempPath, jgpEncoder, encodeParams);
+                    resizedBmp.Bitmap.Save(thumbnailTempPath, jgpEncoder, encodeParams);
                     File.Move(thumbnailTempPath, resizedPath);
                 }
             }

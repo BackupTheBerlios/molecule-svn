@@ -58,11 +58,13 @@ namespace WebPhoto.Providers.Stub
         #region IPhotoLibraryProvider Members
 
         static List<Photo> allPhotos;
+        static IEnumerable<Tag> rootTags;
 
         public void Initialize()
         {
             allPhotos = (from nb in nbPhotos.Times()
                      select new Photo()).ToList();
+            rootTags = nbRootTags.Times().Select(i => new Tag(i, null));
         }
 
         public IEnumerable<string> TagsRecentlyAdded
@@ -72,10 +74,7 @@ namespace WebPhoto.Providers.Stub
 
         IEnumerable<ITag> IPhotoLibraryProvider.GetRootTags()
         {
-            for (int i = 0; i < nbRootTags; i++)
-            {
-                yield return new Tag(i, null);
-            }
+            return rootTags.Cast<ITag>();
         }
 
         #endregion
@@ -147,6 +146,9 @@ namespace WebPhoto.Providers.Stub
                 Metadatas["Exposure"] = "f/2.8 1/100 sec.";
                 Metadatas["Size"] = "2592x1944";
                 Metadatas["Camera"] = "Canone PaweurShote";
+                int r = random.Next(nbJpg);
+                string virtualPath = "stublibrary/photo"+r+".jpg";
+                MediaFilePath = System.Web.HttpContext.Current.Request.MapPath(virtualPath);
             }
             #region IPhoto Members
 
@@ -166,12 +168,8 @@ namespace WebPhoto.Providers.Stub
 
             public string MediaFilePath
             {
-                get
-                {
-                    int r = Math.Abs(Id.GetHashCode()) % nbJpg;
-                    string virtualPath = "stublibrary/photo"+r+".jpg";
-                    return System.Web.HttpContext.Current.Request.MapPath(virtualPath);
-                }
+                get;
+                set;
             }
 
             public IKeyedEnumerable<string, string> Metadatas { get; set; }

@@ -124,9 +124,13 @@ namespace WebMusic.CoverArt
                     return;
                 }
 
-                Bitmap bmp = new Bitmap(System.Drawing.Image.FromStream(imgStream));
-                Bitmap resizedBmp = bmp.GetResized(imageSize);
-                resizedBmp.Save(destination, ImageFormat.Jpeg);
+                using (Bitmap bmp = new Bitmap(System.Drawing.Image.FromStream(imgStream)))
+                {
+                    using (BitmapEx resizedBmp = bmp.GetResized(imageSize))
+                    {
+                        resizedBmp.Bitmap.Save(destination, ImageFormat.Jpeg);
+                    }
+                }
             }
         }
 

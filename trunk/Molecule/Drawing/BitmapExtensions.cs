@@ -7,24 +7,49 @@ using PaintDotNet;
 
 namespace Molecule.Drawing
 {
+    /// <summary>
+    /// Hack container : returned bitmap is alias for internal surface data.
+    /// need to have an handle to surface data to dispose it correctly.
+    /// </summary>
+    public class BitmapEx : IDisposable
+    {
+        public Bitmap Bitmap { get; internal set; }
+        internal IDisposable surface { get; set; }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (Bitmap != null)
+                Bitmap.Dispose();
+            Bitmap = null;
+            if (surface != null)
+                surface.Dispose();
+            surface = null;
+        }
+
+        #endregion
+    }
+
     public static class BitmapExtensions
     {
-        private static Bitmap resize(Bitmap bitmap, int width, int height, Rectangle? clipRectangle)
+        private static BitmapEx resize(Bitmap bitmap, int width, int height, Rectangle? clipRectangle)
         {
             using (var src = Surface.CopyFromBitmap(bitmap))
             {
                 var dest = new Surface(width, height);
-                
+                BitmapEx res = new BitmapEx();
+                res.surface = dest;
                 dest.FitSurface(ResamplingAlgorithm.SuperSampling, src);
                 if (clipRectangle == null)
-                    return dest.CreateAliasedBitmap();
+                    res.Bitmap = dest.CreateAliasedBitmap();
                 else
-                    return dest.CreateAliasedBitmap(clipRectangle.Value);
-                
+                    res.Bitmap = dest.CreateAliasedBitmap(clipRectangle.Value);
+                return res;
             }
         }
 
-        private static Bitmap resize(Bitmap bitmap, int maxSize, bool clipAsSquare)
+        private static BitmapEx resize(Bitmap bitmap, int maxSize, bool clipAsSquare)
         {
             double ratio = (double)bitmap.Width / bitmap.Height;
             int destWidth;
@@ -48,17 +73,17 @@ namespace Molecule.Drawing
             return resize(bitmap, destWidth, destHeight, clipRectangle);
         }
 
-        public static Bitmap GetResized(this Bitmap bitmap, int width, int height)
+        public static BitmapEx GetResized(this Bitmap bitmap, int width, int height)
         {
             return resize(bitmap, width, height, null);
         }
 
-        public static Bitmap GetResized(this Bitmap bitmap, int maxSize)
+        public static BitmapEx GetResized(this Bitmap bitmap, int maxSize)
         {
             return resize(bitmap, maxSize, false);
         }
 
-        public static Bitmap GetSquare(this Bitmap bitmap, int maxSize)
+        public static BitmapEx GetSquare(this Bitmap bitmap, int maxSize)
         {
             return resize(bitmap, maxSize, true);
         }
