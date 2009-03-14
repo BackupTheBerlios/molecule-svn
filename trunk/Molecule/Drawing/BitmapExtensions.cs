@@ -11,17 +11,13 @@ namespace Molecule.Drawing
     {
         private static Bitmap resize(Bitmap bitmap, int width, int height, Rectangle? clipRectangle)
         {
-            using (var src = Surface.CopyFromBitmap(bitmap))
-            {
-                using (var dest = new Surface(width, height))
-                {
-                    dest.FitSurface(ResamplingAlgorithm.SuperSampling, src);
-                    if (clipRectangle == null)
-                        return dest.CreateAliasedBitmap();
-                    else
-                        return dest.CreateAliasedBitmap(clipRectangle.Value);
-                }
-            }
+            var src = Surface.CopyFromBitmap(bitmap);
+            var dest = new Surface(width, height);
+            dest.FitSurface(ResamplingAlgorithm.SuperSampling, src);
+            if (clipRectangle == null)
+                return dest.CreateAliasedBitmap();
+            else
+                return dest.CreateAliasedBitmap(clipRectangle.Value);
         }
 
         private static Bitmap resize(Bitmap bitmap, int maxSize, bool clipAsSquare)
