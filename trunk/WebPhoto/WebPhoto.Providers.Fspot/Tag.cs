@@ -54,10 +54,6 @@ namespace WebPhoto.Providers.Stub
 		
 		public void RetrieveChildTagsFromDatabase(SqliteConnection conn)
 		{
-			if( log.IsDebugEnabled)
-			{
-				log.DebugFormat("Get child tags for the tag with id {0}", this.Id);
-			}
 			SqliteCommand cmd = new SqliteCommand("SELECT id, name " +
 			                                      "FROM tags "+
 			                                      "WHERE category_id = $TagId;", conn);
@@ -71,9 +67,6 @@ namespace WebPhoto.Providers.Stub
 				reader = cmd.ExecuteReader();
 				
 				while(reader.Read()) {
-					
-					
-				
 					string tagId = reader.GetValue (0).ToString();
 					string tagName = reader.GetValue (1).ToString();
 
@@ -88,11 +81,16 @@ namespace WebPhoto.Providers.Stub
 			{
 				reader.Close();
 				reader = null;
+				cmd.Dispose();
+				cmd =null;
 			}			
 			
-			if( log.IsDebugEnabled)
+
+			
+			foreach (Tag t in childTags)
 			{
-				log.DebugFormat("Get photo list for the tag {0} with id {1} : Done",  this.Name,this.Id);
+				t.RetrieveChildTagsFromDatabase(conn);
+				t.InitializeTag(conn);
 			}
 
 		}
@@ -100,7 +98,6 @@ namespace WebPhoto.Providers.Stub
 		public IEnumerable<ITag> ChildTags { 
 			get
 			{
-				List<Tag> childTags = new List<Tag>();
 				foreach(Tag childTag in childTags)
 				{
 					yield return childTag;
@@ -116,12 +113,7 @@ namespace WebPhoto.Providers.Stub
 		
 		
 		private void GetPhotos(SqliteConnection conn)
-		{
-			if( log.IsDebugEnabled)
-			{
-				log.DebugFormat("Get photo list for the tag {0} with id {1}", this.Name, this.Id);
-			}
-				
+		{		
 			SqliteCommand cmd = new SqliteCommand("SELECT  photo_tags.photo_id " +
 			                                      "FROM  photo_tags "+
 			                                      "WHERE photo_tags.tag_id = $TagId;", conn);			
