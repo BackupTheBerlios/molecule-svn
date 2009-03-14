@@ -58,11 +58,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="PdnLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PdnLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\PdnLib.dll</HintPath>
     </Reference>
@@ -78,6 +78,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="MetaDataExtractor, Version=2.4.0.29000, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\references\MetaDataExtractor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\Dictionary.cs" />
@@ -107,6 +111,7 @@
     <Compile Include="Log\Event.cs" />
     <Compile Include="SQLiteProvidersHelper.cs" />
     <Compile Include="Log\SemanticEvent.cs" />
+    <Compile Include="Metadata\JpegMetadataReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
