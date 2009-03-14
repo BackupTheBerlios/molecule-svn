@@ -19,8 +19,12 @@
 // THE SOFTWARE.
 
 using System;
+using System.IO;
 using Molecule.Collections;
+using Molecule.Metadata;
 using System.Collections.Generic;
+
+
 
 namespace WebPhoto.Providers.Stub
 {
@@ -28,20 +32,20 @@ namespace WebPhoto.Providers.Stub
 	{	
 
         string uri;
-		
+		Molecule.Collections.IKeyedEnumerable<string, string> metadatas;
         public Photo(string uri)
         {
             this.uri = uri;
-            Metadatas = new Molecule.Collections.Dictionary<string, string>();
+            
         }
-
-#region IPhoto Members
 		
         List<ITag> tags = new List<ITag>();
         public IEnumerable<ITag> Tags
         {
     		get 
-            {
+				{
+
+
                 return tags; 
             }
     	}
@@ -68,8 +72,20 @@ namespace WebPhoto.Providers.Stub
 
         public IKeyedEnumerable<string, string> Metadatas 
 		{ 
-			get; 
-			set; 
+			get
+			{	
+				if( metadatas == null)
+				{
+				   JpegMetadataReader  jpegMetadatas =  new JpegMetadataReader(new Uri(uri).LocalPath);
+				   jpegMetadatas.RetrieveMetadatas();
+				   metadatas = jpegMetadatas.CommonMetadatas;
+				}
+                return 	metadatas;
+            }
+			set
+			{
+			
+            }
 		}
 
         public DateTime Date 
@@ -84,6 +100,5 @@ namespace WebPhoto.Providers.Stub
 			set;
 	    }
 
-#endregion
     }
 }
