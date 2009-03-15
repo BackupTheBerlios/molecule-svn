@@ -65,8 +65,7 @@ namespace WebPhoto.Services
                 {
                     tempPhotos[photo.Id] = photo;
                 }
-                //only reference tags that contains photo.
-                if (HasPhoto(tag))
+                if(HasPhoto(tag))
                     tags[tag.Id] = tag;
             }
             
@@ -123,7 +122,7 @@ namespace WebPhoto.Services
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
             if (!String.IsNullOrEmpty(tagId))
-                return instance.tags[tagId].ChildTags.Where(t => t.Photos.Any()).Cast<ITagInfo>();
+                return instance.tags[tagId].ChildTags.Where(t => HasPhoto(t)).Cast<ITagInfo>();
             else
                 return GetTags();
         }

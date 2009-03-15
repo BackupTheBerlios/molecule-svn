@@ -11,7 +11,7 @@ namespace Molecule.WebSite.atomes.photo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("Timeline.aspx");
+            Response.Redirect("Tag.aspx");
         }
     }
 }
