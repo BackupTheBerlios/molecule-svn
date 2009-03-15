@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -103,6 +103,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="AtomeSiteMapProvider.cs" />
+    <Compile Include="atomes\photo\admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\photo\CalendarItem.cs" />
     <Compile Include="atomes\photo\Map.ascx.cs">
       <DependentUpon>Map.ascx</DependentUpon>
@@ -139,14 +146,7 @@
     <Compile Include="atomes\photo\PhotoLink.ascx.designer.cs">
       <DependentUpon>PhotoLink.ascx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\photo\Services\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
-    <Compile Include="atomes\photo\Services\ProviderException.cs" />
-    <Compile Include="atomes\photo\Services\ProviderInfo.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />
     <Compile Include="atomes\photo\PhotoFile.aspx.cs">
@@ -226,11 +226,6 @@
     <Compile Include="atomes\webmusic\CoverArt\CoverArtService.cs" />
     <Compile Include="atomes\webmusic\CoverArt\CoverArtSpec.cs" />
     <Compile Include="atomes\webmusic\IO\CompressionHelper.cs" />
-    <Compile Include="atomes\webmusic\Services\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="atomes\webmusic\Download.aspx.cs">
       <DependentUpon>Download.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,8 +250,6 @@
     <Compile Include="atomes\webmusic\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\webmusic\Services\ProviderException.cs" />
-    <Compile Include="atomes\webmusic\Services\ProviderInfo.cs" />
     <Compile Include="CssHandler.ashx.cs">
       <DependentUpon>CssHandler.ashx</DependentUpon>
     </Compile>
@@ -414,6 +407,7 @@
     <Content Include="App_Themes\bloup\molecule.css" />
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />
+    <Content Include="atomes\photo\admin\Default.aspx" />
     <Content Include="atomes\photo\Atome.xml" />
     <Content Include="atomes\photo\Map.ascx" />
     <Content Include="atomes\photo\MonthCalendar.aspx" />
@@ -466,16 +460,6 @@
     <Content Include="admin\App_LocalResources\Default.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
-    <EmbeddedResource Include="atomes\photo\Services\Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="atomes\webmusic\Services\Messages.resx">
-      <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
@@ -503,9 +487,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

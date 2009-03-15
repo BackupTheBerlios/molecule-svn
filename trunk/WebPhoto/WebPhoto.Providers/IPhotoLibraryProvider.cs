@@ -22,10 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Molecule.Atome;
 
 namespace WebPhoto.Providers
 {
-    public interface IPhotoLibraryProvider
+    public interface IPhotoLibraryProvider : IProvider
     {
         void Initialize();
         IEnumerable<ITag> GetRootTags();

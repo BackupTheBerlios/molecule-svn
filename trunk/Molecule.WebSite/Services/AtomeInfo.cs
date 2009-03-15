@@ -32,15 +32,14 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using Molecule.Serialization;
 
 namespace Molecule.WebSite.Services
 {
     internal class AtomeInfo : IAtomeInfo
     {
-        Atome atome;
+        Molecule.Serialization.Atome atome;
         string atomePath;
-        internal AtomeInfo(Atome atome, string atomePath)
+        internal AtomeInfo(Molecule.Serialization.Atome atome, string atomePath)
         {
             this.atome = atome;
             this.atomePath = atomePath;

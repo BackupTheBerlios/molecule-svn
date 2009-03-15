@@ -5,17 +5,13 @@ using System.Web;
 using Molecule.Web;
 using WebPhoto.Providers;
 using Molecule.Runtime;
+using Molecule.Atome;
 using System.Globalization;
 
 namespace WebPhoto.Services
 {
-    public class PhotoLibrary
+    public class PhotoLibrary : AtomeProviderBase<PhotoLibrary, IPhotoLibraryProvider>
     {
-        static object instanceLock = new object();
-
-        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoLibrary));
-
-        static string providerName;
 
         Dictionary<string, ITag> tags;
         IEnumerable<ITag> rootTags;
@@ -23,77 +19,20 @@ namespace WebPhoto.Services
         LinkedList<IPhoto> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDay;
 
-        static PhotoLibrary()
-        {
-            providerName = Molecule.Configuration.ConfigurationClient.Client.Get<string>("WebPhoto", "LibraryProvider", "Stub");
-        }
-
-        static PhotoLibrary instance
-        {
-            get
-            {
-                return Singleton<PhotoLibrary>.Instance;
-            }
-        }
-
         private PhotoLibrary()
         {
-            UpdateProvider();
+
         }
 
-        public static string CurrentProvider
+        protected override void OnProviderUpdated()
         {
-            get { return providerName; }
-            set
-            {
-                providerName = value;
-                Molecule.Configuration.ConfigurationClient.Client.Set<string>("WebPhoto", "LibraryProvider", value);
-                instance.UpdateProvider();
-            }
-        }
-
-        public static IEnumerable<ProviderInfo> Providers
-        {
-            get
-            {
-                foreach (var provider in Plugin<IPhotoLibraryProvider>.List(providerDirectory))
-                    yield return new ProviderInfo() { Description = provider.Description, Name = provider.Name };
-            }
-        }
-
-        static string providerDirectory
-        {
-            get
-            {
-                return HttpContext.Current.Server.MapPath("~/atomes/photo/bin/providers");
-            }
-        }
-
-        protected void UpdateProvider()
-        {
-            if (log.IsDebugEnabled)
-                log.Debug("Provider used : " + providerName);
-
             updateProviderTags();
-            
         }
 
         private void updateProviderTags()
         {
-            try
-            {
-                var provider = Plugin<IPhotoLibraryProvider>.CreateInstance(
-                   providerName, providerDirectory);
-                provider.Initialize();
-                rootTags = provider.GetRootTags().Where(t => t.Photos.Any());
-
-                // TODO : recent tags
-
-            }
-            catch (Exception e)
-            {
-                throw new ProviderException(providerName, e);
-            }
+                CallProvider(provider =>
+                    rootTags = provider.GetRootTags().Where(t => t.Photos.Any()));
 
             buildIndexTables();
         }
@@ -299,6 +238,21 @@ namespace WebPhoto.Services
         public static IEnumerable<ITag> GetRootTags()
         {
             return instance.rootTags;
+        }
+
+        protected override string ConfigurationNamespace
+        {
+            get { return "WebPhoto"; }
+        }
+
+        protected override string ProviderDirectory
+        {
+            get { return HttpContext.Current.Server.MapPath("~/atomes/photo/bin/providers"); }
+        }
+
+        protected override string DefaultProvider
+        {
+            get { return "Stub"; }
         }
     }
 }

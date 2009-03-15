@@ -25,13 +25,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Molecule.Atome;
 
 
 namespace WebMusic.Providers
 {
-    public interface IMusicLibraryProvider
+    public interface IMusicLibraryProvider : IProvider
     {
-		void Initialize();
         IEnumerable<IArtist> GetArtists();
 		System.Collections.Generic.IEnumerable<string> AlbumsRecentlyAdded
 		{

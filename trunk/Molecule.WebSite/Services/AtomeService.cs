@@ -64,7 +64,7 @@ namespace Molecule.WebSite.Services
                 string atomeDescriptionPath = Path.Combine(atomeDir.FullName, "Atome.xml");
                 if (File.Exists(atomeDescriptionPath))
                 {
-                    var atomeInfo = new AtomeInfo(Atome.LoadFrom(atomeDescriptionPath), virtualAtomeDir);
+                    var atomeInfo = new AtomeInfo(Molecule.Serialization.Atome.LoadFrom(atomeDescriptionPath), virtualAtomeDir);
                     atomes.Add(atomeInfo);
                     if (log.IsInfoEnabled)
                         log.Info("Found atome " + atomeInfo.Name);

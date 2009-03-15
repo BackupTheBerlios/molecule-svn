@@ -25,16 +25,9 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using Molecule.WebSite.atomes.webmusic.Services;
 
-namespace WebMusic.Services
+namespace Molecule.Atome
 {
     [global::System.Serializable]
     public class ProviderException : Exception
@@ -45,7 +38,7 @@ namespace WebMusic.Services
         public string ProviderName { get; set; }
         static string formatMessage(string providerName)
         {
-            return String.Format(Messages.MusicProviderError, providerName);
+            return String.Format(Messages.ProviderError, providerName);
         }
     }
 }

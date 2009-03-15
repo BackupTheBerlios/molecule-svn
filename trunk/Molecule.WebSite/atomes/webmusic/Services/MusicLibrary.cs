@@ -32,76 +32,32 @@ using System.IO;
 using Molecule.Web;
 using System.Web;
 using Molecule.Runtime;
+using Molecule.Atome;
 
 
 namespace WebMusic.Services
 {
-    public class MusicLibrary
+    public class MusicLibrary : AtomeProviderBase<MusicLibrary, IMusicLibraryProvider>
     {
         static object instanceLock = new object();
 
-		private static log4net.ILog log = log4net.LogManager.GetLogger( typeof( MusicLibrary ) );
-
-        static string providerName;
-
         static MusicLibrary()
         {
-            providerName = Molecule.Configuration.ConfigurationClient.Client.Get<string>("WebMusic", "LibraryProvider", "Stub");
-        }
-
-        static MusicLibrary instance
-        {
-            get
-            {
-                return Singleton<MusicLibrary>.Instance;
-            }
+            
         }
 
         private MusicLibrary()
         {
-            UpdateProvider();
         }
 
         IDictionary<string, IAlbum> albums;
         IDictionary<string, IArtist> artists;
         IDictionary<string, ISong> songs;
-        
 
-        public static string CurrentProvider
+
+        protected override void OnProviderUpdated()
         {
-            get { return providerName; }
-            set
-            {
-                providerName = value;
-                Molecule.Configuration.ConfigurationClient.Client.Set<string>("WebMusic", "LibraryProvider", value);
-                instance.UpdateProvider();
-            }
-        }
-
-        public static IEnumerable<ProviderInfo> Providers
-        {
-            get
-            {
-                foreach(var provider in Plugin<IMusicLibraryProvider>.List(providerDirectory))
-                    yield return new ProviderInfo() { Description = provider.Description, Name = provider.Name };
-            }
-        }
-
-        static string providerDirectory
-        {
-            get
-            {
-                return HttpContext.Current.Server.MapPath("~/atomes/webmusic/bin/providers");
-            }
-        }
-
-        protected void UpdateProvider()
-        {
-            if (log.IsDebugEnabled)
-                log.Debug("Provider used : " + providerName);
-
-            updateProviderArtists();
-            
+            updateProviderArtists();          
         }
 
         private void buildIndexTables(IEnumerable<IArtist> providerArtists)
@@ -129,26 +85,20 @@ namespace WebMusic.Services
 
         private void updateProviderArtists()
         {
-            IEnumerable<IArtist> providerArtists;
-            System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded;
-            try
+            IEnumerable<IArtist> providerArtists = null;
+            IEnumerable<string> albumsRecentlyAdded = null;
+
+            CallProvider(provider =>
             {
-                var provider = Plugin<IMusicLibraryProvider>.CreateInstance(
-                   providerName, providerDirectory);
-                provider.Initialize();
                 providerArtists = provider.GetArtists();
                 albumsRecentlyAdded = provider.AlbumsRecentlyAdded;
-            }
-            catch (Exception e)
-            {
-                throw new ProviderException(providerName, e);
-            }
+            });
 
             buildIndexTables(providerArtists);
             updateAlbumsRecentlyAdded(albumsRecentlyAdded);
         }
 
-        private static void updateAlbumsRecentlyAdded(System.Collections.Generic.IEnumerable<string> albumsRecentlyAdded)
+        private static void updateAlbumsRecentlyAdded(IEnumerable<string> albumsRecentlyAdded)
         {
             Molecule.Log.LogService.Instance.ClearType("Music");
             if (albumsRecentlyAdded != null)
@@ -258,6 +208,21 @@ namespace WebMusic.Services
                    from album in instance.albums.Values
                    where album.Name.ToLower().Contains(pattern)
                    select album.Name);
+        }
+
+        protected override string ConfigurationNamespace
+        {
+            get { return "WebMusic"; }
+        }
+
+        protected override string DefaultProvider
+        {
+            get { return "Stub"; }
+        }
+
+        protected override string ProviderDirectory
+        {
+            get { return HttpContext.Current.Server.MapPath("~/atomes/webmusic/bin/providers"); }
         }
     }
 }
