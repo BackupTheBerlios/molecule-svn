@@ -41,14 +41,13 @@ namespace Molecule.WebSite.Admin
     public partial class Default : System.Web.UI.Page
     {
 
-        protected override void OnInit(EventArgs e)
-        {
-            base.OnInit(e);
-            
-        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+            {
+                this.titleTextBox.Text = AdminService.MoleculeTitle;
+            }
         }
 
         protected void createUserButton_Click(object sender, EventArgs e)
@@ -66,6 +65,11 @@ namespace Molecule.WebSite.Admin
         {
             Services.AdminService.ResetCssVariables();
             ListView1.DataBind();
+        }
+
+        protected void saveTitleButton_Click(object sender, EventArgs e)
+        {
+            AdminService.MoleculeTitle = this.titleTextBox.Text;
         }
     }
 }

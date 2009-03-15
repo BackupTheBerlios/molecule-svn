@@ -22,8 +22,11 @@ namespace Molecule.WebSite.Services
     {
         private AdminService()
         {
-
+            moleculeTitle = Configuration.ConfigurationClient.Get<string>("Molecule.WebSite", "Title", "Molecule");
         }
+
+        private string moleculeTitle;
+
         protected IEnumerable<CssVariableInfo> CssVariables = null;
 
         private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
@@ -86,6 +89,20 @@ namespace Molecule.WebSite.Services
             LastCssVariablesUpdate = DateTime.Now;
             ConfigurationClient.Client.Set<string>(confNamespace, cssVariablesKeyConf, "");
             instance.CssVariables = null;
+        }
+
+        public static string MoleculeTitle
+        {
+            get { return instance.moleculeTitle; }
+            set { instance.updateMoleculeTitle(value); }
+        }
+
+        private void updateMoleculeTitle(string value)
+        {
+            if (value.Length == 0 || value.Length > 100)
+                return;
+            instance.moleculeTitle = value;
+            Configuration.ConfigurationClient.Set<string>("Molecule.WebSite", "Title", value);
         }
     }
 }

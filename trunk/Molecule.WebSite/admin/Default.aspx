@@ -85,6 +85,11 @@
 
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
+    Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
+    <asp:Button runat="server" ID="saveTitleButton" Text="Enregistrer" 
+            onclick="saveTitleButton_Click" />
+    </p>
+    <p>
         <asp:ListView ID="ListView1" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">
             <ItemTemplate>
                 <tr>

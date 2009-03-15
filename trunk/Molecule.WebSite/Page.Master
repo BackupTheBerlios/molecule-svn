@@ -49,7 +49,7 @@
         <div id="header">
         <div id="moleculeTitle">
             <div id="logo"><img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" /></div>
-                <h1>Molecule</h1></div>
+                <h1><%= AdminService.MoleculeTitle %></h1></div>
         <div id="pageTitle"><h1><asp:Label ID="pageTitleLabel" runat="server"><%=Page.Title%></asp:Label></h1></div>
         </div>
         <div id="sideBar">

@@ -77,6 +77,24 @@ namespace Molecule.WebSite.Admin {
         protected global::System.Web.UI.WebControls.CompleteWizardStep CompleteWizardStep1;
         
         /// <summary>
+        /// titleTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox titleTextBox;
+        
+        /// <summary>
+        /// saveTitleButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveTitleButton;
+        
+        /// <summary>
         /// ListView1 control.
         /// </summary>
         /// <remarks>
