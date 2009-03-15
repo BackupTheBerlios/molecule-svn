@@ -1,35 +1,31 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PreferencesPage.master.cs" Inherits="Molecule.WebSite.PreferencesPage" MasterPageFile="~/Page.Master" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PreferencesPage.master.cs"
+    Inherits="Molecule.WebSite.PreferencesPage" MasterPageFile="~/Page.Master" %>
+
 <%@ Import Namespace="Molecule.WebSite.Services" %>
-
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content runat="server" ID="contentHead" ContentPlaceHolderID="head">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="mainContent">
-
- <h2>
-    <asp:Panel runat="server" ID="tabDefault">
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:General%>" />
-    </asp:Panel>
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="AtomeDataSource">
-    <ItemTemplate>
-    <asp:Panel ID="tabTitle" runat="server"
-        CssClass='<%# AtomeService.CurrentPathIsAtome && Container.DataItem ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="<%# ((IAtomeInfo)Container.DataItem).PreferencesPagePath %>" Text="<%# ((IAtomeInfo)Container.DataItem).Name %>" />
-    </asp:Panel>
-    
-    </ItemTemplate>
-    </asp:Repeater>
- </h2>
-<br />
-    <asp:ObjectDataSource ID="AtomeDataSource" runat="server" 
-        SelectMethod="GetAtomesWithAdminWebControl" TypeName="Molecule.WebSite.Services.AtomeService">
-    </asp:ObjectDataSource>
-    <br/><br />
+    <h2>
+        <asp:Panel runat="server" ID="tabDefault">
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:General%>" />
+        </asp:Panel>
+        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="AtomeDataSource">
+            <ItemTemplate>
+                <asp:Panel ID="tabTitle" runat="server" CssClass='<%# AtomeService.CurrentPathIsAtome && Container.DataItem ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="<%# ((IAtomeInfo)Container.DataItem).PreferencesPagePath %>"
+                        Text="<%# ((IAtomeInfo)Container.DataItem).Name %>" />
+                </asp:Panel>
+            </ItemTemplate>
+        </asp:Repeater>
+    </h2>
+    <br />
+    <asp:ObjectDataSource ID="AtomeDataSource" runat="server" SelectMethod="GetAtomesWithAdminWebControl"
+        TypeName="Molecule.WebSite.Services.AtomeService"></asp:ObjectDataSource>
+    <br />
+    <br />
     <asp:ContentPlaceHolder runat="server" ID="preferencesContent">
-    
     </asp:ContentPlaceHolder>
 </asp:Content>

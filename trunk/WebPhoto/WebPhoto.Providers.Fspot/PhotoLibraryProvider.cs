@@ -32,7 +32,7 @@ using Mono.Data.Sqlite;
 
 [assembly:PluginContainer]
 
-namespace WebPhoto.Providers.Stub
+namespace WebPhoto.Providers.Fspot
 {
     [Plugin("Fspot")]
     public class PhotoLibraryProvider : IPhotoLibraryProvider

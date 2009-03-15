@@ -33,6 +33,8 @@ namespace WebPhoto.Providers
         IKeyedEnumerable<string, string> Metadatas { get; }
         DateTime Date { get; }
         string Description { get; }
+        double? Latitude { get; }
+        double? Longitude { get; }
     }
 
     public interface IPhoto : IPhotoInfo

@@ -25,7 +25,7 @@ using System.IO;
 
 using Mono.Data.Sqlite;
 
-namespace WebPhoto.Providers.Stub
+namespace WebPhoto.Providers.Fspot
 {
 	public class Tag : ITag
 	{

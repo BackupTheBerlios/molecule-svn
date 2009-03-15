@@ -409,6 +409,9 @@
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\admin\Default.aspx" />
     <Content Include="atomes\photo\Atome.xml" />
+    <Content Include="atomes\photo\bin\providers\Mono.Data.Sqlite.dll" />
+    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
+    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
     <Content Include="atomes\photo\Map.ascx" />
     <Content Include="atomes\photo\MonthCalendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
@@ -463,7 +466,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
-    <Folder Include="atomes\photo\bin\providers\" />
     <Folder Include="atomes\webmusic\bin\providers\" />
     <Folder Include="images\" />
   </ItemGroup>

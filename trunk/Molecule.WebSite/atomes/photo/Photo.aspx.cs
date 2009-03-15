@@ -57,6 +57,12 @@ namespace Molecule.WebSite.atomes.photo
             MetadatasGridView.DataBind();
             TagsView.DataSource = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
             TagsView.DataBind();
+            locationPanel.Visible = CurrentPhoto.Latitude != null;
+            if (CurrentPhoto.Latitude != null)
+            {
+                map.Latitude = CurrentPhoto.Latitude.Value;
+                map.Longitude = CurrentPhoto.Longitude.Value;
+            }
             
         }
 

@@ -45,8 +45,10 @@
             <h2>Metadatas</h2>
             <asp:GridView ID="MetadatasGridView" runat="server" AutoGenerateColumns="true" ShowHeader="false">
             </asp:GridView>
-            <h2>Location</h2>
-            <photo:Map runat="server" Latitude="48.1181" Longitude="-1.6707"></photo:Map>
+            <asp:Panel runat="server" ID="locationPanel">
+                <h2>Location</h2>
+                <photo:Map ID="map" runat="server" />
+            </asp:Panel>
         </div>
     </div>
 </asp:Content>

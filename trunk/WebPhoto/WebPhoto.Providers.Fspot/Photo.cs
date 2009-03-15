@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 
 
-namespace WebPhoto.Providers.Stub
+namespace WebPhoto.Providers.Fspot
 {
     public class Photo : IPhoto
 	{	
@@ -100,5 +100,20 @@ namespace WebPhoto.Providers.Stub
 			set;
 	    }
 
+
+        #region IPhotoInfo Members
+
+
+        public double? Latitude
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public double? Longitude
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
     }
 }
