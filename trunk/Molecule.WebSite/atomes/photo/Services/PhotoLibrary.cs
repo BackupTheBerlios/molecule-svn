@@ -32,9 +32,14 @@ namespace WebPhoto.Services
         private void updateProviderTags()
         {
                 CallProvider(provider =>
-                    rootTags = provider.GetRootTags().Where(t => t.Photos.Any()));
+                    rootTags = provider.GetRootTags().Where(t => HasPhoto(t)));
 
             buildIndexTables();
+        }
+
+        protected static IEnumerable<ITag> GetAllTags(ITag tag)
+        {
+            return GetAllTags(new[] { tag });
         }
 
         protected static IEnumerable<ITag> GetAllTags(IEnumerable<ITag> tags)
@@ -55,14 +60,13 @@ namespace WebPhoto.Services
             //id index
             foreach (var tag in GetAllTags(rootTags))
             {
-                bool hasPhotos = false;
+                
                 foreach (var photo in tag.Photos)
                 {
-                    hasPhotos = true;
                     tempPhotos[photo.Id] = photo;
                 }
                 //only reference tags that contains photo.
-                if(hasPhotos)
+                if (HasPhoto(tag))
                     tags[tag.Id] = tag;
             }
             
@@ -89,6 +93,11 @@ namespace WebPhoto.Services
             for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
                 photosByIds[item.Value.Id] = item;
 
+        }
+
+        private static bool HasPhoto(ITag tag)
+        {
+            return GetAllTags(tag).Any(t => t.Photos.Any());
         }
 
         public static ITagInfo GetTag(string tagId)

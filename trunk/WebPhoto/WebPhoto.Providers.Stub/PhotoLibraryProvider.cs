@@ -40,6 +40,7 @@ namespace WebPhoto.Providers.Stub
         const int nbMaxTagByPhoto = 3;
         const int nbPhotos = 500;
 
+
         const string fakeText = @"Sed ut perspiciatis unde omnis iste natus error 
             sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
             eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
@@ -99,7 +100,7 @@ namespace WebPhoto.Providers.Stub
 
                 Name = "Tag" + Id;
 
-                int nbItem = rand.Next(nbMaxPhotosByTags);
+                int nbItem = parentTag != null ? rand.Next(nbMaxPhotosByTags - 1) + 1 : 0;
 
                 Photos = from nb in nbItem.Times()
                          select allPhotos[rand.Next(nbPhotos)].AddTag(this);

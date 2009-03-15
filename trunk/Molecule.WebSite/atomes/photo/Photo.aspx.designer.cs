@@ -83,6 +83,8 @@ namespace Molecule.WebSite.atomes.photo {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Molecule.WebSite.atomes.photo.Map map;
+        protected global::Molecule.WebSite.atomes.photo.Map PhotoMap;
+
+        protected global::System.Web.UI.WebControls.Label LocationText;
     }
 }
