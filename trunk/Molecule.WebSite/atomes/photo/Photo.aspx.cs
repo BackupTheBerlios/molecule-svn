@@ -55,15 +55,23 @@ namespace Molecule.WebSite.atomes.photo
                 PreviousPhotoLink.Visible = false;
             MetadatasGridView.DataSource = CurrentPhoto.Metadatas;
             MetadatasGridView.DataBind();
+			
+
+			
             TagsView.DataSource = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
             TagsView.DataBind();
-            locationPanel.Visible = CurrentPhoto.Latitude != null;
-            if (CurrentPhoto.Latitude != null)
-            {
-                map.Latitude = CurrentPhoto.Latitude.Value;
-                map.Longitude = CurrentPhoto.Longitude.Value;
-            }
-            
+			if( CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue )
+			{
+				this.PhotoMap.Visible = true;
+				this.PhotoMap.Latitude =  CurrentPhoto.Latitude.Value;
+				this.PhotoMap.Longitude =  CurrentPhoto.Longitude.Value;
+			}
+			else
+			{
+				this.PhotoMap.Visible = false;
+				this.LocationText.Visible = false;
+				
+			}	
         }
 
         private void initTitle()

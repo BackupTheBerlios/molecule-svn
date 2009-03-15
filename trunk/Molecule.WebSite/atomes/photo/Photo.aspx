@@ -31,6 +31,7 @@
         <div id="photoDescriptionContainer">
             <p>
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
+                              
             </p>
             <h2>Tags</h2>
             <ul class="TagList">
@@ -45,10 +46,8 @@
             <h2>Metadatas</h2>
             <asp:GridView ID="MetadatasGridView" runat="server" AutoGenerateColumns="true" ShowHeader="false">
             </asp:GridView>
-            <asp:Panel runat="server" ID="locationPanel">
-                <h2>Location</h2>
-                <photo:Map ID="map" runat="server" />
-            </asp:Panel>
+            <h2><asp:Label ID="LocationText" runat="server">Location</asp:Label></h2>
+            <photo:Map ID="PhotoMap" runat="server" Latitude="47.809944" Longitude="-1.9465"></photo:Map>
         </div>
     </div>
 </asp:Content>

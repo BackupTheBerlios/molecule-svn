@@ -32,7 +32,7 @@ namespace WebPhoto.Providers
         string MediaFilePath { get; }
         IKeyedEnumerable<string, string> Metadatas { get; }
         DateTime Date { get; }
-        string Description { get; }
+        string Description { get; }		
         double? Latitude { get; }
         double? Longitude { get; }
     }

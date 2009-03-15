@@ -90,7 +90,6 @@ namespace Molecule.Metadata
 
 				if( exifDirectory.ContainsTag(com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH))
 				{
-					Console.WriteLine("fsdfsqjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 					commonMetadatas.Add(exifDirectory.GetTagName(com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH), 
 					                    exifDirectory.GetString( com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH));
 				}						
@@ -98,7 +97,6 @@ namespace Molecule.Metadata
 				
 				if( exifDirectory.ContainsTag(com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH_IN_35MM_FILM))
 				{
-					Console.WriteLine("fsdfsqjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 					commonMetadatas.Add(exifDirectory.GetTagName(com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH_IN_35MM_FILM), 
 					                    exifDirectory.GetString( com.drew.metadata.exif.ExifDirectory.TAG_FOCAL_LENGTH_IN_35MM_FILM));
 				}						
@@ -109,29 +107,28 @@ namespace Molecule.Metadata
 				if( gpsDirectory.ContainsTag(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LATITUDE) && 
 				   gpsDirectory.ContainsTag(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE))
 				{
-					Console.WriteLine(gpsDirectory.GetTagName(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LATITUDE));
-					Console.WriteLine(gpsDirectory.GetRationalArray(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LATITUDE));
 					Rational[] latitudeRationals = gpsDirectory.GetRationalArray(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LATITUDE);
 					
 					this.ContainsGPSInformation = true;
 					
-					this.Latitude = ConvertDMSToDecimalDegrees(latitudeRationals[0].DoubleValue(), 
+					this.Latitude = 
+						(gpsDirectory.GetString( com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE_REF).Equals("N")? -1 : 1	)*
+						ConvertDMSToDecimalDegrees(latitudeRationals[0].DoubleValue(), 
 					                           latitudeRationals[1].DoubleValue(), 
 					                           latitudeRationals[2].DoubleValue());
+					Console.WriteLine(	this.Latitude);	
 					
-					
-					Rational[] longitudeRationals = gpsDirectory.GetRationalArray(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE);	
-					this.Longitude = ConvertDMSToDecimalDegrees(longitudeRationals[0].DoubleValue(), 
+					Rational[] longitudeRationals = gpsDirectory.GetRationalArray(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE);
+					this.Longitude = 
+						(gpsDirectory.GetString( com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE_REF).Equals("W")? -1 : 1	)*	
+						ConvertDMSToDecimalDegrees(longitudeRationals[0].DoubleValue(), 
 					                                           longitudeRationals[1].DoubleValue(), 
-					                                           longitudeRationals[2].DoubleValue());				
+					                                           longitudeRationals[2].DoubleValue());	
+					Console.WriteLine(this.Longitude);
+					
 				}
 			}
 		}
-
-	/*	marque et modele de l'appareil
-ouverture, vitesse, iso, utilisation du flash			
-Focal Length in 35mm Film	*/			
-		
 
 		private double ConvertDMSToDecimalDegrees(double degrees, double minutes, double seconds)
 		{
@@ -150,7 +147,7 @@ Focal Length in 35mm Film	*/
 		}
 		
 		
-		public  bool ContainsGPSInformation  
+		public bool ContainsGPSInformation  
 		{
 			get;
 			private set;

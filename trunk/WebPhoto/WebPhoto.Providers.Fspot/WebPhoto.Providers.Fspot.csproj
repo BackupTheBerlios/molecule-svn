@@ -35,14 +35,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputType>Library</OutputType>
-    <AssemblyName>WebPhoto.Providers.Stub</AssemblyName>
+    <AssemblyName>WebPhoto.Providers.Fspot</AssemblyName>
     <DebugSymbols>true</DebugSymbols>
     <RootNamespace>WebPhoto.Providers.Stub</RootNamespace>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+    <Reference Include="Mono.Data.Sqlite">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\Mono.Data.Sqlite.dll</HintPath>
     </Reference>

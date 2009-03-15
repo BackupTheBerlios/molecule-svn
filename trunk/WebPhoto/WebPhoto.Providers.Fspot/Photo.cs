@@ -79,6 +79,12 @@ namespace WebPhoto.Providers.Fspot
 				   JpegMetadataReader  jpegMetadatas =  new JpegMetadataReader(new Uri(uri).LocalPath);
 				   jpegMetadatas.RetrieveMetadatas();
 				   metadatas = jpegMetadatas.CommonMetadatas;
+				   if( jpegMetadatas.ContainsGPSInformation )
+				   {
+						this.Latitude = jpegMetadatas.Latitude;
+						this.Longitude = jpegMetadatas.Longitude;
+
+				   }
 				}
                 return 	metadatas;
             }
@@ -100,20 +106,19 @@ namespace WebPhoto.Providers.Fspot
 			set;
 	    }
 
-
-        #region IPhotoInfo Members
-
-
-        public double? Latitude
-        {
-            get { return null; }
-        }
-
-        public double? Longitude
-        {
-            get { return null; }
-        }
-
-        #endregion
+			
+		public double? Longitude 
+		{
+			get;
+			private set;
+		}
+		
+		public double? Latitude
+		{
+			get;
+			private set;
+		}			
+	
+		
     }
 }
