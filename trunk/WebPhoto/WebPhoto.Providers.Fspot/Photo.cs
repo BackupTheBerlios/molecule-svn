@@ -106,12 +106,12 @@ namespace WebPhoto.Providers.Fspot
 
         public double? Latitude
         {
-            get { throw new NotImplementedException(); }
+            get { return null; }
         }
 
         public double? Longitude
         {
-            get { throw new NotImplementedException(); }
+            get { return null; }
         }
 
         #endregion
