@@ -31,18 +31,18 @@ namespace WebPhoto.Providers.Fspot
 	{
 		
 	    private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(Tag));		
-		static Random rand = new Random();
 		List<Tag> childTags;
 		int depth;
 		ITag parentTag;
 		List<Photo> photos;
 		
-		public Tag(string id, string name)
+		public Tag(string id, string name, Tag parentTag)
 		{
 			this.Id = id;
 			this.Name = name;
 			childTags = new List<Tag>();
 			photos = new List<Photo>();
+			this.parentTag = parentTag;
 		}			
 		
 
@@ -70,7 +70,7 @@ namespace WebPhoto.Providers.Fspot
 					string tagId = reader.GetValue (0).ToString();
 					string tagName = reader.GetValue (1).ToString();
 
-					childTags.Add(new Tag(tagId, tagName));
+					childTags.Add(new Tag(tagId, tagName, this));
 					if( log.IsDebugEnabled)
 					{
 						log.DebugFormat("Child tags for the tag {0} : id {1} name {2}", this.Id, tagId, tagName);
@@ -108,8 +108,21 @@ namespace WebPhoto.Providers.Fspot
 			}
 		}
 		
-		ITag ITag.Parent { get { return parentTag; } }
-		ITagInfo ITagInfo.Parent { get { return parentTag; } }
+		ITag ITag.Parent 
+		{ 
+			get 
+			{ 
+				return parentTag; 
+			} 
+		}
+		
+		ITagInfo ITagInfo.Parent 
+		{ 
+			get 
+			{ 
+				return parentTag;
+			} 
+		}
 		
 		
 		private void GetPhotos(SqliteConnection conn)

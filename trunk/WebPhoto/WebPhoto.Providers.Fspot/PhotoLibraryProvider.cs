@@ -107,7 +107,7 @@ namespace WebPhoto.Providers.Fspot
 		{
 			get
 			{
-			    return (IDictionary<string, Photo>) 		photos;	
+			    return (IDictionary<string, Photo>) photos;	
 		    }	
         }
 		
@@ -137,7 +137,7 @@ namespace WebPhoto.Providers.Fspot
 				while(reader.Read()) {
 					string tagId = reader.GetValue (0).ToString();
 					string tagName = reader.GetValue (1).ToString();
-					Tag t = new Tag(tagId, tagName);
+					Tag t = new Tag(tagId, tagName, null);
                     t.InitializeTag(conn);
 					rootTags.Add(t);
 				}
