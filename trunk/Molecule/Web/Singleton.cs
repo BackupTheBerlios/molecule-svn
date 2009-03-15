@@ -63,29 +63,29 @@ namespace Molecule.Web
 
         private static T createInstance()
         {
-            try
-            {
+            //try
+            //{
                 return (T)typeof(T).InvokeMember(typeof(T).Name,
                                       BindingFlags.CreateInstance |
                                       BindingFlags.Instance |
                                       BindingFlags.NonPublic,
                                       null, null, null);
-            }
-            catch (TargetInvocationException tiex)
-            {//http://www.dotnetjunkies.com/WebLog/chris.taylor/archive/2004/03/03/8353.aspx
-                // NB: Error checking etc. excluded
-                // Get the _remoteStackTraceString of the Exception class
-                FieldInfo remoteStackTraceString = typeof(Exception).GetField("_remoteStackTraceString",
-                BindingFlags.Instance | BindingFlags.NonPublic);
+            //}
+            //catch (TargetInvocationException tiex)
+            //{//http://www.dotnetjunkies.com/WebLog/chris.taylor/archive/2004/03/03/8353.aspx
+            //    // NB: Error checking etc. excluded
+            //    // Get the _remoteStackTraceString of the Exception class
+            //    FieldInfo remoteStackTraceString = typeof(Exception).GetField("_remoteStackTraceString",
+            //    BindingFlags.Instance | BindingFlags.NonPublic);
 
-                // Set the InnerException._remoteStackTraceString to the current InnerException.StackTrace
-                remoteStackTraceString.SetValue(tiex.InnerException,
-                tiex.InnerException.StackTrace + Environment.NewLine);
+            //    // Set the InnerException._remoteStackTraceString to the current InnerException.StackTrace
+            //    remoteStackTraceString.SetValue(tiex.InnerException,
+            //    tiex.InnerException.StackTrace + Environment.NewLine);
 
-                // Throw the new exception
-                throw tiex.InnerException;
+            //    // Throw the new exception
+            //    throw tiex.InnerException;
 
-            }
+            //}
         }
 
         private static string TypeId
