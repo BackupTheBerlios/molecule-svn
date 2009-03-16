@@ -33,11 +33,13 @@ namespace WebPhoto.Providers.FS
     {
         FileInfo file;
         ITag parent;
+        JpegMetadataReader metaReader;
 
         public Photo(FileInfo file, ITag parent)
         {
             this.file = file;
             this.parent = parent;
+            metaReader = JpegMetadataReader.RetreiveFromFile(file.FullName);
         }
 
         #region IPhoto Members
@@ -63,7 +65,7 @@ namespace WebPhoto.Providers.FS
 
         public IKeyedEnumerable<string, string> Metadatas
         {
-            get { return null; }
+            get { return metaReader.CommonMetadatas; }
         }
 
         public DateTime Date
@@ -78,12 +80,12 @@ namespace WebPhoto.Providers.FS
 
         public double? Latitude
         {
-            get { return null; }
+            get { return metaReader.ContainsGPSInformation ? (double?)metaReader.Latitude : null; }
         }
 
         public double? Longitude
         {
-            get { return null; }
+            get { return metaReader.ContainsGPSInformation ? (double?)metaReader.Longitude : null; }
         }
 
         #endregion
