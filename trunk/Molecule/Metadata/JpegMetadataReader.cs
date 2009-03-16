@@ -36,7 +36,14 @@ namespace Molecule.Metadata
 		Molecule.Collections.Dictionary<string, string> commonMetadatas;
 		FileInfo jpegFileInfo;
 		bool containsGPSInformation;
-			
+
+        public static JpegMetadataReader RetreiveFromFile(string filePath)
+        {
+            var reader = new JpegMetadataReader(filePath);
+            reader.RetrieveMetadatas();
+            return reader;
+        }
+
 		public JpegMetadataReader(string filePath)
 		{
 			jpegFileInfo = new FileInfo(filePath); 

@@ -39,6 +39,7 @@ namespace WebPhoto.Providers.FS
         {
             this.file = file;
             this.parent = parent;
+            this.id = CryptoUtil.Md5Encode(file.FullName);
             metaReader = JpegMetadataReader.RetreiveFromFile(file.FullName);
         }
 
@@ -53,9 +54,11 @@ namespace WebPhoto.Providers.FS
 
         #region IPhotoInfo Members
 
+        string id;
+
         public string Id
         {
-            get { return CryptoUtil.Md5Encode(file.FullName); }
+            get { return id; }
         }
 
         public string MediaFilePath
