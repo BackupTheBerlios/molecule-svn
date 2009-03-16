@@ -151,8 +151,17 @@ namespace WebPhoto.Providers.Stub
                 string virtualPath = "stublibrary/photo"+r+".jpg";
                 MediaFilePath = System.Web.HttpContext.Current.Request.MapPath(virtualPath);
                 //Latitude="48.1181" Longitude="-1.6707"
-                Latitude = 48.1181 + random.NextDouble() * 2 - 1;
-                Longitude = -1.6707 + random.NextDouble() * 2 - 1;
+                r = random.Next(2);
+                if (r == 0)
+                {
+                    Latitude = null;
+                    Longitude = null;
+                }
+                else
+                {
+                    Latitude = 48.1181 + random.NextDouble() * 2 - 1;
+                    Longitude = -1.6707 + random.NextDouble() * 2 - 1;
+                }
             }
             #region IPhoto Members
 
