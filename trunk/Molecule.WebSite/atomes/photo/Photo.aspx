@@ -7,6 +7,7 @@
 <%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
+<%@ Register Src="TagList.ascx" TagName="TagList" TagPrefix="photo" %>
 <%@ Register Src="Map.ascx" tagname="Map" TagPrefix="photo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -34,15 +35,7 @@
                               
             </p>
             <h2>Tags</h2>
-            <ul class="TagList">
-            <asp:Repeater ID="TagsView" runat="server">
-            <ItemTemplate>
-                <li>
-                     <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
-                </li>
-            </ItemTemplate>
-            </asp:Repeater>
-            </ul>
+            <photo:TagList runat="server" ID="tagList" />
             <h2>Metadatas</h2>
             <asp:GridView ID="MetadatasGridView" runat="server" AutoGenerateColumns="true" ShowHeader="false">
             </asp:GridView>

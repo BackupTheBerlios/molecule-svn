@@ -35,6 +35,7 @@ namespace Molecule.WebSite.atomes.photo
         {
             this.PhotoListView.DataSource = photos;
             this.PhotoListView.DataBind();
+            this.subTagList.Tags = PhotoLibrary.GetTagsByTag(tagId);
         }
 
         private void initTitle()

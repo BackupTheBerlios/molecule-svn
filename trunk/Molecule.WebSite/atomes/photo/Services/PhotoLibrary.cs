@@ -83,13 +83,13 @@ namespace WebPhoto.Services
 
             //day index
             photosByDay = new Dictionary<DateTime, LinkedListNode<IPhoto>>();
-            for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
+            for (var item = timelinePhotos.First; item != null; item = item.Next)
                 if (item == timelinePhotos.First || item.Previous.Value.Date.Date != item.Value.Date.Date)
                     photosByDay[item.Value.Date.Date] = item;
 
             //id index
             photosByIds = new Dictionary<string, LinkedListNode<IPhoto>>();
-            for (var item = timelinePhotos.First; item != timelinePhotos.Last; item = item.Next)
+            for (var item = timelinePhotos.First; item != null; item = item.Next)
                 photosByIds[item.Value.Id] = item;
 
         }
@@ -158,6 +158,17 @@ namespace WebPhoto.Services
                 return instance.tags[tag].Photos.Cast<IPhotoInfo>();
             else
                 return GetPhotos();
+        }
+
+        public static IPhotoInfo GetFirstPhotoByTag(string tagId)
+        {
+            return getFirstPhotoByTag(instance.tags[tagId]);
+        }
+
+        private static IPhotoInfo getFirstPhotoByTag(ITag tag)
+        {
+            var res = tag.Photos.FirstOrDefault();
+            return res ?? getFirstPhotoByTag(tag.ChildTags.First());
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)

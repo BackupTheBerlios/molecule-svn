@@ -7,6 +7,7 @@
 <%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
+<%@ Register Src="TagList.ascx" TagName="TagList" TagPrefix="photo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="style/common.css" rel="stylesheet" type="text/css" />
@@ -15,16 +16,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 
     <photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />
-
-    <ul id="tagList">
-        <asp:Repeater ID="TagsView" runat="server" DataSourceID="TagDataSource">
-        <ItemTemplate>
-            <li>
-                <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
-            </li>
-        </ItemTemplate>
-        </asp:Repeater>
-    </ul>
+    <h2>Tags</h2>
+    <photo:TagList runat="server" ID="subTagList" />
 
 <asp:ObjectDataSource ID="TagDataSource" runat="server" 
     SelectMethod="GetTagsByTag" TypeName="WebPhoto.Services.PhotoLibrary">

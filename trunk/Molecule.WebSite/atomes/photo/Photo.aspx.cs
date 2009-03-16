@@ -58,8 +58,8 @@ namespace Molecule.WebSite.atomes.photo
 			
 
 			
-            TagsView.DataSource = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
-            TagsView.DataBind();
+            tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
+            
 			if( CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue )
 			{
 				this.PhotoMap.Visible = true;

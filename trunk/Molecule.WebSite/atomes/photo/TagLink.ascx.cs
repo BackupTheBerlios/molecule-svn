@@ -9,8 +9,12 @@ using WebPhoto.Providers;
 
 namespace Molecule.WebSite.atomes.photo
 {
-    public partial class TagLink : System.Web.UI.UserControl
+    public partial class TagLink : UserControl
     {
+
         public ITagInfo Tag { get; set; }
+
+        public bool TextOnly { get; set; }
+        
     }
 }

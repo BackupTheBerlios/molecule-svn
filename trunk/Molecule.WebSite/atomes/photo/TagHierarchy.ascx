@@ -8,7 +8,7 @@
     <HeaderTemplate> > 
     </HeaderTemplate>
     <ItemTemplate>
-        <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
+        <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" TextOnly="true" />
     </ItemTemplate>
     <SeparatorTemplate> > </SeparatorTemplate>
 </asp:Repeater>
