@@ -38,6 +38,7 @@ using Molecule.Serialization;
 using System.IO;
 using log4net;
 using System.Text.RegularExpressions;
+using Molecule.Configuration;
 
 namespace Molecule.WebSite.Services
 {
@@ -114,7 +115,7 @@ namespace Molecule.WebSite.Services
                 var atomeVirtualPath = VirtualPathUtility.Combine(atomesBaseDir, atomeDir);
                 return GetAtomes().First(atome => atome.Path.Equals(atomeVirtualPath));
             }
-            else throw new ArgumentException("Specified virtual path is not a valid atome path.");
+            else return null;
         }
 
         public static IEnumerable<IAtomeInfo> GetAtomesWithAdminWebControl()
@@ -122,6 +123,85 @@ namespace Molecule.WebSite.Services
             return from atome in GetAtomes()
                    where atome.HasPreferencesPage
                    select atome;
+        }
+
+        internal static bool IsCurrentUserAuthorized()
+        {
+            var currentAtome = CurrentAtome;
+            if (currentAtome == null)
+                return true; //only handle atome authorizations
+
+            var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
+            if (currentUser == null)
+                return false;
+
+            //todo use atomesAuthorizedUsers
+            return true;
+        }
+
+        private DataTable atomesAuthorizedUsers;
+        private object authLock = new object();
+
+        const string confNamespace = "Molecule";
+        const string confAtomesUsersAuthorizationsKey = "AtomesUsersAuthorizations";
+
+        public static DataTable GetAtomesAuthorizations()
+        {
+            if (instance.atomesAuthorizedUsers == null)
+            {
+                lock (instance.authLock)
+                {
+                    if (instance.atomesAuthorizedUsers == null)
+                    {
+                        instance.atomesAuthorizedUsers = ConfigurationClient.Get(
+                            confNamespace, confAtomesUsersAuthorizationsKey,
+                            new DataTable());
+                        instance.syncAuthorizations();
+                    }
+                }
+            }
+            return instance.atomesAuthorizedUsers;
+        }
+
+        public static void SetAtomesAuthorizations(DataTable auth)
+        {
+            lock(instance.authLock)
+            {
+                instance.atomesAuthorizedUsers = auth;
+                ConfigurationClient.Set(confNamespace, confAtomesUsersAuthorizationsKey,
+                instance.atomesAuthorizedUsers);
+            }
+        }
+
+        //sync with known user and atome
+        private void syncAuthorizations()
+        {
+            var oldData = atomesAuthorizedUsers;
+            var res = new DataTable();
+            res.Columns.Add("atome_name", typeof(string));
+
+            foreach (MembershipUser user in Membership.GetAllUsers())
+                res.Columns.Add(user.UserName, typeof(bool));
+
+            foreach (var atome in AtomeService.GetAtomes())
+            {
+                var values = (from row in oldData.AsEnumerable()
+                              where (string)row["row_name"] == atome.Name
+                              select row.ItemArray).FirstOrDefault();
+
+                if (values == null)
+                {
+                    values = new object[res.Columns.Count];
+                    values[0] = atome.Name;
+                    for (int i = 1; i < values.Length; i++)
+                        values[i] = false;
+                }
+
+                var newRow = res.NewRow();
+                newRow.ItemArray = values;
+                res.Rows.Add(newRow);
+            }
+            atomesAuthorizedUsers = res;
         }
     }
 }

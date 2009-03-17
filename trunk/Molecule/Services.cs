@@ -26,17 +26,29 @@ using System.Collections.Generic;
 using System.Text;
 using Molecule.Web.Security;
 using System.Web.Security;
+using Molecule.Web;
+using Molecule.Configuration;
 
 namespace Molecule
 {
-    public static class Services
+    public class Services
     {
 
-        static SQLiteMembershipProvider mprovider = new SQLiteMembershipProvider();
+        SQLiteMembershipProvider mprovider = new SQLiteMembershipProvider();
 
         static Services()
         {
 
+        }
+
+        private Services()
+        {
+
+        }
+
+        private static Services instance
+        {
+            get { return Singleton<Services>.Instance; }
         }
 
         public static bool HasUsers
@@ -44,7 +56,7 @@ namespace Molecule
             get
             {
                 int nbUsers;
-                mprovider.GetAllUsers(0, 1, out nbUsers);
+                instance.mprovider.GetAllUsers(0, 1, out nbUsers);
                 return nbUsers > 0;
             }
         }
@@ -62,7 +74,7 @@ namespace Molecule
         public static IEnumerable<string> GetAllUsers()
         {
             int nbUsers;
-            foreach (var user in mprovider.GetAllUsers(0, Int32.MaxValue, out nbUsers))
+            foreach (var user in instance.mprovider.GetAllUsers(0, Int32.MaxValue, out nbUsers))
                 yield return user.ToString();
         }
     }

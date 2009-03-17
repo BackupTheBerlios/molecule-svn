@@ -72,6 +72,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -102,6 +105,7 @@
     <Compile Include="admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AtomeAccessModule.cs" />
     <Compile Include="AtomeSiteMapProvider.cs" />
     <Compile Include="atomes\photo\admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -311,7 +315,8 @@
     </Compile>
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\AtomeInfo.cs" />
-    <Compile Include="Services\AtomeService.cs" />
+    <Compile Include="Services\AtomeService.cs">
+    </Compile>
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
   </ItemGroup>

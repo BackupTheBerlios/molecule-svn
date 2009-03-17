@@ -83,6 +83,17 @@
         </WizardSteps>
     </asp:CreateUserWizard>  
 
+    <h2>Autorisations</h2>
+    <p>
+        <asp:GridView ID="GridView1" runat="server" 
+            DataSourceID="authorizationsDataSource">
+        </asp:GridView>
+        <asp:ObjectDataSource ID="authorizationsDataSource" runat="server" 
+            DataObjectTypeName="System.Data.DataTable" 
+            SelectMethod="GetAtomesAuthorizations" 
+            TypeName="Molecule.WebSite.Services.AtomeService" 
+            UpdateMethod="SetAtomesAuthorizations"></asp:ObjectDataSource>
+    </p>
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
     Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
