@@ -29,8 +29,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link id="favicon1" runat="server" rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link id="favicon2" runat="server" rel="icon" href="favicon.ico" type="image/ico" />
+    <link id="favicon1" runat="server" rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link id="favicon2" runat="server" rel="icon" href="~/favicon.ico" type="image/ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
