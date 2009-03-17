@@ -467,6 +467,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\bloup\images\refresh.png" />
+    <Content Include="favicon.ico" />
     <Content Include="NeatUpload\NeatUpload.js" />
     <Content Include="NeatUpload\Progress.aspx" />
     <Content Include="NeatUpload\Progress.js" />
