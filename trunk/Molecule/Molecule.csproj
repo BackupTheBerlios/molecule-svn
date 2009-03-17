@@ -78,8 +78,12 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="MetaDataExtractor, Version=2.4.0.29000, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MetaDataExtractor, Version=2.4.0.37658, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\references\MetaDataExtractor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="taglib-sharp, Version=2.0.3.2, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
+      <HintPath>..\references\taglib-sharp.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
@@ -121,6 +125,7 @@
     <Compile Include="SQLiteProvidersHelper.cs" />
     <Compile Include="Log\SemanticEvent.cs" />
     <Compile Include="Metadata\JpegMetadataReader.cs" />
+    <Compile Include="Metadata\Mp3MetadataReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
