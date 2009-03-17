@@ -24,7 +24,7 @@ function loadMap(id, lat, lon) {
     // Here we define just one layer, but providing a choice
     // of several layers is also quite simple
     // Other defined layers are OpenLayers.Layer.OSM.Mapnik, OpenLayers.Layer.OSM.Maplint and OpenLayers.Layer.OSM.CycleMap
-    layerTilesAtHome = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
+    layerTilesAtHome = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
     map.addLayer(layerTilesAtHome);
 
     var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
