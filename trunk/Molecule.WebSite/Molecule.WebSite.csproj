@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -111,6 +111,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\CalendarItem.cs" />
+    <Compile Include="atomes\photo\FullSizePhoto.ascx.cs">
+      <DependentUpon>FullSizePhoto.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\FullSizePhoto.ascx.designer.cs">
+      <DependentUpon>FullSizePhoto.ascx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\photo\Map.ascx.cs">
       <DependentUpon>Map.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -412,6 +419,7 @@
     <Content Include="atomes\photo\bin\providers\Mono.Data.Sqlite.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
+    <Content Include="atomes\photo\FullSizePhoto.ascx" />
     <Content Include="atomes\photo\Map.ascx" />
     <Content Include="atomes\photo\MonthCalendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
@@ -489,6 +497,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
