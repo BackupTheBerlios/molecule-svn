@@ -47,6 +47,11 @@ namespace Molecule.WebSite.Admin
             if (!IsPostBack)
             {
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
+               
+                AuthListView.DataSource = AtomeService.AtomeUserAuthorizations.GetAll();
+                AuthListView.DataBind();
+                AuthHeaderRepeater.DataSource = AtomeService.AtomeUserAuthorizations.Users;
+                AuthHeaderRepeater.DataBind();
             }
         }
 

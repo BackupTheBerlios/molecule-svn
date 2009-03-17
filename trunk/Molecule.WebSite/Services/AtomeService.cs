@@ -39,6 +39,8 @@ using System.IO;
 using log4net;
 using System.Text.RegularExpressions;
 using Molecule.Configuration;
+using Molecule.Collections;
+using Mono.Rocks;
 
 namespace Molecule.WebSite.Services
 {
@@ -139,69 +141,67 @@ namespace Molecule.WebSite.Services
             return true;
         }
 
-        private DataTable atomesAuthorizedUsers;
+        private AtomeUserAuthorizations atomeUserAuthorizations;
         private object authLock = new object();
 
         const string confNamespace = "Molecule";
-        const string confAtomesUsersAuthorizationsKey = "AtomesUsersAuthorizations";
+        const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
 
-        public static DataTable GetAtomesAuthorizations()
+        public static IAtomeUserAuthorizations AtomeUserAuthorizations
         {
-            if (instance.atomesAuthorizedUsers == null)
+            get
             {
-                lock (instance.authLock)
-                {
-                    if (instance.atomesAuthorizedUsers == null)
-                    {
-                        instance.atomesAuthorizedUsers = ConfigurationClient.Get(
-                            confNamespace, confAtomesUsersAuthorizationsKey,
-                            new DataTable());
-                        instance.syncAuthorizations();
-                    }
-                }
+                if (instance.atomeUserAuthorizations == null)
+                    instance.initAuthorizations();
+
+                return instance.atomeUserAuthorizations;
             }
-            return instance.atomesAuthorizedUsers;
         }
 
-        public static void SetAtomesAuthorizations(DataTable auth)
+        private void initAuthorizations()
         {
-            lock(instance.authLock)
+            lock (authLock)
             {
-                instance.atomesAuthorizedUsers = auth;
-                ConfigurationClient.Set(confNamespace, confAtomesUsersAuthorizationsKey,
-                instance.atomesAuthorizedUsers);
+                if (atomeUserAuthorizations == null)
+                {
+                    atomeUserAuthorizations = ConfigurationClient.Get<AtomeUserAuthorizations>(
+                        confNamespace, confAtomeUserAuthorizationsKey, null);
+                    syncAuthorizations();
+                }
             }
+        }
+
+        public static void SetAtomeUserAuthorization(string user, string atome, bool auth)
+        {
+            lock (instance.authLock)
+            {
+                instance.atomeUserAuthorizations.Set(user, atome, auth);
+                instance.saveAuthorizations();
+            }
+        }
+
+        protected void saveAuthorizations()
+        {
+            ConfigurationClient.Set(confNamespace, confAtomeUserAuthorizationsKey,
+            atomeUserAuthorizations);
         }
 
         //sync with known user and atome
         private void syncAuthorizations()
         {
-            var oldData = atomesAuthorizedUsers;
-            var res = new DataTable();
-            res.Columns.Add("atome_name", typeof(string));
+            var oldData = atomeUserAuthorizations;
+            var users = from user in Membership.GetAllUsers().Cast<MembershipUser>()
+                            select user.UserName;
+            var atomes = from atome in AtomeService.GetAtomes()
+                         select atome.Name;
+            atomeUserAuthorizations = new AtomeUserAuthorizations(atomes, users);
 
-            foreach (MembershipUser user in Membership.GetAllUsers())
-                res.Columns.Add(user.UserName, typeof(bool));
-
-            foreach (var atome in AtomeService.GetAtomes())
-            {
-                var values = (from row in oldData.AsEnumerable()
-                              where (string)row["row_name"] == atome.Name
-                              select row.ItemArray).FirstOrDefault();
-
-                if (values == null)
-                {
-                    values = new object[res.Columns.Count];
-                    values[0] = atome.Name;
-                    for (int i = 1; i < values.Length; i++)
-                        values[i] = false;
-                }
-
-                var newRow = res.NewRow();
-                newRow.ItemArray = values;
-                res.Rows.Add(newRow);
-            }
-            atomesAuthorizedUsers = res;
+            if (oldData != null)
+                foreach (var atome in atomes)
+                    foreach (var user in users)
+                        atomeUserAuthorizations.Set(atome, user, oldData.GetOrDefault(atome, user));
+            
+            saveAuthorizations();
         }
     }
 }

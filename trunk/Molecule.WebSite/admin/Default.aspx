@@ -42,7 +42,7 @@
 
 <h2><asp:Label ID="Label1" runat="server" Text="<%$Resources:Users%>" /></h2>
     <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
-        AutoGenerateColumns="False" DataSourceID="usersObjectDataSource" 
+        AutoGenerateColumns="False" DataSourceID="usersObjectDataSource"
         DataKeyNames="UserName"><Columns><asp:BoundField DataField="UserName" HeaderText="User Name" ReadOnly="True" 
                 SortExpression="UserName" />
             <asp:CheckBoxField DataField="IsOnline" HeaderText="Is Online ?" ReadOnly="True" 
@@ -84,16 +84,39 @@
     </asp:CreateUserWizard>  
 
     <h2>Autorisations</h2>
-    <p>
-        <asp:GridView ID="GridView1" runat="server" 
-            DataSourceID="authorizationsDataSource">
-        </asp:GridView>
-        <asp:ObjectDataSource ID="authorizationsDataSource" runat="server" 
-            DataObjectTypeName="System.Data.DataTable" 
-            SelectMethod="GetAtomesAuthorizations" 
-            TypeName="Molecule.WebSite.Services.AtomeService" 
-            UpdateMethod="SetAtomesAuthorizations"></asp:ObjectDataSource>
-    </p>
+
+    <table>
+        <thead><tr><td>Atome</td>
+            <asp:Repeater ID="AuthHeaderRepeater"  runat="server">
+                <ItemTemplate>
+                    <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
+                </ItemTemplate>
+            </asp:Repeater>
+            </tr>
+        </thead>
+        <asp:ListView ID="AuthListView" runat="server">
+        <ItemTemplate>
+            <tr>
+                <td><asp:Label runat="server"><%# Eval("_1") %></asp:Label></td>
+                <asp:ListView runat="server" DataSource='<%# Eval("_2") %>'>
+                    <ItemTemplate>
+                        <td><asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# (bool)Container.DataItem %>' /></td>
+                    </ItemTemplate>
+                    <LayoutTemplate>
+                        <td id="itemPlaceHolder" runat="server"></td>
+                    </LayoutTemplate>
+                </asp:ListView>
+            </tr>
+        </ItemTemplate>
+        <LayoutTemplate>
+            <tbody>
+                <tr ID="itemPlaceHolder" runat="server">
+                </tr>
+            </tbody>
+        </LayoutTemplate>
+        </asp:ListView>
+    </table>
+
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
     Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
