@@ -4,10 +4,12 @@
 	width:82px;
 	position:relative;
 	vertical-align:top;
+	display:inline;
 }
 
 .PhotoLink img
 {
+	float: left;
 	border:solid 1px;
 }
 
@@ -57,7 +59,7 @@
 	margin:0px;
 	padding:0px;
 	list-style-type:none;
-	display: inline;
+	display: inline-block;
 }
 
 .BlockItem

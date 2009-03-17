@@ -53,9 +53,9 @@ namespace Molecule.WebSite.atomes.photo
             }
             else
                 PreviousPhotoLink.Visible = false;
-            MetadatasGridView.DataSource = CurrentPhoto.Metadatas;
-            MetadatasGridView.DataBind();
-			
+
+            FullSizePhoto.PhotoId = photoId;
+            FullSizePhoto.Metadatas = CurrentPhoto.Metadatas;
 
 			
             tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);

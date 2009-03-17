@@ -50,6 +50,15 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.PhotoLink PreviousPhotoLink;
         
         /// <summary>
+        /// FullSizePhoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Molecule.WebSite.atomes.photo.FullSizePhoto FullSizePhoto;
+        
+        /// <summary>
         /// tagList control.
         /// </summary>
         /// <remarks>
@@ -57,15 +66,6 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Molecule.WebSite.atomes.photo.TagList tagList;
-        
-        /// <summary>
-        /// MetadatasGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView MetadatasGridView;
         
         /// <summary>
         /// LocationText control.

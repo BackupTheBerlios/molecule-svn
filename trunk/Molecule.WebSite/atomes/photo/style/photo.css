@@ -1,29 +1,59 @@
 ﻿#photoCurrent
 {
-	text-align:center;
+	text-align: center;
 }
 
-#photoCurrent img
+#photo
 {
-	border:solid 1px;
+	float: left;
+	border: solid 1px;
 }
 
-#NextPhotoLink,
-#PreviousPhotoLink
+#NextPhotoLink, #PreviousPhotoLink
 {
-	float:right;
-	margin:10px;
-	margin-bottom:20px;
+	float: right;
+	margin: 10px;
+	margin-bottom: 20px;
+}
+
+#metadatas
+{
+	position: absolute;
+	display: none;
+	margin: 12px;
+	background-color: #000000;
+	opacity: 0.75;
+	filter: alpha(opacity=75); /*ie only*/
+	padding: 1ex;
+}
+
+#metadatas table
+{
+	border: none;
+}
+
+#metadatas table tr td:first-child
+{
+	text-align: right;
+	padding-right: 1ex;
+	font-weight: bold;
+	color: #f57900;
+}
+
+#metadatas table tr td
+{
+	text-align: left;
+	border: none;
+}
+
+p
+{
+	clear: both;
 }
 
 #map
 {
-	width:650px;
-	height:400px;
-	border:solid 1px;
-}
-
-#map img
-{	
-	border:none;
+	width: 650px;
+	height: 400px;
+	border: solid 1px;
 }

@@ -11,15 +11,15 @@
 namespace Molecule.WebSite.atomes.photo {
     
     
-    public partial class TagList {
+    public partial class FullSizePhoto {
         
         /// <summary>
-        /// list control.
+        /// MetadatasGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater list;
+        protected global::System.Web.UI.WebControls.GridView MetadatasGridView;
     }
 }
