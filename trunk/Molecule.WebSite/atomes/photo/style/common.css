@@ -4,12 +4,10 @@
 	width:82px;
 	position:relative;
 	vertical-align:top;
-	display:inline;
 }
 
 .PhotoLink img
 {
-	float: left;
 	border:solid 1px;
 }
 
