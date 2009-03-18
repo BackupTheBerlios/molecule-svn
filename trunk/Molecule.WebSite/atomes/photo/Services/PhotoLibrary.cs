@@ -65,7 +65,7 @@ namespace WebPhoto.Services
                 {
                     tempPhotos[photo.Id] = photo;
                 }
-                if(HasPhoto(tag))
+                if (HasPhoto(tag))
                     tags[tag.Id] = tag;
             }
             
@@ -122,9 +122,14 @@ namespace WebPhoto.Services
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
             if (!String.IsNullOrEmpty(tagId))
-                return instance.tags[tagId].ChildTags.Where(t => HasPhoto(t)).Cast<ITagInfo>();
+                return getTagsByTag(instance.tags[tagId]).Cast<ITagInfo>();
             else
                 return GetTags();
+        }
+
+        private static IEnumerable<ITag> getTagsByTag(ITag tag)
+        {
+            return tag.ChildTags.Where(t => HasPhoto(t));
         }
 
         public static IEnumerable<ITagInfo> GetTagHierarchy(string tagId)
@@ -168,7 +173,7 @@ namespace WebPhoto.Services
         private static IPhotoInfo getFirstPhotoByTag(ITag tag)
         {
             var res = tag.Photos.FirstOrDefault();
-            return res ?? getFirstPhotoByTag(tag.ChildTags.First());
+            return res ?? getFirstPhotoByTag(getTagsByTag(tag).FirstOrDefault());
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
