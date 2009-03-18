@@ -5,15 +5,15 @@
 
 #photo
 {
-	float: left;
+	display:inline-block;
 	border: solid 1px;
 }
 
 #NextPhotoLink, #PreviousPhotoLink
 {
-	float: right;
-	margin: 10px;
-	margin-bottom: 20px;
+	display:inline-block;
+	margin-bottom:10px;
+	margin-top:10px;
 }
 
 #metadatas

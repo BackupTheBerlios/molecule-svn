@@ -21,9 +21,10 @@
         </Scripts>
     </asp:ScriptManagerProxy>
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
-    <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
-    <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
-    <div id="photoCurrent">        
+    <div id="photoCurrent">   
+        <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
+        <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
+        <br />
         <photo:Photo ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
         <div id="photoDescriptionContainer">
             <p>
