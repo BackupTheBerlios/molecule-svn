@@ -152,5 +152,13 @@ namespace Molecule.WebSite.Services
         {
             instance.saveAuthorizations();
         }
+
+        public static void UpdateAtomeUserAuthorizations()
+        {
+            lock (instance.authLock)
+            {
+                instance.atomeUserAuthorizations = null;
+            }
+        }
     }
 }

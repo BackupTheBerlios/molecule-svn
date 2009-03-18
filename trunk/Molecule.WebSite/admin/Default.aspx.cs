@@ -71,6 +71,7 @@ namespace Molecule.WebSite.Admin
         protected void createUserWizard_CreatedUser(object sender, EventArgs e)
         {
             usersGridView.DataBind();
+            AdminService.UpdateAtomeUserAuthorizations();
         }
 
         protected void ButtonReset_Click(object sender, EventArgs e)
