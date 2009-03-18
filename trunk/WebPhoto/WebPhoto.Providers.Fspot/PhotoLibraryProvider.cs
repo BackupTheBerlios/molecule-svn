@@ -42,7 +42,7 @@ namespace WebPhoto.Providers.Fspot
 		private static string fspotDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".gnome2/f-spot/photos.db");	
 		private static  string connectionString;		
 		private List<Tag> rootTags;
-		private static System.Collections.Generic.Dictionary<string,Photo> photos = new System.Collections.Generic.Dictionary<string,Photo>();		
+		private static System.Collections.Generic.Dictionary<string,Photo> photos;		
 		public PhotoLibraryProvider()
 		{
 		}		
@@ -72,6 +72,8 @@ namespace WebPhoto.Providers.Fspot
 				log.Info("Initialize fspot photo provider");
 			}
 			
+            photos = new System.Collections.Generic.Dictionary<string,Photo>();			
+
 			rootTags = new List<Tag>();
 			SqliteConnection conn = null;
 			try
