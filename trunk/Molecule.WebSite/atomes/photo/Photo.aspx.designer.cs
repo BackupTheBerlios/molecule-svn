@@ -68,15 +68,6 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagList tagList;
         
         /// <summary>
-        /// LocationText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LocationText;
-        
-        /// <summary>
         /// PhotoMap control.
         /// </summary>
         /// <remarks>

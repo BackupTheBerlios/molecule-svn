@@ -30,10 +30,8 @@
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
             <h2>Tags</h2>
-            <photo:TagList runat="server" ID="tagList" />
-            <h2><asp:Label ID="LocationText" runat="server">Location</asp:Label></h2>
-            <photo:Map ID="PhotoMap" runat="server" Latitude="47.809944" Longitude="-1.9465">
-            </photo:Map>
+            <photo:TagList runat="server" ID="tagList" />            
+            <photo:Map ID="PhotoMap" runat="server" />
         </div>
     </div>
 </asp:Content>

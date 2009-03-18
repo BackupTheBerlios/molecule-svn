@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -426,6 +426,7 @@
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
     <Content Include="atomes\photo\FullSizePhoto.ascx" />
+    <Content Include="atomes\photo\images\frame.png" />
     <Content Include="atomes\photo\Map.ascx" />
     <Content Include="atomes\photo\MonthCalendar.aspx" />
     <Content Include="atomes\photo\Default.aspx" />
@@ -468,7 +469,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\bloup\images\refresh.png" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NeatUpload\NeatUpload.js" />
     <Content Include="NeatUpload\Progress.aspx" />
     <Content Include="NeatUpload\Progress.js" />
@@ -504,6 +507,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

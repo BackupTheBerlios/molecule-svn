@@ -65,12 +65,11 @@ namespace Molecule.WebSite.atomes.photo
 				this.PhotoMap.Visible = true;
 				this.PhotoMap.Latitude =  CurrentPhoto.Latitude.Value;
 				this.PhotoMap.Longitude =  CurrentPhoto.Longitude.Value;
+                this.PhotoMap.ThumbnailUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Thumbnail);
 			}
 			else
 			{
-				this.PhotoMap.Visible = false;
-				this.LocationText.Visible = false;
-				
+				this.PhotoMap.Visible = false;				
 			}	
         }
 

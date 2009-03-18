@@ -22,5 +22,8 @@ namespace Molecule.WebSite.atomes.photo
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
+        public string ThumbnailUrl { get; set; }
+
     }
 }
