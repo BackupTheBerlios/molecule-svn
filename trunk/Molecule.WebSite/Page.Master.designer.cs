@@ -14,24 +14,6 @@ namespace Molecule.WebSite {
     public partial class Page {
         
         /// <summary>
-        /// favicon1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlLink favicon1;
-        
-        /// <summary>
-        /// favicon2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlLink favicon2;
-        
-        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>
