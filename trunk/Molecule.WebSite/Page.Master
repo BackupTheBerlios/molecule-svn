@@ -63,9 +63,12 @@
                     
                     <ul>
                     <asp:Repeater runat="server" DataSourceID="SiteMapDataSource">
-                    <ItemTemplate>
-                        <li><asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
+                        <ItemTemplate>
+                            <asp:PlaceHolder runat="server" Visible='<%# AtomeService.IsCurrentUserAuthorized((string)Eval("Url")) %>'>
+                            <li><asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
+                             </asp:PlaceHolder>
                         </ItemTemplate>
+                        
                     </asp:Repeater>
                     </ul>
                     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />

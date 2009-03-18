@@ -84,7 +84,7 @@ namespace Molecule.WebSite.Services
             return instance.atomes.Cast<IAtomeInfo>();
         }
 
-        static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>\w+)/.*$", RegexOptions.Compiled);
+        static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>[^/]+)", RegexOptions.Compiled);
 
         public static bool IsAtomeVirtualPath(string virtualPath)
         {
@@ -127,7 +127,20 @@ namespace Molecule.WebSite.Services
                    select atome;
         }
 
-        internal static bool IsCurrentUserAuthorized()
+        public static bool IsCurrentUserAuthorized(string url)
+        {
+            var atome = GetAtomeByVirtualPath(url);
+            if (atome == null)
+                return true; //only handle atome authorizations
+
+            var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
+            if (currentUser == null)
+                return false;
+
+            return AdminService.AtomeUserAuthorizations.Get(atome.Name, currentUser).Authorized;
+        }
+
+        public static bool IsCurrentUserAuthorized()
         {
             var currentAtome = CurrentAtome;
             if (currentAtome == null)
