@@ -30,7 +30,7 @@
             <p>
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
-            <h2>Tags</h2>
+            
             <photo:TagList runat="server" ID="tagList" />            
             <photo:Map ID="PhotoMap" runat="server" />
         </div>
