@@ -77,33 +77,6 @@ namespace Molecule.WebSite {
         protected global::System.Web.UI.WebControls.Panel menuContent;
         
         /// <summary>
-        /// welcomeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label welcomeLabel;
-        
-        /// <summary>
-        /// LoginName1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName LoginName1;
-        
-        /// <summary>
-        /// menu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater menu;
-        
-        /// <summary>
         /// SiteMapDataSource control.
         /// </summary>
         /// <remarks>
@@ -111,15 +84,6 @@ namespace Molecule.WebSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource;
-        
-        /// <summary>
-        /// loginStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus loginStatus;
         
         /// <summary>
         /// logsView control.

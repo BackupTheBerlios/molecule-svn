@@ -10,12 +10,12 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="mainContent">
     <h2>
         <asp:Panel runat="server" ID="tabDefault">
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:General%>" />
+            <asp:HyperLink runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:General%>" />
         </asp:Panel>
-        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="AtomeDataSource">
+        <asp:Repeater runat="server" DataSourceID="AtomeDataSource">
             <ItemTemplate>
-                <asp:Panel ID="tabTitle" runat="server" CssClass='<%# AtomeService.CurrentPathIsAtome && Container.DataItem ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="<%# ((IAtomeInfo)Container.DataItem).PreferencesPagePath %>"
+                <asp:Panel runat="server" CssClass='<%# AtomeService.CurrentPathIsAtome && Container.DataItem ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
+                    <asp:HyperLink runat="server" NavigateUrl="<%# ((IAtomeInfo)Container.DataItem).PreferencesPagePath %>"
                         Text="<%# ((IAtomeInfo)Container.DataItem).Name %>" />
                 </asp:Panel>
             </ItemTemplate>

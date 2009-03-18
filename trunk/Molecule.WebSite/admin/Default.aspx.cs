@@ -35,22 +35,29 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using Molecule.WebSite.Services;
 using AjaxControlToolkit;
+using System.Collections.Generic;
+using Mono.Rocks;
 
 namespace Molecule.WebSite.Admin
 {
     public partial class Default : System.Web.UI.Page
     {
-
+        IEnumerable<Tuple<string, IEnumerable<AtomeUserAuthorization>>> auths;
+        
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
-               
-                AuthListView.DataSource = AtomeService.AtomeUserAuthorizations.GetAll();
+                AuthListView.DataSource = AdminService.AtomeUserAuthorizations;
                 AuthListView.DataBind();
-                AuthHeaderRepeater.DataSource = AtomeService.AtomeUserAuthorizations.Users;
+                AuthHeaderRepeater.DataSource = AdminService.AtomeUserAuthorizations.Users;
                 AuthHeaderRepeater.DataBind();
             }
         }
@@ -75,6 +82,18 @@ namespace Molecule.WebSite.Admin
         protected void saveTitleButton_Click(object sender, EventArgs e)
         {
             AdminService.MoleculeTitle = this.titleTextBox.Text;
+        }
+
+        protected void OnAuthListView_CheckedChanged(object sender, EventArgs e)
+        {
+            var cbx = ((CheckBox)sender);
+            var atomeUser = cbx.ToolTip.Split(',');
+            AdminService.AtomeUserAuthorizations.Set(atomeUser[0], atomeUser[1], cbx.Checked);
+        }
+
+        protected void save_onclick(object sender, EventArgs e)
+        {
+            AdminService.SaveAtomeUserAuthorizations();
         }
     }
 }

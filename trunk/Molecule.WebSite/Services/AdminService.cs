@@ -33,6 +33,7 @@ namespace Molecule.WebSite.Services
 
         static PagesSection pagesSection = (PagesSection)WebConfigurationManager.GetWebApplicationSection("system.web/pages");
         static string cssVariablesKeyConf = "CssVariables." + pagesSection.Theme;
+        const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
         const string confNamespace = "Molecule.Admin";
 
         static object cssVariablesLock = new object();
@@ -103,6 +104,53 @@ namespace Molecule.WebSite.Services
                 return;
             instance.moleculeTitle = value;
             Configuration.ConfigurationClient.Set<string>("Molecule.WebSite", "Title", value);
+        }
+
+        private AtomeUserAuthorizations atomeUserAuthorizations;
+        private object authLock = new object();
+
+        public static AtomeUserAuthorizations AtomeUserAuthorizations
+        {
+            get
+            {
+                if (instance.atomeUserAuthorizations == null)
+                    instance.initAuthorizations();
+
+                return instance.atomeUserAuthorizations;
+            }
+        }
+
+        private void initAuthorizations()
+        {
+            lock (authLock)
+            {
+                if (atomeUserAuthorizations == null)
+                {
+                    var oldData = ConfigurationClient.Get<AtomeUserAuthorizations>(
+                        confNamespace, confAtomeUserAuthorizationsKey, null);
+                    atomeUserAuthorizations = new AtomeUserAuthorizations(oldData);
+                }
+            }
+        }
+
+        public static void SetAtomeUserAuthorization(string user, string atome, bool auth)
+        {
+            lock (instance.authLock)
+            {
+                instance.atomeUserAuthorizations.Set(user, atome, auth);
+                instance.saveAuthorizations();
+            }
+        }
+
+        protected void saveAuthorizations()
+        {
+            ConfigurationClient.Set(confNamespace, confAtomeUserAuthorizationsKey,
+            atomeUserAuthorizations);
+        }
+
+        public static void SaveAtomeUserAuthorizations()
+        {
+            instance.saveAuthorizations();
         }
     }
 }

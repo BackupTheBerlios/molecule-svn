@@ -40,7 +40,7 @@
     <asp:UpdateProgress ID="UpdateProgress" runat="server">
             <ProgressTemplate>
                 <div id="updateProgress" class="updatePanel">
-                    <asp:Label runat="server" ID="chargingLabel" Text="<%$ Resources:Loading %>" />
+                    <asp:Label runat="server" Text="<%$ Resources:Loading %>" />
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
@@ -57,19 +57,19 @@
         <div id="sideBar">
             <div id="menuPanel">
                 <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
-                    <asp:Label runat="server" ID="welcomeLabel" Text="<%$Resources:Welcome%>" />
-                    <asp:LoginName ID="LoginName1" runat="server" />
+                    <asp:Label runat="server" Text="<%$Resources:Welcome%>" />
+                    <asp:LoginName runat="server" />
                     !
                     
                     <ul>
-                    <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource">
+                    <asp:Repeater runat="server" DataSourceID="SiteMapDataSource">
                     <ItemTemplate>
                         <li><asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
                         </ItemTemplate>
                     </asp:Repeater>
                     </ul>
                     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
-                    <asp:LoginStatus ID="loginStatus" runat="server" />
+                    <asp:LoginStatus runat="server" />
                 </asp:Panel>
                <%-- <asp:TextBox id="logTextBox" TextMode="multiline" runat="server" /> --%>
             </div>

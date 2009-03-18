@@ -95,7 +95,7 @@ namespace Molecule.WebSite.Services
         {
             get
             {
-                
+
                 return GetAtomeByVirtualPath(HttpContext.Current.Request.Path);
             }
         }
@@ -137,71 +137,7 @@ namespace Molecule.WebSite.Services
             if (currentUser == null)
                 return false;
 
-            //todo use atomesAuthorizedUsers
-            return true;
-        }
-
-        private AtomeUserAuthorizations atomeUserAuthorizations;
-        private object authLock = new object();
-
-        const string confNamespace = "Molecule";
-        const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
-
-        public static IAtomeUserAuthorizations AtomeUserAuthorizations
-        {
-            get
-            {
-                if (instance.atomeUserAuthorizations == null)
-                    instance.initAuthorizations();
-
-                return instance.atomeUserAuthorizations;
-            }
-        }
-
-        private void initAuthorizations()
-        {
-            lock (authLock)
-            {
-                if (atomeUserAuthorizations == null)
-                {
-                    atomeUserAuthorizations = ConfigurationClient.Get<AtomeUserAuthorizations>(
-                        confNamespace, confAtomeUserAuthorizationsKey, null);
-                    syncAuthorizations();
-                }
-            }
-        }
-
-        public static void SetAtomeUserAuthorization(string user, string atome, bool auth)
-        {
-            lock (instance.authLock)
-            {
-                instance.atomeUserAuthorizations.Set(user, atome, auth);
-                instance.saveAuthorizations();
-            }
-        }
-
-        protected void saveAuthorizations()
-        {
-            ConfigurationClient.Set(confNamespace, confAtomeUserAuthorizationsKey,
-            atomeUserAuthorizations);
-        }
-
-        //sync with known user and atome
-        private void syncAuthorizations()
-        {
-            var oldData = atomeUserAuthorizations;
-            var users = from user in Membership.GetAllUsers().Cast<MembershipUser>()
-                            select user.UserName;
-            var atomes = from atome in AtomeService.GetAtomes()
-                         select atome.Name;
-            atomeUserAuthorizations = new AtomeUserAuthorizations(atomes, users);
-
-            if (oldData != null)
-                foreach (var atome in atomes)
-                    foreach (var user in users)
-                        atomeUserAuthorizations.Set(atome, user, oldData.GetOrDefault(atome, user));
-            
-            saveAuthorizations();
+            return AdminService.AtomeUserAuthorizations.Get(currentAtome.Name, currentUser).Authorized;
         }
     }
 }

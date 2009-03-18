@@ -97,10 +97,14 @@
         <asp:ListView ID="AuthListView" runat="server">
         <ItemTemplate>
             <tr>
-                <td><asp:Label runat="server"><%# Eval("_1") %></asp:Label></td>
-                <asp:ListView runat="server" DataSource='<%# Eval("_2") %>'>
+                <td><asp:Label runat="server"><%# Eval("Atome") %></asp:Label></td>
+                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>'>
                     <ItemTemplate>
-                        <td><asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# (bool)Container.DataItem %>' /></td>
+                        <td>
+                            <asp:CheckBox runat="server"
+                            ToolTip='<%# Eval("Atome") +","+ Eval("User") %>' Checked='<%# Eval("Authorized") %>'
+                             OnCheckedChanged="OnAuthListView_CheckedChanged" />
+                        </td>
                     </ItemTemplate>
                     <LayoutTemplate>
                         <td id="itemPlaceHolder" runat="server"></td>
@@ -116,6 +120,7 @@
         </LayoutTemplate>
         </asp:ListView>
     </table>
+    <asp:Button Text="Save" runat="server" OnClick="save_onclick" />
 
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>

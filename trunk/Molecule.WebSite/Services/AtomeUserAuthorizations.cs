@@ -5,83 +5,105 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using Mono.Rocks;
+using System.Web.Security;
 
 namespace Molecule.WebSite.Services
 {
-    public interface IAtomeUserAuthorizations
-    {
-        IEnumerable<string> Users { get; }
-        IEnumerable<string> Atomes { get; }
-        bool Get(string atome, string user);
-        IEnumerable<bool> GetByAtome(string atome);
-        IEnumerable<Tuple<string, IEnumerable<bool>>> GetAll();
-    }
-
     [Serializable]
-    public class AtomeUserAuthorizations : IAtomeUserAuthorizations
+    public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>
     {
+        const bool defaultAuthorization = true;
+        IEnumerable<string> atomes;
+        IEnumerable<string> users;
+
+        //only used directly by Serialization framework
         public AtomeUserAuthorizations()
         {
+            this.atomes = from atome in AtomeService.GetAtomes()
+                          select atome.Name;
+            this.users = from user in Membership.GetAllUsers().Cast<MembershipUser>()
+                         select user.UserName;
         }
 
-        public AtomeUserAuthorizations(IEnumerable<string> atomes, IEnumerable<string> users)
+        public AtomeUserAuthorizations(AtomeUserAuthorizations oldData)
+            : this()
         {
-            Atomes = atomes.ToArray();
-            Users = users.ToArray();
-            Authorizations = new bool[Atomes.Length][];
-            for(int i = 0; i< Authorizations.Length; i++)
-                Authorizations[i] = new bool[Users.Length];
+            foreach(var atome in atomes)
+            {
+                var userAuths = new List<AtomeUserAuthorization>();
+                foreach (var user in users)
+                {
+                    var auth = oldData != null ? oldData.TryGet(atome, user) : null;
+                    if(auth == null)
+                        auth = new AtomeUserAuthorization(atome, user, defaultAuthorization);
+                    userAuths.Add(auth);
+                }
+                Add(new AtomeUserAuthorizationItem(){ Atome = atome, Authorizations = userAuths});
+            }
         }
 
-        public string[] Atomes { get; set; }
-        public string[] Users { get; set; }
-        public bool[][] Authorizations { get; set; }
-
-        public bool Get(string atome, string user)
+        public AtomeUserAuthorization Get(string atome, string user)
         {
-            int i = Atomes.IndexOf(atome);
-            int j = Users.IndexOf(user);
-            return Authorizations[i][j];
+            return this.First(t => t.Atome == atome).Authorizations.First(aua => aua.User == user);
         }
 
-        public IEnumerable<Tuple<string, IEnumerable<bool>>> GetAll()
-        {
-            return from atome in Atomes
-                   select new Tuple<string, IEnumerable<bool>>(atome, GetByAtome(atome));
-        }
 
-        public IEnumerable<bool> GetByAtome(string atome)
+        public AtomeUserAuthorization TryGet(string atome, string user)
         {
-            return Authorizations[Atomes.IndexOf(atome)];
-        }
-
-        public bool GetOrDefault(string atome, string user)
-        {
-            if (Atomes.Contains(atome) && Users.Contains(user))
-                return Get(atome, user);
+            if(this.Any(t => t.Atome == atome))
+                return this.First(t => t.Atome == atome)
+                    .Authorizations.FirstOrDefault(aua => aua.User == user);
             else
-                return false;
+                return null;
         }
 
         public void Set(string atome, string user, bool value)
         {
-            int i = Atomes.IndexOf(atome);
-            int j = Users.IndexOf(user);
-            Authorizations[i][j] = value;
+            Get(atome, user).Authorized = value;
+        }
+
+        public void Set(AtomeUserAuthorization auth)
+        {
+            Set(auth.Atome, auth.User, auth.Authorized);
         }
 
         #region IAtomeUserAuthorizations Members
 
-        IEnumerable<string> IAtomeUserAuthorizations.Users
+        public IEnumerable<string> Users
         {
-            get { return Users; }
+            get { return users; }
         }
 
-        IEnumerable<string> IAtomeUserAuthorizations.Atomes
+        public IEnumerable<string> Atomes
         {
-            get { return Atomes; }
+            get { return atomes; }
         }
 
         #endregion
+    }
+
+    [Serializable]
+    public class AtomeUserAuthorizationItem
+    {
+        public string Atome { get; set; }
+        public List<AtomeUserAuthorization> Authorizations { get; set; }
+    }
+
+    [Serializable]
+    public class AtomeUserAuthorization
+    {
+        public AtomeUserAuthorization()
+        {
+        }
+
+        public AtomeUserAuthorization(string atome, string user, bool auth)
+        {
+            Atome = atome;
+            User = user;
+            Authorized = auth;
+        }
+        public string User { get; set; }
+        public string Atome { get; set; }
+        public bool Authorized { get; set; }
     }
 }
