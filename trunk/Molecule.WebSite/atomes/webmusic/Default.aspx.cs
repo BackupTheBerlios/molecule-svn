@@ -116,7 +116,8 @@ namespace WebMusic
             
             //arl.DataBind();
             Session[sessionCurrentArtist] = (string)arl.SelectedValue;
-            ScriptManager.GetCurrent(this).AddHistoryPoint("art", arl.SelectedValue.ToString());
+            ScriptManager.GetCurrent(this).AddHistoryPoint("art", arl.SelectedValue.ToString()
+                , "Music - " + arl.SelectedValue);
         }
 
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,7 +125,8 @@ namespace WebMusic
             
             all.DataBind();
             Session[sessionCurrentAlbum] = (string)all.SelectedValue;
-            ScriptManager.GetCurrent(this).AddHistoryPoint("alb", all.SelectedValue.ToString());
+            ScriptManager.GetCurrent(this).AddHistoryPoint("alb", all.SelectedValue.ToString()
+                , "Music - " + all.SelectedValue);
         }
 
         protected void ScriptManagerProxy_Navigate(object sender, HistoryEventArgs e)
