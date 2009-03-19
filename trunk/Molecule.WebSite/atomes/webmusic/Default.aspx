@@ -14,7 +14,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
+    <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server" 
+        onnavigate="ScriptManagerProxy_Navigate">
         <Scripts>
             <asp:ScriptReference Path="scripts/default.js" />
             <asp:ScriptReference Path="scripts/soundmanager2.js" />
@@ -110,7 +111,7 @@
                         </asp:ObjectDataSource>
                         </ContentTemplate>
                         <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="arl" EventName="ItemCommand" />
+                        <asp:AsyncPostBackTrigger ControlID="arl" EventName="DataBinding" />
                         </Triggers>
                         </asp:UpdatePanel>
                     </div>
@@ -189,7 +190,7 @@
                 </table>
                 </ContentTemplate>
                 <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="all" EventName="ItemCommand" />
+                <asp:AsyncPostBackTrigger ControlID="all" EventName="DataBinding" />
                 </Triggers>
     </asp:UpdatePanel>
             </div>
