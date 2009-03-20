@@ -65,7 +65,7 @@ namespace WebPhoto.Providers.Stub
         {
             allPhotos = (from nb in nbPhotos.Times()
                      select new Photo()).ToList();
-            rootTags = nbRootTags.Times().Select(i => new Tag(i, null));
+            rootTags = nbRootTags.Times().Select(i => new Tag(i, null)).ToList();
         }
 
         public IEnumerable<string> TagsRecentlyAdded
@@ -102,13 +102,13 @@ namespace WebPhoto.Providers.Stub
 
                 int nbItem = parentTag != null ? rand.Next(nbMaxPhotosByTags - 1) + 1 : 0;
 
-                Photos = from nb in nbItem.Times()
-                         select allPhotos[rand.Next(nbPhotos)].AddTag(this);
+                Photos = (from nb in nbItem.Times()
+                         select allPhotos[rand.Next(nbPhotos)].AddTag(this)).ToList();
 
                 int nbChilds = depth < maxDepth ? nbMaxSubTagsByTags : 0;
 
-                ChildTags = from nb in nbChilds.Times()
-                            select new Tag(nb, this) as ITag;
+                ChildTags = (from nb in nbChilds.Times()
+                            select new Tag(nb, this) as ITag).ToList();
             }
             #region ITag Members
 
