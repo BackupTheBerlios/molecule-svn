@@ -113,32 +113,14 @@ namespace WebMusic
 
         protected void ArtistList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //arl.DataBind();
+            arl.DataBind();
             Session[sessionCurrentArtist] = (string)arl.SelectedValue;
-            ScriptManager.GetCurrent(this).AddHistoryPoint("art", arl.SelectedValue.ToString()
-                , "Music - " + arl.SelectedValue);
         }
 
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             all.DataBind();
             Session[sessionCurrentAlbum] = (string)all.SelectedValue;
-            ScriptManager.GetCurrent(this).AddHistoryPoint("alb", all.SelectedValue.ToString()
-                , "Music - " + all.SelectedValue);
-        }
-
-        protected void ScriptManagerProxy_Navigate(object sender, HistoryEventArgs e)
-        {
-            if (e.State.AllKeys.Contains("art"))
-            {
-                Session[sessionCurrentArtist] = (string)e.State["art"];
-            }
-            if (e.State.AllKeys.Contains("alb"))
-            {
-                Session[sessionCurrentAlbum] = (string)e.State["alb"];
-            }
         }
     }
 }

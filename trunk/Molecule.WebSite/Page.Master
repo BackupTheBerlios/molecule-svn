@@ -36,7 +36,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager runat="server" ID="MasterScriptManager" EnableHistory="true" />
+    <asp:ScriptManager runat="server" ID="MasterScriptManager" />
     <asp:UpdateProgress ID="UpdateProgress" runat="server">
             <ProgressTemplate>
                 <div id="updateProgress" class="updatePanel">
