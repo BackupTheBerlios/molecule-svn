@@ -23,6 +23,15 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::System.Web.UI.ScriptManagerProxy ScriptManagerProxy;
         
         /// <summary>
+        /// updateHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::nStuff.UpdateControls.UpdateHistory updateHistory;
+        
+        /// <summary>
         /// TagHierarchy control.
         /// </summary>
         /// <remarks>
@@ -32,13 +41,22 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagHierarchy TagHierarchy;
         
         /// <summary>
+        /// mainUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::nStuff.UpdateControls.StyledUpdatePanel mainUP;
+        
+        /// <summary>
         /// PreviousPhotoLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Molecule.WebSite.atomes.photo.PhotoLink PreviousPhotoLink;
+        protected global::System.Web.UI.WebControls.ImageButton PreviousPhotoLink;
         
         /// <summary>
         /// NextPhotoLink control.
@@ -47,7 +65,7 @@ namespace Molecule.WebSite.atomes.photo {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Molecule.WebSite.atomes.photo.PhotoLink NextPhotoLink;
+        protected global::System.Web.UI.WebControls.ImageButton NextPhotoLink;
         
         /// <summary>
         /// FullSizePhoto control.
@@ -57,6 +75,15 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Molecule.WebSite.atomes.photo.FullSizePhoto FullSizePhoto;
+        
+        /// <summary>
+        /// LabelDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelDescription;
         
         /// <summary>
         /// tagList control.
