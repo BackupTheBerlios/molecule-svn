@@ -56,6 +56,9 @@
         </div>
         <div id="sideBar">
             <div id="menuPanel">
+
+
+
                 <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
                     <asp:Label runat="server" Text="<%$Resources:Welcome%>" />
                     <asp:LoginName runat="server" />
@@ -74,23 +77,46 @@
                     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
                     <asp:LoginStatus runat="server" />
                 </asp:Panel>
+			   </asp:UpdatePanel>
+
+
                <%-- <asp:TextBox id="logTextBox" TextMode="multiline" runat="server" /> --%>
             </div>
-            <div id="logPanel">
-                <ul>
-                    <asp:Repeater ID="logsView" runat="server">
-                        <HeaderTemplate>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <li>
-                                <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %>
-                                :
-                                <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %></li>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                        </FooterTemplate>
-                    </asp:Repeater>
-                </ul>
+            <div id="logPanel">	  
+            <ul>
+               <asp:Timer ID="updateLogPanelTimer"  OnTick="updateLogPanel_Tick" runat="server" Interval="10000" />
+               <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                   <Triggers>
+                       <asp:AsyncPostBackTrigger ControlID="updateLogPanelTimer" />
+                   </Triggers>          
+                   <ContentTemplate>
+                       <asp:ListView ID="logsView" OnDataBound="updateLogPanel_DataBound" runat="server">
+                           <LayoutTemplate>
+                	           <asp:PlaceHolder ID="itemPlaceholder" runat="server" />    	        
+                	       </LayoutTemplate>
+                	       <ItemTemplate>
+                               <li>
+                                   <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %>
+                                   :
+                                   <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %>
+                               </li>                	        
+                	       </ItemTemplate>
+                	       <EmptyDataTemplate>
+                	           <li>No events to show.</li>
+                	       </EmptyDataTemplate>
+                	    </asp:ListView>
+             		    <asp:DataPager  ID="logsViewDataPager" PageSize="4" pagedControlId="logsView" runat="server">   
+             		        <Fields>
+                                <asp:NextPreviousPagerField ButtonType="Link"
+                                                            ShowNextPageButton="false" ShowPreviousPageButton="True" />
+                                <asp:NumericPagerField />
+                                <asp:NextPreviousPagerField ButtonType="Link"
+                                                            ShowPreviousPageButton="false" ShowNextPageButton="True" />
+                            </Fields>
+                        </asp:DataPager>
+                    </ContentTemplate>    
+               </asp:UpdatePanel>    
+            </ul>
             </div>
         </div>
         <div id="maincontentPanel">

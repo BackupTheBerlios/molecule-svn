@@ -50,5 +50,17 @@ namespace Molecule.WebSite
             this.logsView.DataBind();
 			
         }
+		
+        protected void updateLogPanel_Tick(object sender, EventArgs e)
+        {
+			Console.WriteLine("updatePanel");
+        }
+		
+		protected void updateLogPanel_DataBound(object sender, EventArgs e)
+        {
+            logsViewDataPager.Visible = (logsViewDataPager.PageSize < logsViewDataPager.TotalRowCount);
+        }
+		
+		
     }
 }
