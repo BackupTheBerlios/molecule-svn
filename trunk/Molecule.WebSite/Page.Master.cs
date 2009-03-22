@@ -45,22 +45,19 @@ namespace Molecule.WebSite
                 if (AtomeService.CurrentPathIsAtome)
                     Page.Title = AtomeService.CurrentAtome.Name;
                 else Page.Title = "Molecule";
-			
+
+
             this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
             this.logsView.DataBind();
-			
+
+
         }
-		
-        protected void updateLogPanel_Tick(object sender, EventArgs e)
-        {
-			Console.WriteLine("updatePanel");
-        }
-		
-		protected void updateLogPanel_DataBound(object sender, EventArgs e)
+
+        protected void updateLogPanel_DataBound(object sender, EventArgs e)
         {
             logsViewDataPager.Visible = (logsViewDataPager.PageSize < logsViewDataPager.TotalRowCount);
         }
-		
-		
+
+
     }
 }

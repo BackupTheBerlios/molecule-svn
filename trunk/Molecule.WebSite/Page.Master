@@ -23,7 +23,8 @@
  --%>
 
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="Molecule.WebSite.Page"
-    EnableTheming="true"%>
+    EnableTheming="true" %>
+
 <%@ Import Namespace="Molecule.WebSite.Services" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -38,85 +39,87 @@
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
     <asp:UpdateProgress ID="UpdateProgress" runat="server">
-            <ProgressTemplate>
-                <div id="updateProgress" class="updatePanel">
-                    <asp:Label runat="server" Text="<%$ Resources:Loading %>" />
-                </div>
-            </ProgressTemplate>
-        </asp:UpdateProgress>
-        <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender1" runat="server"
-    TargetControlID="UpdateProgress" HorizontalSide="Left" VerticalSide="Top" HorizontalOffset="0">
-</cc1:AlwaysVisibleControlExtender>
+        <ProgressTemplate>
+            <div id="updateProgress" class="updatePanel">
+                <asp:Label runat="server" Text="<%$ Resources:Loading %>" />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender1" runat="server"
+        TargetControlID="UpdateProgress" HorizontalSide="Left" VerticalSide="Top" HorizontalOffset="0">
+    </cc1:AlwaysVisibleControlExtender>
     <div id="pagePanel">
         <div id="header">
-        <div id="moleculeTitle">
-            <div id="logo"><img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" /></div>
-                <h1><%= AdminService.MoleculeTitle %></h1></div>
-        <div id="pageTitle"><h1><asp:Label ID="pageTitleLabel" runat="server"><%=Page.Title%></asp:Label></h1></div>
+            <div id="moleculeTitle">
+                <div id="logo">
+                    <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" /></div>
+                <h1>
+                    <%= AdminService.MoleculeTitle %></h1>
+            </div>
+            <div id="pageTitle">
+                <h1>
+                    <asp:Label ID="pageTitleLabel" runat="server"><%=Page.Title%></asp:Label></h1>
+            </div>
         </div>
         <div id="sideBar">
             <div id="menuPanel">
-
-
-
                 <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
                     <asp:Label runat="server" Text="<%$Resources:Welcome%>" />
                     <asp:LoginName runat="server" />
                     !
-                    
                     <ul>
-                    <asp:Repeater runat="server" DataSourceID="SiteMapDataSource">
-                        <ItemTemplate>
-                            <asp:PlaceHolder runat="server" Visible='<%# AtomeService.IsCurrentUserAuthorized((string)Eval("Url")) %>'>
-                            <li><asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
-                             </asp:PlaceHolder>
-                        </ItemTemplate>
-                        
-                    </asp:Repeater>
+                        <asp:Repeater runat="server" DataSourceID="SiteMapDataSource">
+                            <ItemTemplate>
+                                <asp:PlaceHolder runat="server" Visible='<%# AtomeService.IsCurrentUserAuthorized((string)Eval("Url")) %>'>
+                                    <li>
+                                        <asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
+                                </asp:PlaceHolder>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </ul>
                     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
                     <asp:LoginStatus runat="server" />
                 </asp:Panel>
-			   </asp:UpdatePanel>
-
-
-               <%-- <asp:TextBox id="logTextBox" TextMode="multiline" runat="server" /> --%>
             </div>
-            <div id="logPanel">	  
-            <ul>
-               <asp:Timer ID="updateLogPanelTimer"  OnTick="updateLogPanel_Tick" runat="server" Interval="10000" />
-               <asp:UpdatePanel runat="server" UpdateMode="Conditional">
-                   <Triggers>
-                       <asp:AsyncPostBackTrigger ControlID="updateLogPanelTimer" />
-                   </Triggers>          
-                   <ContentTemplate>
-                       <asp:ListView ID="logsView" OnDataBound="updateLogPanel_DataBound" runat="server">
-                           <LayoutTemplate>
-                	           <asp:PlaceHolder ID="itemPlaceholder" runat="server" />    	        
-                	       </LayoutTemplate>
-                	       <ItemTemplate>
-                               <li>
-                                   <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %>
-                                   :
-                                   <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %>
-                               </li>                	        
-                	       </ItemTemplate>
-                	       <EmptyDataTemplate>
-                	           <li>No events to show.</li>
-                	       </EmptyDataTemplate>
-                	    </asp:ListView>
-             		    <asp:DataPager  ID="logsViewDataPager" PageSize="4" pagedControlId="logsView" runat="server">   
-             		        <Fields>
-                                <asp:NextPreviousPagerField ButtonType="Link"
-                                                            ShowNextPageButton="false" ShowPreviousPageButton="True" />
-                                <asp:NumericPagerField />
-                                <asp:NextPreviousPagerField ButtonType="Link"
-                                                            ShowPreviousPageButton="false" ShowNextPageButton="True" />
-                            </Fields>
-                        </asp:DataPager>
-                    </ContentTemplate>    
-               </asp:UpdatePanel>    
-            </ul>
+            <div id="logPanel">
+                
+                    <asp:Timer ID="updateLogPanelTimer" runat="server" Interval="200000" />
+                    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="updateLogPanelTimer" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <asp:ListView ID="logsView" OnDataBound="updateLogPanel_DataBound" runat="server"
+                                ItemPlaceholderID="itemPlaceHolder">
+                                <LayoutTemplate>
+                                <ul>
+                                    <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                                    </ul>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <li>
+                                        <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).CreationDate.ToString("dd/MM/yyy HH:mm")) %>
+                                        :
+                                        <%# Server.HtmlEncode(((Molecule.Log.Event)Container.DataItem).Content) %>
+                                    </li>
+                                </ItemTemplate>
+                                <EmptyDataTemplate>
+                                    <li><asp:Label runat="server" Text="<%$Resources:NoEventsToShow%>" /></li>
+                                </EmptyDataTemplate>
+                            </asp:ListView>
+                            <asp:DataPager ID="logsViewDataPager" PageSize="4" PagedControlID="logsView" runat="server"
+                                EnableViewState="false">
+                                <Fields>
+                                    <asp:NextPreviousPagerField ButtonType="Link" PreviousPageText="<" ShowNextPageButton="false"
+                                        ShowPreviousPageButton="True" />
+                                    <asp:NumericPagerField />
+                                    <asp:NextPreviousPagerField ButtonType="Link" NextPageText=">" ShowPreviousPageButton="false"
+                                        ShowNextPageButton="True" />
+                                </Fields>
+                            </asp:DataPager>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                
             </div>
         </div>
         <div id="maincontentPanel">
@@ -124,16 +127,10 @@
             </asp:ContentPlaceHolder>
         </div>
         <div id="footer">
-                © 2008 by <a href="Default.aspx">Molecule Builder</a> 
-                | <a href="Default.aspx">About</a>
-                | <a href="Default.aspx">Sitemap</a>
-         </div>
-        
+            © 2008 by <a href="Default.aspx">Molecule Builder</a> | <a href="Default.aspx">About</a>
+            | <a href="Default.aspx">Sitemap</a>
+        </div>
     </div>
     </form>
 </body>
 </html>
-
-
-
-
