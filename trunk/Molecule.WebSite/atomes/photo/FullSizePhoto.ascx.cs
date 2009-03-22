@@ -13,7 +13,7 @@ namespace Molecule.WebSite.atomes.photo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public IKeyedEnumerable<string, string> Metadatas
@@ -25,6 +25,14 @@ namespace Molecule.WebSite.atomes.photo
             }
         }
 
+		public string Loaded
+		{
+			set
+			{
+				image.Attributes.Add("onLoad", value);
+			}
+		}
+		
         public string PhotoId
         {
             set { image.ImageUrl = PhotoFile.GetUrlFor(value, PhotoFileSize.Normal); }

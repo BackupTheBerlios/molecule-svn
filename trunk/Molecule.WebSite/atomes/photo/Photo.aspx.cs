@@ -41,6 +41,7 @@ namespace Molecule.WebSite.atomes.photo
                 NextPhotoLink.TagId = tagId;
                 NextPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-next.png";
                 NextPhoto = nextPhoto;
+				FullSizePhoto.Loaded = String.Format(@"preload('{0}')",PhotoFile.GetUrlFor(nextPhoto.Id, PhotoFileSize.Normal));
             }
             else
                 NextPhotoLink.Visible = false;
