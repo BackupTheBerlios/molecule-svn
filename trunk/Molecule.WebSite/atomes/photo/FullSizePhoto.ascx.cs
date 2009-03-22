@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Molecule.Collections;
+using WebPhoto.Services;
 
 namespace Molecule.WebSite.atomes.photo
 {
@@ -12,7 +13,7 @@ namespace Molecule.WebSite.atomes.photo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         public IKeyedEnumerable<string, string> Metadatas
@@ -26,8 +27,7 @@ namespace Molecule.WebSite.atomes.photo
 
         public string PhotoId
         {
-            get;
-            set;
+            set { image.ImageUrl = PhotoFile.GetUrlFor(value, PhotoFileSize.Normal); }
         }
     }
 }

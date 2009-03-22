@@ -22,23 +22,22 @@
 	margin-top:10px;
 }
 
-#metadatas
+.metadatas
 {
 	position: absolute;
-	display: none;
 	margin: 12px;
 	background-color: #000000;
-	opacity: 0.75;
-	filter: alpha(opacity=75); /*ie only*/
+	opacity: 0;
+	filter: alpha(opacity=0); /*ie only*/
 	padding: 1ex;
 }
 
-#metadatas table
+.metadatas table
 {
 	border: none;
 }
 
-#metadatas table tr td:first-child
+.metadatas table tr td:first-child
 {
 	text-align: right;
 	padding-right: 1ex;
@@ -46,7 +45,7 @@
 	color: #f57900;
 }
 
-#metadatas table tr td
+.metadatas table tr td
 {
 	text-align: left;
 	border: none;
