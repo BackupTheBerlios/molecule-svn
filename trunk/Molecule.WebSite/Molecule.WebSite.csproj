@@ -67,7 +67,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="nStuff.UpdateControls, Version=1.2.0.0, Culture=neutral, PublicKeyToken=954a7d0922d0cc55, processorArchitecture=MSIL">
+    <Reference Include="nStuff.UpdateControls, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\nStuff.UpdateControls.dll</HintPath>
     </Reference>
