@@ -8,8 +8,7 @@
         <asp:ScriptReference Path="scripts/osm.js" />
     </Scripts>
 </asp:ScriptManagerProxy>
-<asp:UpdatePanel ID="UpdatePanel" runat="server">
-    <ContentTemplate>
+<div>
      <asp:LinkButton ID="LocateLink" runat="server">Locate!</asp:LinkButton>
      <div id="mapPopup">
         <div class="popupHeader"><span class="left">Map by <a href="http://openstreetmap.org">OpenStreetMap</a></span>&nbsp;<span id="closeModal" class="right"><asp:LinkButton ID="CloseButton" runat="server">close</asp:LinkButton></span></div>
@@ -19,12 +18,10 @@
 loadMap('map', <%=Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>, <%=Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture) %>, '<%= ThumbnailUrl %>');
 </script>
      </div>
-
     <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
     TargetControlID="LocateLink"
     PopupControlID="mapPopup" 
     BackgroundCssClass="modalBackground"
     DropShadow="true" 
     CancelControlID="closeModal" />
-    </ContentTemplate>
-</asp:UpdatePanel>
+</div>
