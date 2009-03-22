@@ -12,6 +12,7 @@ namespace Molecule.WebSite.Services
     [Serializable]
     public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>
     {
+        public const string anonymousUser = "anonymous";
         const bool defaultAuthorization = true;
         IEnumerable<string> atomes;
         IEnumerable<string> users;
@@ -21,8 +22,9 @@ namespace Molecule.WebSite.Services
         {
             this.atomes = from atome in AtomeService.GetAtomes()
                           select atome.Name;
-            this.users = from user in Membership.GetAllUsers().Cast<MembershipUser>()
-                         select user.UserName;
+            this.users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
+                         orderby user.UserName
+                         select user.UserName).Concat(new string[]{anonymousUser});
         }
 
         public AtomeUserAuthorizations(AtomeUserAuthorizations oldData)
@@ -44,6 +46,8 @@ namespace Molecule.WebSite.Services
 
         public AtomeUserAuthorization Get(string atome, string user)
         {
+            if (String.IsNullOrEmpty(user))
+                user = anonymousUser;
             return this.First(t => t.Atome == atome).Authorizations.First(aua => aua.User == user);
         }
 
@@ -66,20 +70,6 @@ namespace Molecule.WebSite.Services
         {
             Set(auth.Atome, auth.User, auth.Authorized);
         }
-
-        #region IAtomeUserAuthorizations Members
-
-        public IEnumerable<string> Users
-        {
-            get { return users; }
-        }
-
-        public IEnumerable<string> Atomes
-        {
-            get { return atomes; }
-        }
-
-        #endregion
     }
 
     [Serializable]

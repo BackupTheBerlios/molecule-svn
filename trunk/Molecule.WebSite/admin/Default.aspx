@@ -92,6 +92,7 @@
                     <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
                 </ItemTemplate>
             </asp:Repeater>
+            <td>Anonymous</td>
             </tr>
         </thead>
         <asp:ListView ID="AuthListView" runat="server">

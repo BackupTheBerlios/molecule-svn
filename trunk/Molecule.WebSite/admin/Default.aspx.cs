@@ -57,7 +57,7 @@ namespace Molecule.WebSite.Admin
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
                 AuthListView.DataSource = AdminService.AtomeUserAuthorizations;
                 AuthListView.DataBind();
-                AuthHeaderRepeater.DataSource = AdminService.AtomeUserAuthorizations.Users;
+                AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
                 AuthHeaderRepeater.DataBind();
             }
         }
