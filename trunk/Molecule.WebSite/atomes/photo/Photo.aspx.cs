@@ -16,14 +16,14 @@ namespace Molecule.WebSite.atomes.photo
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var photoId = Request.QueryString["id"];
+            var photoId = Request.QueryString["id"];
             tagId = Request.QueryString["tag"];
 
-            //initContent(photoId);
+            initContent(photoId);
             initTitle();
         }
 
-        
+
 
         public IPhotoInfo CurrentPhoto { get; set; }
 
@@ -31,80 +31,63 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initContent(string photoId)
         {
-            if(!String.IsNullOrEmpty(tagId))
+            if (!String.IsNullOrEmpty(tagId))
                 tag = PhotoLibrary.GetTag(tagId);
             CurrentPhoto = PhotoLibrary.GetPhoto(photoId);
             var nextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
-
-            NextPhotoLink.Visible = nextPhoto != null;
-
+            if (nextPhoto != null)
+            {
+                NextPhotoLink.PhotoId = nextPhoto.Id;
+                NextPhotoLink.TagId = tagId;
+                NextPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-next.png";
+                NextPhoto = nextPhoto;
+            }
+            else
+                NextPhotoLink.Visible = false;
             var previousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
-            PreviousPhotoLink.Visible = previousPhoto != null;
+            if (previousPhoto != null)
+            {
+                PreviousPhotoLink.TagId = tagId;
+                PreviousPhotoLink.PhotoId = previousPhoto.Id;
+                PreviousPhotoLink.HoverIconUrl = "/App_Themes/" + Theme + "/images/go-previous.png";
+            }
+            else
+                PreviousPhotoLink.Visible = false;
 
             FullSizePhoto.PhotoId = photoId;
             FullSizePhoto.Metadatas = CurrentPhoto.Metadatas;
-            LabelDescription.Text = CurrentPhoto.Description;
-            ViewState["currentPhotoId"] = photoId;
-			
+
+
             tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
-            
-			if( CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue )
-			{
-				this.PhotoMap.Visible = true;
-				this.PhotoMap.Latitude =  CurrentPhoto.Latitude.Value;
-				this.PhotoMap.Longitude =  CurrentPhoto.Longitude.Value;
-                this.PhotoMap.ThumbnailUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Thumbnail);
-			}
-			else
-			{
-				this.PhotoMap.Visible = false;				
-			}
-            updateHistory.AddEntry(CurrentPhoto.Id);
-        }
 
-        protected void OnUpdateHistoryNavigate(object sender, nStuff.UpdateControls.HistoryEventArgs e)
-        {
-            // Raised when the user navigates back/forward or
-            // loads a bookmark to a specific view.
-            if (!String.IsNullOrEmpty(e.EntryName))
+            if (CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue)
             {
-                ViewState["currentPhotoId"] = e.EntryName;
-                initContent(e.EntryName);
+                this.PhotoMap.Visible = true;
+                this.PhotoMap.Latitude = CurrentPhoto.Latitude.Value;
+                this.PhotoMap.Longitude = CurrentPhoto.Longitude.Value;
+                this.PhotoMap.ThumbnailUrl = PhotoFile.GetUrlFor(photoId, PhotoFileSize.Thumbnail);
             }
-            mainUP.Update();
-        }
-
-        protected void OnPreviousClick(object sender, EventArgs args)
-        {
-            string photoId = (string)ViewState["currentPhotoId"];
-            var previousPhoto = PhotoLibrary.GetPreviousPhoto(photoId, tagId);
-            initContent(previousPhoto.Id);
-            //updateHistory.AddEntry(previousPhoto.Id);
-        }
-
-        protected void OnNextClick(object sender, EventArgs args)
-        {
-            string photoId = (string)ViewState["currentPhotoId"];
-            var nextPhoto = PhotoLibrary.GetNextPhoto(photoId, tagId);
-            initContent(nextPhoto.Id);
-            //updateHistory.AddEntry(nextPhoto.Id);
+            else
+            {
+                this.PhotoMap.Visible = false;
+            }
         }
 
         private void initTitle()
         {
-            Title = "Photos"+PhotoLibrary.GetTagFullPath(tagId);
+            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
         }
 
         public static string GetUrlFor(string photoId)
         {
-            return String.Format("Photo.aspx#{0}", photoId);
+            return String.Format("Photo.aspx?id={0}", photoId);
         }
 
         public static string GetUrlFor(string photoId, string tagId)
         {
-            if(String.IsNullOrEmpty(tagId))
+            if (String.IsNullOrEmpty(tagId))
                 return GetUrlFor(photoId);
-            return String.Format("Photo.aspx?tag={0}#{1}", tagId, photoId);
+            return String.Format("Photo.aspx?id={0}&tag={1}", photoId, tagId);
         }
     }
 }

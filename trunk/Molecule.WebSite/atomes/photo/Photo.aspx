@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Photo.aspx.cs"
-    EnableEventValidation="false" Inherits="Molecule.WebSite.atomes.photo.Photo" %>
+    EnableViewState="False" EnableEventValidation="false" Inherits="Molecule.WebSite.atomes.photo.Photo" %>
+
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="WebPhoto.Services" %>
 <%@ Import Namespace="WebPhoto.Providers" %>
@@ -19,26 +20,19 @@
             <asp:ScriptReference Path="scripts/default.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
-    <nStuff:UpdateHistory runat="server" ID="updateHistory"
-        OnNavigate="OnUpdateHistoryNavigate" />
-    
     <photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />
-    
-    <nStuff:StyledUpdatePanel runat="server" ID="mainUP" CssClass="photoCurrent" UpdateMode="Conditional">
-        <ContentTemplate>
-            <asp:ImageButton ID="PreviousPhotoLink" runat="server" ImageUrl="~/App_Themes/bloup/images/go-previous.png"
-             OnClick="OnPreviousClick"/>
-            <asp:ImageButton ID="NextPhotoLink" runat="server" ImageUrl="~/App_Themes/bloup/images/go-next.png"
-             OnClick="OnNextClick"/>
-            <br />
-            <photo:Photo ID="FullSizePhoto" runat="server" /> 
-            <div id="photoDescriptionContainer">
-                <p>
-                    <asp:Label ID="LabelDescription" runat="server"/>
-                </p>
-                <photo:TagList runat="server" ID="tagList" />            
-                <photo:Map ID="PhotoMap" runat="server" />
-            </div>
-        </ContentTemplate>
-    </nStuff:StyledUpdatePanel>
+    <div class="photoCurrent">   
+        <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
+        <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
+        <br />
+        <photo:Photo ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
+        <div id="photoDescriptionContainer">
+            <p>
+                <asp:Label ID="Label1" runat="server"><%= CurrentPhoto.Description %></asp:Label>
+            </p>
+            
+            <photo:TagList runat="server" ID="tagList" />            
+            <photo:Map ID="PhotoMap" runat="server" />
+        </div>
+    </div>
 </asp:Content>

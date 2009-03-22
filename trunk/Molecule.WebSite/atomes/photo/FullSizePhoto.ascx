@@ -13,19 +13,12 @@
         <ajaxToolkit:AnimationExtender ID="ae"
   runat="server" TargetControlID="image">
     <Animations>
-        <OnLoad>
-            <FadeIn minimumOpacity="0" maximumOpacity="1" Duration=".3" Fps="20" />
-        </OnLoad>
-        
         <OnHoverOver>
             <FadeIn AnimationTarget="metadatas" minimumOpacity="0" maximumOpacity="0.7" Duration=".3" Fps="20" />
         </OnHoverOver>
-        
         <OnHoverOut>
             <FadeOut AnimationTarget="metadatas" minimumOpacity="0" maximumOpacity="0.7" Duration=".3" Fps="20" />
         </OnHoverOut>
-        
-
     </Animations>
 </ajaxToolkit:AnimationExtender>
 </div>
