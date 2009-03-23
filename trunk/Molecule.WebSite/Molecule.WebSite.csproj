@@ -385,7 +385,6 @@
     <Content Include="App_Themes\bloup\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
     <None Include="atomes\photo\scripts\default.js" />
-    <Content Include="atomes\photo\Web.config" />
     <Content Include="CssHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
@@ -424,8 +423,6 @@
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\admin\Default.aspx" />
     <Content Include="atomes\photo\Atome.xml" />
-    <Content Include="atomes\photo\bin\providers\Mono.Data.Sqlite.dll" />
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
     <Content Include="atomes\photo\FullSizePhoto.ascx" />

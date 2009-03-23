@@ -13,91 +13,174 @@ namespace WebPhoto.Services
     public class PhotoLibrary : AtomeProviderBase<PhotoLibrary, IPhotoLibraryProvider>
     {
 
-        Dictionary<string, ITag> tags;
-        IEnumerable<ITag> rootTags;
-        Dictionary<string, LinkedListNode<IPhoto>> photosByIds;
-        LinkedList<IPhoto> timelinePhotos;
-        Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDay;
+        Dictionary<string, ITagInfo> tags;
+        IEnumerable<ITagInfo> rootTags;
+        Dictionary<string, LinkedListNode<IPhotoInfo>> photosByIds;
+        LinkedList<IPhotoInfo> timelinePhotos;
+        Dictionary<DateTime, LinkedListNode<IPhotoInfo>> photosByDay;
+        ITag publicTag;
+        Func<IPhotoInfo, bool> photoFilter;
 
         private PhotoLibrary()
         {
-
+            photoFilter = p => true;
         }
 
+        #region AtomProviderBase implementation
+        protected override string ConfigurationNamespace
+        {
+            get { return "WebPhoto"; }
+        }
+
+        protected override string ProviderDirectory
+        {
+            get { return HttpContext.Current.Server.MapPath("~/atomes/photo/bin/providers"); }
+        }
+
+        protected override string DefaultProvider
+        {
+            get { return "Stub"; }
+        }
+        
         protected override void OnProviderUpdated()
         {
-            updateProviderTags();
-        }
-
-        private void updateProviderTags()
-        {
-                CallProvider(provider =>
-                    rootTags = provider.GetRootTags().Where(t => HasPhoto(t)));
+            CallProvider(provider =>
+                    rootTags = provider.GetRootTags().Cast<ITagInfo>());
 
             buildIndexTables();
         }
 
-        protected static IEnumerable<ITag> GetAllTags(ITag tag)
-        {
-            return GetAllTags(new[] { tag });
-        }
-
-        protected static IEnumerable<ITag> GetAllTags(IEnumerable<ITag> tags)
-        {
-            foreach (ITag tag in tags)
-            {
-                yield return tag;
-                foreach (ITag t in GetAllTags(tag.ChildTags))
-                    yield return t;
-            }
-        }
-
         private void buildIndexTables()
         {
-            tags = new Dictionary<string, ITag>();
-            Dictionary<string, IPhoto> tempPhotos = new Dictionary<string,IPhoto>();
+            tags = new Dictionary<string, ITagInfo>();
+            Dictionary<string, IPhotoInfo> tempPhotos = new Dictionary<string, IPhotoInfo>();
 
             //id index
-            foreach (var tag in GetAllTags(rootTags))
+            foreach (var tag in getAllTags(rootTags, false).Cast<ITag>())
             {
-                
+
                 foreach (var photo in tag.Photos)
                 {
                     tempPhotos[photo.Id] = photo;
                 }
-                if (HasPhoto(tag))
+                if (isCandidate(tag, false))
                     tags[tag.Id] = tag;
             }
-            
+
             if (log.IsDebugEnabled)
             {
                 log.Debug(String.Format("Statistics : {0} tags, {1} photos"
                 , tags.Count, tempPhotos.Count));
             }
-            
+
             //timeline
-            var tempTimeline = new List<IPhoto>(tempPhotos.Values);
+            var tempTimeline = new List<IPhotoInfo>(tempPhotos.Values);
             tempTimeline.Sort((p1, p2) => p2.Date.CompareTo(p1.Date));
-            timelinePhotos = new LinkedList<IPhoto>(tempTimeline);
-            
+            timelinePhotos = new LinkedList<IPhotoInfo>(tempTimeline);
+
 
             //day index
-            photosByDay = new Dictionary<DateTime, LinkedListNode<IPhoto>>();
+            photosByDay = new Dictionary<DateTime, LinkedListNode<IPhotoInfo>>();
             for (var item = timelinePhotos.First; item != null; item = item.Next)
                 if (item == timelinePhotos.First || item.Previous.Value.Date.Date != item.Value.Date.Date)
                     photosByDay[item.Value.Date.Date] = item;
 
             //id index
-            photosByIds = new Dictionary<string, LinkedListNode<IPhoto>>();
+            photosByIds = new Dictionary<string, LinkedListNode<IPhotoInfo>>();
             for (var item = timelinePhotos.First; item != null; item = item.Next)
                 photosByIds[item.Value.Id] = item;
 
         }
 
-        private static bool HasPhoto(ITag tag)
+        #endregion
+
+        #region Helpers
+        private static IEnumerable<ITagInfo> getAllTags(ITagInfo tag, bool filterByUser)
         {
-            return GetAllTags(tag).Any(t => t.Photos.Any());
+            return getAllTags(new[] { tag }, filterByUser);
         }
+
+        private static IEnumerable<ITagInfo> getAllTags(IEnumerable<ITagInfo> tags, bool filterByUser)
+        {
+            foreach (var tag in tags)
+            {
+                yield return tag;
+                foreach (var t in getAllTags(getTagsByTag(tag, filterByUser), filterByUser))
+                    yield return t;
+            }
+        }
+
+        private static IEnumerable<ITagInfo> getAllTags(bool filterByUser)
+        {
+            return getAllTags(instance.rootTags, filterByUser);
+        }
+
+        private static IEnumerable<ITagInfo> getRootTags(bool filterByUser)
+        {
+            return instance.rootTags.Where(t => isCandidate(t, filterByUser));
+        }
+        
+        private static bool isCandidate(ITagInfo tag, bool filterByUser)
+        {
+            return getAllTags(tag, filterByUser).Any(t => getPhotosByTag(t, filterByUser).Any());
+        }
+
+        private static bool isCandidate(IPhotoInfo photo, bool filterByUser)
+        {
+            return isCandidate(photo, null, filterByUser);
+        }
+
+        private static bool isCandidate(IPhotoInfo photo, string tagId, bool filterByUser)
+        {
+            return (!filterByUser || instance.photoFilter(photo))
+                && (String.IsNullOrEmpty(tagId) || (photo as IPhoto).Tags.Any(t => t.Id == tagId));
+        }
+
+        private static IEnumerable<ITagInfo> getTagsByTag(ITagInfo tag, bool filterByUser)
+        {
+            return getTagsByTag(tag as ITag, filterByUser).Cast<ITagInfo>();
+        }
+
+        private static IEnumerable<ITag> getTagsByTag(ITag tag, bool filterByUser)
+        {
+            return tag.ChildTags.Where(t => isCandidate(t, filterByUser));
+        }
+        
+        private static IEnumerable<IPhotoInfo> getPhotosByTag(ITagInfo tag, bool filterByUser)
+        {
+            return from photo in (tag as ITag).Photos
+                   where isCandidate(photo, filterByUser)
+                   select photo as IPhotoInfo;
+        }
+
+        private static IPhotoInfo getFirstPhotoByTag(ITagInfo tag, bool filterByUser)
+        {
+            var res = getPhotosByTag(tag, filterByUser).FirstOrDefault();
+            return res ?? getFirstPhotoByTag(getTagsByTag(tag, filterByUser).FirstOrDefault(), filterByUser);
+        }
+
+        private static IEnumerable<ITagInfo> getTagsByPhoto(IPhotoInfo photo)
+        {
+            return (photo as IPhoto).Tags.Cast<ITagInfo>();
+        }
+
+        private static IPhotoInfo getNeighborPhoto(string photoId, string tagId
+            , Func<LinkedListNode<IPhotoInfo>, LinkedListNode<IPhotoInfo>> neighbor
+            , bool filterByUser)
+        {
+            var current = neighbor(instance.photosByIds[photoId]);
+            while (current != null)
+            {
+                if (isCandidate(current.Value, tagId, filterByUser))
+                        return current.Value;
+                current = neighbor(current);
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region Service Methods
 
         public static ITagInfo GetTag(string tagId)
         {
@@ -109,27 +192,12 @@ namespace WebPhoto.Services
             return instance.photosByIds[photoId].Value;
         }
 
-        public static IEnumerable<ITagInfo> GetAllTags()
-        {
-            return instance.tags.Values.Cast<ITagInfo>();
-        }
-
-        public static IEnumerable<ITagInfo> GetTags()
-        {
-            return instance.rootTags.Cast<ITagInfo>();
-        }
-
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
             if (!String.IsNullOrEmpty(tagId))
-                return getTagsByTag(instance.tags[tagId]).Cast<ITagInfo>();
+                return getTagsByTag(instance.tags[tagId], true);
             else
-                return GetTags();
-        }
-
-        private static IEnumerable<ITag> getTagsByTag(ITag tag)
-        {
-            return tag.ChildTags.Where(t => HasPhoto(t));
+                return GetRootTags();
         }
 
         public static IEnumerable<ITagInfo> GetTagHierarchy(string tagId)
@@ -149,31 +217,26 @@ namespace WebPhoto.Services
 
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
         {
-            return instance.photosByIds[photoId].Value.Tags.Cast<ITagInfo>();
+            return getTagsByPhoto(instance.photosByIds[photoId].Value);
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotos()
         {
-            return instance.timelinePhotos.Cast<IPhotoInfo>();
+            return instance.timelinePhotos
+                .Where(instance.photoFilter);
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tag)
         {
             if (!String.IsNullOrEmpty(tag))
-                return instance.tags[tag].Photos.Cast<IPhotoInfo>();
+                return getPhotosByTag(instance.tags[tag], true).OrderByDescending(p=>p.Date);
             else
-                return GetPhotos();
+                return GetPhotos().OrderByDescending(p=>p.Date);
         }
 
         public static IPhotoInfo GetFirstPhotoByTag(string tagId)
         {
-            return getFirstPhotoByTag(instance.tags[tagId]);
-        }
-
-        private static IPhotoInfo getFirstPhotoByTag(ITag tag)
-        {
-            var res = tag.Photos.FirstOrDefault();
-            return res ?? getFirstPhotoByTag(getTagsByTag(tag).FirstOrDefault());
+            return getFirstPhotoByTag(instance.tags[tagId], true);
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
@@ -185,7 +248,7 @@ namespace WebPhoto.Services
 
         public static IEnumerable<IPhotoInfo> GetPhotosByDayAndTag(DateTime d, string tagId)
         {
-            LinkedListNode<IPhoto> current;
+            LinkedListNode<IPhotoInfo> current;
 
             //search for a photo in current day.
             instance.photosByDay.TryGetValue(d, out current);
@@ -193,15 +256,15 @@ namespace WebPhoto.Services
             //search for a photo that match specified tag.
             while (current != null && current.Value.Date.Date == d)
             {
-                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
+                if (isCandidate(current.Value, tagId, true))
                     yield return current.Value;
                 current = current.Next;
             }
         }
 
-        public static IEnumerable<IPhoto> GetPhotosByMonthAndTag(DateTime month, string tagId)
+        public static IEnumerable<IPhotoInfo> GetPhotosByMonthAndTag(DateTime month, string tagId)
         {
-            LinkedListNode<IPhoto> current = null;
+            LinkedListNode<IPhotoInfo> current = null;
 
             //search for a photo in current month.
             for(DateTime dt = month; dt.Month == month.Month && current == null; dt = dt.AddDays(1))
@@ -212,7 +275,7 @@ namespace WebPhoto.Services
                 && current.Value.Date.Month == month.Month
                 && current.Value.Date.Year == month.Year)
             {
-                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
+                if (isCandidate(current.Value, tagId, true))
                     yield return current.Value;
                 current = current.Next;
             }
@@ -238,45 +301,24 @@ namespace WebPhoto.Services
 
         public static IPhotoInfo GetNextPhoto(string photoId, string tagId)
         {
-            return getNeighborPhoto(photoId, tagId, p => p.Next);
+            return getNeighborPhoto(photoId, tagId, p => p.Next, true);
         }
 
         public static IPhotoInfo GetPreviousPhoto(string photoId, string tagId)
         {
-            return getNeighborPhoto(photoId, tagId, p => p.Previous);
+            return getNeighborPhoto(photoId, tagId, p => p.Previous, true);
         }
 
-        private static IPhotoInfo getNeighborPhoto(string photoId, string tagId
-            , Func<LinkedListNode<IPhoto>, LinkedListNode<IPhoto>> neighbor)
+        public static IEnumerable<ITagInfo> GetRootTags()
         {
-            var current = neighbor(instance.photosByIds[photoId]);
-            while (current != null)
-            {
-                if (String.IsNullOrEmpty(tagId) || current.Value.Tags.Any(t => t.Id == tagId))
-                    return current.Value;
-                current = neighbor(current);
-            }
-            return null;
+            return getRootTags(true);
         }
 
-        public static IEnumerable<ITag> GetRootTags()
+        public static IEnumerable<ITagInfo> GetAllTags()
         {
-            return instance.rootTags;
+            return getAllTags(true);
         }
 
-        protected override string ConfigurationNamespace
-        {
-            get { return "WebPhoto"; }
-        }
-
-        protected override string ProviderDirectory
-        {
-            get { return HttpContext.Current.Server.MapPath("~/atomes/photo/bin/providers"); }
-        }
-
-        protected override string DefaultProvider
-        {
-            get { return "Stub"; }
-        }
+        #endregion
     }
 }
