@@ -19,11 +19,9 @@ namespace WebPhoto.Services
         LinkedList<IPhotoInfo> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhotoInfo>> photosByDay;
         ITag publicTag;
-        Func<IPhotoInfo, bool> photoFilter;
 
         private PhotoLibrary()
         {
-            photoFilter = p => true;
         }
 
         #region AtomProviderBase implementation
@@ -60,9 +58,8 @@ namespace WebPhoto.Services
             {
 
                 foreach (var photo in tag.Photos)
-                {
                     tempPhotos[photo.Id] = photo;
-                }
+
                 if (isCandidate(tag, false))
                     tags[tag.Id] = tag;
             }
@@ -117,12 +114,14 @@ namespace WebPhoto.Services
 
         private static IEnumerable<ITagInfo> getRootTags(bool filterByUser)
         {
-            return instance.rootTags.Where(t => isCandidate(t, filterByUser));
+            return instance.rootTags
+                .Where(t => isCandidate(t, filterByUser));
         }
         
         private static bool isCandidate(ITagInfo tag, bool filterByUser)
         {
-            return getAllTags(tag, filterByUser).Any(t => getPhotosByTag(t, filterByUser).Any());
+            return getAllTags(tag, filterByUser)
+                .Any(t => getPhotosByTag(t, filterByUser).Any());
         }
 
         private static bool isCandidate(IPhotoInfo photo, bool filterByUser)
@@ -132,8 +131,13 @@ namespace WebPhoto.Services
 
         private static bool isCandidate(IPhotoInfo photo, string tagId, bool filterByUser)
         {
-            return (!filterByUser || instance.photoFilter(photo))
+            return (!filterByUser || isUserAuthorized(photo))
                 && (String.IsNullOrEmpty(tagId) || (photo as IPhoto).Tags.Any(t => t.Id == tagId));
+        }
+
+        private static bool isUserAuthorized(IPhotoInfo photo)
+        {
+            return true;//Implement authorization here !
         }
 
         private static IEnumerable<ITagInfo> getTagsByTag(ITagInfo tag, bool filterByUser)
@@ -156,7 +160,8 @@ namespace WebPhoto.Services
         private static IPhotoInfo getFirstPhotoByTag(ITagInfo tag, bool filterByUser)
         {
             var res = getPhotosByTag(tag, filterByUser).FirstOrDefault();
-            return res ?? getFirstPhotoByTag(getTagsByTag(tag, filterByUser).FirstOrDefault(), filterByUser);
+            return res ?? getFirstPhotoByTag(getTagsByTag(tag, filterByUser)
+                .FirstOrDefault(), filterByUser);
         }
 
         private static IEnumerable<ITagInfo> getTagsByPhoto(IPhotoInfo photo)
@@ -223,13 +228,14 @@ namespace WebPhoto.Services
         public static IEnumerable<IPhotoInfo> GetPhotos()
         {
             return instance.timelinePhotos
-                .Where(instance.photoFilter);
+                .Where(photo => isCandidate(photo, true));
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tag)
         {
             if (!String.IsNullOrEmpty(tag))
-                return getPhotosByTag(instance.tags[tag], true).OrderByDescending(p=>p.Date);
+                return getPhotosByTag(instance.tags[tag], true)
+                    .OrderByDescending(p=>p.Date);//should be optimized if photo are ordered by default.
             else
                 return GetPhotos().OrderByDescending(p=>p.Date);
         }
