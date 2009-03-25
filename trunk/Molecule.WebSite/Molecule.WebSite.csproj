@@ -218,6 +218,13 @@
     <Compile Include="atomes\photo\YearCalendar.aspx.designer.cs">
       <DependentUpon>YearCalendar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\upload\admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\upload\admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="atomes\upload\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,6 +232,7 @@
     <Compile Include="atomes\upload\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\upload\Services\UploadService.cs" />
     <Compile Include="atomes\webmusic\admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -456,6 +464,7 @@
     <Content Include="atomes\photo\TagHierarchy.ascx" />
     <Content Include="atomes\photo\Timeline.aspx" />
     <Content Include="atomes\photo\YearCalendar.aspx" />
+    <Content Include="atomes\upload\admin\Default.aspx" />
     <Content Include="atomes\upload\Atome.xml" />
     <Content Include="atomes\upload\Default.aspx" />
     <Content Include="atomes\upload\scripts\default.js" />
