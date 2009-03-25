@@ -7,6 +7,8 @@ using WebPhoto.Providers;
 using Molecule.Runtime;
 using Molecule.Atome;
 using System.Globalization;
+using Molecule.Configuration;
+using Molecule.WebSite.Services;
 
 namespace WebPhoto.Services
 {
@@ -18,7 +20,6 @@ namespace WebPhoto.Services
         Dictionary<string, LinkedListNode<IPhotoInfo>> photosByIds;
         LinkedList<IPhotoInfo> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhotoInfo>> photosByDay;
-        ITag publicTag;
 
         private PhotoLibrary()
         {
@@ -91,77 +92,119 @@ namespace WebPhoto.Services
 
         #endregion
 
-        #region Helpers
-        private static IEnumerable<ITagInfo> getAllTags(ITagInfo tag, bool filterByUser)
+        #region Authorization Helpers
+        private static bool isCandidate(ITagInfo tag, bool filter)
         {
-            return getAllTags(new[] { tag }, filterByUser);
+            return getAllTags(tag, filter)
+                .Any(t => getPhotosByTag(t, filter).Any());
         }
 
-        private static IEnumerable<ITagInfo> getAllTags(IEnumerable<ITagInfo> tags, bool filterByUser)
+        private static bool isCandidate(IPhotoInfo photo, bool filter)
+        {
+            return isCandidate(photo, null, filter);
+        }
+
+        private static bool isCandidate(IPhotoInfo photo, string tagId, bool filter)
+        {
+            return true;//still not fully implemented :-(
+            //search for an authorized tag for photo
+            //if tagId is specified, tagId is mandatory.
+
+            bool tagIdFound = String.IsNullOrEmpty(tagId);
+            bool authorizedTagFound = false;
+            var authorizedTags = getCurrentUserAuthorizedTags();
+            
+            foreach (var photoTagId in ((IPhoto)photo).Tags.Select(t => t.Id))
+            {
+                if(!authorizedTagFound)
+                    authorizedTagFound = authorizedTags.Contains(photoTagId);
+
+                if(!tagIdFound)
+                    tagIdFound = photoTagId == tagId;
+
+                if (authorizedTagFound && tagIdFound)
+                    return true;
+            }
+            return false;
+        }
+
+        static List<string> alltags;
+        private static List<string> getCurrentUserAuthorizedTags()
+        {
+            if (alltags == null)
+            {
+                alltags = new List<string>();
+                alltags.Add("53a9bdcd0e93d746eb0fc3865fc5e02b");
+            }
+            return alltags;
+        }
+
+        private static string CurrentUser
+        {
+            get
+            {
+                var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
+                return currentUser ?? AtomeUserAuthorizations.AnonymousUser;
+            }
+        }
+
+        private static bool isCurrentUserAuthorized(IPhoto photo)
+        {
+            return true;
+            
+        }
+
+        #endregion
+
+        #region Helpers
+        private static IEnumerable<ITagInfo> getAllTags(ITagInfo tag, bool filter)
+        {
+            return getAllTags(new[] { tag }, filter);
+        }
+
+        private static IEnumerable<ITagInfo> getAllTags(IEnumerable<ITagInfo> tags, bool filter)
         {
             foreach (var tag in tags)
             {
                 yield return tag;
-                foreach (var t in getAllTags(getTagsByTag(tag, filterByUser), filterByUser))
+                foreach (var t in getAllTags(getTagsByTag(tag, filter), filter))
                     yield return t;
             }
         }
 
-        private static IEnumerable<ITagInfo> getAllTags(bool filterByUser)
+        private static IEnumerable<ITagInfo> getAllTags(bool filter)
         {
-            return getAllTags(instance.rootTags, filterByUser);
+            return getAllTags(instance.rootTags, filter);
         }
 
-        private static IEnumerable<ITagInfo> getRootTags(bool filterByUser)
+        private static IEnumerable<ITagInfo> getRootTags(bool filter)
         {
             return instance.rootTags
-                .Where(t => isCandidate(t, filterByUser));
+                .Where(t => isCandidate(t, filter));
+        }
+
+        private static IEnumerable<ITagInfo> getTagsByTag(ITagInfo tag, bool filter)
+        {
+            return getTagsByTag(tag as ITag, filter).Cast<ITagInfo>();
+        }
+
+        private static IEnumerable<ITag> getTagsByTag(ITag tag, bool filter)
+        {
+            return tag.ChildTags.Where(t => isCandidate(t, filter));
         }
         
-        private static bool isCandidate(ITagInfo tag, bool filterByUser)
-        {
-            return getAllTags(tag, filterByUser)
-                .Any(t => getPhotosByTag(t, filterByUser).Any());
-        }
-
-        private static bool isCandidate(IPhotoInfo photo, bool filterByUser)
-        {
-            return isCandidate(photo, null, filterByUser);
-        }
-
-        private static bool isCandidate(IPhotoInfo photo, string tagId, bool filterByUser)
-        {
-            return (!filterByUser || isUserAuthorized(photo))
-                && (String.IsNullOrEmpty(tagId) || (photo as IPhoto).Tags.Any(t => t.Id == tagId));
-        }
-
-        private static bool isUserAuthorized(IPhotoInfo photo)
-        {
-            return true;//Implement authorization here !
-        }
-
-        private static IEnumerable<ITagInfo> getTagsByTag(ITagInfo tag, bool filterByUser)
-        {
-            return getTagsByTag(tag as ITag, filterByUser).Cast<ITagInfo>();
-        }
-
-        private static IEnumerable<ITag> getTagsByTag(ITag tag, bool filterByUser)
-        {
-            return tag.ChildTags.Where(t => isCandidate(t, filterByUser));
-        }
-        
-        private static IEnumerable<IPhotoInfo> getPhotosByTag(ITagInfo tag, bool filterByUser)
+        private static IEnumerable<IPhotoInfo> getPhotosByTag(ITagInfo tag, bool filter)
         {
             return from photo in (tag as ITag).Photos
-                   where isCandidate(photo, filterByUser)
+                   where isCandidate(photo, filter)
                    select photo as IPhotoInfo;
         }
 
-        private static IPhotoInfo getFirstPhotoByTag(ITagInfo tag, bool filterByUser)
+        private static IPhotoInfo getFirstPhotoByTag(ITagInfo tag, bool filter)
         {
-            var res = getPhotosByTag(tag, filterByUser).FirstOrDefault();
-            return res ?? getFirstPhotoByTag(getTagsByTag(tag, filterByUser)
-                .FirstOrDefault(), filterByUser);
+            var res = getPhotosByTag(tag, filter).FirstOrDefault();
+            return res ?? getFirstPhotoByTag(getTagsByTag(tag, filter)
+                .FirstOrDefault(), filter);
         }
 
         private static IEnumerable<ITagInfo> getTagsByPhoto(IPhotoInfo photo)
@@ -171,12 +214,12 @@ namespace WebPhoto.Services
 
         private static IPhotoInfo getNeighborPhoto(string photoId, string tagId
             , Func<LinkedListNode<IPhotoInfo>, LinkedListNode<IPhotoInfo>> neighbor
-            , bool filterByUser)
+            , bool filter)
         {
             var current = neighbor(instance.photosByIds[photoId]);
             while (current != null)
             {
-                if (isCandidate(current.Value, tagId, filterByUser))
+                if (isCandidate(current.Value, tagId, filter))
                         return current.Value;
                 current = neighbor(current);
             }
@@ -302,8 +345,6 @@ namespace WebPhoto.Services
             }
             return null;
         }
-
-
 
         public static IPhotoInfo GetNextPhoto(string photoId, string tagId)
         {

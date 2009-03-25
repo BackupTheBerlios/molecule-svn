@@ -12,7 +12,7 @@ namespace Molecule.WebSite.Services
     [Serializable]
     public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>
     {
-        public const string anonymousUser = "anonymous";
+        const string anonymousUser = "anonymous";
         const bool defaultAuthorization = true;
         IEnumerable<string> atomes;
         IEnumerable<string> users;
@@ -69,6 +69,14 @@ namespace Molecule.WebSite.Services
         public void Set(AtomeUserAuthorization auth)
         {
             Set(auth.Atome, auth.User, auth.Authorized);
+        }
+
+        public static string AnonymousUser
+        {
+            get
+            {
+                return anonymousUser;
+            }
         }
     }
 

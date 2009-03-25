@@ -135,7 +135,7 @@ namespace Molecule.WebSite.Services
 
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
             if (currentUser == null)
-                return false;
+                currentUser = AtomeUserAuthorizations.AnonymousUser;
 
             return AdminService.AtomeUserAuthorizations.Get(atome.Name, currentUser).Authorized;
         }
