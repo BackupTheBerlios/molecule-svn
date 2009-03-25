@@ -43,16 +43,13 @@ namespace Upload
 
 		protected void submitButton_Click(Object sender, EventArgs e)
 		{
-			string defaultdownloadPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_DOWNLOAD_DIR", "Downloads");
-            if (!Directory.Exists(defaultdownloadPath))
-            {
-                Directory.CreateDirectory(defaultdownloadPath);
-            }
+            string downloadPath = Upload.UploadService.DestinationPath;
+
 			foreach(UploadedFile uploadedFile in this.multiUploadFile.Files)
             {
 			    if (IsValid)
 				{
-                    string fileDestination = Path.Combine(defaultdownloadPath, uploadedFile.FileName );
+                    string fileDestination = Path.Combine(downloadPath+Path.DirectorySeparatorChar, uploadedFile.FileName);
 					uploadedFile.MoveTo(fileDestination,MoveToOptions.Overwrite);
                     if (log.IsInfoEnabled)
                     {

@@ -1,1 +1,14 @@
-﻿
+﻿.destinationDirectoryContainer
+{
+
+}
+
+.destinationDirectoryContainer note
+{
+	font-size:x-small;
+}
+.saveButton
+{
+ float : right;
+ margin-right :10px;
+}
