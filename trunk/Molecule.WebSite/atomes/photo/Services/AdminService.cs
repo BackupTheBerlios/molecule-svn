@@ -17,6 +17,10 @@ namespace WebPhoto.Services
 
         private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
 
+        private AdminService()
+        {
+        }
+
         public static TagUserAuthorizations TagUserAuthorizations
         {
             get

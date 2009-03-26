@@ -18,7 +18,7 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //TODO : check for admin role for this master page !!
             this.tabDefault.CssClass = AtomeService.CurrentPathIsAtome ? "tabTitle" : "tabSelectedTitle";
             Page.Title = this.GetLocalResourceObject("Preferences").ToString();
         }

@@ -19,6 +19,9 @@ namespace WebPhoto.Services
 
         public TagUserAuthorizations(TagUserAuthorizations oldData, Func<string, bool> tagExist)
         {
+            if (oldData == null)
+                return;
+
             var users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
                          orderby user.UserName
                          select user.UserName)
