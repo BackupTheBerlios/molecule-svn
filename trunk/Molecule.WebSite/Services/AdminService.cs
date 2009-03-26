@@ -157,6 +157,7 @@ namespace Molecule.WebSite.Services
         {
             lock (instance.authLock)
             {
+                //reinit lazy loading.
                 instance.atomeUserAuthorizations = null;
             }
         }

@@ -5,8 +5,9 @@ using System.Web;
 using Molecule.WebSite.Services;
 using System.Web.Security;
 
-namespace Molecule.WebSite.atomes.photo.Services
+namespace WebPhoto.Services
 {
+    [Serializable]
     public class TagUserAuthorizations : List<TagUserAuthorizationItem>
     {
         const bool defaultAuthorization = false;

@@ -158,6 +158,7 @@
     <Compile Include="atomes\photo\PhotoLink.ascx.designer.cs">
       <DependentUpon>PhotoLink.ascx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\photo\Services\AdminService.cs" />
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />

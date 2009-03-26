@@ -238,6 +238,11 @@ namespace WebPhoto.Services
             return instance.tags[tagId];
         }
 
+        public static bool TagExists(string tagId)
+        {
+            return instance.tags.Keys.Contains(tagId);
+        }
+
         public static IPhotoInfo GetPhoto(string photoId)
         {
             return instance.photosByIds[photoId].Value;
