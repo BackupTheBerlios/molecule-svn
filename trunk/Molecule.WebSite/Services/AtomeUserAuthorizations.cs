@@ -14,22 +14,23 @@ namespace Molecule.WebSite.Services
     {
         const string anonymousUser = "anonymous";
         const bool defaultAuthorization = true;
-        IEnumerable<string> atomes;
-        IEnumerable<string> users;
+        
 
         //only used directly by Serialization framework
         public AtomeUserAuthorizations()
         {
-            this.atomes = from atome in AtomeService.GetAtomes()
-                          select atome.Name;
-            this.users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
-                         orderby user.UserName
-                         select user.UserName).Concat(new string[]{anonymousUser});
+            
         }
 
         public AtomeUserAuthorizations(AtomeUserAuthorizations oldData)
-            : this()
         {
+            var atomes = from atome in AtomeService.GetAtomes()
+                         select atome.Name;
+
+            var users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
+                         orderby user.UserName select user.UserName)
+                        .Concat(new string[] { anonymousUser });
+
             foreach(var atome in atomes)
             {
                 var userAuths = new List<AtomeUserAuthorization>();
@@ -54,11 +55,10 @@ namespace Molecule.WebSite.Services
 
         public AtomeUserAuthorization TryGet(string atome, string user)
         {
-            if(this.Any(t => t.Atome == atome))
-                return this.First(t => t.Atome == atome)
-                    .Authorizations.FirstOrDefault(aua => aua.User == user);
-            else
+            var item = this.FirstOrDefault(t => t.Atome == atome);
+            if(item == null)
                 return null;
+            return item.Authorizations.FirstOrDefault(aua => aua.User == user);
         }
 
         public void Set(string atome, string user, bool value)

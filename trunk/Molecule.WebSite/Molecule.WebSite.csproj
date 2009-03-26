@@ -169,6 +169,7 @@
       <DependentUpon>PhotoFile.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\Services\TagSiteMapProvider.cs" />
+    <Compile Include="atomes\photo\Services\TagUserAuthorizations.cs" />
     <Compile Include="atomes\photo\Tag.aspx.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

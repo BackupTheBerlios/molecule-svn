@@ -113,7 +113,10 @@ namespace WebPhoto.Services
             bool tagIdFound = String.IsNullOrEmpty(tagId);
             bool authorizedTagFound = false;
             var authorizedTags = getCurrentUserAuthorizedTags();
-            
+
+            if (authorizedTags.Contains(tagId))//optimization
+                return true;
+
             foreach (var photoTagId in ((IPhoto)photo).Tags.Select(t => t.Id))
             {
                 if(!authorizedTagFound)
