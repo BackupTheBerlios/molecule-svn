@@ -23,11 +23,36 @@ namespace Molecule.WebSite.atomes.photo.admin
                 ProviderList.DataSource = PhotoLibrary.Providers;
                 ProviderList.DataBind();
                 ProviderList.SelectedValue = PhotoLibrary.CurrentProvider;
-                AuthListView.DataSource = AdminService.TagUserAuthorizations;
-                AuthListView.DataBind();
-                AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
-                AuthHeaderRepeater.DataBind();
+                initAuthorizationPart();
             }
+        }
+
+        private void initAuthorizationPart()
+        {
+            AuthListView.DataSource = AdminService.TagUserAuthorizations;
+            AuthListView.DataBind();
+            AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
+            AuthHeaderRepeater.DataBind();
+            initTagTreeView();
+        }
+
+        private void initTagTreeView()
+        {
+            var tags = PhotoLibrary.GetRootTags();
+
+            TagTreeView.Nodes.Clear();
+
+            foreach (var tag in tags)
+                TagTreeView.Nodes.Add(createTreeNode(tag));
+        }
+
+        private TreeNode createTreeNode(WebPhoto.Providers.ITagInfo tag)
+        {
+            TreeNode node = new TreeNode(tag.Name, tag.Id);
+            foreach (var childTag in PhotoLibrary.GetTagsByTag(tag.Id))
+                node.ChildNodes.Add(createTreeNode(childTag));
+            return node;
+                
         }
 
         protected void OnAuthListView_CheckedChanged(object sender, EventArgs e)
@@ -45,6 +70,7 @@ namespace Molecule.WebSite.atomes.photo.admin
         protected void preferencesButton_Click(Object sender, CommandEventArgs e)
         {
             PhotoLibrary.CurrentProvider = ProviderList.SelectedValue;
+            initAuthorizationPart();
         }
     }
 }
