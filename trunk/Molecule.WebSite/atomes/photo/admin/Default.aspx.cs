@@ -49,6 +49,7 @@ namespace Molecule.WebSite.atomes.photo.admin
         private TreeNode createTreeNode(WebPhoto.Providers.ITagInfo tag)
         {
             TreeNode node = new TreeNode(tag.Name, tag.Id);
+            node.Checked = AdminService.TagUserAuthorizations.ContainsTag(tag.Id);
             foreach (var childTag in PhotoLibrary.GetTagsByTag(tag.Id))
                 node.ChildNodes.Add(createTreeNode(childTag));
             return node;
@@ -70,6 +71,15 @@ namespace Molecule.WebSite.atomes.photo.admin
         protected void preferencesButton_Click(Object sender, CommandEventArgs e)
         {
             PhotoLibrary.CurrentProvider = ProviderList.SelectedValue;
+            initAuthorizationPart();
+        }
+
+        protected void TagTreeView_TreeNodeCheckChanged(object sender, TreeNodeEventArgs e)
+        {
+            if (e.Node.Checked)
+                AdminService.TagUserAuthorizations.AddTag(e.Node.Value);
+            else
+                AdminService.TagUserAuthorizations.RemoveTag(e.Node.Value);
             initAuthorizationPart();
         }
     }

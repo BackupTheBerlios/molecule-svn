@@ -10,19 +10,21 @@ namespace WebPhoto.Services
     [Serializable]
     public class TagUserAuthorizations : List<TagUserAuthorizationItem>
     {
-        const bool defaultAuthorization = false;
+        public const bool defaultAuthorization = false;
 
         //only used directly by Serialization framework
         public TagUserAuthorizations()
         {
         }
 
+        IEnumerable<string> users;
+
         public TagUserAuthorizations(TagUserAuthorizations oldData, Func<string, bool> tagExist)
         {
             if (oldData == null)
                 return;
 
-            var users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
+            users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
                          orderby user.UserName
                          select user.UserName)
                         .Concat(new string[] { AtomeUserAuthorizations.AnonymousUser });
@@ -65,7 +67,7 @@ namespace WebPhoto.Services
             var item = this.FirstOrDefault(t => t.Tag == tag);
             if(item == null)
             {
-                item = new TagUserAuthorizationItem(tag);
+                item = new TagUserAuthorizationItem(tag, users);
                 this.Add(item);
             }
             var auth = item.Authorizations.FirstOrDefault(aua => aua.User == user);
@@ -81,6 +83,21 @@ namespace WebPhoto.Services
         {
             Set(auth.Tag, auth.User, auth.Authorized);
         }
+
+        public void AddTag(string tagId)
+        {
+            this.Add(new TagUserAuthorizationItem(tagId, users));
+        }
+
+        public void RemoveTag(string tagId)
+        {
+            this.Remove(this.First(tua => tua.Tag == tagId));
+        }
+
+        public bool ContainsTag(string tagId)
+        {
+            return this.Any(tua => tua.Tag == tagId);
+        }
     }
 
     [Serializable]
@@ -88,12 +105,18 @@ namespace WebPhoto.Services
     {
         public TagUserAuthorizationItem()
         {
-
+            
         }
 
-        public TagUserAuthorizationItem(string tag)
+        public TagUserAuthorizationItem(string tag, IEnumerable<string> users)
         {
             Tag = tag;
+            Authorizations = new List<TagUserAuthorization>();
+            foreach (string user in users)
+            {
+                var auth = new TagUserAuthorization(tag, user, TagUserAuthorizations.defaultAuthorization);
+                Authorizations.Add(auth);
+            }
         }
 
         public string Tag { get; set; }

@@ -45,7 +45,8 @@ Récupérer les photos depuis :
         </LayoutTemplate>
         </asp:ListView>
     </table>
-    <asp:TreeView ID="TagTreeView" runat="server" ShowCheckBoxes="All">
+    <asp:TreeView ID="TagTreeView" runat="server" 
+        ontreenodecheckchanged="TagTreeView_TreeNodeCheckChanged" ShowCheckBoxes="All">
     </asp:TreeView>
     <br />
     <asp:Button Text="Save" runat="server" OnClick="save_onclick" />
