@@ -43,9 +43,9 @@ namespace Molecule.WebSite
                 File.WriteAllText(cssCachePath, css); 
             }
 
-            context.Response.Cache.SetExpires(DateTime.Now.Add(new TimeSpan(1, 0, 0, 0)));
-            context.Response.Cache.SetCacheability(HttpCacheability.Public);
-            context.Response.Cache.SetValidUntilExpires(false);
+            //context.Response.Cache.SetExpires(DateTime.Now.Add(new TimeSpan(1, 0, 0, 0)));
+            //context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            //context.Response.Cache.SetValidUntilExpires(false);
             
             context.Response.WriteFile(cssCachePath);
             return;

@@ -14,7 +14,6 @@ Récupérer les photos depuis :
                 TargetControlID="TagLink" PopupControlID="TagSelectPanel"
                 CancelControlID="CancelButton"
                 BackgroundCssClass="modalBackground" />
-            <h3>Autorisations</h3>
             <table>
                 <thead><tr><td><asp:Button runat="server" ID="TagLink" Text="Tags"></asp:Button></td>
                     <asp:Repeater ID="AuthHeaderRepeater"  runat="server">
