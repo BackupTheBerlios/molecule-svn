@@ -80,6 +80,11 @@ namespace Molecule.WebSite.atomes.photo.admin
                 AdminService.TagUserAuthorizations.AddTag(e.Node.Value);
             else
                 AdminService.TagUserAuthorizations.RemoveTag(e.Node.Value);
+            
+        }
+
+        protected void OkButton_OnClick(object sender, EventArgs args)
+        {
             initAuthorizationPart();
         }
     }

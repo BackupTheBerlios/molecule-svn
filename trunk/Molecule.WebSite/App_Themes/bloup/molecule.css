@@ -319,3 +319,36 @@ table td
 	z-index:3;
 	top:-11px; left:-20px;
 }
+
+.popup
+{
+	border: solid 1px;
+	background:grey;
+}
+
+.popupHeader
+{
+	text-align: left;
+	padding:0.5ex;
+}
+
+.popupHeader .left
+{	
+	position: absolute;
+	left: .5ex;
+	text-align: left;
+}
+
+.popupHeader .right
+{
+	position: absolute;
+	right: .5ex;
+	text-align: right;
+}
+
+.modalBackground
+{
+	background-color: #000000;
+	filter:alpha(opacity=30);
+	opacity:0.30;
+}

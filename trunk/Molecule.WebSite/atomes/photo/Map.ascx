@@ -10,7 +10,7 @@
 </asp:ScriptManagerProxy>
 <div>
      <asp:LinkButton ID="LocateLink" runat="server">Locate!</asp:LinkButton>
-     <div id="mapPopup">
+     <div id="mapPopup" class="popup">
         <div class="popupHeader"><span class="left">Map by <a href="http://openstreetmap.org">OpenStreetMap</a></span>&nbsp;<span id="closeModal" class="right"><asp:LinkButton ID="CloseButton" runat="server">close</asp:LinkButton></span></div>
         <div id="map">
         </div>
