@@ -225,8 +225,6 @@ function songsView_onclick(action)
     else if(action == 'downloadAll')
     {
         var songList = '{';
-        if(songsView.rows.length > 1)
-            songList = songList + songsView.rows[1].cells[0].innerHTML;
         for(i = 1; i < songsView.rows.length; i++)//skip first header row
             songList = songList + ',' + songsView.rows[i].cells[0].innerHTML;
         songList = songList + '}';
