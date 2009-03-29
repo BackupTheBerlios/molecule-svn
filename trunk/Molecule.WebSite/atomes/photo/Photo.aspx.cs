@@ -23,8 +23,6 @@ namespace Molecule.WebSite.atomes.photo
             initTitle();
         }
 
-
-
         public IPhotoInfo CurrentPhoto { get; set; }
 
         public IPhotoInfo NextPhoto { get; set; }
@@ -58,6 +56,7 @@ namespace Molecule.WebSite.atomes.photo
             FullSizePhoto.PhotoId = photoId;
             FullSizePhoto.Metadatas = CurrentPhoto.Metadatas;
 
+            RawPhoto.PhotoId = photoId;
 
             tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
 

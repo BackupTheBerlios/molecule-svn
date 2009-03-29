@@ -19,14 +19,31 @@ namespace Molecule.WebSite.atomes.photo
         {
             var id = Request.QueryString["id"];
             var size = Request.QueryString["size"].ToEnum<PhotoFileSize>();
-            var photo = PhotoLibrary.GetPhoto(id);
-            var thumbFile = PhotoFileProvider.GetResizedPhoto(photo.MediaFilePath, size);
-            var thumbInfo = new FileInfo(thumbFile);
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(thumbInfo.Name));
-            Response.ExpiresAbsolute = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0));
-            Response.AddHeader("Content-Length", thumbInfo.Length.ToString());
-            Response.ContentType = "application/octet-stream";
-            Response.WriteFile(thumbInfo.FullName);
+			var photo = PhotoLibrary.GetPhoto(id);
+			if(size != PhotoFileSize.Raw)
+			{
+                var thumbFile = PhotoFileProvider.GetResizedPhoto(photo.MediaFilePath, size);
+                var thumbInfo = new FileInfo(thumbFile);
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(thumbInfo.Name));
+			    Response.Clear();
+                Response.ExpiresAbsolute = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0));
+                Response.AddHeader("Content-Length", thumbInfo.Length.ToString());
+                Response.ContentType = "image/jpeg";
+                Response.WriteFile(thumbInfo.FullName);
+				Response.Flush();
+			}
+			else
+			{
+                var rawInfo = new FileInfo(photo.MediaFilePath);
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + id+".jpg");
+			    Response.Clear();
+                Response.ExpiresAbsolute = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0));
+                Response.AddHeader("Content-Length", rawInfo.Length.ToString());
+                Response.ContentType = "image/jpeg";
+                Response.WriteFile(rawInfo.FullName);
+				Response.Flush();
+			}
+
         }
 
         public static string GetUrlFor(string photoId, PhotoFileSize size)

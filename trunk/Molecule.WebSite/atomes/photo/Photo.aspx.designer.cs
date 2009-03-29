@@ -84,5 +84,10 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Molecule.WebSite.atomes.photo.Map PhotoMap;
+		
+        protected global::Molecule.WebSite.atomes.photo.RawPhoto RawPhoto;			
+		
+        protected System.Web.UI.WebControls.Content Content2;
+        protected System.Web.UI.WebControls.Content Content1;
     }
 }

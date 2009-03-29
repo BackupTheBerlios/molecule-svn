@@ -35,7 +35,7 @@ namespace WebPhoto.Services
 
 
     public enum PhotoFileClip { No, Square };
-    public enum PhotoFileSize : int { Thumbnail = 80, Normal = 640, Large = 1024 };
+    public enum PhotoFileSize : int { Thumbnail = 80, Normal = 640, Large = 1024, Raw };
 
     /// <remarks>
     /// Does not use thumbnail management standard (http://jens.triq.net/thumbnail-spec/) for many reasons :
