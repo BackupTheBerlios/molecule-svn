@@ -29,7 +29,7 @@ Récupérer les photos depuis :
                     <tr>
                         <td>
                             <asp:Label runat="server" ToolTip='<%# WebPhoto.Services.PhotoLibrary.GetTagFullPath((string)Eval("TagId")) %>'>
-                                <%# WebPhoto.Services.PhotoLibrary.GetTag((string)Eval("TagId")).Name %>
+                                <%# WebPhoto.Services.PhotoLibrary.AdminGetTag((string)Eval("TagId")).Name %>
                             </asp:Label>
                         </td>
                         <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>'>

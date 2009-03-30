@@ -30,6 +30,10 @@ namespace Molecule.WebSite.atomes.photo
             string date = Request.QueryString["date"];
             if (!String.IsNullOrEmpty(date))
                 day = DateTime.ParseExact(date, "yyyy/MM", null);
+            else if (!String.IsNullOrEmpty(tagId))
+            {
+                day = PhotoLibrary.GetFirstPhotoByTag(tagId).Date;
+            }
 
             fillCalendar(day);
             initMonthLinks(day);

@@ -99,6 +99,13 @@ namespace WebPhoto.Services
         {
             return this.Any(tua => tua.TagId == tagId);
         }
+
+        public IEnumerable<string> GetTags(string user)
+        {
+            return from item in this
+                   where item.Authorizations.Any(tua => tua.Authorized && tua.User == user)
+                   select item.TagId;
+        }
     }
 
     [Serializable]

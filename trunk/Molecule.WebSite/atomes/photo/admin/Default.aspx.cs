@@ -29,7 +29,7 @@ namespace Molecule.WebSite.atomes.photo.admin
 
         private void initAuthorizationPart()
         {
-            AuthListView.DataSource = AdminService.TagUserAuthorizations;
+            AuthListView.DataSource = PhotoLibrary.TagUserAuthorizations;
             AuthListView.DataBind();
             AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
             AuthHeaderRepeater.DataBind();
@@ -49,8 +49,8 @@ namespace Molecule.WebSite.atomes.photo.admin
         private TreeNode createTreeNode(WebPhoto.Providers.ITagInfo tag)
         {
             TreeNode node = new TreeNode(tag.Name, tag.Id);
-            node.Checked = AdminService.TagUserAuthorizations.ContainsTag(tag.Id);
-            foreach (var childTag in PhotoLibrary.GetTagsByTag(tag.Id))
+            node.Checked = PhotoLibrary.TagUserAuthorizations.ContainsTag(tag.Id);
+            foreach (var childTag in PhotoLibrary.AdminGetTagsByTag(tag.Id))
                 node.ChildNodes.Add(createTreeNode(childTag));
             return node;
                 
@@ -60,12 +60,12 @@ namespace Molecule.WebSite.atomes.photo.admin
         {
             var cbx = ((CheckBox)sender);
             var tagUser = cbx.ToolTip.Split(',');
-            AdminService.TagUserAuthorizations.Set(tagUser[0], tagUser[1], cbx.Checked);
+            PhotoLibrary.TagUserAuthorizations.Set(tagUser[0], tagUser[1], cbx.Checked);
         }
 
         protected void save_onclick(object sender, EventArgs e)
         {
-            AdminService.SaveTagUserAuthorizations();
+            PhotoLibrary.SaveTagUserAuthorizations();
         }
 
         protected void preferencesButton_Click(Object sender, CommandEventArgs e)
@@ -77,9 +77,9 @@ namespace Molecule.WebSite.atomes.photo.admin
         protected void TagTreeView_TreeNodeCheckChanged(object sender, TreeNodeEventArgs e)
         {
             if (e.Node.Checked)
-                AdminService.TagUserAuthorizations.AddTag(e.Node.Value);
+                PhotoLibrary.TagUserAuthorizations.AddTag(e.Node.Value);
             else
-                AdminService.TagUserAuthorizations.RemoveTag(e.Node.Value);
+                PhotoLibrary.TagUserAuthorizations.RemoveTag(e.Node.Value);
             
         }
 

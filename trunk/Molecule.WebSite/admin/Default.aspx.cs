@@ -42,7 +42,6 @@ namespace Molecule.WebSite.Admin
 {
     public partial class Default : System.Web.UI.Page
     {
-        IEnumerable<Tuple<string, IEnumerable<AtomeUserAuthorization>>> auths;
         
         protected override void OnInit(EventArgs e)
         {

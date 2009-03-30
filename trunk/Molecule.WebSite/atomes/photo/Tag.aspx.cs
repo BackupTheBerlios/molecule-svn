@@ -12,6 +12,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using WebPhoto.Services;
 using WebPhoto.Providers;
+using System.Collections.Generic;
 
 namespace Molecule.WebSite.atomes.photo
 {
@@ -19,7 +20,7 @@ namespace Molecule.WebSite.atomes.photo
     {
         protected string tagId;
         protected ITagInfo tag;
-        ICollection photos;
+        List<IPhotoInfo> photos;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +37,11 @@ namespace Molecule.WebSite.atomes.photo
             this.PhotoListView.DataSource = photos;
             this.PhotoListView.DataBind();
             this.subTagList.Tags = PhotoLibrary.GetTagsByTag(tagId);
+            if (this.photos.Any())
+                this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(photos.First().Date, tagId);
+            else
+                this.CalendarLink.Visible = false;
+                
         }
 
         private void initTitle()

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using Molecule.Web;
 using Molecule.Configuration;
+using WebPhoto.Providers;
 
 namespace WebPhoto.Services
 {
-    public class AdminService
+    public partial class PhotoLibrary
     {
         const string confTagUserAuthorizationsKey = "TagUserAuthorizations";
         const string confNamespace = "WebPhoto.Admin";
@@ -15,24 +16,15 @@ namespace WebPhoto.Services
         private TagUserAuthorizations tagUserAuthorizations;
         private object authLock = new object();
 
-        private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
-
-        private AdminService()
-        {
-        }
-
         public static TagUserAuthorizations TagUserAuthorizations
         {
             get
             {
-                if (instance.tagUserAuthorizations == null)
-                    instance.initAuthorizations();
-
                 return instance.tagUserAuthorizations;
             }
         }
 
-        private void initAuthorizations()
+        private void initAuthorizations(Func<string, bool> tagExists)
         {
             lock (authLock)
             {
@@ -40,8 +32,7 @@ namespace WebPhoto.Services
                 {
                     var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
                         confNamespace, confTagUserAuthorizationsKey, null);
-                    tagUserAuthorizations = new TagUserAuthorizations(oldData,
-                        tagId => PhotoLibrary.GetTag(tagId) != null);
+                    tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
                 }
             }
         }
@@ -71,8 +62,20 @@ namespace WebPhoto.Services
             lock (instance.authLock)
             {
                 //reinit lazy loading.
-                instance.tagUserAuthorizations = null;
+                instance.initAuthorizations(t => GetTag(t) != null);
             }
+        }
+
+        public static IEnumerable<ITagInfo> AdminGetTagsByTag(string tagId)
+        {
+            return getAllTags(instance.rootTags).First(t => t.Id == tagId)
+                .ChildTags.Cast<ITagInfo>();
+        }
+
+        //needed by preference page, can't be filtered by user authorizations.
+        public static ITagInfo AdminGetTag(string tagId)
+        {
+            return getAllTags(instance.rootTags).First(t => t.Id == tagId);
         }
     }
 }

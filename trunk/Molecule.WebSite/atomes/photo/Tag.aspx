@@ -47,5 +47,5 @@
                 ShowPreviousPageButton="false" ShowNextPageButton="True" />
         </Fields>
     </asp:DataPager>
-<h2><a href="<%= MonthCalendar.GetUrlFor(DateTime.Now, tagId) %>">Calendrier</a></h2>
+<h2><asp:HyperLink runat="server" id="CalendarLink">Calendrier</asp:HyperLink></h2>
 </asp:Content>

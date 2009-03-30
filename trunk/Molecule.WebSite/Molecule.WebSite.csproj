@@ -166,6 +166,7 @@
       <DependentUpon>RawPhoto.ascx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\Services\AdminService.cs" />
+    <Compile Include="atomes\photo\Services\InternalTag.cs" />
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />
@@ -178,6 +179,7 @@
     </Compile>
     <Compile Include="atomes\photo\Services\TagSiteMapProvider.cs" />
     <Compile Include="atomes\photo\Services\TagUserAuthorizations.cs" />
+    <Compile Include="atomes\photo\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photo\Tag.aspx.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
