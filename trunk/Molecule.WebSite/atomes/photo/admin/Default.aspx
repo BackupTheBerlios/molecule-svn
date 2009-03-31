@@ -56,7 +56,7 @@ Récupérer les photos depuis :
             </table>
             <asp:Panel runat="server" ID="TagSelectPanel" CssClass="popup" DefaultButton="OkButton" Height="300" Width="300">
                 <div style="height:259px;overflow:auto; margin:5px">
-                    <asp:TreeView ID="TagTreeView" runat="server" NodeIndent="10" ExpandDepth="FullyExpand"
+                    <asp:TreeView ID="TagTreeView" runat="server" NodeIndent="10" ExpandDepth="20"
                         ontreenodecheckchanged="TagTreeView_TreeNodeCheckChanged" ShowCheckBoxes="All">
                     </asp:TreeView>
                 </div>
