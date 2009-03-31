@@ -17,7 +17,7 @@ namespace Upload
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.destinationDirectoryPathTextBox.Attributes.Add("onkeyup", String.Format(@"destinationDirectoryTextChanged({0},{1});",this.destinationDirectoryPathTextBox.ClientID, this.preferencesButton.ClientID));
         }
 
         protected void preferencesButton_Click(object sender, EventArgs e)

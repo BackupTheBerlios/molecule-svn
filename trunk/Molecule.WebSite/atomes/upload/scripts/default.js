@@ -12,3 +12,18 @@
 	uploadProgressBar.EvalOnClose = "NeatUploadMainWindow.document.getElementById('" 
 		+ uploadProgressBar.ClientID + "').parentNode.style.display = \"none\";";
 }
+
+function destinationDirectoryTextChanged( idTextBox, idControlDestination)
+{
+    var textBoxControl = $get(idTextBox.id);
+    var controlDestinationControl = $get(idControlDestination.id);    
+    if( textBoxControl.value.length != 0)
+    {
+        
+        controlDestinationControl.disabled = false;
+    }
+    else
+    {
+        controlDestinationControl.disabled = true;
+    }
+}

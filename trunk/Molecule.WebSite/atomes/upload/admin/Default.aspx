@@ -29,11 +29,16 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
+    <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="../scripts/default.js" />
+        </Scripts>
+    </asp:ScriptManagerProxy>
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="destinationDirectoryContainer">
                 Destination directory :
-                <asp:TextBox ID="destinationDirectoryPathTextBox" runat="server" Width="352px"></asp:TextBox><br />
+                <asp:TextBox ID="destinationDirectoryPathTextBox" runat="server" Width="352px" ></asp:TextBox><br />
                 <note>Directory on the server where uploaded files will we saved.</note>
             </div>
             <asp:Button ID="preferencesButton" runat="server" Text="Save preferences" OnClick="preferencesButton_Click" CssClass="saveButton" Enabled="false" />
