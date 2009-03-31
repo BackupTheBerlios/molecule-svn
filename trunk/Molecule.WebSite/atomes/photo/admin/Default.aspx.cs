@@ -38,7 +38,7 @@ namespace Molecule.WebSite.atomes.photo.admin
 
         private void initTagTreeView()
         {
-            var tags = PhotoLibrary.GetRootTags();
+            var tags = PhotoLibrary.AdminGetRootTags();
 
             TagTreeView.Nodes.Clear();
 

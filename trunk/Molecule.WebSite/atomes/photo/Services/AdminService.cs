@@ -28,12 +28,9 @@ namespace WebPhoto.Services
         {
             lock (authLock)
             {
-                if (tagUserAuthorizations == null)
-                {
-                    var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
-                        confNamespace, confTagUserAuthorizationsKey, null);
-                    tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
-                }
+                var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
+                    confNamespace, confTagUserAuthorizationsKey, null);
+                tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
             }
         }
 
@@ -76,6 +73,11 @@ namespace WebPhoto.Services
         public static ITagInfo AdminGetTag(string tagId)
         {
             return getAllTags(instance.rootTags).First(t => t.Id == tagId);
+        }
+
+        internal static IEnumerable<ITagInfo> AdminGetRootTags()
+        {
+            return instance.rootTags.Cast<ITagInfo>();
         }
     }
 }
