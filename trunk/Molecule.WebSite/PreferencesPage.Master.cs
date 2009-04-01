@@ -18,7 +18,8 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO : check for admin role for this master page !!
+            if (!HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
+                FormsAuthentication.RedirectToLoginPage();
             this.tabDefault.CssClass = AtomeService.CurrentPathIsAtome ? "tabTitle" : "tabSelectedTitle";
             Page.Title = this.GetLocalResourceObject("Preferences").ToString();
         }
