@@ -165,7 +165,7 @@
     <Compile Include="atomes\photo\RawPhoto.ascx.designer.cs">
       <DependentUpon>RawPhoto.ascx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\photo\Services\AdminService.cs" />
+    <Compile Include="atomes\photo\Services\PhotoLibrary.Admin.cs" />
     <Compile Include="atomes\photo\Services\InternalTag.cs" />
     <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
