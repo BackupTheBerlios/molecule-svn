@@ -96,21 +96,60 @@ namespace WebMusic.Providers.Banshee
             using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
                 string sql =
-                "SELECT  DISTINCT albums.albumTitle " +
-                "FROM ( " +
-                "SELECT CoreAlbums.Title albumTitle, CoreTracks.DateAddedStamp dateAddedTimeStamp  " +
-                "FROM CoreArtists, CoreTracks, CoreAlbums  " +
-                "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 " +
-                "ORDER BY CoreTracks.DateAddedStamp DESC   " +
-                ") albums " +
-                "LIMIT 5; ";
+                "select albums.albumTitle, CoreArtists.Name,  albums.ID,  CoreArtists.ArtistID " +
+                "FROM (SELECT  DISTINCT albums.albumTitle albumTitle, albums.ID  ID " +
+                "FROM (  " +
+                "SELECT CoreAlbums.Title albumTitle, CoreAlbums.AlbumID ID, CoreTracks.DateAddedStamp dateAddedTimeStamp   " +
+                "FROM CoreArtists, CoreTracks, CoreAlbums   " +
+                "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1  " +
+                "ORDER BY CoreTracks.DateAddedStamp DESC    " +
+                ") albums  " +
+                "LIMIT 5) albums, CoreTracks, CoreArtists " +
+                "where albums.ID = CoreTracks.AlbumID and CoreArtists.ArtistID = CoreTracks.ArtistID ";
+                
+
                 dbcmd.CommandText = sql;
 
                 using (IDataReader reader = dbcmd.ExecuteReader())
                 {
+                    Dictionary<string, Dictionary<string, string>> recentAlbums = new Dictionary<string, Dictionary<string, string>>();
                     while (reader.Read())
                     {
-                        albumsRecentlyAdded.Add(reader.GetValue(0).ToString());
+                         string albumTitle = reader.GetValue(0).ToString();
+                         string artist = reader.GetValue(1).ToString();
+                         string artistID = reader.GetValue(3).ToString();
+                        
+                         
+                         if (!recentAlbums.ContainsKey(albumTitle))
+                         {
+                             Dictionary<string, string> arts = new Dictionary<string, string>();
+                             arts.Add(artistID,artist);
+                             recentAlbums.Add(albumTitle, arts);
+                         }
+                         else
+                         {
+                             var arts = recentAlbums[albumTitle];
+                             if (!arts.ContainsKey(artistID))
+                             {
+                                 arts.Add(artistID, artist);
+                             }
+                         }
+                    }
+                    foreach (KeyValuePair <string, Dictionary<string, string>> recent in recentAlbums)
+                    {
+                        string artistLabel =  String.Empty;
+                        if (recent.Value.Count == 1)
+                        {
+                            foreach( var k in recent.Value)
+                            {
+                                artistLabel = k.Value;
+                            }
+                        }
+                        else
+                        {
+                            artistLabel = "Various artists";
+                        }
+                        albumsRecentlyAdded.Add(String.Format("{0} - {1} ",artistLabel ,recent.Key));
                     }
                 }
             }
