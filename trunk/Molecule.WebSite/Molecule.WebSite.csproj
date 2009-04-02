@@ -519,6 +519,16 @@
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Common.resx">
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Common.fr.resx">
+      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Themes\raw\" />
     <Folder Include="images\" />
   </ItemGroup>

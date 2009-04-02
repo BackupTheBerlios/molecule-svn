@@ -2,11 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
+<h2>Source</h2>
 Récupérer les photos depuis :
     <asp:DropDownList ID="ProviderList" runat="server"
     DataValueField="Id" DataTextField="Name" />
     <br />
-    <asp:Button ID="preferencesButton" runat="server" Text="Save" 
+    <asp:Button runat="server" Text="<%$ Resources:Common,Save %>" 
         OnCommand="preferencesButton_Click" />
     
     <h2>Tags partagés</h2>
@@ -66,5 +67,5 @@ Récupérer les photos depuis :
         </div>
     </asp:Panel>
     <br />
-    <asp:Button Text="Save" runat="server" OnClick="save_onclick" />
+    <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
 </asp:Content>

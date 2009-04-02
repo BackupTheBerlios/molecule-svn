@@ -29,7 +29,7 @@
         <photo:Photo ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
         <div id="photoDescriptionContainer">
             <p>
-                <asp:Label ID="Label1" runat="server"><%= CurrentPhoto.Description %></asp:Label>
+                <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
             <p class="rawFile">
                 <photo:RawPhoto runat="server" ID="RawPhoto" />
