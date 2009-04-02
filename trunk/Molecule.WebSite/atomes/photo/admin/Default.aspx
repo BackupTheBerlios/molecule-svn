@@ -5,7 +5,9 @@
 Récupérer les photos depuis :
     <asp:DropDownList ID="ProviderList" runat="server"
     DataValueField="Id" DataTextField="Name" />
-    <asp:Button ID="preferencesButton" runat="server" Text="Save preferences" OnCommand="preferencesButton_Click" />
+    <br />
+    <asp:Button ID="preferencesButton" runat="server" Text="Save" 
+        OnCommand="preferencesButton_Click" />
     
     <h2>Tags partagés</h2>
     <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
