@@ -513,6 +513,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
+    <Content Include="atomes\photo\images\zoom-original.png" />
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Banshee.dll" />
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Rhythmbox.dll" />
     <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
