@@ -31,6 +31,7 @@ namespace WebPhoto.Services
                 var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
                     confNamespace, confTagUserAuthorizationsKey, null);
                 tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
+                saveAuthorizations();
             }
         }
 
