@@ -24,24 +24,23 @@ namespace WebPhoto.Services
             }
         }
 
-        private void initAuthorizations(Func<string, bool> tagExists)
+        private void initAuthorizations()
         {
-            lock (authLock)
-            {
-                var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
-                    confNamespace, confTagUserAuthorizationsKey, null);
-                tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
-                saveAuthorizations();
-            }
+            var allTags = getAllTags(rootTags).ToList();
+            Func<string, bool> tagExists = (id) => allTags.Any(t => t.Id == id);
+
+            var oldData = ConfigurationClient.Get<TagUserAuthorizations>(
+                confNamespace, confTagUserAuthorizationsKey, null);
+
+            tagUserAuthorizations = new TagUserAuthorizations(oldData, tagExists);
+
+            //save it again : can be updated regarding current provider and available tags.
+            saveAuthorizations();
         }
 
         public static void SetTagUserAuthorization(string user, string tag, bool auth)
         {
-            lock (instance.authLock)
-            {
-                instance.tagUserAuthorizations.Set(user, tag, auth);
-                instance.saveAuthorizations();
-            }
+            TagUserAuthorizations.Set(user, tag, auth);
         }
 
         protected void saveAuthorizations()
@@ -53,15 +52,8 @@ namespace WebPhoto.Services
         public static void SaveTagUserAuthorizations()
         {
             instance.saveAuthorizations();
-        }
-
-        public static void UpdateTagUserAuthorizations()
-        {
-            lock (instance.authLock)
-            {
-                //reinit lazy loading.
-                instance.initAuthorizations(t => GetTag(t) != null);
-            }
+            //authorization modified : need to refresh user librairies.
+            instance.buildUserLibraries();
         }
 
         public static IEnumerable<ITagInfo> AdminGetTagsByTag(string tagId)
@@ -70,7 +62,6 @@ namespace WebPhoto.Services
                 .ChildTags.Cast<ITagInfo>();
         }
 
-        //needed by preference page, can't be filtered by user authorizations.
         public static ITagInfo AdminGetTag(string tagId)
         {
             return getAllTags(instance.rootTags).First(t => t.Id == tagId);

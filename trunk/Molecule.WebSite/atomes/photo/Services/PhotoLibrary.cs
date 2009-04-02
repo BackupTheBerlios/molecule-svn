@@ -45,13 +45,11 @@ namespace WebPhoto.Services
             CallProvider(provider =>
                 rootTags = provider.GetRootTags().ToList());
 
-            var allTags = getAllTags(rootTags);
-            initAuthorizations(id => allTags.Any(t => t.Id == id));
-
-            buildUserLibraries(rootTags);
+            initAuthorizations();
+            buildUserLibraries();
         }
 
-        private void buildUserLibraries(IEnumerable<ITag> rootTags)
+        private void buildUserLibraries()
         {
             
             userLibraries = (from user in Membership.GetAllUsers().Cast<MembershipUser>()

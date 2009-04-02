@@ -32,7 +32,6 @@ namespace WebPhoto.Services
             HashSet<ITag> visibleTags = new HashSet<ITag>();
             foreach (var tag in authorizedTags)
             {
-                visibleTags.Add(tag);
                 foreach (var photo in tag.Photos)
                 {
                     //even not directly authorized tags can be traversed or can reference authorized photo.
