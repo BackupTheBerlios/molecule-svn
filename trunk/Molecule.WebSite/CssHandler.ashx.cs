@@ -14,23 +14,20 @@ using Molecule.Web;
 using Mono.Rocks;
 using System.Web.Caching;
 using Molecule.IO;
+using Molecule.WebSite.Services;
 
 namespace Molecule.WebSite
 {
-    /// <summary>
-    /// Summary description for $codebehindclassname$
-    /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class CssHandler : IHttpHandler
     {
-        static string cssCachePath = Path.Combine(Path.Combine(XdgBaseDirectorySpec.GetUserDirectory("XDG_CACHE_HOME", ".molecule"), "www"), "molecule.css");
         static DateTime cacheDate = DateTime.MinValue;
 
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/css";
-            if (!File.Exists(cssCachePath) || Services.AdminService.LastCssVariablesUpdate > cacheDate)
+            if (!File.Exists(AdminService.CssCachePath) || AdminService.LastCssVariablesUpdate > cacheDate)
             {
                 cacheDate = Services.AdminService.LastCssVariablesUpdate;
                 string css = File.ReadAllText(context.Request.PhysicalPath);
@@ -38,16 +35,16 @@ namespace Molecule.WebSite
                     pairs => Services.AdminService.GetCssVariables().ForEach(
                         cvi => pairs[cvi.Key] = cvi.Value)
                     );
-                FileInfo fi = new FileInfo(cssCachePath);
-                new DirectoryInfo(Path.GetDirectoryName(cssCachePath)).Create(true);
-                File.WriteAllText(cssCachePath, css); 
+                FileInfo fi = new FileInfo(AdminService.CssCachePath);
+                new DirectoryInfo(Path.GetDirectoryName(AdminService.CssCachePath)).Create(true);
+                File.WriteAllText(AdminService.CssCachePath, css); 
             }
 
-            //context.Response.Cache.SetExpires(DateTime.Now.Add(new TimeSpan(1, 0, 0, 0)));
+            //context.Response.Cache.SetExpires(DateTime.Now.Add(TimeSpan.FromDays(30)));
             //context.Response.Cache.SetCacheability(HttpCacheability.Public);
             //context.Response.Cache.SetValidUntilExpires(false);
-            
-            context.Response.WriteFile(cssCachePath);
+
+            context.Response.WriteFile(AdminService.CssCachePath);
             return;
         }
 

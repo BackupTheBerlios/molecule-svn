@@ -15,14 +15,26 @@ using System.Web.Configuration;
 using System.IO;
 using Molecule.Configuration;
 using Mono.Rocks;
+using Molecule.IO;
 
 namespace Molecule.WebSite.Services
 {
     public class AdminService
     {
+        private static string cssCachePath = (new []{
+            XdgBaseDirectorySpec.GetUserDirectory("XDG_CACHE_HOME", ".molecule"), "www", "molecule.css"})
+            .PathCombine();
+
+        public static string CssCachePath
+        {
+            get { return AdminService.cssCachePath; }
+        }
+
         private AdminService()
         {
             moleculeTitle = Configuration.ConfigurationClient.Get<string>("Molecule.WebSite", "Title", "Molecule");
+            if (File.Exists(CssCachePath))
+                LastCssVariablesUpdate = File.GetCreationTime(cssCachePath);
         }
 
         private string moleculeTitle;
