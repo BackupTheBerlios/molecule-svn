@@ -26,6 +26,7 @@
  CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.Admin.Default" Title="Général" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
+<%@ Import Namespace="System.Web.Security" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
 .ajax__cp_container
@@ -40,16 +41,40 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
-<h2><asp:Label ID="Label1" runat="server" Text="<%$Resources:Users%>" /></h2>
-    <asp:GridView ID="usersGridView" runat="server" AllowPaging="True" 
-        AutoGenerateColumns="False" DataSourceID="usersObjectDataSource"
-        DataKeyNames="UserName"><Columns><asp:BoundField DataField="UserName" HeaderText="User Name" ReadOnly="True" 
-                SortExpression="UserName" />
-            <asp:CheckBoxField DataField="IsOnline" HeaderText="Is Online ?" ReadOnly="True" 
-                SortExpression="IsOnline" />
-            <asp:CommandField ShowDeleteButton="True" />
-        </Columns>
-    </asp:GridView>
+<h2><asp:Label runat="server" Text="<%$Resources:Users%>" /></h2>
+    <asp:ListView ID="UserListView" runat="server" DataKeyNames="UserName"
+        DataSourceID="usersObjectDataSource">
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <asp:Label runat="server" Text='<%# Eval("UserName") %>' />
+                </td>
+                <td>
+                    <asp:Label runat="server" Text='<%# Eval("LastLoginDate") %>' />
+                </td>
+                 <td>
+                    <asp:ImageButton runat="server" CommandName="Delete" AlternateText="Delete"
+                        ImageUrl='<%# "~/App_Themes/"+ Theme + "/images/list-remove.png"  %>'
+                        Enabled='<%# !Roles.IsUserInRole((string)Eval("UserName"),
+                            Molecule.SQLiteProvidersHelper.AdminRoleName) %>'/>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <LayoutTemplate>
+            <table>
+                <thead>
+                    <tr>
+                        <td>UserName</td>
+                        <td>LastLoginDate</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ID="itemPlaceholder" runat="server">
+                    </tr>
+                </tbody>
+            </table>
+        </LayoutTemplate>
+    </asp:ListView>
     
       <asp:ObjectDataSource ID="usersObjectDataSource" runat="server" 
         DeleteMethod="DeleteUser" SelectMethod="GetAllUsers" 
@@ -126,8 +151,6 @@
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
     Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
-    <asp:Button runat="server" ID="saveTitleButton" Text="Enregistrer" 
-            onclick="saveTitleButton_Click" />
     </p>
     <p>
         <asp:ListView ID="CssVariableList" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">

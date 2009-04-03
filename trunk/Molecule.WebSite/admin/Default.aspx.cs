@@ -50,7 +50,7 @@ namespace Molecule.WebSite.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+               
             if (!IsPostBack)
             {
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
@@ -69,7 +69,7 @@ namespace Molecule.WebSite.Admin
 
         protected void createUserWizard_CreatedUser(object sender, EventArgs e)
         {
-            usersGridView.DataBind();
+            UserListView.DataBind();
             AdminService.UpdateAtomeUserAuthorizations();
         }
 
@@ -77,11 +77,6 @@ namespace Molecule.WebSite.Admin
         {
             Services.AdminService.ResetCssVariables();
             CssVariableList.DataBind();
-        }
-
-        protected void saveTitleButton_Click(object sender, EventArgs e)
-        {
-            AdminService.MoleculeTitle = this.titleTextBox.Text;
         }
 
         protected void OnAuthListView_CheckedChanged(object sender, EventArgs e)
@@ -98,6 +93,7 @@ namespace Molecule.WebSite.Admin
 
         protected void save_onclick(object sender, EventArgs e)
         {
+            AdminService.MoleculeTitle = this.titleTextBox.Text;
             AdminService.SaveAtomeUserAuthorizations();
         }
     }
