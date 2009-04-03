@@ -146,7 +146,7 @@
         </LayoutTemplate>
         </asp:ListView>
     </table>
-    <asp:Button Text="Save" runat="server" OnClick="save_onclick" />
+    <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
 
     <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
     <p>
