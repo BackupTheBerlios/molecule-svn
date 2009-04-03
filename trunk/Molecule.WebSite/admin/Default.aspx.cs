@@ -76,7 +76,7 @@ namespace Molecule.WebSite.Admin
         protected void ButtonReset_Click(object sender, EventArgs e)
         {
             Services.AdminService.ResetCssVariables();
-            ListView1.DataBind();
+            CssVariableList.DataBind();
         }
 
         protected void saveTitleButton_Click(object sender, EventArgs e)
@@ -89,6 +89,11 @@ namespace Molecule.WebSite.Admin
             var cbx = ((CheckBox)sender);
             var atomeUser = cbx.ToolTip.Split(',');
             AdminService.AtomeUserAuthorizations.Set(atomeUser[0], atomeUser[1], cbx.Checked);
+        }
+    
+        protected void Variable_TextChanged(object sender, EventArgs e)
+        {
+            CssVariableList.UpdateItem(((sender as TextBox).Parent as ListViewDataItem).DataItemIndex,false);
         }
 
         protected void save_onclick(object sender, EventArgs e)

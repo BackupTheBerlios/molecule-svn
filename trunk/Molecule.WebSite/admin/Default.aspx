@@ -130,17 +130,21 @@
             onclick="saveTitleButton_Click" />
     </p>
     <p>
-        <asp:ListView ID="ListView1" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">
+        <asp:ListView ID="CssVariableList" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">
             <ItemTemplate>
                 <tr>
-                    <td>
-                        <asp:Button runat="server" CommandName="Edit" Text="Edit" />
-                    </td>
                     <td>
                         <asp:Label runat="server" Text='<%# Eval("Key") %>' />
                     </td>
                     <td>
-                        <asp:Label runat="server" Text='<%# Eval("Value") %>' />
+                        <asp:TextBox ID="tb" runat="server" Text='<%# Bind("Value") %>' OnTextChanged="Variable_TextChanged" />
+                        <asp:PlaceHolder runat="server" Visible='<%# ((string)Eval("Key")).Contains("Color") %>'>
+                            <asp:ImageButton id="cpb" runat="server" 
+                              ImageUrl='<%# "~/App_Themes/"+ Theme +"/images/colorpicker.png" %>' />
+                            <cdt:colorpickerextender runat="server"
+                                 targetcontrolid="tb" samplecontrolid="cpb" popupbuttonid="cpb"
+                                 SelectedColor='<%# ((string)Eval("Value")).Replace("#","") %>' />
+                        </asp:PlaceHolder>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -148,7 +152,6 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Actions</td>
                             <td>Key</td>
                             <td>Value</td>
                         </tr>
@@ -159,30 +162,6 @@
                     </tbody>
                 </table>
             </LayoutTemplate>
-            <EditItemTemplate>
-                <tr>
-                    <td>
-                        <asp:Button ID="UpdateButton" runat="server" CommandName="Update" 
-                            Text="Update" />
-                        <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
-                            Text="Cancel" />
-                    </td>
-                    <td>
-                        <asp:Label runat="server" Text='<%# Eval("Key") %>' />
-                    </td>
-                    <td>
-                        <asp:TextBox ID="ValueTextBox" runat="server" Text='<%# Bind("Value") %>' />
-                        <asp:PlaceHolder runat="server" Visible='<%# ((string)Eval("Key")).Contains("Color") %>'>
-                            <asp:ImageButton id="cpb" runat="server" 
-                              ImageUrl='<%# "~/App_Themes/"+ Theme +"/images/colorpicker.png" %>' />
-                            <cdt:colorpickerextender runat="server"
-                                 targetcontrolid="ValueTextBox"
-                                 samplecontrolid="cpb"
-                                 popupbuttonid="cpb" SelectedColor='<%# ((string)Eval("Value")).Replace("#","") %>' />
-                        </asp:PlaceHolder>
-                    </td>
-                </tr>
-            </EditItemTemplate>
         </asp:ListView>
         <asp:ObjectDataSource ID="CssVariablesSource" runat="server" 
             DataObjectTypeName="Molecule.WebSite.Services.CssVariableInfo" 
@@ -190,7 +169,8 @@
             TypeName="Molecule.WebSite.Services.AdminService" 
             UpdateMethod="UpdateCssVariable"></asp:ObjectDataSource>
         <asp:Button ID="ButtonReset" runat="server" Text="Réinitialiser" 
-            onclick="ButtonReset_Click" />    
+            onclick="ButtonReset_Click" />
+        <asp:Button ID="Button1" Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
     </p>
     
 </asp:Content>
