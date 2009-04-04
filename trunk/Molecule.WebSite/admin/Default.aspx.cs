@@ -54,23 +54,23 @@ namespace Molecule.WebSite.Admin
             if (!IsPostBack)
             {
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
-                AuthListView.DataSource = AdminService.AtomeUserAuthorizations;
-                AuthListView.DataBind();
-                AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
-                AuthHeaderRepeater.DataBind();
+                initAuthList();
             }
         }
 
-        protected void createUserButton_Click(object sender, EventArgs e)
+        private void initAuthList()
         {
-            createUserWizard.Visible = true;
-            createUserButton.Visible = false;
+            AuthListView.DataSource = AdminService.AtomeUserAuthorizations;
+            AuthListView.DataBind();
+            AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
+            AuthHeaderRepeater.DataBind();
         }
 
         protected void createUserWizard_CreatedUser(object sender, EventArgs e)
         {
             UserListView.DataBind();
             AdminService.UpdateAtomeUserAuthorizations();
+            initAuthList();
         }
 
         protected void ButtonReset_Click(object sender, EventArgs e)
