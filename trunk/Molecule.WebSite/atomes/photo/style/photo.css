@@ -12,7 +12,7 @@
 #photo
 {
 	display:inline-block;
-	border: solid 1px;
+	border: solid 4px;
 }
 
 #NextPhotoLink, #PreviousPhotoLink

@@ -1,19 +1,21 @@
 ﻿.PhotoLink
 {
-	height:82px;
-	width:82px;
+	height:90px;
+	width:90px;
 	position:relative;
 	vertical-align:top;
 }
 
-.PhotoLink img
-{
-	border:solid 1px;
-}
-
-.PhotoLink_HoverIcon img
+.PhotoLink a
 {
 	border:none;
+}
+
+.PhotoLink_Thumbnail
+{
+	border:solid 1px Grey;
+	padding:4px;
+	
 }
 
 .PhotoLink_HoverIcon
@@ -23,33 +25,45 @@
 	top:0px;
 }
 
-.PhotoLink_HoverText,
-.PhotoLink_HoverTextShadow
+.PhotoLink_HoverIcon img
 {
+	border:none;
+}
+
+.PhotoLink_HoverText
+{
+	font-size:15px;
+	color:White;
+	font-weight:bolder;
 	float:right;
+	
+	z-index:3;
+	padding-top:4px;
+	padding-left:7px;
 	position:absolute;
 	vertical-align:top;
 	width:auto;
 }
 
-.PhotoLink_HoverText
+.PhotoLink_HoverBackground:hover
 {
-	z-index:3;
-	padding-left:4px;
+	opacity: 0;
+	filter: alpha(opacity=0);
 }
 
-.PhotoLink_HoverTextShadow
+.PhotoLink_HoverBackground
 {
-	z-index:2;
-	color:Black;
-	padding-left:5px;
-	padding-top:1px;
+	opacity: 40;
+	filter: alpha(opacity=40); /*ie only*/
+	background:Black;
+	width:80px;
+	height:80px;
+	margin:5px;
+	float:right;
+	position:absolute;
+	vertical-align:top;
 }
 
-.PhotoLink img
-{
-	z-index:1;
-}
 
 .TagList,
 .TagList li

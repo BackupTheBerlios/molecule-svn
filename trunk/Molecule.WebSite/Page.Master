@@ -36,7 +36,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form runat="server">
     <asp:ScriptManager runat="server" ID="MasterScriptManager" />
     <asp:UpdateProgress ID="UpdateProgress" runat="server">
         <ProgressTemplate>
@@ -52,13 +52,12 @@
         <div id="header">
             <div id="moleculeTitle">
                 <div id="logo">
-                    <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" /></div>
-                <h1>
-                    <%= AdminService.MoleculeTitle %></h1>
+                    <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" />
+                </div>
+                <h1><%= AdminService.MoleculeTitle %></h1>
             </div>
             <div id="pageTitle">
-                <h1>
-                    <asp:Label runat="server"><%=Page.Title%></asp:Label></h1>
+                <h1><asp:Label runat="server"><%=Page.Title%></asp:Label></h1>
             </div>
         </div>
         <div id="sideBar">

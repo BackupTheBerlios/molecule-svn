@@ -2,13 +2,15 @@
 <%@ Import Namespace="WebPhoto.Services" %>
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <div id="<%= ID %>" class="PhotoLink">
+<a href='<%= NavigateUrl ?? Photo.GetUrlFor(PhotoId, TagId) %>'>
+    
     <%if (!String.IsNullOrEmpty(HoverText)){ %>
+    
     <div class="PhotoLink_HoverText"><%= HoverText%></div>
-    <div class="PhotoLink_HoverTextShadow"><%= HoverText%></div>
     <%} %>
     <%if (!String.IsNullOrEmpty(PhotoId)){ %>
-    <a href='<%= NavigateUrl ?? Photo.GetUrlFor(PhotoId, TagId) %>'>
-        <img src="<%= PhotoFile.GetUrlFor(PhotoId, PhotoFileSize.Thumbnail) %>" title="<%= Description %>" alt="" class="photoLink" />
+    <div class="PhotoLink_HoverBackground"></div>
+        <img src="<%= PhotoFile.GetUrlFor(PhotoId, PhotoFileSize.Thumbnail) %>" title="<%= Description %>" alt="" class="PhotoLink_Thumbnail" />
     </a>
     <%} %>
     <% if (!String.IsNullOrEmpty(HoverIconUrl)){ %>
