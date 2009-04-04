@@ -53,7 +53,7 @@
 
 .PhotoLink_HoverBackground
 {
-	opacity: 40;
+	opacity: 0.4;
 	filter: alpha(opacity=40); /*ie only*/
 	background:Black;
 	width:80px;
