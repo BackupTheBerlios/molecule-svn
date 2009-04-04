@@ -12,7 +12,8 @@
 #photo
 {
 	display:inline-block;
-	border: solid 4px;
+	padding:4px;
+	border: solid 1px Grey;
 }
 
 #NextPhotoLink, #PreviousPhotoLink
