@@ -10,5 +10,5 @@
 <photo:PhotoLink runat="server" Description='<%# Tag.Name %>'
     PhotoId='<%# WebPhoto.Services.PhotoLibrary.GetFirstPhotoByTag(Tag.Id).Id %>'
     NavigateUrl='<%# Molecule.WebSite.atomes.photo.Tag.GetUrlFor(Tag.Id) %>'
-    HoverText='<%# Tag.Name %>' />
+    HoverText='<%# Tag.Name %>' HoverIconUrl="/App_Themes/bloup/images/folder.png" />
 <%} %>

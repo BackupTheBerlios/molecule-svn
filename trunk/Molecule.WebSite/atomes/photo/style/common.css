@@ -23,7 +23,8 @@
 {
 	position:absolute;
 	vertical-align:top;
-	top:0px;
+	top:7px;
+	left:7px;
 }
 
 .PhotoLink_HoverIcon img
@@ -38,6 +39,7 @@
 	font-weight:bolder;
 	float:right;
 	z-index:3;
+	top:17px;
 	padding-top:4px;
 	padding-left:7px;
 	position:absolute;

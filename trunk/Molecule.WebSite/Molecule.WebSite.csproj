@@ -527,6 +527,7 @@
     <Content Include="App_GlobalResources\Common.fr.resx">
       <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Themes\bloup\images\folder.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
