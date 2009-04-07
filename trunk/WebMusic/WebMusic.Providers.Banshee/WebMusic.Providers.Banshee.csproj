@@ -1,9 +1,7 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{DFD52453-91E8-4FB2-81A1-F2179588F00A}</ProjectGuid>
-    <RootNamespace>
-    </RootNamespace>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <FileUpgradeFlags>
@@ -12,36 +10,35 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OutputType>Library</OutputType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <AssemblyName>WebMusic.Providers.Banshee</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputType>Library</OutputType>
-    <AssemblyName>WebMusic.Providers.Banshee</AssemblyName>
     <OutputPath>..\..\Molecule.WebSite\atomes\webmusic\bin\providers\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
     <RootNamespace>
     </RootNamespace>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputType>Library</OutputType>
-    <AssemblyName>WebMusic.Providers.Banshee</AssemblyName>
     <OutputPath>..\Molecule.WebSite\atomes\webmusic\bin\providers\</OutputPath>
-    <DebugSymbols>false</DebugSymbols>
     <RootNamespace>
     </RootNamespace>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DefineConstants>
-    </DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+    <Reference Include="Mono.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\Mono.Data.Sqlite.dll</HintPath>
     </Reference>

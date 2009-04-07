@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -30,9 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputType>Library</OutputType>
-    <AssemblyName>Molecule</AssemblyName>
     <RootNamespace>Molecule</RootNamespace>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -43,10 +41,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputType>Library</OutputType>
-    <AssemblyName>Molecule</AssemblyName>
     <DebugSymbols>true</DebugSymbols>
     <RootNamespace>Molecule</RootNamespace>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
@@ -54,7 +50,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
+    <Reference Include="Mono.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -78,13 +74,13 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="MetaDataExtractor, Version=2.4.0.37658, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\references\MetaDataExtractor.dll</HintPath>
+    <Reference Include="MetaDataExtractor, Version=2.4.0.922, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\MetaDataExtractor.dll</HintPath>
     </Reference>
     <Reference Include="taglib-sharp, Version=2.0.3.2, Culture=neutral, PublicKeyToken=db62eba44689b5b0">
-      <HintPath>..\references\taglib-sharp.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\taglib-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,8 +101,6 @@
     <Compile Include="IO\XdgBaseDirectorySpec.cs" />
     <Compile Include="Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Plugin.cs" />
@@ -138,9 +132,8 @@
   <ItemGroup>
     <EmbeddedResource Include="InitDb.sql" />
     <EmbeddedResource Include="Messages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
