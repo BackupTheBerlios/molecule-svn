@@ -18,13 +18,13 @@ Inherits="Molecule.WebSite.atomes.photo.MonthCalendar" Title="Untitled Page" Ena
     <div class="BlockItem">
         <asp:ListView ID="ListView1" runat="server" EnableViewState="false" GroupItemCount="7">
             <ItemTemplate>
-                <td>
+                <td class='<%# (bool)Eval("IsEmpty")?"":"thinBorder" %>' style="padding:0px">
                     <photo:PhotoLink runat="server" Description='<%# Eval("Description") %>'
                      HoverText='<%# Eval("Name") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>' />
                 </td>
             </ItemTemplate>
             <LayoutTemplate>
-                <table style="border-collapse:collapse">
+                <table style="border-collapse:collapse;padding:0px;margin:0px">
                 <thead>
                     <tr>
                         <td runat="server"><%= FormatDay(0) %></td>

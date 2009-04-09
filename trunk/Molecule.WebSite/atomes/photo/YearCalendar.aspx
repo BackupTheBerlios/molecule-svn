@@ -18,7 +18,7 @@ Inherits="Molecule.WebSite.atomes.photo.YearCalendar" EnableViewState="false" %>
     <div class="BlockItem">
         <asp:ListView ID="ListView1" runat="server" GroupItemCount="6">
             <ItemTemplate>
-                <td>
+                <td class="thinBorder" style="padding:0px">
                     <photo:PhotoLink runat="server" Description='<%# Eval("Description") %>'
                          HoverText='<%# Eval("Name") %>' TagId='<%# tagId %>' PhotoId='<%# Eval("PhotoId") %>'
                          NavigateUrl='<%# MonthCalendar.GetUrlFor((DateTime)Eval("DateTime"), tagId) %>' />

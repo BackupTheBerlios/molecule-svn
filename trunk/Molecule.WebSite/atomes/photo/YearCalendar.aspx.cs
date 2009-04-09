@@ -22,6 +22,8 @@ namespace Molecule.WebSite.atomes.photo
             string date = Request.QueryString["date"];
             if (!String.IsNullOrEmpty(date))
                 year = DateTime.ParseExact(date, "yyyy", null);
+            else if (!String.IsNullOrEmpty(tagId))
+                year = PhotoLibrary.GetFirstPhotoByTag(tagId).Date;
 
             fillCalendar(year);
             initYearLinks(year);
@@ -65,9 +67,6 @@ namespace Molecule.WebSite.atomes.photo
 
             this.ListView1.DataSource = items;
             this.ListView1.DataBind();
-            //this.LabelMonth.Text = String.Format("{0} {1}",
-            //    DateTimeFormatInfo.CurrentInfo.GetMonthName(firstDayOfMonth.Month),
-            //    firstDayOfMonth.Year.ToString());
         }
 
     }

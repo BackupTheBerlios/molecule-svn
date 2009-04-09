@@ -17,6 +17,8 @@ namespace Molecule.WebSite.atomes.photo
 
         public DateTime DateTime { get; set; }
 
+        public bool IsEmpty { get { return String.IsNullOrEmpty(Name); } }
+
         public static CalendarItem CreateDay(DateTime d, int month, string tagId)
         {
             CalendarItem item = new CalendarItem();
