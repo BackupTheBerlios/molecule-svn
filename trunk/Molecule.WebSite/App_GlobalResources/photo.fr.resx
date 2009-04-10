@@ -126,6 +126,9 @@
   <data name="Folder" xml:space="preserve">
     <value>Dossier</value>
   </data>
+  <data name="GetPhotosFrom" xml:space="preserve">
+    <value>Récupérer les photos depuis</value>
+  </data>
   <data name="LocateOnMap" xml:space="preserve">
     <value>Voir sur la carte</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="OriginaleImage" xml:space="preserve">
     <value>Image originale</value>
+  </data>
+  <data name="PhotoCollectionName" xml:space="preserve">
+    <value>Nom des collections de photos</value>
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>

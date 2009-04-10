@@ -3,11 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
 <h2>Source</h2>
-    <p>Récupérer les photos depuis :
+    <p><asp:Literal runat="server" Text='<%$Resources:photo,GetPhotosFrom %>' /> 
     <asp:DropDownList ID="ProviderList" runat="server" DataValueField="Id" DataTextField="Name"
         OnSelectedIndexChanged="ProviderList_SelectedIndexChanged"/>
     </p>
-    <p>Nom des collections de photo :
+    <p><asp:Literal runat="server" Text='<%$Resources:photo,PhotoCollectionName %>' />
     <asp:DropDownList ID="TagNameList" runat="server" DataValueField="Value" DataTextField="Name"
         OnSelectedIndexChanged="TagNameList_SelectedIndexChanged" />
     </p>
@@ -30,7 +30,7 @@
             <td>Anonymous</td>
             </tr>
         </thead>
-        <asp:ListView ID="AuthListView" runat="server">
+        <asp:ListView ID="AuthListView" runat="server" EnableViewState="false">
         <ItemTemplate>
             <tr>
                 <td>
@@ -38,7 +38,7 @@
                         <%# WebPhoto.Services.PhotoLibrary.AdminGetTag((string)Eval("TagId")).Name %>
                     </asp:Label>
                 </td>
-                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>'>
+                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>' EnableViewState="false">
                     <ItemTemplate>
                         <td>
                             <asp:CheckBox runat="server"

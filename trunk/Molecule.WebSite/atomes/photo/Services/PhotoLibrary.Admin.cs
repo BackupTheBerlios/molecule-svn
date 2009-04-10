@@ -5,6 +5,7 @@ using System.Web;
 using Molecule.Web;
 using Molecule.Configuration;
 using WebPhoto.Providers;
+using Mono.Rocks;
 
 namespace WebPhoto.Services
 {
@@ -74,16 +75,17 @@ namespace WebPhoto.Services
             return instance.rootTags.Cast<ITagInfo>();
         }
 
-        TagName tagName;
+        TagName? tagName;
 
         public static TagName TagName
         {
             get
             {
                 if (instance.tagName == null)
-                    instance.tagName = ConfigurationClient.Get(confNamespace, confTagNameKey, defaultTagName);
+                    instance.tagName = ConfigurationClient.Get(confNamespace, confTagNameKey,
+                        defaultTagName);
 
-                return instance.tagName;
+                return instance.tagName.Value;
             }
             set
             {
