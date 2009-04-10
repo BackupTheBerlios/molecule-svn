@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -194,13 +194,6 @@
     </Compile>
     <Compile Include="atomes\photo\TagList.ascx.designer.cs">
       <DependentUpon>TagList.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="atomes\photo\test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\photo\test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\TagLink.ascx.cs">
       <DependentUpon>TagLink.ascx</DependentUpon>
@@ -472,7 +465,6 @@
     <Content Include="atomes\photo\style\timeline.css" />
     <Content Include="atomes\photo\Tag.aspx" />
     <Content Include="atomes\photo\TagList.ascx" />
-    <Content Include="atomes\photo\test.aspx" />
     <Content Include="atomes\photo\TagLink.ascx" />
     <Content Include="atomes\photo\TagHierarchy.ascx" />
     <Content Include="atomes\photo\Timeline.aspx" />
@@ -505,12 +497,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="atomes\photo\App_LocalResources\RawPhoto.ascx.fr.resx">
+    <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="atomes\photo\App_LocalResources\RawPhoto.ascx.resx">
+    <Content Include="App_GlobalResources\photo.resx">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
@@ -529,9 +521,11 @@
       <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_Themes\bloup\images\folder.png" />
+    <Content Include="atomes\photo\images\internet-web-browser.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
+    <Folder Include="atomes\photo\App_LocalResources\" />
     <Folder Include="images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

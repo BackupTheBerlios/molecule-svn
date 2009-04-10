@@ -10,6 +10,7 @@ using System.Globalization;
 using Molecule.Configuration;
 using Molecule.WebSite.Services;
 using System.Web.Security;
+using Molecule;
 
 namespace WebPhoto.Services
 {
@@ -106,7 +107,7 @@ namespace WebPhoto.Services
         private static IPhotoInfo getNeighborPhoto(string photoId, string tagId
             , Func<LinkedListNode<IPhoto>, LinkedListNode<IPhoto>> neighbor)
         {
-            var current = neighbor(userInstance.GetPhotoById(photoId));
+            var current = neighbor(userInstance.GetPhotoById(photoId).Check(photoId));
             while (current != null)
             {
                 if (isTagged(current.Value, tagId))
@@ -122,7 +123,7 @@ namespace WebPhoto.Services
 
         public static ITagInfo GetTag(string tagId)
         {
-            return userInstance.GetTagById(tagId);
+            return userInstance.GetTagById(tagId).Check(tagId);
         }
 
         public static bool TagExists(string tagId)
@@ -132,13 +133,13 @@ namespace WebPhoto.Services
 
         public static IPhotoInfo GetPhoto(string photoId)
         {
-            return userInstance.GetPhotoById(photoId).Value;
+            return userInstance.GetPhotoById(photoId).Check(photoId).Value;
         }
 
         public static IEnumerable<ITagInfo> GetTagsByTag(string tagId)
         {
             if (!String.IsNullOrEmpty(tagId))
-                return userInstance.GetTagById(tagId).ChildTags.Cast<ITagInfo>();
+                return userInstance.GetTagById(tagId).Check(tagId).ChildTags.Cast<ITagInfo>();
             else
                 return GetRootTags();
         }
@@ -161,7 +162,8 @@ namespace WebPhoto.Services
 
         public static IEnumerable<ITagInfo> GetTagsByPhoto(string photoId)
         {
-            return userInstance.GetPhotoById(photoId).Value.Tags.Cast<ITagInfo>();
+            return userInstance.GetPhotoById(photoId)
+                .Check(photoId).Value.Tags.Cast<ITagInfo>();
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotos()
@@ -172,19 +174,19 @@ namespace WebPhoto.Services
         public static IEnumerable<IPhotoInfo> GetPhotosByTag(string tagId)
         {
             if (!String.IsNullOrEmpty(tagId))
-                return userInstance.GetTagById(tagId).Photos.Cast<IPhotoInfo>();
+                return userInstance.GetTagById(tagId).Check(tagId).Photos.Cast<IPhotoInfo>();
             else return new List<IPhotoInfo>();
         }
 
         public static IPhotoInfo GetFirstPhotoByTag(string tagId)
         {
-            return getFirstPhotoByTag(userInstance.GetTagById(tagId));
+            return getFirstPhotoByTag(userInstance.GetTagById(tagId).Check(tagId));
         }
 
         public static IEnumerable<IPhotoInfo> GetPhotosByTags(IEnumerable<string> tags)
         {
             foreach (var tag in tags)
-                foreach (var photo in GetPhotosByTag(tag))
+                foreach (var photo in GetPhotosByTag(tag).Check(tag))
                     yield return photo;
         }
 
@@ -250,11 +252,6 @@ namespace WebPhoto.Services
         public static IEnumerable<ITagInfo> GetRootTags()
         {
             return userInstance.GetRootTags().Cast<ITagInfo>();
-        }
-
-        public static IEnumerable<ITagInfo> GetAllTags()
-        {
-            return userInstance.GetAllTags();
         }
 
         #endregion

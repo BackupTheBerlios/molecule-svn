@@ -5,6 +5,7 @@ using System.Web;
 using WebPhoto.Providers;
 using log4net;
 using Mono.Rocks;
+using Molecule;
 
 namespace WebPhoto.Services
 {
@@ -108,12 +109,16 @@ namespace WebPhoto.Services
 
         internal LinkedListNode<IPhoto> GetPhotoById(string photoId)
         {
-            return photosByIds[photoId];
+            LinkedListNode<IPhoto> res = null;
+            photosByIds.TryGetValue(photoId, out res);
+            return res;
         }
 
         internal InternalTag GetTagById(string tagId)
         {
-            return tags[tagId];
+            InternalTag res = null;
+            tags.TryGetValue(tagId, out res);
+            return res;
         }
 
         internal bool TagExists(string tagId)
@@ -124,11 +129,6 @@ namespace WebPhoto.Services
         internal IEnumerable<IPhoto> GetPhotos()
         {
             return timelinePhotos;
-        }
-
-        internal IEnumerable<ITagInfo> GetAllTags()
-        {
-            throw new NotImplementedException();
         }
 
         internal LinkedListNode<IPhoto> GetPhotoByDay(DateTime d)

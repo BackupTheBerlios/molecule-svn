@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LocateOnMap" xml:space="preserve">
+    <value>Voir sur la carte</value>
+  </data>
+  <data name="MapBy" xml:space="preserve">
+    <value>Carte fournie par</value>
+  </data>
   <data name="OriginaleImage" xml:space="preserve">
-    <value>Originale Image</value>
+    <value>Image originale</value>
   </data>
 </root>

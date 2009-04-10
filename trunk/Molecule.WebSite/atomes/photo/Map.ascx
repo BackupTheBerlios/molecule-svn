@@ -9,9 +9,9 @@
     </Scripts>
 </asp:ScriptManagerProxy>
 <div>
-     <asp:LinkButton ID="LocateLink" runat="server">Locate!</asp:LinkButton>
+    <img src="images/internet-web-browser.png" /><asp:LinkButton ID="LocateLink" runat="server" Text="<%$Resources:photo,LocateOnMap %>" />
      <div id="mapPopup" class="popup">
-        <div class="popupHeader"><span class="left">Map by <a href="http://openstreetmap.org">OpenStreetMap</a></span>&nbsp;<span id="closeModal" class="right"><asp:LinkButton ID="CloseButton" runat="server">close</asp:LinkButton></span></div>
+        <div class="popupHeader"><span class="left"><asp:Literal Text="<%$Resources:photo,MapBy %>" runat="server" Mode="Encode" /> <a href="http://openstreetmap.org">OpenStreetMap</a></span>&nbsp;<span id="closeModal" class="right"><asp:LinkButton ID="CloseButton" runat="server" Text="<%$Resources:Common,Close %>"></asp:LinkButton></span></div>
         <div id="map">
         </div>
         <script type="text/javascript">
