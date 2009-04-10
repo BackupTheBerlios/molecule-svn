@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtensions.cs" />
     <Compile Include="Atome\AtomeProviderBase.cs" />
     <Compile Include="Atome\IProvider.cs" />
     <Compile Include="Atome\ProviderException.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Configuration\XmlConfigurationClient.cs" />
     <Compile Include="DateTimeUtil.cs" />
     <Compile Include="Drawing\BitmapExtensions.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="IO\Extensions.cs" />
     <Compile Include="IO\XdgBaseDirectorySpec.cs" />
     <Compile Include="Messages.Designer.cs">

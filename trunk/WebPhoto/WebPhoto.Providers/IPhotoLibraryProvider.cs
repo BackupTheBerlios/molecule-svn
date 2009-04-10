@@ -28,7 +28,6 @@ namespace WebPhoto.Providers
 {
     public interface IPhotoLibraryProvider : IProvider
     {
-        void Initialize();
         IEnumerable<ITag> GetRootTags();
         IEnumerable<string> TagsRecentlyAdded{ get; }
     }

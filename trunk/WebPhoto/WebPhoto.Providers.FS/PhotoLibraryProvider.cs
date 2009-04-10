@@ -39,5 +39,6 @@ namespace WebPhoto.Providers.FS
         { get { return null; } }
 
         #endregion
+
     }
 }

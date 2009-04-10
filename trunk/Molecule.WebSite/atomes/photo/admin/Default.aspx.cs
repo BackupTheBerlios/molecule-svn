@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using WebPhoto.Services;
+using Mono.Rocks;
 
 namespace Molecule.WebSite.atomes.photo.admin
 {
@@ -23,17 +24,22 @@ namespace Molecule.WebSite.atomes.photo.admin
                 ProviderList.DataSource = PhotoLibrary.Providers;
                 ProviderList.DataBind();
                 ProviderList.SelectedValue = PhotoLibrary.CurrentProvider;
-                initAuthorizationPart();
+                TagNameList.DataSource = from tagName in EnumHelper.GetValues<TagName>()
+                                         select new { Value = tagName.ToString(),
+                                             Name = PhotoLibrary.GetLocalizedTagName(tagName) };
+                TagNameList.DataBind();
             }
         }
 
-        private void initAuthorizationPart()
+        protected override void OnLoadComplete(EventArgs e)
         {
             AuthListView.DataSource = PhotoLibrary.TagUserAuthorizations;
             AuthListView.DataBind();
             AuthHeaderRepeater.DataSource = Membership.GetAllUsers().Cast<MembershipUser>().Select(u => u.UserName);
             AuthHeaderRepeater.DataBind();
             initTagTreeView();
+            TagNameList.SelectedValue = PhotoLibrary.TagName.ToString();
+            TagLink.DataBind();
         }
 
         private void initTagTreeView()
@@ -68,10 +74,14 @@ namespace Molecule.WebSite.atomes.photo.admin
             PhotoLibrary.SaveTagUserAuthorizations();
         }
 
-        protected void preferencesButton_Click(Object sender, CommandEventArgs e)
+        protected void ProviderList_SelectedIndexChanged(object sender, EventArgs e)
         {
             PhotoLibrary.CurrentProvider = ProviderList.SelectedValue;
-            initAuthorizationPart();
+        }
+
+        protected void TagNameList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PhotoLibrary.TagName = TagNameList.SelectedValue.ToEnum<TagName>();
         }
 
         protected void TagTreeView_TreeNodeCheckChanged(object sender, TreeNodeEventArgs e)
@@ -85,7 +95,7 @@ namespace Molecule.WebSite.atomes.photo.admin
 
         protected void OkButton_OnClick(object sender, EventArgs args)
         {
-            initAuthorizationPart();
+
         }
     }
 }

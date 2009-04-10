@@ -254,6 +254,23 @@ namespace WebPhoto.Services
             return userInstance.GetRootTags().Cast<ITagInfo>();
         }
 
+        public static string GetLocalizedTagName()
+        {
+            return GetLocalizedTagName(TagName);
+        }
+
+        public static string GetLocalizedTagName(TagName tagName)
+        {
+            return (string)HttpContext.GetGlobalResourceObject("photo", tagName.ToString());
+        }
+
         #endregion
+    }
+    public enum TagName
+    {
+        Tag,
+        Folder,
+        Collection,
+        Album
     }
 }

@@ -3,20 +3,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
 <h2>Source</h2>
-Récupérer les photos depuis :
-    <asp:DropDownList ID="ProviderList" runat="server"
-    DataValueField="Id" DataTextField="Name" />
-    <br />
+    <p>Récupérer les photos depuis :
+    <asp:DropDownList ID="ProviderList" runat="server" DataValueField="Id" DataTextField="Name"
+        OnSelectedIndexChanged="ProviderList_SelectedIndexChanged"/>
+    </p>
+    <p>Nom des collections de photo :
+    <asp:DropDownList ID="TagNameList" runat="server" DataValueField="Value" DataTextField="Name"
+        OnSelectedIndexChanged="TagNameList_SelectedIndexChanged" />
+    </p>
     <asp:Button runat="server" Text="<%$ Resources:Common,Save %>" 
-        OnCommand="preferencesButton_Click" />
+        OnCommand="OkButton_OnClick" />
     
-    <h2>Tags partagés</h2>
+    <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s partagés</h2>
     <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
         TargetControlID="TagLink" PopupControlID="TagSelectPanel"
         CancelControlID="CancelButton"
         BackgroundCssClass="modalBackground" />
     <table>
-        <thead><tr><td><asp:Button runat="server" ID="TagLink" Text="Tags"></asp:Button></td>
+        <thead><tr><td><asp:Button runat="server" ID="TagLink"
+            Text='<%# WebPhoto.Services.PhotoLibrary.GetLocalizedTagName()+"s" %>'/></td>
             <asp:Repeater ID="AuthHeaderRepeater"  runat="server">
                 <ItemTemplate>
                     <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>

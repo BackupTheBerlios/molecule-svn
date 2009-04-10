@@ -11,7 +11,9 @@ namespace WebPhoto.Services
     public partial class PhotoLibrary
     {
         const string confTagUserAuthorizationsKey = "TagUserAuthorizations";
+        const string confTagNameKey = "TagName";
         const string confNamespace = "WebPhoto.Admin";
+        static TagName defaultTagName = TagName.Album;
 
         private TagUserAuthorizations tagUserAuthorizations;
         private object authLock = new object();
@@ -71,5 +73,26 @@ namespace WebPhoto.Services
         {
             return instance.rootTags.Cast<ITagInfo>();
         }
+
+        TagName tagName;
+
+        public static TagName TagName
+        {
+            get
+            {
+                if (instance.tagName == null)
+                    instance.tagName = ConfigurationClient.Get(confNamespace, confTagNameKey, defaultTagName);
+
+                return instance.tagName;
+            }
+            set
+            {
+                instance.tagName = value;
+                ConfigurationClient.Set(confNamespace, confTagNameKey, value);
+            }
+        }
+
+
+        
     }
 }

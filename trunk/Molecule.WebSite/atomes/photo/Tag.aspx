@@ -16,7 +16,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 
     <photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />
-    <h2>Tags</h2>
+    <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
     <photo:TagList runat="server" ID="subTagList" />
 
 <asp:ObjectDataSource ID="TagDataSource" runat="server" 
