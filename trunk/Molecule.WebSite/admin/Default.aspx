@@ -55,7 +55,7 @@
                  <td>
                     <asp:ImageButton runat="server" CommandName="Delete" AlternateText="Delete"
                         ImageUrl='<%# "~/App_Themes/"+ Theme + "/images/list-remove.png"  %>'
-                        Enabled='<%# !Roles.IsUserInRole((string)Eval("UserName"),
+                        Visible='<%# !Roles.IsUserInRole((string)Eval("UserName"),
                             Molecule.SQLiteProvidersHelper.AdminRoleName) %>'/>
                 </td>
             </tr>
@@ -85,28 +85,30 @@
         </DeleteParameters>
     </asp:ObjectDataSource>
     
+    <h2>Créer un utilisateur</h2>
     <asp:CreateUserWizard ID="createUserWizard" runat="server" RequireEmail="False" Visible="true"
         OnCreatedUser="createUserWizard_CreatedUser" LoginCreatedUser="False" ContinueDestinationPageUrl="~/admin/Default.aspx"
-        CancelDestinationPageUrl="~/admin/Default.aspx" DisplayCancelButton="True">
+        CancelDestinationPageUrl="~/admin/Default.aspx">
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>
+                    <p style="text-align:right">
                     <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
                     <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required."
                          ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                    <br />
+                    </p><p style="text-align:right">
                     <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
                     <asp:TextBox ID="Password" runat="server" TextMode="SingleLine"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ErrorMessage="Password is required."
                         ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                    <br />
+                    </p>
                     <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>       
                 </ContentTemplate>
             </asp:CreateUserWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
-        
+
     <h2>Autorisations</h2>
 
     <table>
