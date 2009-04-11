@@ -30,7 +30,7 @@
             <td>Anonymous</td>
             </tr>
         </thead>
-        <asp:ListView ID="AuthListView" runat="server" EnableViewState="false">
+        <asp:ListView ID="AuthListView" runat="server" EnableViewState="true">
         <ItemTemplate>
             <tr>
                 <td>
@@ -38,7 +38,7 @@
                         <%# WebPhoto.Services.PhotoLibrary.AdminGetTag((string)Eval("TagId")).Name %>
                     </asp:Label>
                 </td>
-                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>' EnableViewState="false">
+                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>' EnableViewState="true">
                     <ItemTemplate>
                         <td>
                             <asp:CheckBox runat="server"
