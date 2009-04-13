@@ -130,8 +130,16 @@ namespace Molecule.WebSite.Services
         public static bool IsCurrentUserAuthorized(string url)
         {
             var atome = GetAtomeByVirtualPath(url);
+
             if (atome == null)
+            {
+                if (url.Contains("admin") && !HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
+                    //preference path (workaround a mono bug that does not filter sitemap correctly)
+                    return false;
+
                 return true; //only handle atome authorizations
+            }
+
 
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
             if (currentUser == null)
