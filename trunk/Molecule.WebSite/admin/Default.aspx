@@ -67,8 +67,8 @@
             <table>
                 <thead>
                     <tr>
-                        <td>UserName</td>
-                        <td>LastLoginDate</td>
+                        <td>User name</td>
+                        <td>Last login</td>
                     </tr>
                 </thead>
                 <tbody>

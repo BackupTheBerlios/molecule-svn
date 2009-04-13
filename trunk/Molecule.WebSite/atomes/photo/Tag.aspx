@@ -47,5 +47,5 @@
                 ShowPreviousPageButton="false" ShowNextPageButton="True" />
         </Fields>
     </asp:DataPager>
-<h2><asp:HyperLink runat="server" id="CalendarLink">Calendrier</asp:HyperLink></h2>
+<h2><asp:HyperLink runat="server" id="CalendarLink" Text="<%$Resources:photo,Calendar %>" /></h2>
 </asp:Content>

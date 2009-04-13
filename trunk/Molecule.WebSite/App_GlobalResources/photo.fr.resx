@@ -120,6 +120,9 @@
   <data name="Album" xml:space="preserve">
     <value>Album</value>
   </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
   <data name="Collection" xml:space="preserve">
     <value>Collection</value>
   </data>

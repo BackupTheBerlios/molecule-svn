@@ -172,15 +172,10 @@ body
     margin: 0 6px 6px 0;
 }
 
-.tabTitle
-{
-	margin:5px;
-	float:left;
-	position:relative;
-}
-
 .thinBorder,
-.thinBox
+.thinBox,
+.tabSelectedTitle,
+.tabTitle
 {
 	border:1px;
 	border-style:solid;
@@ -266,26 +261,44 @@ table td
 	padding:2px;
 }
 
+.tabTitle,
 .tabSelectedTitle
 {
+	padding-left:8px;
+	padding-right:8px;
 	float:left;
-	margin:5px;
 	position:relative;
+}
+
+.tabTitle
+{
+	padding-top:5px;
+	padding-bottom:4px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+}
+
+.tabSelectedTitle
+{
+	padding-top:4px;
+	padding-bottom:5px;
+	border-bottom:none;
 }
 
 .tabSelectedTitle a:active
 {
-	color:var(FrontColor);
+	color:var(FrontColorDark);
 }
 
 .tabSelectedTitle a:link
 {
-	color:var(FrontColor);
+	color:var(FrontColorDark);
 }
 
 .tabSelectedTitle a:visited
 {
-	color:var(FrontColor);
+	color:var(FrontColorDark);
 }
 
 .loginPanel

@@ -26,8 +26,8 @@
                 <ItemTemplate>
                     <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
                 </ItemTemplate>
-            </asp:Repeater>
-            <td>Anonymous</td>
+            </asp:Repeater> 
+            <td><asp:Literal runat="server" Text='<%$ Resources:Common,Anonymous %>' /></td>
             </tr>
         </thead>
         <asp:ListView ID="AuthListView" runat="server" EnableViewState="true">
