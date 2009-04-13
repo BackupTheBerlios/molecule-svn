@@ -393,12 +393,12 @@
     <Content Include="CssHandler.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.resx">
+    <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="atomes\webmusic\App_LocalResources\Default.aspx.fr.resx">
+    <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
@@ -518,6 +518,7 @@
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
     <Folder Include="atomes\photo\App_LocalResources\" />
+    <Folder Include="atomes\webmusic\App_LocalResources\" />
     <Folder Include="images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

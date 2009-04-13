@@ -17,18 +17,18 @@
     <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
         <Scripts>
             <asp:ScriptReference Path="scripts/default.js" />
-            <asp:ScriptReference Path="scripts/soundmanager2.js" />
-            <%--<asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />--%>
+            <asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />
+            <%--<asp:ScriptReference Path="scripts/soundmanager2.js" />--%>
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
     <div id="fileNotFoundPanel"  class="informationPanel">
         <img alt="Warning" src="/App_Themes/<%= Theme %>/images/dialog-warning.png" />
-        <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:SongError %>" />
+        <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:webmusic,SongError %>" />
     </div>
     
     <div id="fileAddedToPlaylistPanel" class="informationPanel">
-       <asp:Literal runat="server" Text="<%$ Resources:SongsAdded %>" />
+       <asp:Literal runat="server" Text="<%$ Resources:webmusic,SongsAdded %>" />
     </div>
     
     <div id="playerpanel">
@@ -57,20 +57,20 @@
 
         <div id="playlistcontainer">
             <h2>
-                <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:Playlist %>" /></h2>
+                <asp:Label runat="server" ID="playlistLabel" Text="<%$ Resources:webmusic,Playlist %>" /></h2>
             
                 <div id="playlistPanel" style="overflow: auto; height:150px;" class="thinBox">
                     <table id="playlistTable" class="itemList hoverTable" onkeydown="playlist_onkeydown(event)">
                     </table>
                 </div>
-            <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:RepeatAll%>" /></label>
+            <input id="repeatAllCheckBox" type="checkbox"/><label for="repeatAllCheckBox"><asp:Literal ID="repeatAllCheckBoxLiteral" runat="server" Text="<%$ Resources:webmusic,RepeatAll%>" /></label>
         </div>
     </div>
     
             <div id="navigationPanel">
                 <div id="artistscontainer">
                     <h2>
-                        <asp:Label runat="server" ID="aristsLabel2" Text="<%$ Resources:Artists %>" /></h2>
+                        <asp:Label runat="server" ID="aristsLabel2" Text="<%$ Resources:webmusic,Artists %>" /></h2>
                     
                     <div id="artistList" style="overflow: auto; height:150px;" class="thinBox">
                         <asp:DataList ID="arl" runat="server" DataSourceID="ArtistDataSource"
@@ -88,7 +88,7 @@
                 </div>
                 <div id="albumscontainer">
                         <h2>
-                            <asp:Label ID="labelAlbums" runat="server" Text="<%$ Resources:Albums %>" />
+                            <asp:Label ID="labelAlbums" runat="server" Text="<%$ Resources:webmusic,Albums %>" />
                         </h2> 
                       <div id="albumList" style="overflow: auto; height:150px;" class="thinBox">
                       <asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
@@ -125,19 +125,19 @@
                             <thead>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="til" Text="<%$ Resources:Title %>" />
+                                        <asp:Label runat="server" ID="til" Text="<%$ Resources:webmusic,Title %>" />
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="arl" Text="<%$ Resources:Artist %>" />
+                                        <asp:Label runat="server" ID="arl" Text="<%$ Resources:webmusic,Artist %>" />
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="all" Text="<%$ Resources:Album %>" />
+                                        <asp:Label runat="server" ID="all" Text="<%$ Resources:webmusic,Album %>" />
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="trl" Text="<%$ Resources:Track %>" />
+                                        <asp:Label runat="server" ID="trl" Text="<%$ Resources:webmusic,Track %>" />
                                     </td>
                                     <td>
-                                        <asp:Label runat="server" ID="dl" Text="<%$ Resources:Duration %>" />
+                                        <asp:Label runat="server" ID="dl" Text="<%$ Resources:webmusic,Duration %>" />
                                     </td>
                                     <td style="text-align:right">
                                         <img alt="" src="/App_Themes/<%= Theme %>/images/media-playback-start-small.png" onclick="songsView_onclick('playAll')" />
