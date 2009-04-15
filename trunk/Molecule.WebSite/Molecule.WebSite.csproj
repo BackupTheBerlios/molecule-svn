@@ -101,12 +101,12 @@
     </Compile>
     <Compile Include="AtomeAccessModule.cs" />
     <Compile Include="AtomeSiteMapProvider.cs" />
-    <Compile Include="atomes\photo\admin\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="atomes\photo\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\photo\admin\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="atomes\photo\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photo\CalendarItem.cs" />
     <Compile Include="atomes\photo\FullSizePhoto.ascx.cs">
@@ -230,12 +230,12 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\upload\Services\UploadService.cs" />
-    <Compile Include="atomes\webmusic\admin\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="atomes\webmusic\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\webmusic\admin\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="atomes\webmusic\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx.cs">
       <DependentUpon>CoverArtFileHandler.ashx</DependentUpon>
@@ -343,7 +343,7 @@
     <Content Include="Page.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="atomes\webmusic\admin\Default.aspx" />
+    <Content Include="atomes\webmusic\Admin.aspx" />
     <Content Include="atomes\webmusic\Atome.xml" />
     <Content Include="atomes\webmusic\Download.aspx" />
     <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
@@ -433,7 +433,7 @@
     <Content Include="App_Themes\bloup\molecule.css" />
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />
-    <Content Include="atomes\photo\admin\Default.aspx" />
+    <Content Include="atomes\photo\Admin.aspx" />
     <Content Include="atomes\photo\Atome.xml" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
     <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
