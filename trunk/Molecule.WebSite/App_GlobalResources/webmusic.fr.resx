@@ -186,4 +186,7 @@
   <data name="SongsAdded" xml:space="preserve">
     <value>Morceaux ajoutés à la playlist</value>
   </data>
+  <data name="GetSongsFrom" xml:space="preserve">
+    <value>Récupérer la musique depuis</value>
+  </data>
 </root>

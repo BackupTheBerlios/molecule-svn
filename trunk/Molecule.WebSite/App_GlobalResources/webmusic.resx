@@ -183,4 +183,7 @@
   <data name="SongsAdded" xml:space="preserve">
     <value>Songs added to the playlist</value>
   </data>
+  <data name="GetSongsFrom" xml:space="preserve">
+    <value>Get music from</value>
+  </data>
 </root>

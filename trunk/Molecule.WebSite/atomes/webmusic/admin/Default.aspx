@@ -28,7 +28,7 @@
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
-Récupérer la musique depuis :
+<asp:Literal runat="server" Text='<%$Resources:webmusic,GetSongsFrom %>' /> 
     <molecule:ProviderSelector ID="ProviderSelector1" runat="server" 
         AtomeProviderTypeName="WebMusic.Services.MusicLibrary" />
 
