@@ -37,9 +37,11 @@ Last.Fm :<br />
     <asp:CheckBox ID="lastfmEnabledCheckBox" runat="server" AutoPostBack="True" 
         oncheckedchanged="lastfmEnabledCheckBox_CheckedChanged" Text="Enable Lastfm" />
 <br/>
-User : <asp:TextBox ID="lastFmUsername"  runat="server"></asp:TextBox>
+<asp:Literal runat="server" Text='<%$Resources:Common,User %>' /> : 
+<asp:TextBox ID="lastFmUsername"  runat="server"></asp:TextBox>
 <br/>
-Password :<asp:TextBox ID="lastFmUserPassword"  TextMode="password" runat="server"></asp:TextBox>
+<asp:Literal ID="Literal1" runat="server" Text='<%$Resources:Common,Password %>' /> : 
+<asp:TextBox ID="lastFmUserPassword"  TextMode="password" runat="server"></asp:TextBox>
 <br/>
 
 <asp:Button ID="preferencesButton" runat="server" Text="<%$ Resources:Common,Save %>" OnCommand="preferencesButton_Click" >
