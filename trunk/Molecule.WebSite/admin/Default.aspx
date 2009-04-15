@@ -28,20 +28,11 @@
 <%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
 <%@ Import Namespace="System.Web.Security" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-.ajax__cp_container
-{
-	z-index:3;
-}
-.ajax__cp_container table td
-{
-	padding:0px;
-}
-</style>
+
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
-<h2><asp:Label runat="server" Text="<%$Resources:Users%>" /></h2>
+<h2><asp:Label runat="server" Text="<%$Resources:Common,Users%>" /></h2>
     <asp:ListView ID="UserListView" runat="server" DataKeyNames="UserName"
         DataSourceID="usersObjectDataSource">
         <ItemTemplate>
@@ -67,8 +58,8 @@
             <table>
                 <thead>
                     <tr>
-                        <td>User name</td>
-                        <td>Last login</td>
+                        <td><asp:Literal runat="server" Text='<%$Resources:Common,User%>' /></td>
+                        <td><asp:Literal runat="server" Text='<%$Resources:molecule,LastLogin%>' /></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,7 +76,7 @@
         </DeleteParameters>
     </asp:ObjectDataSource>
     
-    <h2>Créer un utilisateur</h2>
+    <h2><asp:Literal runat="server" Text='<%$Resources:molecule,NewUser %>' /></h2>
     <asp:CreateUserWizard ID="createUserWizard" runat="server" RequireEmail="False" Visible="true"
         OnCreatedUser="createUserWizard_CreatedUser" LoginCreatedUser="False" ContinueDestinationPageUrl="~/admin/Default.aspx"
         CancelDestinationPageUrl="~/admin/Default.aspx">
@@ -93,15 +84,15 @@
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>
                     <p style="text-align:right">
-                    <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
+                    <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Text='<%$Resources:Common,User %>' /> : 
                     <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required."
-                         ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" ErrorMessage='<%$Resources:molecule,UserRequired %>'
+                         ToolTip='<%$Resources:molecule,UserRequired %>' ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                     </p><p style="text-align:right">
-                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
+                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" Text='<%$Resources:Common,Password %>' /> : 
                     <asp:TextBox ID="Password" runat="server" TextMode="SingleLine"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ErrorMessage="Password is required."
-                        ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ErrorMessage='<%$Resources:molecule,PasswordRequired %>'
+                        ToolTip='<%$Resources:molecule,PasswordRequired %>' ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                     </p>
                     <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>       
                 </ContentTemplate>
@@ -109,7 +100,7 @@
         </WizardSteps>
     </asp:CreateUserWizard>
 
-    <h2>Autorisations</h2>
+    <h2><asp:Literal runat="server" Text='<%$Resources:Common,Authorizations %>' /></h2>
 
     <table>
         <thead><tr><td>Atome</td>
@@ -118,7 +109,7 @@
                     <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
                 </ItemTemplate>
             </asp:Repeater>
-            <td>Anonymous</td>
+            <td><asp:Literal ID="Literal1" runat="server" Text='<%$Resources:Common,Anonymous %>' /></td>
             </tr>
         </thead>
         <asp:ListView ID="AuthListView" runat="server">
@@ -149,7 +140,7 @@
     </table>
     <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
 
-    <h2><asp:Label runat="server" Text="<%$Resources:Theme%>" /></h2>
+    <h2><asp:Label runat="server" Text="<%$Resources:molecule,Theme%>" /></h2>
     <p>
     Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
     </p>
