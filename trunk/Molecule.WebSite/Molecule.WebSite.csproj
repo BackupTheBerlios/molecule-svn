@@ -319,6 +319,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProviderSelector.ascx.cs">
+      <DependentUpon>ProviderSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProviderSelector.ascx.designer.cs">
+      <DependentUpon>ProviderSelector.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\AtomeInfo.cs" />
     <Compile Include="Services\AtomeService.cs">
@@ -514,6 +521,7 @@
     </Content>
     <Content Include="App_Themes\bloup\images\folder.png" />
     <Content Include="atomes\photo\images\internet-web-browser.png" />
+    <Content Include="ProviderSelector.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />

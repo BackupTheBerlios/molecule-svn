@@ -21,9 +21,6 @@ namespace Molecule.WebSite.atomes.photo.admin
         {
             if (!IsPostBack)
             {
-                ProviderList.DataSource = PhotoLibrary.Providers;
-                ProviderList.DataBind();
-                ProviderList.SelectedValue = PhotoLibrary.CurrentProvider;
                 TagNameList.DataSource = from tagName in EnumHelper.GetValues<TagName>()
                                          select new { Value = tagName.ToString(),
                                              Name = PhotoLibrary.GetLocalizedTagName(tagName) };
@@ -72,11 +69,6 @@ namespace Molecule.WebSite.atomes.photo.admin
         protected void save_onclick(object sender, EventArgs e)
         {
             PhotoLibrary.SaveTagUserAuthorizations();
-        }
-
-        protected void ProviderList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            PhotoLibrary.CurrentProvider = ProviderList.SelectedValue;
         }
 
         protected void TagNameList_SelectedIndexChanged(object sender, EventArgs e)

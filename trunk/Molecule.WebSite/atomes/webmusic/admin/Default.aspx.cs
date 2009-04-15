@@ -37,10 +37,6 @@ namespace WebMusic
         {
             if (!IsPostBack)
             {
-                playerDropDownList.DataSource = MusicLibrary.Providers;
-                playerDropDownList.DataBind();
-                playerDropDownList.SelectedValue = MusicLibrary.CurrentProvider;
-
                 lastFmUsername.Text = Lastfm.LastfmService.Username;
 
 
@@ -55,8 +51,6 @@ namespace WebMusic
 
         protected void preferencesButton_Click(Object sender, CommandEventArgs e)
         {
-            MusicLibrary.CurrentProvider = playerDropDownList.SelectedValue;
-
             Lastfm.LastfmService.ScrobblingEnabled = lastfmEnabledCheckBox.Checked;
             if (Lastfm.LastfmService.ScrobblingEnabled)
             {

@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/PreferencesPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Molecule.WebSite.atomes.photo.admin.Default" Title="Untitled Page" %>
+<%@ Register src="~/ProviderSelector.ascx" tagname="ProviderSelector" tagprefix="molecule" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
 <h2>Source</h2>
     <p><asp:Literal runat="server" Text='<%$Resources:photo,GetPhotosFrom %>' /> 
-    <asp:DropDownList ID="ProviderList" runat="server" DataValueField="Id" DataTextField="Name"
-        OnSelectedIndexChanged="ProviderList_SelectedIndexChanged"/>
+     <molecule:ProviderSelector ID="ProviderSelector1" runat="server" 
+        AtomeProviderTypeName="WebPhoto.Services.PhotoLibrary" />
     </p>
     <p><asp:Literal runat="server" Text='<%$Resources:photo,PhotoCollectionName %>' />
     <asp:DropDownList ID="TagNameList" runat="server" DataValueField="Value" DataTextField="Name"
