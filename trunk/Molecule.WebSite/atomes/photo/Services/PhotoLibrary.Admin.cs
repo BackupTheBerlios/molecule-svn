@@ -23,7 +23,7 @@ namespace WebPhoto.Services
         {
             get
             {
-                return instance.tagUserAuthorizations;
+                return Instance.tagUserAuthorizations;
             }
         }
 
@@ -54,25 +54,25 @@ namespace WebPhoto.Services
 
         public static void SaveTagUserAuthorizations()
         {
-            instance.saveAuthorizations();
+            Instance.saveAuthorizations();
             //authorization modified : need to refresh user librairies.
-            instance.buildUserLibraries();
+            Instance.buildUserLibraries();
         }
 
         public static IEnumerable<ITagInfo> AdminGetTagsByTag(string tagId)
         {
-            return getAllTags(instance.rootTags).First(t => t.Id == tagId)
+            return getAllTags(Instance.rootTags).First(t => t.Id == tagId)
                 .ChildTags.Cast<ITagInfo>();
         }
 
         public static ITagInfo AdminGetTag(string tagId)
         {
-            return getAllTags(instance.rootTags).First(t => t.Id == tagId);
+            return getAllTags(Instance.rootTags).First(t => t.Id == tagId);
         }
 
         internal static IEnumerable<ITagInfo> AdminGetRootTags()
         {
-            return instance.rootTags.Cast<ITagInfo>();
+            return Instance.rootTags.Cast<ITagInfo>();
         }
 
         TagName? tagName;
@@ -81,15 +81,15 @@ namespace WebPhoto.Services
         {
             get
             {
-                if (instance.tagName == null)
-                    instance.tagName = ConfigurationClient.Get(confNamespace, confTagNameKey,
+                if (Instance.tagName == null)
+                    Instance.tagName = ConfigurationClient.Get(confNamespace, confTagNameKey,
                         defaultTagName);
 
-                return instance.tagName.Value;
+                return Instance.tagName.Value;
             }
             set
             {
-                instance.tagName = value;
+                Instance.tagName = value;
                 ConfigurationClient.Set(confNamespace, confTagNameKey, value);
             }
         }

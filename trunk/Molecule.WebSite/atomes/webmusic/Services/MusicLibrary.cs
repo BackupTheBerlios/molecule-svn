@@ -112,31 +112,31 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongs()
         {
-            return instance.songs.Values;
+            return Instance.songs.Values;
         }
 
         public static IEnumerable<IArtist> GetArtists()
         {
-            return instance.artists.Values.OrderBy(artist => artist.Name);
+            return Instance.artists.Values.OrderBy(artist => artist.Name);
         }
 
         public static IEnumerable<IAlbum> GetAlbums()
         {
-            return instance.albums.Values.OrderBy(album => album.Name);
+            return Instance.albums.Values.OrderBy(album => album.Name);
         }
 
         public static ISong GetSong(string id)
         {
             ISong res;
-            instance.songs.TryGetValue(id, out res);
+            Instance.songs.TryGetValue(id, out res);
             return res;
         }
 
         public static IEnumerable<IAlbum> GetAlbumsByArtist(string artist)
         {
-            if (!String.IsNullOrEmpty(artist) && instance.artists.ContainsKey(artist))
+            if (!String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist))
             {
-                foreach (var album in instance.artists[artist].Albums.OrderBy(album => album.Name))
+                foreach (var album in Instance.artists[artist].Albums.OrderBy(album => album.Name))
                     yield return album;
             }
         }
@@ -153,9 +153,9 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongsByAlbum(string album)
         {
-            if (!String.IsNullOrEmpty(album) && instance.albums.ContainsKey(album))
+            if (!String.IsNullOrEmpty(album) && Instance.albums.ContainsKey(album))
             {
-                foreach (var song in instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
+                foreach (var song in Instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
                     yield return song;
             }
         }
@@ -172,9 +172,9 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongByArtistAndAlbum(string artist, string album)
         {
-            if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && instance.artists.ContainsKey(artist) && instance.albums.ContainsKey(album))
+            if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist) && Instance.albums.ContainsKey(album))
             {
-                foreach (var song in instance.albums[album].Songs.Where(song => song.Artist.Id == artist).OrderBy(song => song.AlbumTrack))
+                foreach (var song in Instance.albums[album].Songs.Where(song => song.Artist.Id == artist).OrderBy(song => song.AlbumTrack))
                     yield return song;
             }		
         }
@@ -183,11 +183,11 @@ namespace WebMusic.Services
         public static IEnumerable<ISong> SearchSongs(string pattern, bool inAlbums, bool inTitles, bool inArtists)
         {
             pattern = pattern.ToLower();
-            return from song in instance.songs.Values
-                   let artists = from artist in instance.artists.Values
+            return from song in Instance.songs.Values
+                   let artists = from artist in Instance.artists.Values
                           where artist.Name.ToLower().Contains(pattern)
                           select artist
-                   let albums = from album in instance.albums.Values
+                   let albums = from album in Instance.albums.Values
                          where album.Name.ToLower().Contains(pattern)
                          select album
                    where inTitles && song.Title.ToLower().Contains(pattern)
@@ -202,17 +202,12 @@ namespace WebMusic.Services
         public static IEnumerable<string> SearchStringContainingPattern(string pattern, bool inAlbums, bool inTitles, bool inArtists)
         {
             pattern = pattern.ToLower();
-            return (from artist in instance.artists.Values
+            return (from artist in Instance.artists.Values
                     where artist.Name.ToLower().Contains(pattern)
                     select artist.Name).Union<string>(
-                   from album in instance.albums.Values
+                   from album in Instance.albums.Values
                    where album.Name.ToLower().Contains(pattern)
                    select album.Name);
-        }
-
-        protected override string ConfigurationNamespace
-        {
-            get { return "WebMusic"; }
         }
 
         protected override string DefaultProvider

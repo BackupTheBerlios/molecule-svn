@@ -12,56 +12,60 @@ namespace Molecule.Atome
         where TAtome : AtomeProviderBase<TAtome, IProvider>
         where IProvider : class, Molecule.Atome.IProvider
     {
+        const string libraryProviderConfKey = "LibraryProvider";
+
         private string providerName;
-        private IProvider providerInstance;
+        private IProvider provider;
 
         protected static log4net.ILog log = log4net.LogManager.GetLogger(typeof(TAtome));
 
         protected AtomeProviderBase()
         {
-            providerName = ConfigurationClient.Client.Get<string>(ConfigurationNamespace, "LibraryProvider", DefaultProvider);
-            OnProviderUpdated();
+            providerName = ConfigurationClient.Get<string>(ConfigurationNamespace, libraryProviderConfKey, DefaultProvider);
         }
 
-        protected static TAtome instance
+        protected static TAtome Instance
         {
             get
             {
+                var instance = Singleton<TAtome>.Instance;
+                if (instance.provider == null)
+                    instance.OnProviderUpdated();
                 return Singleton<TAtome>.Instance;
             }
         }
 
-        private object providerInstanceLock = new object();
+        private object providerLock = new object();
 
-        private void resetProviderInstance()
+        private void resetProvider()
         {
-            lock (providerInstanceLock)
+            lock (providerLock)
             {
-                providerInstance = null;
+                provider = null;
             }
         }
 
-        private IProvider getProviderInstance()
+        private IProvider getProvider()
         {
-            if (providerInstance == null)
+            if (provider == null)
             {
-                lock (providerInstanceLock)
+                lock (providerLock)
                 {
-                    if (providerInstance == null)
+                    if (provider == null)
                     {
-                        providerInstance = Plugin<IProvider>.CreateInstance(providerName, ProviderDirectory);
-                        providerInstance.Initialize();
+                        provider = Plugin<IProvider>.CreateInstance(providerName, ProviderDirectory);
+                        provider.Initialize();
                     }
                 }
             }
-            return providerInstance;
+            return provider;
         }
 
         protected void CallProvider(Action<IProvider> action)
         {
             try
             {
-                action(getProviderInstance());
+                action(getProvider());
             }
             catch (Exception ex)
             {
@@ -71,21 +75,20 @@ namespace Molecule.Atome
 
         public static string CurrentProvider
         {
-            get { return instance.providerName; }
+            get { return Singleton<TAtome>.Instance.providerName; }
             set
             {
-                instance.providerName = value;
-                instance.resetProviderInstance();
-                ConfigurationClient.Client.Set<string>(instance.ConfigurationNamespace, "LibraryProvider", value);
-                instance.OnProviderUpdated();
+                Singleton<TAtome>.Instance.providerName = value;
+                Singleton<TAtome>.Instance.resetProvider();
+                ConfigurationClient.Set<string>(ConfigurationNamespace, libraryProviderConfKey, value);
             }
         }
 
         protected abstract void OnProviderUpdated();
 
-        protected abstract string ConfigurationNamespace
+        protected static string ConfigurationNamespace
         {
-            get;
+            get { return typeof(TAtome).Name; }
         }
 
         protected abstract string ProviderDirectory
@@ -102,7 +105,7 @@ namespace Molecule.Atome
         {
             get
             {
-                foreach (var provider in Plugin<IProvider>.List(instance.ProviderDirectory))
+                foreach (var provider in Plugin<IProvider>.List(Singleton<TAtome>.Instance.ProviderDirectory))
                     yield return new ProviderInfo() { Description = provider.Description, Name = provider.Name };
             }
         }

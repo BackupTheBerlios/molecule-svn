@@ -26,10 +26,6 @@ namespace WebPhoto.Services
         }
 
         #region AtomProviderBase implementation
-        protected override string ConfigurationNamespace
-        {
-            get { return "WebPhoto"; }
-        }
 
         protected override string ProviderDirectory
         {
@@ -52,7 +48,6 @@ namespace WebPhoto.Services
 
         private void buildUserLibraries()
         {
-            
             userLibraries = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
                          orderby user.UserName
                          select user.UserName)
@@ -66,7 +61,7 @@ namespace WebPhoto.Services
         {
             get
             {
-                return instance.userLibraries[CurrentUser];
+                return Instance.userLibraries[CurrentUser];
             }
         }
 
