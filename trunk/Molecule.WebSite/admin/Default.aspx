@@ -28,7 +28,16 @@
 <%@ Register TagPrefix="cdt" Assembly="CDT.ColorPickerExtender" Namespace="CDT" %>
 <%@ Import Namespace="System.Web.Security" %>
 <asp:Content ID="contentHead" ContentPlaceHolderID="head" runat="server">
-
+<style type="text/css">
+.ajax__cp_container
+{
+	z-index:3;
+}
+.ajax__cp_container table td
+{
+	padding:0px;
+}
+</style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
 
