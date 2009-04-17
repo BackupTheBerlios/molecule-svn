@@ -40,7 +40,8 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Membership.GetAllUsers().Count == 0)
+                Context.Response.Redirect("~/setup/");
         }
     }
 }

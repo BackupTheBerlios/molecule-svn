@@ -123,6 +123,9 @@
   <data name="NewUser" xml:space="preserve">
     <value>Nouvel utilisateur</value>
   </data>
+  <data name="NoEventsToShow" xml:space="preserve">
+    <value>Aucun événements à afficher.</value>
+  </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>Mot de passe obligatoire</value>
   </data>
@@ -131,5 +134,8 @@
   </data>
   <data name="UserRequired" xml:space="preserve">
     <value>Nom d'utilisateur obligatoire</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
   </data>
 </root>

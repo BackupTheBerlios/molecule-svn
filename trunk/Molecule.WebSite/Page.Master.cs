@@ -47,9 +47,8 @@ namespace Molecule.WebSite
                 else Page.Title = "Molecule";
 
 
-            this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
-            this.logsView.DataBind();
-
+                this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
+                this.logsView.DataBind();
 
         }
 

@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No events to show..
+        /// </summary>
+        internal static string NoEventsToShow {
+            get {
+                return ResourceManager.GetString("NoEventsToShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password required.
         /// </summary>
         internal static string PasswordRequired {
@@ -102,6 +111,15 @@ namespace Resources {
         internal static string UserRequired {
             get {
                 return ResourceManager.GetString("UserRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        internal static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

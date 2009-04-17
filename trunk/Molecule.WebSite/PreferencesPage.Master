@@ -10,7 +10,7 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="mainContent">
     <h2>
         <asp:Panel runat="server" ID="tabDefault">
-            <asp:HyperLink runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:General%>" />
+            <asp:HyperLink runat="server" NavigateUrl="admin/Default.aspx" Text="<%$Resources:Common,General%>" />
         </asp:Panel>
         <asp:Repeater runat="server" DataSourceID="AtomeDataSource">
             <ItemTemplate>

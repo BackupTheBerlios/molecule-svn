@@ -21,7 +21,7 @@ namespace Molecule.WebSite
             if (!HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
                 FormsAuthentication.RedirectToLoginPage();
             this.tabDefault.CssClass = AtomeService.CurrentPathIsAtome ? "tabTitle" : "tabSelectedTitle";
-            Page.Title = this.GetLocalResourceObject("Preferences").ToString();
+            Page.Title = this.GetGlobalResourceObject("Common","Preferences").ToString();
         }
     }
 }

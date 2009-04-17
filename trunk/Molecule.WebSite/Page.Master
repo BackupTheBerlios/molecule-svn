@@ -41,7 +41,7 @@
     <asp:UpdateProgress ID="UpdateProgress" runat="server">
         <ProgressTemplate>
             <div id="updateProgress" class="updatePanel">
-                <asp:Label runat="server" Text="<%$ Resources:Loading %>" />
+                <asp:Label runat="server" Text="<%$ Resources:Common,Loading %>" />
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
@@ -63,7 +63,7 @@
         <div id="sideBar">
             <div id="menuPanel">
                 <asp:Panel runat="server" CssClass="menuContent" ID="menuContent">
-                    <asp:Label runat="server" Text="<%$Resources:Welcome%>" />
+                    <asp:Label runat="server" Text="<%$Resources:molecule,Welcome%>" />
                     <asp:LoginName runat="server" />
                     !
                     <ul>
@@ -103,7 +103,7 @@
                                     </li>
                                 </ItemTemplate>
                                 <EmptyDataTemplate>
-                                    <li><asp:Label runat="server" Text="<%$Resources:NoEventsToShow%>" /></li>
+                                    <li><asp:Label runat="server" Text="<%$Resources:molecule,NoEventsToShow%>" /></li>
                                 </EmptyDataTemplate>
                             </asp:ListView>
                             <asp:DataPager ID="logsViewDataPager" PageSize="4" PagedControlID="logsView" runat="server"

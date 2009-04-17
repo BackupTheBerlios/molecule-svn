@@ -343,6 +343,13 @@
     <Compile Include="Services\AtomeUserAuthorizations.cs" />
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
+    <Compile Include="setup\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="setup\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -420,14 +427,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Page.Master.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_LocalResources\Page.Master.fr.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Themes\bloup\images\document-save.png" />
   </ItemGroup>
   <ItemGroup>
@@ -485,12 +484,6 @@
     <Content Include="atomes\upload\style\layout.css" />
     <Content Include="App_Themes\bloup\images\list-remove.png" />
     <Content Include="Error.aspx" />
-    <Content Include="App_LocalResources\PreferencesPage.Master.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_LocalResources\PreferencesPage.Master.fr.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Themes\bloup\images\refresh.png" />
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -538,6 +531,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="setup\Default.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
