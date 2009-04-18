@@ -343,12 +343,12 @@
     <Compile Include="Services\AtomeUserAuthorizations.cs" />
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
-    <Compile Include="setup\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="admin\Setup.aspx.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="setup\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="admin\Setup.aspx.designer.cs">
+      <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -531,7 +531,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="setup\Default.aspx" />
+    <Content Include="admin\Setup.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />

@@ -97,6 +97,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string Setup {
+            get {
+                return ResourceManager.GetString("Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your login and an associated password. Only you will have access rights to your molecule configuration..
+        /// </summary>
+        internal static string SetupInstructions {
+            get {
+                return ResourceManager.GetString("SetupInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to your molecule !.
+        /// </summary>
+        internal static string SetupWelcome {
+            get {
+                return ResourceManager.GetString("SetupWelcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         internal static string Theme {

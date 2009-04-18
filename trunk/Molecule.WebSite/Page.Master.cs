@@ -41,6 +41,9 @@ namespace Molecule.WebSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Services.AdminService.IsSetupAuthorized)
+                Context.Response.Redirect("~/admin/Setup.aspx");
+
             if (String.IsNullOrEmpty(Page.Title) || Page.Title.StartsWith("Untitle"))
                 if (AtomeService.CurrentPathIsAtome)
                     Page.Title = AtomeService.CurrentAtome.Name;

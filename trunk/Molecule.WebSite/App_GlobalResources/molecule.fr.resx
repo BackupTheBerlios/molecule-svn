@@ -129,6 +129,15 @@
   <data name="PasswordRequired" xml:space="preserve">
     <value>Mot de passe obligatoire</value>
   </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Mise en route</value>
+  </data>
+  <data name="SetupInstructions" xml:space="preserve">
+    <value>Saisissez ci-dessous votre nom d'utilisateur et un mot de passe. Vous seul aurez les droits nécessaires pour configurer votre molécule, retenez bien ces informations !</value>
+  </data>
+  <data name="SetupWelcome" xml:space="preserve">
+    <value>Bienvenue sur votre molécule !</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Thème</value>
   </data>

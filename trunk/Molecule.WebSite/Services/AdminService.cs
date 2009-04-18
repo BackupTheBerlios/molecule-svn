@@ -25,9 +25,22 @@ namespace Molecule.WebSite.Services
             XdgBaseDirectorySpec.GetUserDirectory("XDG_CACHE_HOME", ".molecule"), "www", "molecule.css"})
             .PathCombine();
 
+        const string loopback = "127.0.0.1";
+
         public static string CssCachePath
         {
             get { return AdminService.cssCachePath; }
+        }
+
+        public static bool IsSetupAuthorized
+        {
+            get
+            {
+                if (instance.setupNeeded)
+                    instance.setupNeeded = HttpContext.Current.Request.UserHostAddress == loopback
+                        && Membership.GetAllUsers().Count == 0;
+                return instance.setupNeeded;
+            }
         }
 
         private AdminService()
@@ -38,7 +51,7 @@ namespace Molecule.WebSite.Services
         }
 
         private string moleculeTitle;
-
+        private bool setupNeeded = true;
         protected IEnumerable<CssVariableInfo> CssVariables = null;
 
         private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
@@ -48,6 +61,7 @@ namespace Molecule.WebSite.Services
         const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
         const string confNamespace = "Molecule.Admin";
 
+        
         static object cssVariablesLock = new object();
 
         public static DateTime LastCssVariablesUpdate { get; set; }
