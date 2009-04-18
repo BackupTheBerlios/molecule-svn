@@ -10,7 +10,7 @@ using System.Web.Security;
 namespace Molecule.WebSite.Services
 {
     [Serializable]
-    public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>
+    public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>, IAtomeUserAuthorizations
     {
         const string anonymousUser = "anonymous";
         const bool defaultAuthorization = false;

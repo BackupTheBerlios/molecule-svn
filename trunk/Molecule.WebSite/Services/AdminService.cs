@@ -135,7 +135,7 @@ namespace Molecule.WebSite.Services
         private AtomeUserAuthorizations atomeUserAuthorizations;
         private object authLock = new object();
 
-        public static AtomeUserAuthorizations AtomeUserAuthorizations
+        public static IAtomeUserAuthorizations AtomeUserAuthorizations
         {
             get
             {

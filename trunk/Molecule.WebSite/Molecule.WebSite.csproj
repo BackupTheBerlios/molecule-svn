@@ -350,6 +350,7 @@
     <Compile Include="admin\Setup.aspx.designer.cs">
       <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Services\IAtomeUserAuthorizations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
