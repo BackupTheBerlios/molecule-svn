@@ -25,7 +25,7 @@ namespace Molecule.WebSite.Services
             XdgBaseDirectorySpec.GetUserDirectory("XDG_CACHE_HOME", ".molecule"), "www", "molecule.css"})
             .PathCombine();
 
-        const string loopback = "127.0.0.1";
+        const string localhost = "127.0.0.1";
 
         public static string CssCachePath
         {
@@ -37,7 +37,7 @@ namespace Molecule.WebSite.Services
             get
             {
                 if (instance.setupNeeded)
-                    instance.setupNeeded = HttpContext.Current.Request.UserHostAddress == loopback
+                    instance.setupNeeded = HttpContext.Current.Request.UserHostAddress == localhost
                         && Membership.GetAllUsers().Count == 0;
                 return instance.setupNeeded;
             }
