@@ -13,7 +13,7 @@ namespace Molecule.WebSite.Services
     public class AtomeUserAuthorizations : List<AtomeUserAuthorizationItem>
     {
         const string anonymousUser = "anonymous";
-        const bool defaultAuthorization = true;
+        const bool defaultAuthorization = false;
         
 
         //only used directly by Serialization framework
