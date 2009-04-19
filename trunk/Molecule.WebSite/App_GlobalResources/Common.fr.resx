@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdvancedParameters" xml:space="preserve">
+    <value>Paramètres avancés</value>
+  </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonyme</value>
   </data>
   <data name="Authorizations" xml:space="preserve">
     <value>Autorisations</value>
   </data>
+  <data name="Cache" xml:space="preserve">
+    <value>Cache</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Fermer</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Affichage</value>
   </data>
   <data name="General" xml:space="preserve">
     <value>Général</value>

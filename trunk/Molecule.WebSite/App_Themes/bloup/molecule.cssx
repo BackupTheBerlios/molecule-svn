@@ -221,6 +221,11 @@ a:active{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
 a:visited{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
 a:hover{text-decoration:none; color:White;}
 
+a img
+{
+    border : 0px;
+}
+
 
 table thead
 {

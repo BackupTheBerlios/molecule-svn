@@ -37,6 +37,7 @@ namespace Molecule.WebSite.atomes.photo.admin
             initTagTreeView();
             TagNameList.SelectedValue = PhotoLibrary.TagName.ToString();
             TagLink.DataBind();
+            this.ImageQualityTextBox.Text = PhotoLibrary.ImageQualityLevel.ToString();
         }
 
         private void initTagTreeView()
@@ -88,6 +89,12 @@ namespace Molecule.WebSite.atomes.photo.admin
         protected void OkButton_OnClick(object sender, EventArgs args)
         {
 
+        }
+
+        protected void EmptyCacheButton_Click(object sender, EventArgs e)
+        {
+            PhotoLibrary.ImageQualityLevel = Int32.Parse(this.ImageQualityTextBox.Text);
+            PhotoLibrary.ClearCache();
         }
     }
 }

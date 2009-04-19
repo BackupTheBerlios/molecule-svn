@@ -132,6 +132,9 @@
   <data name="GetPhotosFrom" xml:space="preserve">
     <value>Get photos from</value>
   </data>
+  <data name="ImageQuality" xml:space="preserve">
+    <value>Image quality</value>
+  </data>
   <data name="LocateOnMap" xml:space="preserve">
     <value>Locate on map</value>
   </data>
@@ -143,6 +146,12 @@
   </data>
   <data name="PhotoCollectionName" xml:space="preserve">
     <value>Photo collection name</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="ReinitCache" xml:space="preserve">
+    <value>Reinitialize cache</value>
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>

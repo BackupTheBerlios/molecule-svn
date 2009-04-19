@@ -95,6 +95,20 @@ namespace WebPhoto.Services
         }
 
 
-        
+        public static int ImageQualityLevel
+        {
+            get { return PhotoFileProvider.QualityLevel; }
+            set
+            {
+                if (value < 0 || value > 100)
+                    throw new ArgumentOutOfRangeException("value", "must be in range [0..100]");
+                PhotoFileProvider.QualityLevel = value;
+            }
+        }
+
+        public static void ClearCache()
+        {
+            PhotoFileSpec.ClearCache();
+        }
     }
 }

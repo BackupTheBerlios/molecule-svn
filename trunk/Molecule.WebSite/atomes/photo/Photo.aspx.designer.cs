@@ -59,13 +59,13 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.FullSizePhoto FullSizePhoto;
         
         /// <summary>
-        /// RawPhoto control.
+        /// PhotoMap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Molecule.WebSite.atomes.photo.RawPhoto RawPhoto;
+        protected global::Molecule.WebSite.atomes.photo.Map PhotoMap;
         
         /// <summary>
         /// tagList control.
@@ -75,14 +75,5 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Molecule.WebSite.atomes.photo.TagList tagList;
-        
-        /// <summary>
-        /// PhotoMap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Molecule.WebSite.atomes.photo.Map PhotoMap;
     }
 }

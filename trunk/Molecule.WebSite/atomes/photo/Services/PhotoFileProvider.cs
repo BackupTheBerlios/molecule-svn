@@ -30,6 +30,8 @@ using Molecule.Drawing;
 using System.Drawing.Imaging;
 using Molecule.IO;
 using Mono.Rocks;
+using Molecule.Web;
+using Molecule.Configuration;
 
 
 namespace WebPhoto.Services
@@ -38,7 +40,19 @@ namespace WebPhoto.Services
     {
         static PhotoFileClip thumbnailClip = PhotoFileClip.Square;
         static ImageCodecInfo jgpEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
-        const long qualityLevel = 50L;
+
+        const string confQualityLevelKey = "QualityLevel";
+        const string confNamespace = "WebPhoto.PhotoFileProvider";
+        const int defaultQualityLevel = 65;
+
+        int qualityLevel;
+
+        private PhotoFileProvider()
+        {
+            qualityLevel = ConfigurationClient.Get<int>(confNamespace, confQualityLevelKey, defaultQualityLevel);
+        }
+
+        static PhotoFileProvider instance { get { return Singleton<PhotoFileProvider>.Instance; } }
 
         public static string GetResizedPhoto(string imagePath, PhotoFileSize size)
         {
@@ -51,7 +65,14 @@ namespace WebPhoto.Services
             return thumbnailPath;
         }
 
-        private static void generatePhotoFile(string imagePath, string resizedPath, PhotoFileSize size, PhotoFileClip clip)
+        public static int QualityLevel
+        {
+            get { return instance.qualityLevel; }
+            set {instance.qualityLevel = value; ConfigurationClient.Set(confNamespace, confQualityLevelKey, value); }
+        }
+
+        private static void generatePhotoFile(string imagePath, string resizedPath, PhotoFileSize size,
+            PhotoFileClip clip)
         {
             var dir = new DirectoryInfo(Path.GetDirectoryName(resizedPath));
             dir.Create(true);
@@ -62,7 +83,7 @@ namespace WebPhoto.Services
                 {
                     string thumbnailTempPath = resizedPath + ".tmp";
                     var encodeParams = new EncoderParameters(1);
-                    encodeParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qualityLevel);
+                    encodeParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, instance.qualityLevel);
                     resizedBmp.Bitmap.Save(thumbnailTempPath, jgpEncoder, encodeParams);
                     File.Move(thumbnailTempPath, resizedPath);
                 }

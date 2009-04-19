@@ -89,9 +89,15 @@ namespace WebPhoto.Services
 
         private static string root_path = Path.Combine(XdgBaseDirectorySpec.GetUserDirectory("XDG_CACHE_HOME", ".molecule"), "thumbnails");
 
-        public static string RootPath
+        public static string CachePath
         {
             get { return root_path; }
+        }
+
+        public static void ClearCache()
+        {
+            if(Directory.Exists(CachePath))
+                Directory.Delete(CachePath, true);
         }
     }
 }

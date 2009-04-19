@@ -56,8 +56,6 @@ namespace Molecule.WebSite.atomes.photo
             FullSizePhoto.PhotoId = photoId;
             FullSizePhoto.Metadatas = CurrentPhoto.Metadatas;
 
-            RawPhoto.PhotoId = photoId;
-
             tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
 
             if (CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue)

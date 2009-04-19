@@ -7,7 +7,7 @@
 <%@ Register Src="TagList.ascx" TagName="TagList" TagPrefix="photo" %>
 <%@ Register src="TagHierarchy.ascx" tagname="TagHierarchy" tagprefix="photo" %>
 <%@ Register src="PhotoLink.ascx" tagname="PhotoLink" tagprefix="photo" %>
-<%@ Register Src="FullSizePhoto.ascx" TagName="Photo" TagPrefix="photo" %>
+<%@ Register Src="FullSizePhoto.ascx" TagName="FullSizePhoto" TagPrefix="photo" %>
 <%@ Register Src="Map.ascx" TagName="Map" TagPrefix="photo" %>
 <%@ Register Src="RawPhoto.ascx" TagName="RawPhoto" TagPrefix="photo" %>
 
@@ -26,16 +26,19 @@
         <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
         <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
         <br />
-        <photo:Photo ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
+        <photo:FullSizePhoto ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
         <div id="photoDescriptionContainer">
             <p>
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
-            <p class="rawFile">
-                <photo:RawPhoto runat="server" ID="RawPhoto" />
-            </p>
-            <photo:TagList runat="server" ID="tagList" />     
-            <photo:Map ID="PhotoMap" runat="server" />
         </div>
+        <p>
+            <a href="<%= PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Raw) %>">
+                <img src="images/zoom-original.png" /><asp:Literal runat="server" Text="<%$ Resources:photo,OriginaleImage%>" />
+            </a>
+            <photo:Map ID="PhotoMap" runat="server" />
+        </p>
+        <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
+        <photo:TagList runat="server" ID="tagList" />
     </div>
 </asp:Content>

@@ -1,12 +1,7 @@
 ﻿.photoCurrent
 {
-	text-align: center;
+	text-align: left;
 	width:642;
-}
-
-#photoDescriptionContainer p
-{
-	font-size:120%;
 }
 
 #photo
@@ -61,23 +56,4 @@ p
 {
 	width: 650px;
 	height: 400px;
-}
-
-.rawFile
-{
-    position:relative;
-    text-align:left;
-    width:100%;
-   	font-size:small;
-   	margin : 1px;
-}
-
-.rawFile a
-{
-   	font-size:small;
-}
-
-.rawFile img
-{
-    border : 0px;
 }
