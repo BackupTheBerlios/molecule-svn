@@ -32,6 +32,7 @@
 <head runat="server">
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/favicon.ico" type="image/ico" />
+    <link runat="server" id="moleculeCssLink" type="text/css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

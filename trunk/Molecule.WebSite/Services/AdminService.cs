@@ -75,7 +75,7 @@ namespace Molecule.WebSite.Services
                     if (instance.CssVariables == null)
                     {
                         //init css variables from main css content.
-                        string mainCssFile = HttpContext.Current.Server.MapPath("~/App_Themes/" + pagesSection.Theme + "/molecule.css");
+                        string mainCssFile = HttpContext.Current.Server.MapPath("~/App_Themes/" + pagesSection.Theme + "/molecule.cssx");
 
                         instance.CssVariables = (from kvp in CssVariablesExtender.ExtractVariables(File.ReadAllText(mainCssFile))
                                                  select new CssVariableInfo() { Key = kvp.Key, Value = kvp.Value }

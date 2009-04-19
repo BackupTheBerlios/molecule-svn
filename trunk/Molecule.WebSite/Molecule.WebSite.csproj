@@ -440,7 +440,7 @@
     <Content Include="App_Themes\bloup\images\molecule-32.png" />
     <Content Include="App_Themes\bloup\images\molecule-48.png" />
     <Content Include="App_Themes\bloup\images\molecule-64.png" />
-    <Content Include="App_Themes\bloup\molecule.css" />
+    <Content Include="App_Themes\bloup\molecule.cssx" />
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\Admin.aspx" />

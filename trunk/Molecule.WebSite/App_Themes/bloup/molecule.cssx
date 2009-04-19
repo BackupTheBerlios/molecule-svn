@@ -1,0 +1,367 @@
+﻿@variables
+{
+	BackColor:#0e2426;
+	BackColorLight:#2e3436;
+	BackColorDark:#111111;
+	FrontColor:#ffffff;
+	FrontColorDark:#999999;
+	HighLightColor:#f57900;
+	LineColor:#444444;
+}
+
+body
+{
+	background-color: var(BackColor);
+    font-family: Candara, Arial, Helvetica, sans-serif;
+    font-size:13px;
+    color:var(FrontColor);
+}
+
+
+.messagesPanelTitle
+{
+	color:var(FrontColorDark);
+	font-size:medium;
+}
+
+.messagesPanel
+{
+	margin-top : 10px;
+	margin-left : 10px;
+	float:left;
+	width : 45%;
+}
+
+.message
+{
+	border-bottom: 1px solid var(HighLightColor);
+}
+
+.messageDate
+{
+	color:var(FrontColorDark);
+    font-size :10px;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.spacer {
+  clear: both;
+}
+
+
+#sideBar
+{
+	float: left;
+    width: 170px;
+    position: absolute;
+    top:40px;
+}
+
+#menuPanel
+{
+    background-color: var(BackColor);
+    padding:10px;
+    z-index : 1;
+}
+
+#menuPanel ul
+{
+	margin-top:5px;
+	margin-bottom:5px;
+	list-style-type:none;
+	padding: 0;
+	border: none;
+
+}
+
+#logPanel
+{
+    background-color: var(BackColor);
+    padding:10px;
+    z-index : 2;
+    margin-top : 2px;
+}
+
+#logPanel ul
+{
+    padding-left : 0px;
+    margin-top : 0px;
+}
+
+#logPanel li
+{
+    list-style-type : none;
+    border-bottom: 1px solid var(HighLightColor);
+    margin-left : 0px;
+    width : 100%;
+}
+
+#logPanel li:hover
+{
+    background-color: var(FrontColorDark);
+}
+
+.menuContent
+{
+}
+
+#maincontentPanel
+{
+	position:relative;
+    width:680px;
+    left:200px;
+    min-height: 270px;
+    padding:16px; 
+}
+
+#pagePanel
+{
+	position:relative;
+	margin-top:40px;
+	margin-bottom:40px;
+	margin-left: auto;
+    margin-right: auto;
+	width:920px;
+    background-color:var(BackColorLight);
+}
+
+#footer
+{
+	position:relative;
+	bottom:0px;
+	background-color:var(BackColorDark);
+	padding:5px;
+	text-align:center;
+}
+
+#header
+{
+	position:relative;
+	padding:5px;
+	height:30px;
+	line-height:0px;
+	background-color:var(HighLightColor);
+}
+
+
+.informationPanel
+{
+	display:none;
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+.informationPanel,
+.updatePanel
+{
+	z-index:1;
+	padding:6px;
+	background-color:var(BackColorLight);
+    border-color : var(HighLightColor);
+    border-width:1px;
+    border-style:solid;
+    border-top:none;
+    border-left:none;
+}
+
+.informationPanel img
+{
+    float: left; 
+    margin: 0 6px 6px 0;
+}
+
+.thinBorder,
+.thinBox,
+.tabSelectedTitle,
+.tabTitle
+{
+	border:1px;
+	border-style:solid;
+	border-color:var(LineColor);
+}
+.thinBox
+{
+	padding:2px;
+}
+
+
+
+.invisible
+{
+    display:none;
+}
+
+h2
+{
+	color:var(FrontColorDark);
+	font-size:large;
+	text-transform:uppercase;
+	margin-left:4px;
+}
+
+h1
+{
+	font-size:x-large;
+	margin-left:45px;
+	font-style:italic;
+
+}
+
+a:link
+{
+	text-decoration:none;
+	color:var(HighLightColor);
+	font-weight:bolder;
+}
+
+
+a:active{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
+a:visited{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
+a:hover{text-decoration:none; color:White;}
+
+
+table thead
+{
+	font-weight:bolder;
+	background-color:var(HighLightColor);
+}
+
+
+.hoverTable tr:hover { 
+    background-color:var(FrontColorDark);
+    border-width : 0px;
+}
+
+.selectedRow
+{
+	color:var(HighLightColor);
+	font-weight:bolder;
+}
+
+#pageTitle
+{
+	float:right;
+}
+
+#moleculeTitle
+{
+	float:left;
+}
+
+table a:link
+{
+	font-weight:normal;
+	color:White;
+}
+
+table td
+{
+	padding:2px;
+}
+
+.tabTitle,
+.tabSelectedTitle
+{
+	padding-left:8px;
+	padding-right:8px;
+	float:left;
+	position:relative;
+}
+
+.tabTitle
+{
+	padding-top:5px;
+	padding-bottom:4px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+}
+
+.tabSelectedTitle
+{
+	padding-top:4px;
+	padding-bottom:5px;
+	border-bottom:none;
+}
+
+.tabSelectedTitle a:active
+{
+	color:var(FrontColorDark);
+}
+
+.tabSelectedTitle a:link
+{
+	color:var(FrontColorDark);
+}
+
+.tabSelectedTitle a:visited
+{
+	color:var(FrontColorDark);
+}
+
+.loginPanel
+{
+	margin-left: auto;
+	margin-right: auto;
+	background-color:var(BackColorLight);
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:40px;
+}
+
+.errorDetails
+{
+	font-weight: bold;
+	cursor:pointer;
+	color:var(HighLightColor);
+}
+
+#updateProgress  
+{
+	position:relative;
+
+}
+
+#logo
+{
+	width:64px; height:64px;
+	position:absolute;
+	z-index:3;
+	top:-11px; left:-20px;
+}
+
+.popup
+{
+	border: solid 1px;
+	background:grey;
+}
+
+.popupHeader
+{
+	text-align: left;
+	padding:0.5ex;
+}
+
+.popupHeader .left
+{	
+	position: absolute;
+	left: .5ex;
+	text-align: left;
+}
+
+.popupHeader .right
+{
+	position: absolute;
+	right: .5ex;
+	text-align: right;
+}
+
+.modalBackground
+{
+	background-color: #000000;
+	filter:alpha(opacity=30);
+	opacity:0.30;
+}

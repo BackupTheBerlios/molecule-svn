@@ -44,6 +44,7 @@ namespace Molecule.WebSite
             if (Services.AdminService.IsSetupAuthorized)
                 Context.Response.Redirect("~/admin/Setup.aspx");
 
+            
             if (String.IsNullOrEmpty(Page.Title) || Page.Title.StartsWith("Untitle"))
                 if (AtomeService.CurrentPathIsAtome)
                     Page.Title = AtomeService.CurrentAtome.Name;
@@ -52,6 +53,13 @@ namespace Molecule.WebSite
 
                 this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
                 this.logsView.DataBind();
+
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            moleculeCssLink.Attributes["href"] = "/App_Themes/" + Page.Theme + "/molecule.cssx?date=" + AdminService.LastCssVariablesUpdate.ToString("yyyyMMddHHmmss");
 
         }
 

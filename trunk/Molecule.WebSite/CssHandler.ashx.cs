@@ -21,7 +21,7 @@ namespace Molecule.WebSite
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     public class CssHandler : IHttpHandler
-    {
+    {//Still not generic, must only handle molecule.css
         static DateTime cacheDate = DateTime.MinValue;
 
         public void ProcessRequest(HttpContext context)
@@ -37,12 +37,13 @@ namespace Molecule.WebSite
                     );
                 FileInfo fi = new FileInfo(AdminService.CssCachePath);
                 new DirectoryInfo(Path.GetDirectoryName(AdminService.CssCachePath)).Create(true);
-                File.WriteAllText(AdminService.CssCachePath, css); 
+                File.WriteAllText(AdminService.CssCachePath, css);
+                
             }
 
-            //context.Response.Cache.SetExpires(DateTime.Now.Add(TimeSpan.FromDays(30)));
-            //context.Response.Cache.SetCacheability(HttpCacheability.Public);
-            //context.Response.Cache.SetValidUntilExpires(false);
+            context.Response.Cache.SetExpires(DateTime.Now.Add(TimeSpan.FromDays(30)));
+            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.Cache.SetValidUntilExpires(false);
 
             context.Response.WriteFile(AdminService.CssCachePath);
             return;

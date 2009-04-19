@@ -14,6 +14,15 @@ namespace Molecule.WebSite {
     public partial class Page {
         
         /// <summary>
+        /// moleculeCssLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink moleculeCssLink;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>
