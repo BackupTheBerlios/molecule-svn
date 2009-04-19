@@ -1,0 +1,70 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          mono-xsp2
+# Required-Start:    
+# Required-Stop: 
+# Should-Start:      
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Mono XSP2
+# Description:       Debian init script for Mono XSP2.
+### END INIT INFO
+#
+# Written by Pablo Fischer <pablo@pablo.com.mx>
+#            Dylan R. E. Moonfire <debian@mfgames.com>
+# Modified for Debian GNU/Linux
+#
+# Version:	@(#)mono-xsp2 pablo@pablo.com.mx
+#
+
+# Variables
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/xsp2
+NAME=molecule-timaniac
+DESC="Molecule XSP 2 WebServer"
+USER=timaniac
+GROUP=timaniac
+PORT=8085
+ADDRESS=0.0.0.0
+MOLECULEDIR=/home/timaniac/Projets/molecule/trunk/Molecule.WebSite
+
+# Use LSB
+. /lib/lsb/init-functions
+
+# If we don't have the basics, don't bother
+test -x $DAEMON || exit 0
+                
+case "$1" in
+    start)
+
+	    echo "Starting $DESC" "$NAME"
+	    start-stop-daemon --start --background --make-pidfile \
+		--pidfile /var/run/$NAME.pid \
+		--user $USER --group $GROUP --chuid $USER \
+		--exec $DAEMON -- \
+		--port $PORT --address $ADDRESS --root \
+		$MOLECULEDIR --nonstop
+	    echo $?
+
+	;;
+    stop)
+	log_daemon_msg "Stopping $DESC" "$NAME"
+        for i in $(ps aux | grep -v grep | grep 'xsp2.exe' | cut -c 10-15)
+        do
+                kill $i > /dev/null 2>&1
+        done
+	log_end_msg $?
+	;;
+    restart|force-reload)
+	$0 stop
+	$0 start
+	;;
+    *)
+	N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
