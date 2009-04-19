@@ -537,6 +537,7 @@
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
     <Folder Include="images\" />
+    <Folder Include="logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -38,6 +38,7 @@ namespace Molecule.WebSite
     {
         protected virtual void Application_Start(object sender, EventArgs e)
         {
+            log4net.GlobalContext.Properties["currentuser"] = Environment.UserName;
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(HttpContext.Current.Request.PhysicalApplicationPath + "Log4Net.config"));
         }
 
