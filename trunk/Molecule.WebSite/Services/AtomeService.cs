@@ -127,6 +127,18 @@ namespace Molecule.WebSite.Services
                    select atome;
         }
 
+		public static bool IsCurrentUserAuthorizedForAtome(string atomeName)
+		{
+            var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
+            if (currentUser == null)
+                currentUser = AtomeUserAuthorizations.AnonymousUser;
+
+            var auth = AdminService.AtomeUserAuthorizations.TryGet(atomeName, currentUser);
+            return auth != null ? auth.Authorized : false;			
+			
+		}
+		
+		
         public static bool IsCurrentUserAuthorized(string url)
         {
             var atome = GetAtomeByVirtualPath(url);
@@ -149,6 +161,7 @@ namespace Molecule.WebSite.Services
             return auth != null ? auth.Authorized : false;
         }
 
+		
         public static bool IsCurrentUserAuthorized()
         {
             var currentAtome = CurrentAtome;

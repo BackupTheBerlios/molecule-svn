@@ -34,6 +34,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+using Molecule.WebSite.Services;
 
 namespace Molecule.WebSite
 {
@@ -42,7 +43,12 @@ namespace Molecule.WebSite
         protected void Page_Load(object sender, EventArgs e)
         {
 			List<string> types = Molecule.Log.LogService.Instance.GetSemanticTypes();
-			this.typesRepeater.DataSource = types;
+			
+			var authorizedTypes = from t in types
+					where  AtomeService.IsCurrentUserAuthorizedForAtome(t)
+			        select t;
+			
+			this.typesRepeater.DataSource = authorizedTypes;
 			this.typesRepeater.DataBind();
         }
 		
