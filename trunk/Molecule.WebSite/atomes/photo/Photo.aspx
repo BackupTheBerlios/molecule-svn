@@ -26,7 +26,7 @@
         <photo:PhotoLink ID="PreviousPhotoLink" runat="server" Description="Photo précédente" />
         <photo:PhotoLink ID="NextPhotoLink" runat="server" Description="Photo suivante" />
         <br />
-        <photo:FullSizePhoto ID="FullSizePhoto" runat="server" PhotoId="<%=CurrentPhoto.Id %>" /> 
+        <photo:FullSizePhoto ID="FullSizePhoto" runat="server" PhotoId='<%#CurrentPhoto.Id %>' /> 
         <div id="photoDescriptionContainer">
             <p>
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>

@@ -45,7 +45,7 @@ namespace WebPhoto.Services
     /// </remarks>
     public class PhotoFileSpec
     {
-        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoFileSpec));
+        static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoFileSpec));
 
         static PhotoFileSpec()
         {
@@ -78,7 +78,9 @@ namespace WebPhoto.Services
             if (clip == PhotoFileClip.Square)
                 folderPath = Path.Combine(folderPath, "square");
 
-            return Path.Combine(folderPath, String.Format("{0}.jpg", fileid));
+            var filePath = Path.Combine(folderPath, String.Format("{0}.jpg", fileid));
+            
+            return filePath;
         }
 
         private static string getIdForFilePath(string filePath)

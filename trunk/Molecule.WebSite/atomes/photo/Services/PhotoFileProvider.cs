@@ -38,7 +38,8 @@ namespace WebPhoto.Services
 {
     public class PhotoFileProvider
     {
-        static PhotoFileClip thumbnailClip = PhotoFileClip.Square;
+        public static PhotoFileClip ThumbnailClip = PhotoFileClip.Square;
+
         static ImageCodecInfo jgpEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
 
         const string confQualityLevelKey = "QualityLevel";
@@ -56,7 +57,7 @@ namespace WebPhoto.Services
 
         public static string GetResizedPhoto(string imagePath, PhotoFileSize size)
         {
-            PhotoFileClip clip = size == PhotoFileSize.Thumbnail ? thumbnailClip : PhotoFileClip.No;
+            PhotoFileClip clip = size == PhotoFileSize.Thumbnail ? ThumbnailClip : PhotoFileClip.No;
             string thumbnailPath = PhotoFileSpec.GetPathForSize(imagePath, size, clip);
             if (!File.Exists(thumbnailPath))
             {
