@@ -117,7 +117,8 @@ namespace WebMusic.Services
 
         public static IEnumerable<IArtist> GetArtists()
         {
-            return Instance.artists.Values.OrderBy(artist => artist.Name);
+			
+            return  Instance.artists.Values.OrderBy(artist => artist.Name);
         }
 
         public static IEnumerable<IAlbum> GetAlbums()
@@ -134,7 +135,13 @@ namespace WebMusic.Services
 
         public static IEnumerable<IAlbum> GetAlbumsByArtist(string artist)
         {
-            if (!String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist))
+			// if no artist specified we return all albums.
+			if(String.IsNullOrEmpty (artist))
+			{
+				foreach (var album in  Instance.albums.Values.OrderBy(album => album.Name))
+				         yield return album;
+			}
+            else if (Instance.artists.ContainsKey(artist))
             {
                 foreach (var album in Instance.artists[artist].Albums.OrderBy(album => album.Name))
                     yield return album;
@@ -172,7 +179,16 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongByArtistAndAlbum(string artist, string album)
         {
-            if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist) && Instance.albums.ContainsKey(album))
+			Console.WriteLine(artist);
+			Console.WriteLine(album);
+			
+			// if we have not selected an artist we are looking for something like a compilation
+			if(!String.IsNullOrEmpty(album) && String.IsNullOrEmpty(artist) && Instance.albums.ContainsKey(album)) 
+			{
+                foreach (var song in Instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
+                    yield return song;				
+			}
+            else if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist) && Instance.albums.ContainsKey(album))
             {
                 foreach (var song in Instance.albums[album].Songs.Where(song => song.Artist.Id == artist).OrderBy(song => song.AlbumTrack))
                     yield return song;
