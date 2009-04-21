@@ -179,9 +179,6 @@ namespace WebMusic.Services
 
         public static IEnumerable<ISong> GetSongByArtistAndAlbum(string artist, string album)
         {
-			Console.WriteLine(artist);
-			Console.WriteLine(album);
-			
 			// if we have not selected an artist we are looking for something like a compilation
 			if(!String.IsNullOrEmpty(album) && String.IsNullOrEmpty(artist) && Instance.albums.ContainsKey(album)) 
 			{
