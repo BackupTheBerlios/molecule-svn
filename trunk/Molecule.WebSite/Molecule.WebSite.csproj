@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
-    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Molecule.WebSite</RootNamespace>
@@ -125,7 +125,6 @@
     <Content Include="App_Themes\default\TreeView.skin" />
     <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
     <Content Include="ImageHandler.ashx" />
-    <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
     <Content Include="PreferencesPage.Master" />
     <Content Include="App_Themes\bloup\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
@@ -380,9 +379,6 @@
     </Compile>
     <Compile Include="atomes\webmusic\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx.cs">
-      <DependentUpon>CoverArtFileHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="atomes\webmusic\CoverArt\CoverArtService.cs" />
     <Compile Include="atomes\webmusic\CoverArt\CoverArtSpec.cs" />
