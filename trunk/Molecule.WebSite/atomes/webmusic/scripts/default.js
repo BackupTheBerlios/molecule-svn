@@ -43,7 +43,7 @@ function playSelectedSong()
     playSong(currentSong.getUrl());
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
-    coverArtImage.src = "~/atomes/webmusic/CoverArt/"+currentSong.id+".jpg";
+    coverArtImage.src = "CoverArt/CoverArtFile.aspx?id="+currentSong.id;
     coverArtImage.alt = currentSong.album;
     coverArtImage.title = currentSong.album;
     coverArtImage.style.display ="inline";

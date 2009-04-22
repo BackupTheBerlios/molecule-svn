@@ -1,0 +1,1 @@
+<%@ Page Language="C#" Inherits="WebMusic.CoverArt.CoverArtFile" Theme="" StylesheetTheme=""   AutoEventWireup="true"  %>

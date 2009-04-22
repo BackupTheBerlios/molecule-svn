@@ -37,7 +37,7 @@ namespace WebMusic.CoverArt
 {
     public static class CoverArtSpec
     {
-        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtFileHandler));
+        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(CoverArtSpec));
 
         private static string unknown_artist = "Unknown Artist";
         private static string unknown_album = "Unknown Album";
