@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{99FF5204-4E9F-4B34-9185-72BF089FC4BD}</ProjectGuid>
-    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Molecule.WebSite</RootNamespace>
@@ -90,8 +90,146 @@
   <ItemGroup>
     <Content Include="admin\Default.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="App_Themes\default\molecule.css" />
+    <Content Include="Page.Master" />
+    <Content Include="atomes\webmusic\Admin.aspx" />
+    <Content Include="atomes\webmusic\Atome.xml" />
+    <Content Include="atomes\webmusic\Download.aspx" />
+    <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
+    <Content Include="App_Themes\bloup\images\audio-volume-low.png" />
+    <Content Include="App_Themes\bloup\images\list-add.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-pause.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-start-small.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-start.png" />
+    <Content Include="App_Themes\bloup\images\media-skip-backward.png" />
+    <Content Include="App_Themes\bloup\images\media-skip-forward.png" />
+    <Content Include="App_Themes\bloup\images\system-search.png" />
+    <Content Include="atomes\webmusic\scripts\default.js" />
+    <Content Include="atomes\webmusic\scripts\sm2player.js" />
+    <Content Include="atomes\webmusic\scripts\soundmanager2-nodebug-jsmin.js" />
+    <Content Include="atomes\webmusic\scripts\soundmanager2.js" />
+    <Content Include="atomes\webmusic\soundmanager2.swf" />
+    <Content Include="atomes\webmusic\stublibrary\song1.mp3" />
+    <Content Include="atomes\webmusic\stublibrary\song2.mp3" />
+    <Content Include="atomes\webmusic\MediaFileHandler.ashx" />
+    <Content Include="atomes\webmusic\style\layout.css" />
+    <Content Include="atomes\webmusic\Default.aspx" />
+    <Content Include="Log4Net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Default.aspx" />
+    <Content Include="App_Themes\default\AjaxExtenders.skin" />
+    <Content Include="App_Themes\bloup\TreeView.skin" />
+    <Content Include="App_Themes\default\TreeView.skin" />
+    <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
+    <Content Include="ImageHandler.ashx" />
+    <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
+    <Content Include="PreferencesPage.Master" />
+    <Content Include="App_Themes\bloup\images\dialog-warning.png" />
+    <Content Include="Web.sitemap" />
+    <Content Include="CssHandler.ashx" />
+    <Content Include="App_GlobalResources\webmusic.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\webmusic.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\bloup\images\document-save.png" />
+    <Content Include="App_Themes\bloup\images\go-next.png" />
+    <Content Include="App_Themes\bloup\images\go-previous.png" />
+    <Content Include="App_Themes\bloup\images\colorpicker.png" />
+    <Content Include="App_Themes\bloup\images\molecule-128.png" />
+    <Content Include="App_Themes\bloup\images\molecule-16.png" />
+    <Content Include="App_Themes\bloup\images\molecule-24.png" />
+    <Content Include="App_Themes\bloup\images\molecule-32.png" />
+    <Content Include="App_Themes\bloup\images\molecule-48.png" />
+    <Content Include="App_Themes\bloup\images\molecule-64.png" />
+    <Content Include="App_Themes\bloup\molecule.cssx" />
+    <Content Include="App_Themes\bloup\progressbarlayout.css" />
+    <Content Include="App_Themes\default\common.css" />
+    <Content Include="atomes\photo\Admin.aspx" />
+    <Content Include="atomes\photo\Atome.xml" />
+    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
+    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
+    <Content Include="atomes\photo\FullSizePhoto.ascx" />
+    <Content Include="atomes\photo\images\frame.png" />
+    <Content Include="atomes\photo\Map.ascx" />
+    <Content Include="atomes\photo\MonthCalendar.aspx" />
+    <Content Include="atomes\photo\Default.aspx" />
+    <Content Include="atomes\photo\PhotoLink.ascx" />
+    <Content Include="atomes\photo\RawPhoto.ascx" />
+    <Content Include="atomes\photo\scripts\osm.js" />
+    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
+    <Content Include="atomes\photo\style\calendar.css" />
+    <Content Include="atomes\photo\Photo.aspx" />
+    <Content Include="atomes\photo\stublibrary\photo1.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo9.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo8.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo7.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo6.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo5.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo4.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo3.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo2.jpg" />
+    <Content Include="atomes\photo\PhotoFile.aspx" />
+    <Content Include="atomes\photo\style\common.css" />
+    <Content Include="atomes\photo\style\photo.css" />
+    <Content Include="atomes\photo\style\tag.css" />
+    <Content Include="atomes\photo\style\timeline.css" />
+    <Content Include="atomes\photo\Tag.aspx" />
+    <Content Include="atomes\photo\TagList.ascx" />
+    <Content Include="atomes\photo\TagLink.ascx" />
+    <Content Include="atomes\photo\TagHierarchy.ascx" />
+    <Content Include="atomes\photo\Timeline.aspx" />
+    <Content Include="atomes\photo\YearCalendar.aspx" />
+    <Content Include="atomes\upload\admin\Default.aspx" />
+    <Content Include="atomes\upload\Atome.xml" />
+    <Content Include="atomes\upload\Default.aspx" />
+    <Content Include="atomes\upload\scripts\default.js" />
+    <Content Include="atomes\upload\style\layout.css" />
+    <Content Include="App_Themes\bloup\images\list-remove.png" />
+    <Content Include="Error.aspx" />
+    <Content Include="App_Themes\bloup\images\refresh.png" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NeatUpload\NeatUpload.js" />
+    <Content Include="NeatUpload\Progress.aspx" />
+    <Content Include="NeatUpload\Progress.js" />
+    <Content Include="App_GlobalResources\photo.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_GlobalResources\photo.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
+    <Content Include="atomes\photo\images\zoom-original.png" />
+    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Banshee.dll" />
+    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Rhythmbox.dll" />
+    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
+    <Content Include="App_GlobalResources\Common.resx" />
+    <Content Include="App_GlobalResources\Common.fr.resx" />
+    <Content Include="App_Themes\bloup\images\folder.png" />
+    <Content Include="atomes\photo\images\internet-web-browser.png" />
+    <Content Include="ProviderSelector.ascx" />
+    <Content Include="App_GlobalResources\molecule.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+    </Content>
+    <Content Include="App_GlobalResources\molecule.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+    </Content>
+    <Content Include="admin\Setup.aspx" />
+    <Content Include="atomes\webmusic\CoverArt\CoverArtFile.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,13 +238,9 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="AtomeAccessModule.cs" />
@@ -338,8 +472,7 @@
     </Compile>
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\AtomeInfo.cs" />
-    <Compile Include="Services\AtomeService.cs">
-    </Compile>
+    <Compile Include="Services\AtomeService.cs" />
     <Compile Include="Services\AtomeUserAuthorizations.cs" />
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
@@ -351,42 +484,12 @@
       <DependentUpon>Setup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Services\IAtomeUserAuthorizations.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
-    <Content Include="App_Themes\default\molecule.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Page.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="atomes\webmusic\Admin.aspx" />
-    <Content Include="atomes\webmusic\Atome.xml" />
-    <Content Include="atomes\webmusic\Download.aspx" />
-    <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
-    <Content Include="App_Themes\bloup\images\audio-volume-low.png" />
-    <Content Include="App_Themes\bloup\images\list-add.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-pause.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-start-small.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-start.png" />
-    <Content Include="App_Themes\bloup\images\media-skip-backward.png" />
-    <Content Include="App_Themes\bloup\images\media-skip-forward.png" />
-    <Content Include="App_Themes\bloup\images\system-search.png" />
-    <Content Include="atomes\webmusic\scripts\default.js" />
-    <Content Include="atomes\webmusic\scripts\sm2player.js" />
-    <Content Include="atomes\webmusic\scripts\soundmanager2-nodebug-jsmin.js" />
-    <Content Include="atomes\webmusic\scripts\soundmanager2.js" />
-    <Content Include="atomes\webmusic\soundmanager2.swf" />
-    <Content Include="atomes\webmusic\stublibrary\song1.mp3" />
-    <Content Include="atomes\webmusic\stublibrary\song2.mp3" />
-    <Content Include="atomes\webmusic\MediaFileHandler.ashx" />
-    <Content Include="atomes\webmusic\style\layout.css" />
-    <Content Include="atomes\webmusic\Default.aspx" />
-    <Content Include="Log4Net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Default.aspx" />
+    <Compile Include="atomes\webmusic\CoverArt\CoverArtFile.aspx.designer.cs">
+      <DependentUpon>CoverArtFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\webmusic\CoverArt\CoverArtFile.aspx.cs">
+      <DependentUpon>CoverArtFile.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Molecule\Molecule.csproj">
@@ -403,136 +506,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Themes\default\AjaxExtenders.skin" />
-    <Content Include="App_Themes\bloup\TreeView.skin" />
-    <Content Include="App_Themes\default\TreeView.skin" />
-    <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="Atome.xsd" />
-    <Content Include="ImageHandler.ashx" />
-    <Content Include="atomes\webmusic\CoverArt\CoverArtFileHandler.ashx" />
-    <Content Include="PreferencesPage.Master" />
-    <Content Include="App_Themes\bloup\images\dialog-warning.png" />
-    <Content Include="Web.sitemap" />
     <None Include="atomes\photo\scripts\default.js" />
-    <Content Include="CssHandler.ashx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\webmusic.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\webmusic.fr.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Themes\bloup\images\document-save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Themes\bloup\images\go-next.png" />
-    <Content Include="App_Themes\bloup\images\go-previous.png" />
-    <Content Include="App_Themes\bloup\images\colorpicker.png" />
-    <Content Include="App_Themes\bloup\images\molecule-128.png" />
-    <Content Include="App_Themes\bloup\images\molecule-16.png" />
-    <Content Include="App_Themes\bloup\images\molecule-24.png" />
-    <Content Include="App_Themes\bloup\images\molecule-32.png" />
-    <Content Include="App_Themes\bloup\images\molecule-48.png" />
-    <Content Include="App_Themes\bloup\images\molecule-64.png" />
-    <Content Include="App_Themes\bloup\molecule.cssx" />
-    <Content Include="App_Themes\bloup\progressbarlayout.css" />
-    <Content Include="App_Themes\default\common.css" />
-    <Content Include="atomes\photo\Admin.aspx" />
-    <Content Include="atomes\photo\Atome.xml" />
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
-    <Content Include="atomes\photo\FullSizePhoto.ascx" />
-    <Content Include="atomes\photo\images\frame.png" />
-    <Content Include="atomes\photo\Map.ascx" />
-    <Content Include="atomes\photo\MonthCalendar.aspx" />
-    <Content Include="atomes\photo\Default.aspx" />
-    <Content Include="atomes\photo\PhotoLink.ascx" />
-    <Content Include="atomes\photo\RawPhoto.ascx" />
-    <Content Include="atomes\photo\scripts\osm.js" />
-    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
-    <Content Include="atomes\photo\style\calendar.css" />
-    <Content Include="atomes\photo\Photo.aspx" />
-    <Content Include="atomes\photo\stublibrary\photo1.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo9.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo8.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo7.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo6.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo5.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo4.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo3.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo2.jpg" />
-    <Content Include="atomes\photo\PhotoFile.aspx" />
-    <Content Include="atomes\photo\style\common.css" />
-    <Content Include="atomes\photo\style\photo.css" />
-    <Content Include="atomes\photo\style\tag.css" />
-    <Content Include="atomes\photo\style\timeline.css" />
-    <Content Include="atomes\photo\Tag.aspx" />
-    <Content Include="atomes\photo\TagList.ascx" />
-    <Content Include="atomes\photo\TagLink.ascx" />
-    <Content Include="atomes\photo\TagHierarchy.ascx" />
-    <Content Include="atomes\photo\Timeline.aspx" />
-    <Content Include="atomes\photo\YearCalendar.aspx" />
-    <Content Include="atomes\upload\admin\Default.aspx" />
-    <Content Include="atomes\upload\Atome.xml" />
-    <Content Include="atomes\upload\Default.aspx" />
-    <Content Include="atomes\upload\scripts\default.js" />
-    <Content Include="atomes\upload\style\layout.css" />
-    <Content Include="App_Themes\bloup\images\list-remove.png" />
-    <Content Include="Error.aspx" />
-    <Content Include="App_Themes\bloup\images\refresh.png" />
-    <Content Include="favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NeatUpload\NeatUpload.js" />
-    <Content Include="NeatUpload\Progress.aspx" />
-    <Content Include="NeatUpload\Progress.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\photo.fr.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\photo.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
-    <Content Include="atomes\photo\images\zoom-original.png" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Banshee.dll" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Rhythmbox.dll" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Common.resx">
-      <LastGenOutput>Common.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Common.fr.resx">
-      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_Themes\bloup\images\folder.png" />
-    <Content Include="atomes\photo\images\internet-web-browser.png" />
-    <Content Include="ProviderSelector.ascx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\molecule.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\molecule.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="admin\Setup.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
