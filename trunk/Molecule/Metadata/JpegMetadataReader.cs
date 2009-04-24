@@ -35,7 +35,6 @@ namespace Molecule.Metadata
 	{	
 		Molecule.Collections.Dictionary<string, string> commonMetadatas;
 		FileInfo jpegFileInfo;
-		bool containsGPSInformation;
 
         public static JpegMetadataReader RetreiveFromFile(string filePath)
         {
@@ -55,8 +54,7 @@ namespace Molecule.Metadata
 			commonMetadatas = new Molecule.Collections.Dictionary<string,string>();
 			
 			// Loading all meta data
-			com.drew.metadata.Metadata photoMedatas = com.drew.imaging.jpg.JpegMetadataReader.ReadMetadata(jpegFileInfo);
-			IEnumerator<AbstractDirectory> directoryEnum = photoMedatas.GetDirectoryIterator();			
+			com.drew.metadata.Metadata photoMedatas = com.drew.imaging.jpg.JpegMetadataReader.ReadMetadata(jpegFileInfo);	
 
 			if (photoMedatas.ContainsDirectory( typeof(com.drew.metadata.exif.ExifDirectory)))
 			{

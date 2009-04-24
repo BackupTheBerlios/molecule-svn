@@ -34,7 +34,6 @@ namespace Molecule.Log
 {
 	public class LogService
 	{
-		private static log4net.ILog log = log4net.LogManager.GetLogger( typeof( LogService ) );
 		private List<Event> events; 
 		
 		private LogService()

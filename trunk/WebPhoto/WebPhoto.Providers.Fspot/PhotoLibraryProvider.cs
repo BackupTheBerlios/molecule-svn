@@ -62,9 +62,6 @@ namespace WebPhoto.Providers.Fspot
         }
 
         #region IPhotoLibraryProvider Members
-
-        static List<Photo> allPhotos;
-
         public void Initialize()
         {
 			if(log.IsInfoEnabled)

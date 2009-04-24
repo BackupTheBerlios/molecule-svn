@@ -35,7 +35,6 @@ namespace Molecule.WebSite
                     pairs => Services.AdminService.GetCssVariables().ForEach(
                         cvi => pairs[cvi.Key] = cvi.Value)
                     );
-                FileInfo fi = new FileInfo(AdminService.CssCachePath);
                 new DirectoryInfo(Path.GetDirectoryName(AdminService.CssCachePath)).Create(true);
                 File.WriteAllText(AdminService.CssCachePath, css);
                 

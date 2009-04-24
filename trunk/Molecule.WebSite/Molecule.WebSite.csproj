@@ -223,12 +223,6 @@
     <Content Include="atomes\webmusic\CoverArt\CoverArtFile.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

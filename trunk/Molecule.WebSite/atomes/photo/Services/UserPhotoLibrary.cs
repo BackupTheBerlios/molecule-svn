@@ -17,7 +17,6 @@ namespace WebPhoto.Services
         LinkedList<IPhoto> timelinePhotos;
         Dictionary<DateTime, LinkedListNode<IPhoto>> photosByDays;
 
-        static ILog log = LogManager.GetLogger(typeof(UserPhotoLibrary));
         string user;
         public UserPhotoLibrary(string user, IEnumerable<ITag> originalRootTags, TagUserAuthorizations auths)
         {

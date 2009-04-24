@@ -39,7 +39,6 @@ namespace WebMusic.Services
 {
     public class MusicLibrary : AtomeProviderBase<MusicLibrary, IMusicLibraryProvider>
     {
-        static object instanceLock = new object();
 
         static MusicLibrary()
         {

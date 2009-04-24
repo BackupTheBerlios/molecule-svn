@@ -17,7 +17,6 @@ namespace WebPhoto.Services
         static TagName defaultTagName = TagName.Album;
 
         private TagUserAuthorizations tagUserAuthorizations;
-        private object authLock = new object();
 
         public static TagUserAuthorizations TagUserAuthorizations
         {

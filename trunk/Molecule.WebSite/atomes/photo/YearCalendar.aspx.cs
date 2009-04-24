@@ -59,7 +59,6 @@ namespace Molecule.WebSite.atomes.photo
 
         private void fillCalendar(DateTime year)
         {
-            var firstMonthOfYear = new DateTime(year.Year, 1, 1);
             List<CalendarItem> items = new List<CalendarItem>();
 
             for(int i = 1; i <= 12; i++)

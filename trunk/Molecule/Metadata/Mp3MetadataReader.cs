@@ -43,7 +43,7 @@ namespace Molecule.Metadata
 			this.Bitrate = file.Properties.AudioBitrate;
 			this.Duration = file.Properties.Duration;
 			this.Album = file.Tag.Album;
-			this.Artist = file.Tag.FirstArtist;
+			this.Artist = file.Tag.FirstPerformer;
 			this.Title = file.Tag.Title;
 		}
 		

@@ -32,7 +32,6 @@ namespace WebPhoto.Providers.Fspot
 		
 	    private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(Tag));		
 		List<Tag> childTags;
-		int depth;
 		ITag parentTag;
 		List<Photo> photos;
 		

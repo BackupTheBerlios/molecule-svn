@@ -38,7 +38,6 @@ namespace WebMusic
 {
     public partial class Download : System.Web.UI.Page
     {
-        ILog log = LogManager.GetLogger(typeof(Download));
 
         protected void Page_Load(object sender, EventArgs e)
         {
