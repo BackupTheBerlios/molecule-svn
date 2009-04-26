@@ -21,6 +21,11 @@ namespace Molecule.WebSite
             }
         }
 
+        protected void ReinitButton_OnClick(object sender, EventArgs args)
+        {
+
+        }
+
         protected void ProviderList_SelectedIndexChanged(object sender, EventArgs e)
         {
             CurrentProvider = ProviderList.SelectedValue;

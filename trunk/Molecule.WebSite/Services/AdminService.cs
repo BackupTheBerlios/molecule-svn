@@ -26,6 +26,24 @@ namespace Molecule.WebSite.Services
             .PathCombine();
 
         const string localhost = "127.0.0.1";
+        static PagesSection pagesSection = (PagesSection)WebConfigurationManager.GetWebApplicationSection("system.web/pages");
+        static string cssVariablesKeyConf = "CssVariables." + pagesSection.Theme;
+        const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
+        const string confNamespace = "Molecule.Admin";
+        const string confTitleKey = "Title";
+        const string confDisplayLogoKey = "DisplayLogo";
+        const string confTitleDefaultValue = "Molecule";
+        private string moleculeTitle;
+        private bool setupNeeded = true;
+        private bool displayLogo;
+        protected IEnumerable<CssVariableInfo> CssVariables = null;
+
+        private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
+
+
+
+
+        static object cssVariablesLock = new object();
 
         public static string CssCachePath
         {
@@ -42,27 +60,16 @@ namespace Molecule.WebSite.Services
                 return instance.setupNeeded;
             }
         }
-
         private AdminService()
         {
-            moleculeTitle = Configuration.ConfigurationClient.Get<string>("Molecule.WebSite", "Title", "Molecule");
+            moleculeTitle = Configuration.ConfigurationClient.Get<string>(confNamespace, confTitleKey, confTitleDefaultValue);
+            displayLogo = Configuration.ConfigurationClient.Get<bool>(confNamespace, confDisplayLogoKey, true);
+
             if (File.Exists(CssCachePath))
                 LastCssVariablesUpdate = File.GetCreationTime(cssCachePath);
         }
 
-        private string moleculeTitle;
-        private bool setupNeeded = true;
-        protected IEnumerable<CssVariableInfo> CssVariables = null;
-
-        private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
-
-        static PagesSection pagesSection = (PagesSection)WebConfigurationManager.GetWebApplicationSection("system.web/pages");
-        static string cssVariablesKeyConf = "CssVariables." + pagesSection.Theme;
-        const string confAtomeUserAuthorizationsKey = "AtomeUserAuthorizations";
-        const string confNamespace = "Molecule.Admin";
-
         
-        static object cssVariablesLock = new object();
 
         public static DateTime LastCssVariablesUpdate { get; set; }
 
@@ -124,12 +131,24 @@ namespace Molecule.WebSite.Services
             set { instance.updateMoleculeTitle(value); }
         }
 
+        public static bool DisplayLogo
+        {
+            get { return instance.displayLogo; }
+            set { instance.updateDisplayLogo(value); }
+        }
+
+        private void updateDisplayLogo(bool value)
+        {
+            displayLogo = value;
+            Configuration.ConfigurationClient.Set(confNamespace, confDisplayLogoKey, value);
+        }
+
         private void updateMoleculeTitle(string value)
         {
             if (value.Length == 0 || value.Length > 100)
                 return;
-            instance.moleculeTitle = value;
-            Configuration.ConfigurationClient.Set<string>("Molecule.WebSite", "Title", value);
+            moleculeTitle = value;
+            Configuration.ConfigurationClient.Set(confNamespace, confTitleKey, value);
         }
 
         private AtomeUserAuthorizations atomeUserAuthorizations;

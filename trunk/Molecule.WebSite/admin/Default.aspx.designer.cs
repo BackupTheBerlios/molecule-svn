@@ -50,15 +50,6 @@ namespace Molecule.WebSite.Admin {
         protected global::System.Web.UI.WebControls.Repeater AuthHeaderRepeater;
         
         /// <summary>
-        /// Literal1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
-        
-        /// <summary>
         /// AuthListView control.
         /// </summary>
         /// <remarks>
@@ -75,6 +66,15 @@ namespace Molecule.WebSite.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox titleTextBox;
+        
+        /// <summary>
+        /// LogoCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox LogoCheckBox;
         
         /// <summary>
         /// CssVariableList control.

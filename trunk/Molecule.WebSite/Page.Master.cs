@@ -50,10 +50,15 @@ namespace Molecule.WebSite
                     Page.Title = AtomeService.CurrentAtome.Name;
                 else Page.Title = "Molecule";
 
+            logoPlaceHolder.Visible = AdminService.DisplayLogo;
+        }
 
-                this.logsView.DataSource = Molecule.Log.LogService.Instance.Events;
-                this.logsView.DataBind();
-
+        protected void logsView_OnLoad(object sender, EventArgs args)
+        {
+            var logsView = sender as ListView;
+            
+            logsView.DataSource = Molecule.Log.LogService.Instance.Events;
+            logsView.DataBind();
         }
 
         protected override void OnPreRender(EventArgs e)
@@ -65,9 +70,8 @@ namespace Molecule.WebSite
 
         protected void updateLogPanel_DataBound(object sender, EventArgs e)
         {
-            logsViewDataPager.Visible = (logsViewDataPager.PageSize < logsViewDataPager.TotalRowCount);
+            //fix : no more reference
+            //logsViewDataPager.Visible = (logsViewDataPager.PageSize < logsViewDataPager.TotalRowCount);
         }
-
-
     }
 }

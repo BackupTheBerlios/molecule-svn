@@ -38,7 +38,7 @@
     </asp:ListView>
     <br />
     <asp:DataPager runat="server" ID="PhotoDataPager" PagedControlID="PhotoListView"
-        QueryStringField="page" PageSize="24">
+        QueryStringField="page" PageSize="21">
         <Fields>
             <asp:NextPreviousPagerField ButtonType="Link"
                 ShowNextPageButton="false" ShowPreviousPageButton="True" />

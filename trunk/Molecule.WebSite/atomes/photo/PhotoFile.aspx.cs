@@ -29,7 +29,7 @@ namespace Molecule.WebSite.atomes.photo
             }
             else
             {
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + Server.UrlEncode(fileInfo.Name));
+                
                 fileInfo = new FileInfo(photo.MediaFilePath);
             }
             Response.AddHeader("Content-Length", fileInfo.Length.ToString());

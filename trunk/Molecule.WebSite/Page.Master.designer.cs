@@ -50,6 +50,15 @@ namespace Molecule.WebSite {
         protected global::System.Web.UI.UpdateProgress UpdateProgress;
         
         /// <summary>
+        /// logoPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder logoPlaceHolder;
+        
+        /// <summary>
         /// menuContent control.
         /// </summary>
         /// <remarks>
@@ -66,33 +75,6 @@ namespace Molecule.WebSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource;
-        
-        /// <summary>
-        /// updateLogPanelTimer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.Timer updateLogPanelTimer;
-        
-        /// <summary>
-        /// logsView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView logsView;
-        
-        /// <summary>
-        /// logsViewDataPager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataPager logsViewDataPager;
         
         /// <summary>
         /// mainContent control.

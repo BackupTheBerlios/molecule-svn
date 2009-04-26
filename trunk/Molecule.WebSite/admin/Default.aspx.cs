@@ -54,6 +54,7 @@ namespace Molecule.WebSite.Admin
             if (!IsPostBack)
             {
                 this.titleTextBox.Text = AdminService.MoleculeTitle;
+                this.LogoCheckBox.Checked = AdminService.DisplayLogo;
                 initAuthList();
             }
         }
@@ -95,6 +96,11 @@ namespace Molecule.WebSite.Admin
         {
             AdminService.MoleculeTitle = this.titleTextBox.Text;
             AdminService.SaveAtomeUserAuthorizations();
+        }
+
+        protected void LogoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            AdminService.DisplayLogo = LogoCheckBox.Checked;
         }
     }
 }

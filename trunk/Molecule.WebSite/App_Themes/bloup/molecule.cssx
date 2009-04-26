@@ -1,11 +1,12 @@
 ﻿@variables
 {
+	FrontColor:#ffffff;
+	FrontColorDark:#999999;
 	BackColor:#0e2426;
 	BackColorLight:#2e3436;
 	BackColorDark:#111111;
-	FrontColor:#ffffff;
-	FrontColorDark:#999999;
-	HighLightColor:#f57900;
+	BackColorHighLight:#f57900;
+	HyperLinkColor:#f57900;
 	LineColor:#444444;
 }
 
@@ -34,7 +35,7 @@ body
 
 .message
 {
-	border-bottom: 1px solid var(HighLightColor);
+	border-bottom: 1px solid var(BackColorHighLight);
 }
 
 .messageDate
@@ -92,7 +93,7 @@ body
 #logPanel li
 {
     list-style-type : none;
-    border-bottom: 1px solid var(HighLightColor);
+    border-bottom: 1px solid var(BackColorHighLight);
     margin-left : 0px;
     width : 100%;
 }
@@ -141,7 +142,7 @@ body
 	padding:5px;
 	height:30px;
 	line-height:0px;
-	background-color:var(HighLightColor);
+	background-color:var(BackColorHighLight);
 }
 
 
@@ -159,7 +160,7 @@ body
 	z-index:1;
 	padding:6px;
 	background-color:var(BackColorLight);
-    border-color : var(HighLightColor);
+    border-color : var(BackColorHighLight);
     border-width:1px;
     border-style:solid;
     border-top:none;
@@ -212,13 +213,13 @@ h1
 a:link
 {
 	text-decoration:none;
-	color:var(HighLightColor);
+	color:var(HyperLinkColor);
 	font-weight:bolder;
 }
 
 
-a:active{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
-a:visited{text-decoration:none; color:var(HighLightColor);	font-weight:bolder;}
+a:active{text-decoration:none; color:var(BackColorHighLight);	font-weight:bolder;}
+a:visited{text-decoration:none; color:var(BackColorHighLight);	font-weight:bolder;}
 a:hover{text-decoration:none; color:White;}
 
 a img
@@ -230,7 +231,7 @@ a img
 table thead
 {
 	font-weight:bolder;
-	background-color:var(HighLightColor);
+	background-color:var(BackColorHighLight);
 }
 
 
@@ -241,7 +242,7 @@ table thead
 
 .selectedRow
 {
-	color:var(HighLightColor);
+	color:var(BackColorHighLight);
 	font-weight:bolder;
 }
 
@@ -321,7 +322,7 @@ table td
 {
 	font-weight: bold;
 	cursor:pointer;
-	color:var(HighLightColor);
+	color:var(BackColorHighLight);
 }
 
 #updateProgress  

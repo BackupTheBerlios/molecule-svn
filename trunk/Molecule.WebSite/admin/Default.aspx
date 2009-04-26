@@ -118,7 +118,7 @@
                     <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
                 </ItemTemplate>
             </asp:Repeater>
-            <td><asp:Literal ID="Literal1" runat="server" Text='<%$Resources:Common,Anonymous %>' /></td>
+            <td><asp:Literal runat="server" Text='<%$Resources:Common,Anonymous %>' /></td>
             </tr>
         </thead>
         <asp:ListView ID="AuthListView" runat="server">
@@ -152,6 +152,10 @@
     <h2><asp:Label runat="server" Text="<%$Resources:molecule,Theme%>" /></h2>
     <p>
     Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
+    </p>
+    <p>
+        <asp:CheckBox ID="LogoCheckBox" runat="server" Text="<%$Resources:molecule,DisplayLogo%>" 
+            oncheckedchanged="LogoCheckBox_CheckedChanged" />
     </p>
     <p>
         <asp:ListView ID="CssVariableList" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">

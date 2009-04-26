@@ -6,7 +6,7 @@
 <asp:Repeater ID="list" runat="server">
 <ItemTemplate>
     <li>
-         <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" />
+         <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" TextOnly="true" />
     </li>
 </ItemTemplate>
 </asp:Repeater>

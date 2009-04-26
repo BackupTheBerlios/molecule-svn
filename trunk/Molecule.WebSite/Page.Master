@@ -52,9 +52,11 @@
     <div id="pagePanel">
         <div id="header">
             <div id="moleculeTitle">
+                <asp:PlaceHolder runat="server" ID="logoPlaceHolder">
                 <div id="logo">
                     <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" />
                 </div>
+                </asp:PlaceHolder>
                 <h1><%= AdminService.MoleculeTitle %></h1>
             </div>
             <div id="pageTitle">
@@ -81,16 +83,19 @@
                     <asp:LoginStatus runat="server" />
                 </asp:Panel>
             </div>
+            <asp:LoginView runat="server">
+                <RoleGroups>
+                    <asp:RoleGroup Roles="admin">
+                        <ContentTemplate>
             <div id="logPanel">
-                
                     <asp:Timer ID="updateLogPanelTimer" runat="server" Interval="200000" />
-                    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="updateLogPanelTimer" />
                         </Triggers>
                         <ContentTemplate>
-                            <asp:ListView ID="logsView" OnDataBound="updateLogPanel_DataBound" runat="server"
-                                ItemPlaceholderID="itemPlaceHolder">
+                            <asp:ListView ID="logsView" runat="server"
+                                OnLoad="logsView_OnLoad" ItemPlaceholderID="itemPlaceHolder">
                                 <LayoutTemplate>
                                 <ul>
                                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
@@ -108,7 +113,7 @@
                                 </EmptyDataTemplate>
                             </asp:ListView>
                             <asp:DataPager ID="logsViewDataPager" PageSize="4" PagedControlID="logsView" runat="server"
-                                EnableViewState="false">
+                                 EnableViewState="false">
                                 <Fields>
                                     <asp:NextPreviousPagerField ButtonType="Link" PreviousPageText="<" ShowNextPageButton="false"
                                         ShowPreviousPageButton="True" />
@@ -119,8 +124,12 @@
                             </asp:DataPager>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                
             </div>
+                        </ContentTemplate>
+                    </asp:RoleGroup>
+                </RoleGroups>
+            </asp:LoginView>
+            
         </div>
         <div id="maincontentPanel">
             <asp:ContentPlaceHolder ID="mainContent" runat="server">

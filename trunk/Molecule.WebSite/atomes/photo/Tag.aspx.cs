@@ -46,7 +46,7 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initTitle()
         {
-            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
+            Title = "Photos";
         }
 
         public static string GetUrlFor(string tagId)

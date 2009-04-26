@@ -147,6 +147,9 @@
   <data name="Preferences" xml:space="preserve">
     <value>Préférences</value>
   </data>
+  <data name="Reinit" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
