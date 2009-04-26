@@ -23,6 +23,15 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagHierarchy tagHierarchy;
         
         /// <summary>
+        /// tagsPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder tagsPlaceHolder;
+        
+        /// <summary>
         /// subTagList control.
         /// </summary>
         /// <remarks>
@@ -32,13 +41,13 @@ namespace Molecule.WebSite.atomes.photo {
         protected global::Molecule.WebSite.atomes.photo.TagList subTagList;
         
         /// <summary>
-        /// TagDataSource control.
+        /// photosPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource TagDataSource;
+        protected global::System.Web.UI.WebControls.PlaceHolder photosPlaceHolder;
         
         /// <summary>
         /// PhotoListView control.

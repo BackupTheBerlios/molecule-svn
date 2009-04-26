@@ -137,6 +137,7 @@ namespace Molecule.WebSite.Services
             return auth != null ? auth.Authorized : false;			
 			
 		}
+
 		
 		
         public static bool IsCurrentUserAuthorized(string url)
@@ -154,7 +155,7 @@ namespace Molecule.WebSite.Services
 
 
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
-            if (currentUser == null)
+            if (String.IsNullOrEmpty(currentUser))
                 currentUser = AtomeUserAuthorizations.AnonymousUser;
 
             var auth = AdminService.AtomeUserAuthorizations.TryGet(atome.Name, currentUser);

@@ -23,7 +23,7 @@ namespace Molecule.WebSite
 
         protected void ReinitButton_OnClick(object sender, EventArgs args)
         {
-
+            CurrentProvider = ProviderList.SelectedValue;
         }
 
         protected void ProviderList_SelectedIndexChanged(object sender, EventArgs e)

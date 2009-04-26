@@ -51,7 +51,7 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initTitle()
         {
-            Title = "Photos" + PhotoLibrary.GetTagFullPath(tagId);
+            Title = "Photos";
         }
 
         private void initMonthLinks(DateTime day)

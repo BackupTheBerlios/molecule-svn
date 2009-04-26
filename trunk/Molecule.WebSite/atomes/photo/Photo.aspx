@@ -32,15 +32,22 @@
                 <asp:Label runat="server"><%= CurrentPhoto.Description %></asp:Label>
             </p>
         </div>
-        <p>
+        <br />
             
-            <a href="<%= PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Raw) %>">
-                <div style="position:relative; display:inline; top:5px;"><img src="images/zoom-original.png" /></div>
-                <asp:Literal runat="server" Text="<%$ Resources:photo,OriginaleImage%>" />
-            </a>
-            
-            <photo:Map ID="PhotoMap" runat="server" />
-        </p>
+        <a href="<%= PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Raw) %>">
+            <div class="ActionImage"><img src="images/zoom-original.png" /></div>
+            <asp:Literal runat="server" Text="<%$ Resources:photo,OriginaleImage%>" />
+        </a>
+        
+        <photo:Map ID="PhotoMap" runat="server" />
+        
+        <asp:HyperLink runat="server" id="CalendarLink">
+            <div class="ActionImage">
+                <img alt="calendar" src="images/office-calendar.png" />
+            </div>
+            <asp:Literal runat="server" Text='<%$Resources:photo,Calendar %>' />
+        </asp:HyperLink>
+
         <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
         <photo:TagList runat="server" ID="tagList" />
     </div>

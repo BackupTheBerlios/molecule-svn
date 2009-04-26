@@ -9,7 +9,7 @@
     </Scripts>
 </asp:ScriptManagerProxy>
 
-    <div style="position:relative; display:inline; top:5px;">
+    <div class="ActionImage">
         <img src="images/internet-web-browser.png" />
      </div>
      <asp:LinkButton ID="LocateLink" runat="server" Text="<%$Resources:photo,LocateOnMap %>" />

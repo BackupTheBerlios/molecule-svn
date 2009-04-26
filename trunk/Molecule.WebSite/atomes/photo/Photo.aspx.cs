@@ -56,6 +56,8 @@ namespace Molecule.WebSite.atomes.photo
             FullSizePhoto.PhotoId = photoId;
             FullSizePhoto.Metadatas = CurrentPhoto.Metadatas;
 
+            this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(CurrentPhoto.Date, tagId);
+
             tagList.Tags = PhotoLibrary.GetTagsByPhoto(CurrentPhoto.Id);
 
             if (CurrentPhoto.Latitude.HasValue && CurrentPhoto.Longitude.HasValue)

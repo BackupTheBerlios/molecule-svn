@@ -8,12 +8,13 @@
 	BackColorHighLight:#f57900;
 	HyperLinkColor:#f57900;
 	LineColor:#444444;
+	BorderRadius:10px;
 }
 
 body
 {
 	background-color: var(BackColor);
-    font-family: Candara, Arial, Helvetica, sans-serif;
+    font-family: Candara, sans-serif;
     font-size:13px;
     color:var(FrontColor);
 }
@@ -56,11 +57,12 @@ body
 	float: left;
     width: 170px;
     position: absolute;
-    top:40px;
+    top:36px;
 }
 
 #menuPanel
 {
+	
     background-color: var(BackColor);
     padding:10px;
     z-index : 1;
@@ -81,7 +83,9 @@ body
     background-color: var(BackColor);
     padding:10px;
     z-index : 2;
-    margin-top : 2px;
+    margin-top : 0px;
+    -moz-border-radius-bottomright:var(BorderRadius);
+	-webkit-border-bottom-right-radius:var(BorderRadius);
 }
 
 #logPanel ul
@@ -114,6 +118,7 @@ body
     left:200px;
     min-height: 270px;
     padding:16px; 
+
 }
 
 #pagePanel
@@ -125,6 +130,10 @@ body
     margin-right: auto;
 	width:920px;
     background-color:var(BackColorLight);
+    -moz-border-radius-bottomright:var(BorderRadius);
+	-webkit-border-bottom-right-radius:var(BorderRadius);
+	-moz-border-radius-bottomleft:var(BorderRadius);
+	-webkit-border-bottom-left-radius:var(BorderRadius);
 }
 
 #footer
@@ -134,15 +143,24 @@ body
 	background-color:var(BackColorDark);
 	padding:5px;
 	text-align:center;
+	-moz-border-radius-bottomright:var(BorderRadius);
+	-webkit-border-bottom-right-radius:var(BorderRadius);
+	-moz-border-radius-bottomleft:var(BorderRadius);
+	-webkit-border-bottom-left-radius:var(BorderRadius);
 }
 
 #header
 {
 	position:relative;
-	padding:5px;
-	height:30px;
+	padding-left:5px;
+	padding-top:0px;
+	height:36px;
 	line-height:0px;
 	background-color:var(BackColorHighLight);
+	-moz-border-radius-topleft:var(BorderRadius);
+	-moz-border-radius-topright:var(BorderRadius);
+	-webkit-border-top-left-radius:var(BorderRadius);
+	-webkit-border-top-right-radius:var(BorderRadius);
 }
 
 
@@ -198,15 +216,13 @@ h2
 {
 	color:var(FrontColorDark);
 	font-size:large;
-	text-transform:uppercase;
 	margin-left:4px;
+	font-size:18px;
 }
 
 h1
 {
-	font-size:x-large;
-	margin-left:45px;
-	font-style:italic;
+	font-size:18px;
 
 }
 
@@ -227,6 +243,11 @@ a img
     border : 0px;
 }
 
+table
+{
+	border-collapse:collapse;
+	margin-bottom:4px;
+}
 
 table thead
 {
@@ -246,15 +267,6 @@ table thead
 	font-weight:bolder;
 }
 
-#pageTitle
-{
-	float:right;
-}
-
-#moleculeTitle
-{
-	float:left;
-}
 
 table a:link
 {
@@ -290,6 +302,10 @@ table td
 	padding-top:4px;
 	padding-bottom:5px;
 	border-bottom:none;
+		-moz-border-radius-topleft:var(BorderRadius);
+	-moz-border-radius-topright:var(BorderRadius);
+	-webkit-border-top-left-radius:var(BorderRadius);
+	-webkit-border-top-right-radius:var(BorderRadius);
 }
 
 .tabSelectedTitle a:active
@@ -333,10 +349,9 @@ table td
 
 #logo
 {
-	width:64px; height:64px;
-	position:absolute;
-	z-index:3;
-	top:-11px; left:-20px;
+	position:relative;
+	display:inline;
+	top:6px;
 }
 
 .popup

@@ -34,14 +34,21 @@ namespace Molecule.WebSite.atomes.photo
 
         private void initContent()
         {
-            this.PhotoListView.DataSource = photos;
-            this.PhotoListView.DataBind();
-            this.subTagList.Tags = PhotoLibrary.GetTagsByTag(tagId);
-            if (this.photos.Any())
+            if (photos.Any())
+            {
+                this.PhotoListView.DataSource = photos;
+                this.PhotoListView.DataBind();
                 this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(photos.First().Date, tagId);
+            }
             else
-                this.CalendarLink.Visible = false;
-                
+                this.photosPlaceHolder.Visible = false;
+
+            var tags = PhotoLibrary.GetTagsByTag(tagId);
+
+            if (tags.Any())
+                this.subTagList.Tags = tags;
+            else
+                this.tagsPlaceHolder.Visible = false;
         }
 
         private void initTitle()

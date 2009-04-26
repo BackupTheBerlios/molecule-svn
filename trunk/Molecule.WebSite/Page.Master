@@ -51,17 +51,16 @@
     </cc1:AlwaysVisibleControlExtender>
     <div id="pagePanel">
         <div id="header">
-            <div id="moleculeTitle">
-                <asp:PlaceHolder runat="server" ID="logoPlaceHolder">
-                <div id="logo">
-                    <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-64.png" />
-                </div>
-                </asp:PlaceHolder>
-                <h1><%= AdminService.MoleculeTitle %></h1>
+            <h1>
+            <asp:PlaceHolder runat="server" ID="logoPlaceHolder">
+            <div id="logo">
+                <img alt="logo" src="/App_Themes/<%=Page.Theme%>/images/molecule-24.png" />
             </div>
-            <div id="pageTitle">
-                <h1><asp:Label runat="server"><%=Page.Title%></asp:Label></h1>
-            </div>
+            </asp:PlaceHolder>
+            
+                <span><%= AdminService.MoleculeTitle %></span> - 
+                <span><%=Page.Title%></span>
+            </h1>
         </div>
         <div id="sideBar">
             <div id="menuPanel">
@@ -83,11 +82,12 @@
                     <asp:LoginStatus runat="server" />
                 </asp:Panel>
             </div>
+            <div id="logPanel">
             <asp:LoginView runat="server">
                 <RoleGroups>
                     <asp:RoleGroup Roles="admin">
                         <ContentTemplate>
-            <div id="logPanel">
+            
                     <asp:Timer ID="updateLogPanelTimer" runat="server" Interval="200000" />
                     <asp:UpdatePanel runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <Triggers>
@@ -124,12 +124,12 @@
                             </asp:DataPager>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-            </div>
+            
                         </ContentTemplate>
                     </asp:RoleGroup>
                 </RoleGroups>
             </asp:LoginView>
-            
+            </div>
         </div>
         <div id="maincontentPanel">
             <asp:ContentPlaceHolder ID="mainContent" runat="server">

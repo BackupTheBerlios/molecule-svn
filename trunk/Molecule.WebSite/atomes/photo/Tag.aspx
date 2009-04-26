@@ -16,15 +16,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 
     <photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />
+    <asp:PlaceHolder runat="server" ID="tagsPlaceHolder">
     <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
     <photo:TagList runat="server" ID="subTagList" />
+    </asp:PlaceHolder>
 
-<asp:ObjectDataSource ID="TagDataSource" runat="server" 
-    SelectMethod="GetTagsByTag" TypeName="WebPhoto.Services.PhotoLibrary">
-    <SelectParameters>
-        <asp:QueryStringParameter Name="tagId" QueryStringField="id" Type="String" />
-    </SelectParameters>
-</asp:ObjectDataSource>
+<asp:PlaceHolder runat="server" ID="photosPlaceHolder">
 <h2>Photos</h2>
     <asp:ListView ID="PhotoListView" runat="server" 
                         onpagepropertieschanging="PhotoListView_PagePropertiesChanging">
@@ -40,12 +37,19 @@
     <asp:DataPager runat="server" ID="PhotoDataPager" PagedControlID="PhotoListView"
         QueryStringField="page" PageSize="21">
         <Fields>
-            <asp:NextPreviousPagerField ButtonType="Link"
+            <asp:NextPreviousPagerField ButtonType="Link" PreviousPageText="<"
                 ShowNextPageButton="false" ShowPreviousPageButton="True" />
             <asp:NumericPagerField />
-            <asp:NextPreviousPagerField ButtonType="Link"
-                ShowPreviousPageButton="false" ShowNextPageButton="True" />
+            <asp:NextPreviousPagerField ButtonType="Link" NextPageText=">"
+                ShowPreviousPageButton="false" ShowNextPageButton="True"  />
         </Fields>
     </asp:DataPager>
-<h2><asp:HyperLink runat="server" id="CalendarLink" Text="<%$Resources:photo,Calendar %>" /></h2>
+    <br />
+<asp:HyperLink runat="server" id="CalendarLink">
+<div class="ActionImage">
+    <img alt="calendar" src="images/office-calendar.png" />
+</div>
+<asp:Literal runat="server" Text='<%$Resources:photo,Calendar %>' />
+</asp:HyperLink>
+</asp:PlaceHolder>
 </asp:Content>
