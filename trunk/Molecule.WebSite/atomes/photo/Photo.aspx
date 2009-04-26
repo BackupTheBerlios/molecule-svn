@@ -33,9 +33,12 @@
             </p>
         </div>
         <p>
+            
             <a href="<%= PhotoFile.GetUrlFor(CurrentPhoto.Id, PhotoFileSize.Raw) %>">
-                <img src="images/zoom-original.png" /><asp:Literal runat="server" Text="<%$ Resources:photo,OriginaleImage%>" />
+                <div style="position:relative; display:inline; top:5px;"><img src="images/zoom-original.png" /></div>
+                <asp:Literal runat="server" Text="<%$ Resources:photo,OriginaleImage%>" />
             </a>
+            
             <photo:Map ID="PhotoMap" runat="server" />
         </p>
         <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>

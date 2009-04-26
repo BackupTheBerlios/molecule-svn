@@ -8,8 +8,11 @@
         <asp:ScriptReference Path="scripts/osm.js" />
     </Scripts>
 </asp:ScriptManagerProxy>
-<div>
-    <img src="images/internet-web-browser.png" /><asp:LinkButton ID="LocateLink" runat="server" Text="<%$Resources:photo,LocateOnMap %>" />
+
+    <div style="position:relative; display:inline; top:5px;">
+        <img src="images/internet-web-browser.png" />
+     </div>
+     <asp:LinkButton ID="LocateLink" runat="server" Text="<%$Resources:photo,LocateOnMap %>" />
      <div id="mapPopup" class="popup">
         <div class="popupHeader"><span class="left"><asp:Literal Text="<%$Resources:photo,MapBy %>" runat="server" Mode="Encode" /> <a href="http://openstreetmap.org">OpenStreetMap</a></span>&nbsp;<span id="closeModal" class="right"><asp:LinkButton ID="CloseButton" runat="server" Text="<%$Resources:Common,Close %>"></asp:LinkButton></span></div>
         <div id="map">
@@ -24,4 +27,3 @@ loadMap('map', <%=Latitude.ToString(System.Globalization.CultureInfo.InvariantCu
     BackgroundCssClass="modalBackground"
     DropShadow="true" 
     CancelControlID="closeModal" />
-</div>
