@@ -70,12 +70,19 @@ body
 
 #menuPanel ul
 {
+
 	margin-top:5px;
 	margin-bottom:5px;
 	list-style-type:none;
 	padding: 0;
 	border: none;
 
+}
+
+#menuPanel li
+{
+margin-top:4px;
+margin-bottom:4px;
 }
 
 #logPanel
