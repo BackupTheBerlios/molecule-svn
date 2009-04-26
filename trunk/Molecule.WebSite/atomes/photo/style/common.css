@@ -70,10 +70,9 @@
 .TagList,
 .TagList li
 {
-	margin:0px;
+	margin-left:10px;
 	padding:0px;
-	list-style-type:none;
-	display: inline-block;
+
 }
 
 .BlockItem
