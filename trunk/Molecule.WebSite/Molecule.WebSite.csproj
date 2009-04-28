@@ -214,14 +214,8 @@
     <Content Include="App_Themes\bloup\images\folder.png" />
     <Content Include="atomes\photo\images\internet-web-browser.png" />
     <Content Include="ProviderSelector.ascx" />
-    <Content Include="App_GlobalResources\molecule.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule1.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\molecule.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.fr1.designer.cs</LastGenOutput>
-    </Content>
+    <Content Include="App_GlobalResources\molecule.resx" />
+    <Content Include="App_GlobalResources\molecule.fr.resx" />
     <Content Include="admin\Setup.aspx" />
     <Content Include="atomes\webmusic\CoverArt\CoverArtFile.aspx" />
   </ItemGroup>
@@ -232,12 +226,6 @@
     </Compile>
     <Compile Include="admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\molecule.Designer.cs">
-      <DependentUpon>molecule.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
-      <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="AtomeAccessModule.cs" />
     <Compile Include="AtomeSiteMapProvider.cs" />
@@ -537,7 +525,7 @@
       </FlavorProperties>
     </VisualStudio>
     <MonoDevelop>
-      <Properties VerifyCodeBehindFields="false" VerifyCodeBehindEvents="false">
+      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
         <XspParameters Port="8082" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
       </Properties>
     </MonoDevelop>
