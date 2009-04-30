@@ -47,12 +47,20 @@ namespace Molecule.WebSite
         protected virtual void Session_Start(object sender, EventArgs e)
         {
             if (log.IsInfoEnabled)
-                log.Info("Session start, User : " + HttpContext.Current.User.Identity.Name);
+            {
+                if (HttpContext.Current.Session != null)
+                    log.Info("Session start, Session ID : " + HttpContext.Current.Session.SessionID);
+                if(HttpContext.Current.User != null)
+                    log.Info("     Current user: " + HttpContext.Current.User.Identity.Name);
+                log.Info("     Current request: " + HttpContext.Current.Request.RawUrl);
+                log.Info("     User Agent: " + HttpContext.Current.Request.UserAgent);
+                log.Info("     User address: " + HttpContext.Current.Request.UserHostAddress);
+                log.Info("     User hostname: " + HttpContext.Current.Request.UserHostName);
+            }
         }
 
         protected virtual void Application_BeginRequest(object sender, EventArgs e)
         {
-            
         }
 
         protected virtual void Application_EndRequest(object sender, EventArgs e)
@@ -68,22 +76,29 @@ namespace Molecule.WebSite
         protected virtual void Application_Error(object sender, EventArgs e)
         {
             log.Error("Unhandled exception", Context.Error);
-            log.Error("        Current session ID: " + HttpContext.Current.Session.SessionID);
-            log.Error("        Current user: " + HttpContext.Current.User.Identity.Name);
-            log.Error("        Current request: " + HttpContext.Current.Request.RawUrl);
+            if(HttpContext.Current.Session != null)
+                log.Info("     Current session ID: " + HttpContext.Current.Session.SessionID);
+            if(HttpContext.Current.User != null)
+                log.Info("     Current user: " + HttpContext.Current.User.Identity.Name);
+            log.Info("     Current request: " + HttpContext.Current.Request.RawUrl);
+            log.Info("     User Agent: " + HttpContext.Current.Request.UserAgent);
+            log.Info("     User address: " + HttpContext.Current.Request.UserHostAddress);
+            log.Info("     User hostname: " + HttpContext.Current.Request.UserHostName);
+
             Application["Exception"] = Context.Error;
         }
 
         protected virtual void Session_End(object sender, EventArgs e)
         {
             if (log.IsInfoEnabled)
-                log.Info("Session end, User : " + HttpContext.Current.User.Identity.Name);
+                log.Info("Session end.");
+            log.Info("Session ID : " + HttpContext.Current.Session.SessionID);
         }
 
         protected virtual void Application_End(object sender, EventArgs e)
         {
             if (log.IsInfoEnabled)
-                log.Info("Application end.");
+                log.Info("Application end.\n\n");
         }
     }
 }

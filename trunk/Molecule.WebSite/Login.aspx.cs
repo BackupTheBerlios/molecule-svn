@@ -33,15 +33,27 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using log4net;
 
 namespace Molecule.WebSite
 {
     public partial class Login : System.Web.UI.Page
     {
+        static ILog log = LogManager.GetLogger(typeof(Login));
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Services.AdminService.IsSetupAuthorized)
                 Context.Response.Redirect("~/admin/Setup.aspx");
+        }
+
+        protected void Login1_LoggedIn(object sender, EventArgs e)
+        {
+            if (log.IsInfoEnabled)
+            {
+                log.Info("User logged in: " + Login1.UserName);
+                log.Info("     Current session ID: " + Session.SessionID);
+            }
         }
     }
 }

@@ -34,7 +34,8 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <asp:Login ID="Login1" runat="server" CssClass="loginPanel" Width="300px" DestinationPageUrl="~/Default.aspx">
+    <asp:Login ID="Login1" runat="server" CssClass="loginPanel" Width="300px" 
+        DestinationPageUrl="~/Default.aspx" onloggedin="Login1_LoggedIn">
     </asp:Login>
     <cc1:RoundedCornersExtender ID="Login1_RoundedCornersExtender" runat="server" 
         TargetControlID="Login1">
