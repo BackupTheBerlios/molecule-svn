@@ -37,7 +37,6 @@ namespace Molecule.WebSite
                     );
                 new DirectoryInfo(Path.GetDirectoryName(AdminService.CssCachePath)).Create(true);
                 File.WriteAllText(AdminService.CssCachePath, css);
-                
             }
 
             context.Response.Cache.SetExpires(DateTime.Now.Add(TimeSpan.FromDays(30)));

@@ -40,14 +40,19 @@ namespace Molecule.WebSite
         {
             log4net.GlobalContext.Properties["currentuser"] = Environment.UserName;
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(HttpContext.Current.Request.PhysicalApplicationPath + "Log4Net.config"));
+            if (log.IsInfoEnabled)
+                log.Info("Application start.");
         }
 
         protected virtual void Session_Start(object sender, EventArgs e)
         {
+            if (log.IsInfoEnabled)
+                log.Info("Session start, User : " + HttpContext.Current.User.Identity.Name);
         }
 
         protected virtual void Application_BeginRequest(object sender, EventArgs e)
         {
+            
         }
 
         protected virtual void Application_EndRequest(object sender, EventArgs e)
@@ -63,15 +68,22 @@ namespace Molecule.WebSite
         protected virtual void Application_Error(object sender, EventArgs e)
         {
             log.Error("Unhandled exception", Context.Error);
+            log.Error("        Current session ID: " + HttpContext.Current.Session.SessionID);
+            log.Error("        Current user: " + HttpContext.Current.User.Identity.Name);
+            log.Error("        Current request: " + HttpContext.Current.Request.RawUrl);
             Application["Exception"] = Context.Error;
         }
 
         protected virtual void Session_End(object sender, EventArgs e)
         {
+            if (log.IsInfoEnabled)
+                log.Info("Session end, User : " + HttpContext.Current.User.Identity.Name);
         }
 
         protected virtual void Application_End(object sender, EventArgs e)
         {
+            if (log.IsInfoEnabled)
+                log.Info("Application end.");
         }
     }
 }
