@@ -171,8 +171,8 @@ namespace Molecule.Runtime
                     var pluginType = typeof(T);
                     if (IsSubclassOfOrImplements(type, pluginType))
                     {
-                        if (log.IsInfoEnabled)
-                            log.Info("Found plugin " + type.Name + " of type " + pluginType.Name + " in assembly " + fileName
+                        if (log.IsDebugEnabled)
+                            log.Debug("Found plugin " + type.Name + " of type " + pluginType.Name + " in assembly " + fileName
                                 + ". Check if it can be used.");
 
                         //check if plugin is usable (IsUsablePlugin static boolean property)
