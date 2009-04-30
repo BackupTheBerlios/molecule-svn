@@ -5,6 +5,7 @@ using System.Text;
 using Molecule.Configuration;
 using Molecule.Runtime;
 using Molecule.Web;
+using System.Timers;
 
 namespace Molecule.Atome
 {
@@ -13,15 +14,31 @@ namespace Molecule.Atome
         where IProvider : class, Molecule.Atome.IProvider
     {
         const string libraryProviderConfKey = "LibraryProvider";
+        const string CommonConfigurationNamespace = "AtomeProviderBase";
+        const string autoUpdateIntervalConfKey = "AutoUpdateInterval";
+        const int defaultUpdateInterval = 3600;//seconds
 
         private string providerName;
         private IProvider provider;
+        private Timer timer;
 
         protected static log4net.ILog log = log4net.LogManager.GetLogger(typeof(TAtome));
 
         protected AtomeProviderBase()
         {
-            providerName = ConfigurationClient.Get<string>(ConfigurationNamespace, libraryProviderConfKey, DefaultProvider);
+            providerName = ConfigurationClient.Get<string>(
+                ConfigurationNamespace, libraryProviderConfKey, DefaultProvider);
+            
+            var autoUpdateInterval = TimeSpan.FromSeconds(
+                ConfigurationClient.Get(CommonConfigurationNamespace, "AutoUpdateInterval", defaultUpdateInterval));
+            timer = new Timer(autoUpdateInterval.TotalMilliseconds);
+            timer.AutoReset = true;
+            timer.Elapsed += (s, t) =>
+            {
+                Singleton<TAtome>.Instance.resetProvider();
+                if (log.IsInfoEnabled)
+                    log.Info("Provider reset.");
+            };
         }
 
         protected static TAtome Instance
@@ -30,8 +47,14 @@ namespace Molecule.Atome
             {
                 var instance = Singleton<TAtome>.Instance;
                 if (instance.provider == null)
+                {
+                    if (log.IsInfoEnabled)
+                        log.Info("Updating data with provider "+CurrentProvider);
                     instance.OnProviderUpdated();
-                return Singleton<TAtome>.Instance;
+                    if (log.IsInfoEnabled)
+                        log.Info("Data updated.");
+                }
+                return instance;
             }
         }
 

@@ -125,7 +125,6 @@
     <Content Include="App_Themes\bloup\TreeView.skin" />
     <Content Include="App_Themes\default\TreeView.skin" />
     <Content Include="App_Themes\bloup\AjaxExtenders.skin" />
-    <Content Include="ImageHandler.ashx" />
     <Content Include="PreferencesPage.Master" />
     <Content Include="App_Themes\bloup\images\dialog-warning.png" />
     <Content Include="Web.sitemap" />
@@ -395,9 +394,6 @@
     <Compile Include="CssHandler.ashx.cs">
       <DependentUpon>CssHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="ImageHandler.ashx.cs">
-      <DependentUpon>ImageHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -488,6 +484,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Browsers\w3validator.browser" />
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="Atome.xsd" />
     <None Include="atomes\photo\scripts\default.js" />
