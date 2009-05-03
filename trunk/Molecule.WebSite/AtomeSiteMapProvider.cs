@@ -73,7 +73,7 @@ namespace Molecule.WebSite
                         AddNode(homeNode, rootNode);
                         foreach (AtomeInfo atome in AtomeService.GetAtomes())
                         {
-                            var node = new SiteMapNode(this, "atome" + i++, atome.Path, atome.Name);
+                            var node = new SiteMapNode(this, "atome" + i++, atome.Path+"/", atome.Name);
                             AddNode(node, rootNode);
                         }
                         var prefNode = new SiteMapNode(this, "preferences", "admin", "Préférences");

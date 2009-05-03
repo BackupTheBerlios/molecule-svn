@@ -61,11 +61,8 @@ namespace WebMusic
             if (File.Exists(mediaFilePath))
             {
                 FileInfo file = new FileInfo(mediaFilePath);
-
-                context.Response.AddHeader("Content-Disposition", "attachment; filename=" + context.Server.UrlEncode(file.Name));
-                context.Response.AddHeader("Content-Length", file.Length.ToString());
                 context.Response.ContentType = "application/octet-stream";
-                context.Response.WriteFile(mediaFilePath);
+				context.Response.WriteFile(mediaFilePath, true);
             }
             else
             {
