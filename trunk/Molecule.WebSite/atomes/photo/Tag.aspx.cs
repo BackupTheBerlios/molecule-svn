@@ -26,7 +26,7 @@ namespace Molecule.WebSite.atomes.photo
         {
             tagId = Request.QueryString["id"];
             if(!String.IsNullOrEmpty(tagId))
-                tag = PhotoLibrary.GetTag(tagId);
+				tag = PhotoLibrary.GetTag(tagId);
             photos = PhotoLibrary.GetPhotosByTag(tagId).ToList();
             initContent();
             initTitle();
@@ -39,6 +39,7 @@ namespace Molecule.WebSite.atomes.photo
                 this.PhotoListView.DataSource = photos;
                 this.PhotoListView.DataBind();
                 this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(photos.First().Date, tagId);
+                this.DownloadLink.NavigateUrl = Download.GetUrlFor(tagId, PhotoDataPager.StartRowIndex, PhotoDataPager.PageSize );				
             }
             else
                 this.photosPlaceHolder.Visible = false;

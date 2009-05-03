@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -150,8 +150,6 @@
     <Content Include="App_Themes\default\common.css" />
     <Content Include="atomes\photo\Admin.aspx" />
     <Content Include="atomes\photo\Atome.xml" />
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Fspot.dll" />
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.Stub.dll" />
     <Content Include="atomes\photo\FullSizePhoto.ascx" />
     <Content Include="atomes\photo\images\frame.png" />
     <Content Include="atomes\photo\Map.ascx" />
@@ -203,11 +201,7 @@
     <Content Include="App_GlobalResources\photo.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="atomes\photo\bin\providers\WebPhoto.Providers.FS.dll" />
     <Content Include="atomes\photo\images\zoom-original.png" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Banshee.dll" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Rhythmbox.dll" />
-    <Content Include="atomes\webmusic\bin\providers\WebMusic.Providers.Stub.dll" />
     <Content Include="App_GlobalResources\Common.resx" />
     <Content Include="App_GlobalResources\Common.fr.resx" />
     <Content Include="App_Themes\bloup\images\folder.png" />
@@ -217,6 +211,11 @@
     <Content Include="App_GlobalResources\molecule.fr.resx" />
     <Content Include="admin\Setup.aspx" />
     <Content Include="atomes\webmusic\CoverArt\CoverArtFile.aspx" />
+    <Content Include="App_Browsers\w3validator.browser" />
+    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
+    <None Include="Atome.xsd" />
+    <Content Include="atomes\photo\scripts\default.js" />
+    <Content Include="atomes\photo\Download.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Default.aspx.cs">
@@ -468,6 +467,12 @@
       <DependentUpon>CoverArtFile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="atomes\photo\Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Molecule\Molecule.csproj">
@@ -482,12 +487,6 @@
       <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
       <Name>WebPhoto.Providers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Browsers\w3validator.browser" />
-    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
-    <None Include="Atome.xsd" />
-    <Content Include="atomes\photo\scripts\default.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\raw\" />
@@ -523,7 +522,7 @@
     </VisualStudio>
     <MonoDevelop>
       <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
-        <XspParameters Port="8082" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+        <XspParameters Port="8083" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>

@@ -75,5 +75,15 @@ namespace Molecule.WebSite.atomes.photo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink CalendarLink;
+		
+		
+        /// <summary>
+        /// DownloadLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DownloadLink;		
     }
 }

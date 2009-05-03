@@ -51,5 +51,14 @@
 </div>
 <asp:Literal runat="server" Text='<%$Resources:photo,Calendar %>' />
 </asp:HyperLink>
+
+<asp:HyperLink runat="server" id="DownloadLink">
+<div class="ActionImage">
+    <img alt="download" src="../../App_Themes/<%= Theme %>/images/document-save.png" />
+</div>
+<asp:Literal runat="server" Text='<%$Resources:photo,DownloadPage %>' />
+</asp:HyperLink>
+
+
 </asp:PlaceHolder>
 </asp:Content>

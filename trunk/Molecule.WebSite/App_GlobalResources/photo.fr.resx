@@ -123,6 +123,9 @@
   <data name="Calendar" xml:space="preserve">
     <value>Voir sur le calendrier</value>
   </data>
+  <data name="DownloadPage" xml:space="preserve">
+    <value>Télécharger les photos de la page</value>
+  </data>  
   <data name="Collection" xml:space="preserve">
     <value>Collection</value>
   </data>
