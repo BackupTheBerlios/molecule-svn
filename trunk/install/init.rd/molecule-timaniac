@@ -20,14 +20,13 @@
 
 # Variables
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/bin/xsp2
+DAEMON=/usr/bin/mod-mono-server2
+DAEMONUNIXSOCKET=/tmp/mod_mono_server_molecule-blandine
 NAME=molecule-timaniac
 DESC="Molecule XSP 2 WebServer"
-USER=timaniac
-GROUP=timaniac
-PORT=8085
-ADDRESS=0.0.0.0
-MOLECULEDIR=/home/timaniac/Projets/molecule/trunk/Molecule.WebSite
+USER=blandine
+GROUP=blandine
+MOLECULEDIR=/home/blandine/www/molecule-website
 
 # Use LSB
 . /lib/lsb/init-functions
@@ -43,14 +42,17 @@ case "$1" in
 		--pidfile /var/run/$NAME.pid \
 		--user $USER --group $GROUP --chuid $USER \
 		--exec $DAEMON -- \
-		--port $PORT --address $ADDRESS --root \
+		--filename $DAEMONUNIXSOCKET --root \
 		$MOLECULEDIR --nonstop
-	    echo $?
+	    sleep 2
+            chmod 777 $DAEMONUNIXSOCKET
+	    
+	    log_end_msg $?
 
 	;;
     stop)
 	log_daemon_msg "Stopping $DESC" "$NAME"
-        for i in $(ps aux | grep -v grep | grep 'xsp2.exe' | cut -c 10-15)
+        for i in $(ps aux | grep -v grep | grep 'mono-server2.exe' | cut -c 10-15)
         do
                 kill $i > /dev/null 2>&1
         done
