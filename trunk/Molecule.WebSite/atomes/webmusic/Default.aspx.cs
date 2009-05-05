@@ -27,6 +27,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Text;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -46,7 +47,8 @@ namespace WebMusic
 
         const string sessionCurrentArtist = "music.currentArtist";
         const string sessionCurrentAlbum = "music.currentAlbum";
-
+		const string csname = "PlaySong";
+		
         public _Default()
         {
 
@@ -54,11 +56,42 @@ namespace WebMusic
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string reference = Page.ClientScript.GetCallbackEventReference(this, "arg", "SongEvent", "context");
-            string script = "function UseCallback(arg,context) { "+ reference + ";}";
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "UseCallback", script, true);
+			if(!Page.IsPostBack)
+			{
+				this.HandlePageArguments();
+			}
+			string reference = Page.ClientScript.GetCallbackEventReference(this, "arg", "SongEvent", "context");
+			string script = "function UseCallback(arg,context) { "+ reference + ";}";
+			Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "UseCallback", script, true);
         }
 
+		private void HandlePageArguments()
+		{
+			// Define the name and type of the client scripts on the page.
+			Type cstype = this.GetType();
+			string albumId = Request.Params["album"];
+			if( ! String.IsNullOrEmpty(albumId))
+			{
+				IAlbum album = MusicLibrary.GetAlbums().First<IAlbum>( a => a.Id.Equals(albumId));
+				if( log.IsDebugEnabled)
+				{
+					
+					log.Debug("Play directly album " + album.Name );
+				}
+				Session[sessionCurrentAlbum] = albumId;
+				
+				if( ! Page.ClientScript.IsStartupScriptRegistered(cstype, csname))
+				{
+					StringBuilder appendSongsScript = new StringBuilder();
+					appendSongsScript.Append("<script type=\"text/javascript\">");
+					appendSongsScript.Append("function append(){ songsView_onclick('playAll'); }");
+					appendSongsScript.Append("addLoadEvent(append); ");
+					appendSongsScript.Append(@"</script>");
+					Page.ClientScript.RegisterStartupScript (cstype, csname,appendSongsScript.ToString() , false);
+				}	
+			}			
+		}
+			
         private void SongCurrentlyPlaying(string songId)
         {
 			if( User.IsInRole("admin"))
