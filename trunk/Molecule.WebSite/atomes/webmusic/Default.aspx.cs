@@ -83,9 +83,18 @@ namespace WebMusic
 				if( ! Page.ClientScript.IsStartupScriptRegistered(cstype, csname))
 				{
 					StringBuilder appendSongsScript = new StringBuilder();
-					appendSongsScript.Append("<script type=\"text/javascript\">");
-					appendSongsScript.Append("function append(){ songsView_onclick('playAll'); }");
-					appendSongsScript.Append("addLoadEvent(append); ");
+					appendSongsScript.Append("<script type=\"text/javascript\">");					
+					foreach( ISong s in album.Songs)
+					{
+						Console.WriteLine(String.Format(" enqueueSong('{0}', '{1}', '{2}', '{3}'); ", Server.HtmlEncode( s.Id), Server.HtmlEncode(s.Artist.Name), Server.HtmlEncode(s.Title),Server.HtmlEncode( s.Album.Name )));
+
+						appendSongsScript.Append(String.Format(" enqueueSong('{0}', '{1}', '{2}', '{3}'); ", 
+						                                       Server.HtmlEncode( s.Id).Replace(@"'",@"\'") , 
+						                                       Server.HtmlEncode(s.Artist.Name).Replace(@"'",@"\'") , 
+						                                       Server.HtmlEncode(s.Title).Replace(@"'",@"\'")  ,
+						                                       Server.HtmlEncode( s.Album.Name ).Replace(@"'",@"\'") ));
+					}
+					appendSongsScript.Append(" playNextSong(); ");
 					appendSongsScript.Append(@"</script>");
 					Page.ClientScript.RegisterStartupScript (cstype, csname,appendSongsScript.ToString() , false);
 				}	
