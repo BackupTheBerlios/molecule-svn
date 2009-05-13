@@ -204,7 +204,7 @@ namespace WebPhoto.Services
 
             //search for a photo in current month.
             for(DateTime dt = month; dt.Month == month.Month && current == null; dt = dt.AddDays(1))
-                current = userInstance.GetPhotoByDay(month);
+                current = userInstance.GetPhotoByDay(dt);
 
             //search for a photo that match specified tag.
             while (current != null
