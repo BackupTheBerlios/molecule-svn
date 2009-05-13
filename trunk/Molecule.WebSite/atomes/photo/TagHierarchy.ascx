@@ -4,7 +4,7 @@
 <%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <%@ Import Namespace="System.Globalization" %>
 <span style="font-size:120%">
-<asp:HyperLink runat="server" NavigateUrl="~/atomes/photo/Default.aspx" Text="Accueil" />
+<asp:HyperLink runat="server" NavigateUrl="~/atomes/photo/Default.aspx" Text="Photos" />
 <asp:Repeater runat="server" ID="TagHierarchyView">
     <HeaderTemplate> > 
     </HeaderTemplate>

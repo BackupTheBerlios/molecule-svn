@@ -29,7 +29,7 @@ namespace Molecule.WebSite.atomes.photo
             }
             else
             {
-                
+    
                 fileInfo = new FileInfo(photo.MediaFilePath);
             }
             Response.AddHeader("Content-Length", fileInfo.Length.ToString());
