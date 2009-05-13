@@ -41,7 +41,7 @@ namespace Molecule.WebSite.atomes.photo
         {
             CalendarItem item = new CalendarItem();
             item.DateTime = month;
-            item.Name = DateTimeFormatInfo.CurrentInfo.GetMonthName(month.Month);
+            item.Name = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(month.Month);
             var photos = PhotoLibrary.GetPhotosByMonthAndTag(month, tagId);
             var photo = photos.FirstOrDefault();
             if (photo != null)
