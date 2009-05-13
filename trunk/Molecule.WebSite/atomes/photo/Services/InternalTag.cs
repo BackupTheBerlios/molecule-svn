@@ -20,7 +20,7 @@ namespace WebPhoto.Services
 
             authorizedPhotos = (from photo in originalTag.Photos
                                    where photo.Tags.Any(t => authorizedTags.Any(t2 => t2.Id == t.Id))
-                                   orderby photo.Date //descending
+                                   orderby photo.Date descending
                                    select photo
                                ).ToList();
 

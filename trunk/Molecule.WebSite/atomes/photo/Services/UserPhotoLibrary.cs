@@ -60,7 +60,7 @@ namespace WebPhoto.Services
 
             //Order photo in a timeline list.
             var tempTimeline = new List<IPhoto>(authorizedPhotos.Values);
-            tempTimeline.Sort((p1, p2) => p1.Date.CompareTo(p2.Date));
+            tempTimeline.Sort((p1, p2) => p2.Date.CompareTo(p1.Date));
             timelinePhotos = new LinkedList<IPhoto>(tempTimeline);
 
             //day index for timeline.
