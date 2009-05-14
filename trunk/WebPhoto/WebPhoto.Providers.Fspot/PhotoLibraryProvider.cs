@@ -167,8 +167,12 @@ namespace WebPhoto.Providers.Fspot
 			    log.Debug("Retrieve photos from the fspot database");
             }
 			
-			SqliteCommand cmd = new SqliteCommand("SELECT  photos.id , photos.uri, photos.time, photos.description " +
-			                                      "FROM  photos ", conn);
+			SqliteCommand cmd = new SqliteCommand("SELECT  photos.id , versions.uri, photos.time, photos.description  " +
+				                                  "FROM  photos, "+		                                      
+			                                  	  "(select MAX(version_id) version, photo_id id, uri uri "+   
+				                                  "from photo_versions  "+		                                      
+			                                      "group by photo_id) versions "+
+			                                      "WHERE photos.id = versions.id " , conn);
 			
 			
 			IDataReader reader = null;
