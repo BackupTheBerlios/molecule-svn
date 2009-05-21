@@ -22,6 +22,10 @@
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
+    
+	<nStuff:UpdateHistory ID="UpdateHistory" runat="server" OnNavigate="HistoryNavigate">
+    </nStuff:UpdateHistory>    
+    
     <div id="fileNotFoundPanel"  class="informationPanel">
         <img alt="Warning" src="/App_Themes/<%= Theme %>/images/dialog-warning.png" />
         <asp:Label runat="server" ID="LabelSongError" Text="<%$ Resources:webmusic,SongError %>" />
@@ -94,7 +98,7 @@
                       <asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
                       <ContentTemplate>
                         <asp:DataList ID="all" runat="server" DataSourceID="AlbumDataSource"
-                              DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList hoverTable">
+                              DataKeyField="Id" onselectedindexchanged="AlbumList_SelectedIndexChanged" CssClass="itemList hoverTable" >
                             <ItemTemplate>
                                 <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>'
                                     CommandArgument='<%# Eval("Id") %>' 
@@ -110,7 +114,7 @@
                         </asp:ObjectDataSource>
                         </ContentTemplate>
                         <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="arl" EventName="ItemCommand" />
+                        	<asp:AsyncPostBackTrigger ControlID="arl" EventName="ItemCommand" />
                         </Triggers>
                         </asp:UpdatePanel>
                     </div>
@@ -120,7 +124,7 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
         <ContentTemplate>
                 <table id="songsView" class="hoverTable">
-                    <asp:Repeater ID="sv" runat="server" DataSourceID="SongDataSource">
+                    <asp:Repeater ID="sv" runat="server" DataSourceID="SongDataSource" >
                         <HeaderTemplate>
                             <thead>
                                 <tr>

@@ -37,6 +37,9 @@ using System.Xml.Linq;
 using WebMusic.Services;
 using System.Collections.Generic;
 using WebMusic.Providers;
+
+using nStuff.UpdateControls;
+
 using System.IO;
 
 namespace WebMusic
@@ -59,10 +62,12 @@ namespace WebMusic
 			if(!Page.IsPostBack)
 			{
 				this.HandlePageArguments();
-			}
+			}			
+			
 			string reference = Page.ClientScript.GetCallbackEventReference(this, "arg", "SongEvent", "context");
 			string script = "function UseCallback(arg,context) { "+ reference + ";}";
 			Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "UseCallback", script, true);
+			
         }
 
 		private void HandlePageArguments()
@@ -94,7 +99,9 @@ namespace WebMusic
 						                                       Server.HtmlEncode(s.Title).Replace(@"'",@"\'")  ,
 						                                       Server.HtmlEncode( s.Album.Name ).Replace(@"'",@"\'") ));
 					}
-					appendSongsScript.Append(" playNextSong(); ");
+       
+					appendSongsScript.Append(" setPlaylistSelectedIndex(0); ");
+					appendSongsScript.Append("  playSelectedSong(); ");
 					appendSongsScript.Append(@"</script>");
 					Page.ClientScript.RegisterStartupScript (cstype, csname,appendSongsScript.ToString() , false);
 				}	
@@ -163,6 +170,22 @@ namespace WebMusic
         {
             all.DataBind();
             Session[sessionCurrentAlbum] = (string)all.SelectedValue;
+			UpdateHistory.AddEntry(Session[sessionCurrentAlbum].ToString());
         }
+		
+		protected void HistoryNavigate(object sender, HistoryEventArgs e)
+		{
+			all.DataBind();		
+			for (int i = 0; i < all.Items.Count; i++)
+			{
+				if (((string)all.DataKeys[i]).Equals( e.EntryName) )
+				{
+					all.SelectedIndex = i;
+					break;
+				}
+			}
+			UpdatePanel1.Update();
+            Session[sessionCurrentAlbum] = e.EntryName;
+		}
     }
 }
