@@ -17,8 +17,8 @@
     <asp:ScriptManagerProxy ID="ScriptManagerProxy" runat="server">
         <Scripts>
             <asp:ScriptReference Path="scripts/default.js" />
-            <asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />
-            <%--<asp:ScriptReference Path="scripts/soundmanager2.js" />--%>
+            <%--<asp:ScriptReference Path="scripts/soundmanager2-nodebug-jsmin.js" />--%>
+            <asp:ScriptReference Path="scripts/soundmanager2.js" />
             <asp:ScriptReference Path="scripts/sm2player.js" />
         </Scripts>
     </asp:ScriptManagerProxy>
@@ -43,6 +43,9 @@
             <img id="pauseButton" alt="Pause" src="/App_Themes/<%= Theme %>/images/media-playback-pause.png" style="display: none;"
                 onclick="return pauseButton_onclick()" />
             <img id="nextButton" alt="Suivant" src="/App_Themes/<%= Theme %>/images/media-skip-forward.png" onclick="return nextButton_onclick()" />
+            <img alt="Diminuer volume" src="/App_Themes/<%= Theme %>/images/audio-volume-low.png" onclick="return volumeDownButton_onclick()" />
+            <div id="currentVolumeLabel"></div>
+            <img alt="Augmenter volume" src="/App_Themes/<%= Theme %>/images/audio-volume-high.png" onclick="return volumeUpButton_onclick()" />
             <div id="songInformationPanel">
          
                 <div id="songsLabelPanel">
@@ -201,6 +204,10 @@
      <script type="text/javascript">
     init();
     </script>
+
+
+
+    </span>
 
 
 

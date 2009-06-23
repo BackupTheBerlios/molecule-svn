@@ -173,7 +173,7 @@ namespace WebMusic
 			UpdateHistory.AddEntry(Session[sessionCurrentAlbum].ToString());
         }
 		
-		protected void HistoryNavigate(object sender, HistoryEventArgs e)
+		protected void HistoryNavigate(object sender, nStuff.UpdateControls.HistoryEventArgs e)
 		{
 			all.DataBind();		
 			for (int i = 0; i < all.Items.Count; i++)
@@ -184,8 +184,9 @@ namespace WebMusic
 					break;
 				}
 			}
-			UpdatePanel1.Update();
             Session[sessionCurrentAlbum] = e.EntryName;
+			UpdatePanel1.Update();
+            
 		}
     }
 }

@@ -35,6 +35,7 @@ function init()
     updateCurrentVolume(getVolume());
     errorLoadingMessage = $get("fileNotFoundPanel");
     songAddedToPlaylist = $get("fileAddedToPlaylistPanel");
+    updateCurrentVolume(getVolume());
 }
 
 function playSelectedSong()
@@ -168,7 +169,7 @@ function onLoad()
 
 function updateCurrentVolume(volume)
 {
-   // currentVolumeLabel.innerHTML = getVolume() + "%";
+   currentVolumeLabel.innerHTML = getVolume() + "%";
 }
 
 function formatTime(timeInMilliseconds)

@@ -133,5 +133,18 @@ select
     width: 100px;
 }
 
+#nextButton
+{
+	margin-right:35px;
+}
+
+#currentVolumeLabel
+{
+	display:inline-block;
+	position:relative;
+	width:30px;
+	bottom:8px;
+}
+
 
 
