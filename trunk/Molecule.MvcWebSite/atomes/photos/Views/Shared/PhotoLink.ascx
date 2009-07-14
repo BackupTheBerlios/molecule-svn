@@ -9,7 +9,7 @@
     <%if (Model.Photo != null)
       { %>
     <div class="PhotoLink_HoverBackground"></div>
-        <img src="<%= Url.Action("File", "photos", new { id = Model.Photo.Id }, null)  /*PhotoFile.GetUrlFor(PhotoId, PhotoFileSize.Thumbnail)*/ %>" title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail" />
+        <img src="<%= Url.Action("File", "photo", new { id = Model.Photo.Id, size= PhotoFileSize.Thumbnail }, null) %>" title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail" />
     </a>
     <%} %>
     <% if (!String.IsNullOrEmpty(Model.HoverIconUrl)){ %>

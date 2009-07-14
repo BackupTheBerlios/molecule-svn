@@ -4,3 +4,12 @@
 	margin-top:1px;
 	margin-bottom:1px;
 }
+
+.PhotoList,
+.PhotoList li
+{
+	margin-left:0px;
+	padding:0px;
+	list-style-type:none;
+	display:inline;
+}

@@ -11,7 +11,7 @@ using Molecule.MvcWebSite.atomes.photos.Controllers;
 namespace Molecule.MvcWebSite.photo.Controllers
 {
     [HandleError]
-    public class PhotosController : Controller
+    public class PhotoController : Controller
     {
         public ActionResult Display(string id, string tagId)
         {

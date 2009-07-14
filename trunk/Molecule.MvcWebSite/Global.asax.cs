@@ -20,12 +20,6 @@ namespace Molecule.MvcWebSite
                 "{atome}/{controller}/{id}/{action}",                           // URL with parameters
                 new { atome="", controller = "Home", action = "Explore", id = "" }  // Parameter defaults
             );
-
-            routes.MapRoute(
-                "photoFile",                                              // Route name
-                "{atome}/{controller}/{id}/{action}/{size}",                           // URL with parameters
-                new { atome = "", controller = "Home", action = "Explore", id = "", size="" }  // Parameter defaults
-            );
         }
 
         protected void Application_Start()
