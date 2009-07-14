@@ -17,32 +17,23 @@ namespace Molecule.MvcWebSite
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
-                new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+                "{atome}/{controller}/{id}/{action}",                           // URL with parameters
+                new { atome="", controller = "Home", action = "Explore", id = "" }  // Parameter defaults
             );
 
-            routes.MapRoute("photoFile",
-                "{controller}/{action}/{id}/{size}",
-                new { controller = "photos", action = "File", id = "", size = "" }
+            routes.MapRoute(
+                "photoFile",                                              // Route name
+                "{atome}/{controller}/{id}/{action}/{size}",                           // URL with parameters
+                new { atome = "", controller = "Home", action = "Explore", id = "", size="" }  // Parameter defaults
             );
         }
 
         protected void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
-            var viewEngine = ViewEngines.Engines[0] as WebFormViewEngine;
 
-            viewEngine.ViewLocationFormats = new string[] { 
-                "~/atomes/{1}/Views/{0}.aspx", 
-                "~/atomes/{1}/Views/{0}.ascx", 
-                "~/Views/{1}/{0}.aspx",
-                "~/Views/{1}/{0}.ascx",
-                "~/Views/Shared/{0}.aspx", 
-                "~/Views/Shared/{0}.ascx" 
-                };
-
-            viewEngine.PartialViewLocationFormats = viewEngine.ViewLocationFormats;
-            viewEngine.MasterLocationFormats = viewEngine.ViewLocationFormats;
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new Molecule.MvcWebSite.Mvc.ViewEngine());
         }
     }
 }

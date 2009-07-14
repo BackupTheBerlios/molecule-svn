@@ -21,6 +21,8 @@ namespace Molecule.MvcWebSite.Mvc
             base.ViewLocationFormats = new string[] { 
                 "~/atomes/{2}/Views/{1}/{0}.aspx", 
                 "~/atomes/{2}/Views/{1}/{0}.ascx", 
+                "~/atomes/{2}/Views/Shared/{0}.aspx", 
+                "~/atomes/{2}/Views/Shared/{0}.ascx",
                 "~/Views/{1}/{0}.aspx", 
                 "~/Views/{1}/{0}.ascx", 
                 "~/Views/Shared/{0}.aspx", 
@@ -35,6 +37,32 @@ namespace Molecule.MvcWebSite.Mvc
 
         private VirtualPathProvider _vpp;
 
+        public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
+        {
+            if (controllerContext == null)
+            {
+                throw new ArgumentNullException("controllerContext");
+            }
+            if (string.IsNullOrEmpty(partialViewName))
+            {
+                throw new ArgumentException("Value is required.", partialViewName);
+            }
+
+            string[] searchedLocations;
+
+            string controllerName = controllerContext.RouteData.GetRequiredString("controller");
+
+            string partialPath = this.GetPath(controllerContext, this.PartialViewLocationFormats, "PartialViewLocationFormats",
+                                 partialViewName, controllerName, _cacheKeyPrefix_Partial, useCache, out searchedLocations);
+
+            if (string.IsNullOrEmpty(partialPath))
+            {
+                return new ViewEngineResult(searchedLocations);
+            }
+            return new ViewEngineResult(this.CreatePartialView(controllerContext,
+                                        partialPath), this);
+
+        }
 
         public override ViewEngineResult FindView(ControllerContext controllerContext, string viewName, string masterName, bool useCache)
         {
@@ -96,11 +124,12 @@ namespace Molecule.MvcWebSite.Mvc
         {
             var result = String.Empty;
             searchedLocations = new string[locations.Length];
-            var atome = controllerContext.RouteData.Values["atome"].ToString();
+            var atome = controllerContext.RouteData.Values["atome"];
+            var atomeString = atome != null ? atome.ToString() : "";
 
             for (int i = 0; i < locations.Length; i++)
             {
-                string virtualPath = String.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName, atome);
+                string virtualPath = String.Format(CultureInfo.InvariantCulture, locations[i], name, controllerName, atomeString);
 
                 if (FileExists(controllerContext, virtualPath))
                 {

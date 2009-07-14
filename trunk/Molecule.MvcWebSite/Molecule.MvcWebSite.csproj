@@ -106,11 +106,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\photos\Views\PhotoFileResult.cs" />
+    <Compile Include="atomes\photos\Controllers\TagController.cs" />
+    <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
     </Compile>
     <Compile Include="atomes\photos\Data\PhotoLinkData.cs" />
-    <Compile Include="atomes\photos\Data\TagData.cs" />
+    <Compile Include="atomes\photos\Data\TagExploreData.cs" />
     <Compile Include="atomes\photos\Services\InternalTag.cs" />
     <Compile Include="atomes\photos\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photos\Services\PhotoFileSpec.cs" />
@@ -120,11 +121,11 @@
     <Compile Include="atomes\photos\Services\TagUserAuthorizations.cs" />
     <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photos\Data\TagLinkData.cs" />
-    <Compile Include="atomes\photos\Views\TagHierarchy.ascx.cs">
+    <Compile Include="atomes\photos\Views\Shared\TagHierarchy.ascx.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\photos\Views\TagHierarchy.ascx.designer.cs">
+    <Compile Include="atomes\photos\Views\Shared\TagHierarchy.ascx.designer.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
@@ -276,12 +277,12 @@
     <Content Include="atomes\photos\style\photo.css" />
     <Content Include="atomes\photos\style\tag.css" />
     <Content Include="atomes\photos\style\timeline.css" />
-    <Content Include="atomes\photos\Views\Display.aspx" />
-    <Content Include="atomes\photos\Views\PhotoLink.ascx" />
-    <Content Include="atomes\photos\Views\TagHierarchy.ascx" />
-    <Content Include="atomes\photos\Views\TagLink.ascx" />
-    <Content Include="atomes\photos\Views\TagList.ascx" />
-    <Content Include="atomes\photos\Views\Tag.aspx" />
+    <Content Include="atomes\photos\Views\Photo\Display.aspx" />
+    <Content Include="atomes\photos\Views\Shared\PhotoLink.ascx" />
+    <Content Include="atomes\photos\Views\Shared\TagHierarchy.ascx" />
+    <Content Include="atomes\photos\Views\Shared\TagLink.ascx" />
+    <Content Include="atomes\photos\Views\Shared\TagList.ascx" />
+    <Content Include="atomes\photos\Views\Tag\Explore.aspx" />
     <Content Include="Views\Shared\Page.Master" />
     <Content Include="atomes\photos\Views\Web.config" />
     <Content Include="atomes\photos\Atome.xml" />

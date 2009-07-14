@@ -27,29 +27,7 @@ namespace Molecule.MvcWebSite.photo.Controllers
             return View();
         }
 
-        public ActionResult Tag(string id)
-        {
-            ITagInfo tag = null;
-            if (!String.IsNullOrEmpty(id))
-                tag = PhotoLibrary.GetTag(id);
-
-            //if (photos.Any())
-            //{
-                //TODO
-                //this.PhotoListView.DataSource = photos;
-                //this.PhotoListView.DataBind();
-                //this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(photos.First().Date, tagId);
-                //this.DownloadLink.NavigateUrl = Download.GetUrlFor(tagId, PhotoDataPager.StartRowIndex, PhotoDataPager.PageSize );				
-            //}
-            //else
-            //this.photosPlaceHolder.Visible = false;
-            return View(new TagData()
-            {
-                SubTags = PhotoLibrary.GetTagsByTag(id),
-                Photos = PhotoLibrary.GetPhotosByTag(id).ToList(),
-                Tag = tag
-            });
-        }
+        
 
         public ActionResult File(string id, PhotoFileSize size)
         {
