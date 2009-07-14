@@ -43,12 +43,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\MvcContrib.dll</HintPath>
     </Reference>
+    <Reference Include="MvcContrib.FluentHtml, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\MvcContrib.FluentHtml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -63,8 +64,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Common.designer.cs">
@@ -107,43 +106,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\photo\Controllers\PhotoController.cs">
+    <Compile Include="atomes\photos\Views\PhotoFileResult.cs" />
+    <Compile Include="atomes\photos\Controllers\PhotoController.cs">
     </Compile>
-    <Compile Include="atomes\photo\Services\InternalTag.cs" />
-    <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
-    <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />
-    <Compile Include="atomes\photo\Services\PhotoLibrary.Admin.cs" />
-    <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
-    <Compile Include="atomes\photo\Services\TagSiteMapProvider.cs" />
-    <Compile Include="atomes\photo\Services\TagUserAuthorizations.cs" />
-    <Compile Include="atomes\photo\Services\UserPhotoLibrary.cs" />
-    <Compile Include="atomes\photo\Views\PhotoLink.ascx.cs">
-      <DependentUpon>PhotoLink.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\photo\Views\PhotoLink.ascx.designer.cs">
-      <DependentUpon>PhotoLink.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="atomes\photo\Views\TagHierarchy.ascx.cs">
+    <Compile Include="atomes\photos\Data\PhotoLinkData.cs" />
+    <Compile Include="atomes\photos\Data\TagData.cs" />
+    <Compile Include="atomes\photos\Services\InternalTag.cs" />
+    <Compile Include="atomes\photos\Services\PhotoFileProvider.cs" />
+    <Compile Include="atomes\photos\Services\PhotoFileSpec.cs" />
+    <Compile Include="atomes\photos\Services\PhotoLibrary.Admin.cs" />
+    <Compile Include="atomes\photos\Services\PhotoLibrary.cs" />
+    <Compile Include="atomes\photos\Services\TagSiteMapProvider.cs" />
+    <Compile Include="atomes\photos\Services\TagUserAuthorizations.cs" />
+    <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
+    <Compile Include="atomes\photos\Data\TagLinkData.cs" />
+    <Compile Include="atomes\photos\Views\TagHierarchy.ascx.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="atomes\photo\Views\TagHierarchy.ascx.designer.cs">
+    <Compile Include="atomes\photos\Views\TagHierarchy.ascx.designer.cs">
       <DependentUpon>TagHierarchy.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="atomes\photo\Views\TagLink.ascx.cs">
-      <DependentUpon>TagLink.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\photo\Views\TagLink.ascx.designer.cs">
-      <DependentUpon>TagLink.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="atomes\photo\Views\TagList.ascx.cs">
-      <DependentUpon>TagList.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\photo\Views\TagList.ascx.designer.cs">
-      <DependentUpon>TagList.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
@@ -273,36 +255,36 @@
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="App_Themes\bloup\molecule.cssx" />
     <None Include="Atome.xsd" />
-    <Content Include="atomes\photo\images\frame.png" />
-    <Content Include="atomes\photo\images\internet-web-browser.png" />
-    <Content Include="atomes\photo\images\office-calendar.png" />
-    <Content Include="atomes\photo\images\zoom-original.png" />
-    <Content Include="atomes\photo\scripts\default.js" />
-    <Content Include="atomes\photo\scripts\osm.js" />
-    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo1.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo2.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo3.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo4.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo5.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo6.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo7.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo8.jpg" />
-    <Content Include="atomes\photo\stublibrary\photo9.jpg" />
-    <Content Include="atomes\photo\style\calendar.css" />
-    <Content Include="atomes\photo\style\common.css" />
-    <Content Include="atomes\photo\style\photo.css" />
-    <Content Include="atomes\photo\style\tag.css" />
-    <Content Include="atomes\photo\style\timeline.css" />
-    <Content Include="atomes\photo\Views\Display.aspx" />
-    <Content Include="atomes\photo\Views\PhotoLink.ascx" />
-    <Content Include="atomes\photo\Views\TagHierarchy.ascx" />
-    <Content Include="atomes\photo\Views\TagLink.ascx" />
-    <Content Include="atomes\photo\Views\TagList.ascx" />
-    <Content Include="atomes\photo\Views\Tag.aspx" />
+    <Content Include="atomes\photos\images\frame.png" />
+    <Content Include="atomes\photos\images\internet-web-browser.png" />
+    <Content Include="atomes\photos\images\office-calendar.png" />
+    <Content Include="atomes\photos\images\zoom-original.png" />
+    <Content Include="atomes\photos\scripts\default.js" />
+    <Content Include="atomes\photos\scripts\osm.js" />
+    <Content Include="atomes\photos\stublibrary\photo0.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo1.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo2.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo3.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo4.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo5.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo6.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo7.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo8.jpg" />
+    <Content Include="atomes\photos\stublibrary\photo9.jpg" />
+    <Content Include="atomes\photos\style\calendar.css" />
+    <Content Include="atomes\photos\style\common.css" />
+    <Content Include="atomes\photos\style\photo.css" />
+    <Content Include="atomes\photos\style\tag.css" />
+    <Content Include="atomes\photos\style\timeline.css" />
+    <Content Include="atomes\photos\Views\Display.aspx" />
+    <Content Include="atomes\photos\Views\PhotoLink.ascx" />
+    <Content Include="atomes\photos\Views\TagHierarchy.ascx" />
+    <Content Include="atomes\photos\Views\TagLink.ascx" />
+    <Content Include="atomes\photos\Views\TagList.ascx" />
+    <Content Include="atomes\photos\Views\Tag.aspx" />
     <Content Include="Views\Shared\Page.Master" />
-    <Content Include="atomes\photo\Views\Web.config" />
-    <Content Include="atomes\photo\Atome.xml" />
+    <Content Include="atomes\photos\Views\Web.config" />
+    <Content Include="atomes\photos\Atome.xml" />
     <Content Include="atomes\a2\Atome.xml" />
   </ItemGroup>
   <ItemGroup>

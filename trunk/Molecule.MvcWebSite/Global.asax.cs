@@ -21,6 +21,10 @@ namespace Molecule.MvcWebSite
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
 
+            routes.MapRoute("photoFile",
+                "{controller}/{action}/{id}/{size}",
+                new { controller = "photos", action = "File", id = "", size = "" }
+            );
         }
 
         protected void Application_Start()
