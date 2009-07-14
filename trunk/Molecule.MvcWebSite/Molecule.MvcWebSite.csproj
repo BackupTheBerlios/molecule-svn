@@ -1,0 +1,355 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}</ProjectGuid>
+    <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Molecule.MvcWebSite</RootNamespace>
+    <AssemblyName>Molecule.MvcWebSite</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\Mono.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Common.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Common.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\molecule.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>molecule.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>molecule.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\photo.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>photo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\photo.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>photo.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\webmusic.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>webmusic.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\webmusic.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>webmusic.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Controllers\PhotoController.cs">
+    </Compile>
+    <Compile Include="atomes\photo\Controllers\TagController.cs" />
+    <Compile Include="atomes\photo\Services\InternalTag.cs" />
+    <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
+    <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />
+    <Compile Include="atomes\photo\Services\PhotoLibrary.Admin.cs" />
+    <Compile Include="atomes\photo\Services\PhotoLibrary.cs" />
+    <Compile Include="atomes\photo\Services\TagSiteMapProvider.cs" />
+    <Compile Include="atomes\photo\Services\TagUserAuthorizations.cs" />
+    <Compile Include="atomes\photo\Services\UserPhotoLibrary.cs" />
+    <Compile Include="atomes\photo\Views\PhotoLink.ascx.cs">
+      <DependentUpon>PhotoLink.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Views\PhotoLink.ascx.designer.cs">
+      <DependentUpon>PhotoLink.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagHierarchy.ascx.cs">
+      <DependentUpon>TagHierarchy.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagHierarchy.ascx.designer.cs">
+      <DependentUpon>TagHierarchy.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagLink.ascx.cs">
+      <DependentUpon>TagLink.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagLink.ascx.designer.cs">
+      <DependentUpon>TagLink.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagList.ascx.cs">
+      <DependentUpon>TagList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\photo\Views\TagList.ascx.designer.cs">
+      <DependentUpon>TagList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CssController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mvc\ControllerFactory.cs" />
+    <Compile Include="Mvc\ViewEngine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\AtomeInfo.cs" />
+    <Compile Include="Services\AtomeService.cs" />
+    <Compile Include="Services\AtomeUserAuthorizations.cs" />
+    <Compile Include="Services\CssVariableInfo.cs" />
+    <Compile Include="Services\IAtomeInfo.cs" />
+    <Compile Include="Services\IAtomeUserAuthorizations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Home\About.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Common.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\webmusic.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Common.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\molecule.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\molecule.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\photo.fr.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>photo.fr.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\photo.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>photo.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\webmusic.fr.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic.fr.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
+    <Content Include="App_Themes\bloup\images\audio-volume-low.png" />
+    <Content Include="App_Themes\bloup\images\colorpicker.png" />
+    <Content Include="App_Themes\bloup\images\dialog-warning.png" />
+    <Content Include="App_Themes\bloup\images\document-save.png" />
+    <Content Include="App_Themes\bloup\images\folder.png" />
+    <Content Include="App_Themes\bloup\images\go-next.png" />
+    <Content Include="App_Themes\bloup\images\go-previous.png" />
+    <Content Include="App_Themes\bloup\images\list-add.png" />
+    <Content Include="App_Themes\bloup\images\list-remove.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-pause.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-start-small.png" />
+    <Content Include="App_Themes\bloup\images\media-playback-start.png" />
+    <Content Include="App_Themes\bloup\images\media-skip-backward.png" />
+    <Content Include="App_Themes\bloup\images\media-skip-forward.png" />
+    <Content Include="App_Themes\bloup\images\molecule-128.png" />
+    <Content Include="App_Themes\bloup\images\molecule-16.png" />
+    <Content Include="App_Themes\bloup\images\molecule-24.png" />
+    <Content Include="App_Themes\bloup\images\molecule-32.png" />
+    <Content Include="App_Themes\bloup\images\molecule-48.png" />
+    <Content Include="App_Themes\bloup\images\molecule-64.png" />
+    <Content Include="App_Themes\bloup\images\refresh.png" />
+    <Content Include="App_Themes\bloup\images\system-search.png" />
+    <Content Include="App_Themes\bloup\progressbarlayout.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
+    <None Include="App_Themes\bloup\molecule.cssx" />
+    <None Include="Atome.xsd" />
+    <Content Include="atomes\photo\images\frame.png" />
+    <Content Include="atomes\photo\images\internet-web-browser.png" />
+    <Content Include="atomes\photo\images\office-calendar.png" />
+    <Content Include="atomes\photo\images\zoom-original.png" />
+    <Content Include="atomes\photo\scripts\default.js" />
+    <Content Include="atomes\photo\scripts\osm.js" />
+    <Content Include="atomes\photo\stublibrary\photo0.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo1.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo2.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo3.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo4.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo5.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo6.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo7.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo8.jpg" />
+    <Content Include="atomes\photo\stublibrary\photo9.jpg" />
+    <Content Include="atomes\photo\style\calendar.css" />
+    <Content Include="atomes\photo\style\common.css" />
+    <Content Include="atomes\photo\style\photo.css" />
+    <Content Include="atomes\photo\style\tag.css" />
+    <Content Include="atomes\photo\style\timeline.css" />
+    <Content Include="atomes\photo\Views\Display.aspx" />
+    <Content Include="atomes\photo\Views\PhotoLink.ascx" />
+    <Content Include="atomes\photo\Views\TagHierarchy.ascx" />
+    <Content Include="atomes\photo\Views\TagLink.ascx" />
+    <Content Include="atomes\photo\Views\TagList.ascx" />
+    <Content Include="atomes\photo\Views\Tag.aspx" />
+    <Content Include="Views\Shared\Page.Master" />
+    <Content Include="atomes\photo\Views\Web.config" />
+    <Content Include="atomes\photo\Atome.xml" />
+    <Content Include="atomes\a2\Atome.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Molecule\Molecule.csproj">
+      <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
+      <Name>Molecule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebMusic\WebMusic.Providers\WebMusic.Providers.csproj">
+      <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
+      <Name>WebMusic.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebPhoto\WebPhoto.Providers\WebPhoto.Providers.csproj">
+      <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
+      <Name>WebPhoto.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="atomes\a1\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>29244</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

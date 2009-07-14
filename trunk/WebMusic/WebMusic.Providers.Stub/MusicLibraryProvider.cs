@@ -27,6 +27,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Collections.Generic;
 using Molecule.Runtime;
+using System.Web;
 
 [assembly: PluginContainer]
 
@@ -179,8 +180,8 @@ namespace WebMusic.Providers.Stub
             {
                 get
                 {
-                    string virtualPath = AlbumTrack % 2 == 1 ? "stublibrary/song1.mp3" : "stublibrary/song2.mp3";
-                    return System.Web.HttpContext.Current.Request.MapPath(virtualPath);
+                    string virtualPath = AlbumTrack % 2 == 1 ? "song1.mp3" : "song2.mp3";
+                    return HttpContext.Current.Server.MapPath("/atomes/webmusic/stublibrary/" + virtualPath);
                 }
             }
 

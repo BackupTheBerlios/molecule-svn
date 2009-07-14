@@ -1,0 +1,59 @@
+﻿.photoCurrent
+{
+	text-align: left;
+	width:642;
+}
+
+#photo
+{
+	display:inline-block;
+	padding:4px;
+	border: solid 1px Grey;
+}
+
+#NextPhotoLink, #PreviousPhotoLink
+{
+	display:inline-block;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+.metadatas
+{
+	position: absolute;
+	margin: 12px;
+	background-color: #000000;
+	opacity: 0;
+	filter: alpha(opacity=0); /*ie only*/
+	padding: 1ex;
+}
+
+.metadatas table
+{
+	border: none;
+}
+
+.metadatas table tr td:first-child
+{
+	text-align: right;
+	padding-right: 1ex;
+	font-weight: bold;
+	color: #f57900;
+}
+
+.metadatas table tr td
+{
+	text-align: left;
+	border: none;
+}
+
+p
+{
+	clear: both;
+}
+
+#map
+{
+	width: 650px;
+	height: 400px;
+}

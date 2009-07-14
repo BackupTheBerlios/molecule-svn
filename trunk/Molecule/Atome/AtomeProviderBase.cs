@@ -19,7 +19,7 @@ namespace Molecule.Atome
         const int defaultUpdateInterval = 3600;//seconds
 
         private string providerName;
-        private IProvider provider;
+        private IProvider provider = null;
         private Timer timer;
 
         protected static log4net.ILog log = log4net.LogManager.GetLogger(typeof(TAtome));
