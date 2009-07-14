@@ -15,8 +15,7 @@ using System.Collections.Generic;
 
 namespace Molecule.WebSite.atomes.photo
 {
-    public partial class TagList : System.Web.Mvc.ViewUserControl<IEnumerable<string>>
+    public partial class TagList : System.Web.Mvc.ViewUserControl<IEnumerable<ITagInfo>>
     {
-        public IEnumerable<string> TagIds { get; set; }
     }
 }

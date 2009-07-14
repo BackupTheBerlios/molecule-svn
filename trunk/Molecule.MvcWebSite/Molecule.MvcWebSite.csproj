@@ -109,7 +109,6 @@
     </Compile>
     <Compile Include="atomes\photo\Controllers\PhotoController.cs">
     </Compile>
-    <Compile Include="atomes\photo\Controllers\TagController.cs" />
     <Compile Include="atomes\photo\Services\InternalTag.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photo\Services\PhotoFileSpec.cs" />

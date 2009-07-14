@@ -9,7 +9,7 @@ using WebPhoto.Providers;
 namespace Molecule.MvcWebSite.photo.Controllers
 {
     [HandleError]
-    public class PhotoController : Controller
+    public class PhotosController : Controller
     {
         public ActionResult Display(string id, string tagId)
         {
@@ -43,7 +43,7 @@ namespace Molecule.MvcWebSite.photo.Controllers
             //else
             //this.photosPlaceHolder.Visible = false;
 
-            ViewData["subTags"] = from t in PhotoLibrary.GetTagsByTag(id) select t.Id;
+            ViewData["subTags"] = PhotoLibrary.GetTagsByTag(id);
 
             //if (tags.Any())
             //    this.subTagList.Tags = tags;

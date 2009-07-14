@@ -15,7 +15,7 @@ namespace Molecule.WebSite.atomes.photo
 
     public class TagLinkData
     {
-        public string TagId { get; set; }
+        public ITagInfo Tag { get; set; }
         public bool TextOnly { get; set; }
     }
 }
