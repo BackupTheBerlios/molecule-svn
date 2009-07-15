@@ -11,7 +11,7 @@
 	border: solid 1px Grey;
 }
 
-#NextPhotoLink, #PreviousPhotoLink
+.PhotoLink
 {
 	display:inline-block;
 	margin-bottom:10px;
@@ -23,9 +23,14 @@
 	position: absolute;
 	margin: 12px;
 	background-color: #000000;
-	opacity: 0;
-	filter: alpha(opacity=0); /*ie only*/
+	opacity: 50;
+	filter: alpha(opacity=50); /*ie only*/
 	padding: 1ex;
+}
+
+.metadatas thead
+{
+	visibility:collapse;
 }
 
 .metadatas table

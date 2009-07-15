@@ -12,7 +12,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     public class TagController : Controller
     {
-        public ActionResult Explore(string id)
+        public ActionResult Index(string id)
         {
             ITagInfo tag = null;
             if (!String.IsNullOrEmpty(id))
@@ -28,7 +28,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             //}
             //else
             //this.photosPlaceHolder.Visible = false;
-            return View(new TagExploreData()
+            return View(new TagIndexData()
             {
                 SubTags = PhotoLibrary.GetTagsByTag(id),
                 Photos = PhotoLibrary.GetPhotosByTag(id).ToList(),

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PhotoLinkData>" %>
 <div class="PhotoLink">
-<a href='<%= Model.NavigateUrl ?? /*Photo.GetUrlFor(PhotoId, TagId)*/ "" %>'>
+<a href='<%= Model.NavigateUrl ?? Url.Action("Index", "photo", new { id = Model.Photo.Id }) %>'>
     
     <%if (!String.IsNullOrEmpty(Model.HoverText)){ %>
     
@@ -14,7 +14,7 @@
     <%} %>
     <% if (!String.IsNullOrEmpty(Model.HoverIconUrl)){ %>
     <div class="PhotoLink_HoverIcon">
-        <a href='<%= Model.NavigateUrl ?? /* Photo.GetUrlFor(PhotoId, TagId) */"" %>'>
+        <a href='<%= Model.NavigateUrl ?? Url.Action("Index", "photo", new { id = Model.Photo.Id }) %>'>
             <img title="<%= Model.Description %>" src="<%= Model.HoverIconUrl %>" alt="" />
         </a>
     </div>

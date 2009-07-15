@@ -107,11 +107,12 @@
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photos\Controllers\TagController.cs" />
+    <Compile Include="atomes\photos\Data\PhotoIndexData.cs" />
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
     </Compile>
     <Compile Include="atomes\photos\Data\PhotoLinkData.cs" />
-    <Compile Include="atomes\photos\Data\TagExploreData.cs" />
+    <Compile Include="atomes\photos\Data\TagIndexData.cs" />
     <Compile Include="atomes\photos\Services\InternalTag.cs" />
     <Compile Include="atomes\photos\Services\PhotoFileProvider.cs" />
     <Compile Include="atomes\photos\Services\PhotoFileSpec.cs" />
@@ -277,12 +278,12 @@
     <Content Include="atomes\photos\style\photo.css" />
     <Content Include="atomes\photos\style\tag.css" />
     <Content Include="atomes\photos\style\timeline.css" />
-    <Content Include="atomes\photos\Views\Photo\Display.aspx" />
+    <Content Include="atomes\photos\Views\Photo\Index.aspx" />
     <Content Include="atomes\photos\Views\Shared\PhotoLink.ascx" />
     <Content Include="atomes\photos\Views\Shared\TagHierarchy.ascx" />
     <Content Include="atomes\photos\Views\Shared\TagLink.ascx" />
     <Content Include="atomes\photos\Views\Shared\TagList.ascx" />
-    <Content Include="atomes\photos\Views\Tag\Explore.aspx" />
+    <Content Include="atomes\photos\Views\Tag\Index.aspx" />
     <Content Include="Views\Shared\Page.Master" />
     <Content Include="atomes\photos\Views\Web.config" />
     <Content Include="atomes\photos\Atome.xml" />

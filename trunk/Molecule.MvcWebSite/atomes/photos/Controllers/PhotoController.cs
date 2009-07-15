@@ -13,18 +13,16 @@ namespace Molecule.MvcWebSite.photo.Controllers
     [HandleError]
     public class PhotoController : Controller
     {
-        public ActionResult Display(string id, string tagId)
+        public ActionResult Index(string id, string tagId)
         {
-            ITagInfo tag;
-            if (!String.IsNullOrEmpty(tagId))
-                tag = PhotoLibrary.GetTag(tagId);
-            var currentPhoto = PhotoLibrary.GetPhoto(id);
-            var nextPhoto = PhotoLibrary.GetNextPhoto(id, tagId);
-            var previousPhoto = PhotoLibrary.GetPreviousPhoto(id, tagId);
-            var tags = PhotoLibrary.GetTagsByPhoto(id);
-            ViewData["CurrentPhoto"] = currentPhoto;
- 
-            return View();
+            return View(new PhotoIndexData()
+                {
+                    Photo = PhotoLibrary.GetPhoto(id),
+                    NextPhoto = PhotoLibrary.GetNextPhoto(id, tagId),
+                    PreviousPhoto = PhotoLibrary.GetPreviousPhoto(id, tagId),
+                    CurrentTag = !String.IsNullOrEmpty(tagId) ? PhotoLibrary.GetTag(tagId) : null,
+                    PhotoTags = PhotoLibrary.GetTagsByPhoto(id),
+                });
         }
 
         
