@@ -25,8 +25,6 @@ namespace Molecule.MvcWebSite.photo.Controllers
                 });
         }
 
-        
-
         public ActionResult File(string id, PhotoFileSize size)
         {
             //TODO : data cache

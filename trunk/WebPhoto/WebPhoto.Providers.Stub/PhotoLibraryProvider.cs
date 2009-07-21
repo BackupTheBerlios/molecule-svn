@@ -148,8 +148,8 @@ namespace WebPhoto.Providers.Stub
                 Metadatas["Size"] = "2592x1944";
                 Metadatas["Camera"] = "Canone PaweurShote";
                 int r = random.Next(nbJpg);
-                string virtualPath = "stublibrary/photo"+r+".jpg";
-                MediaFilePath = System.Web.HttpContext.Current.Request.MapPath(virtualPath);
+                string virtualPath = @"stublibrary\photo"+r+".jpg";
+                MediaFilePath = @"C:\Users\timaniac\Projets\molecule\Molecule.MvcWebSite\atomes\photos\"+virtualPath;
                 //Latitude="48.1181" Longitude="-1.6707"
                 r = random.Next(2);
                 if (r == 0)

@@ -15,10 +15,30 @@ namespace Molecule.MvcWebSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            
+
+            routes.MapRoute(
+                "Tag",                                              // Route name
+                "{atome}/Tag/{tagId}/{controller}/{id}",                           // URL with parameters
+                new { atome = "", controller = "Home", action = "Index", id = "", tagId="" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Year",                                              // Route name
+                "{atome}/Calendar/{year}",                           // URL with parameters
+                new { atome = "", controller = "Calendar", action = "Year" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Month",                                              // Route name
+                "{atome}/Calendar/{year}/{month}",                           // URL with parameters
+                new { atome = "", controller = "Calendar", action = "Month" }  // Parameter defaults
+            );
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{atome}/{controller}/{id}/{action}",                           // URL with parameters
-                new { atome="", controller = "Home", action = "Index", id = "" }  // Parameter defaults
+                new { atome = "", controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
         }
 

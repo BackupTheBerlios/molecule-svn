@@ -2,8 +2,8 @@
 Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="<%= Url.Content("~/atomes/photos/style/common.css") %>" rel="stylesheet" type="text/css" />
-    <link href="<%= Url.Content("~/atomes/photos/style/tag.css") %>" rel="stylesheet" type="text/css" />
+    <link href="/atomes/photos/style/common.css" rel="stylesheet" type="text/css" />
+    <link href="/atomes/photos/style/tag.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 <%--<photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />>--%>

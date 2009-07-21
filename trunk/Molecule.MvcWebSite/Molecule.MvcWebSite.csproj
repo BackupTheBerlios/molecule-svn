@@ -106,8 +106,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\photos\Controllers\CalendarController.cs" />
     <Compile Include="atomes\photos\Controllers\TagController.cs" />
+    <Compile Include="atomes\photos\Data\CalendarItem.cs" />
     <Compile Include="atomes\photos\Data\PhotoIndexData.cs" />
+    <Compile Include="atomes\photos\Data\YearCalendarData.cs" />
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
     </Compile>
@@ -278,6 +281,7 @@
     <Content Include="atomes\photos\style\photo.css" />
     <Content Include="atomes\photos\style\tag.css" />
     <Content Include="atomes\photos\style\timeline.css" />
+    <Content Include="atomes\photos\Views\Calendar\Year.aspx" />
     <Content Include="atomes\photos\Views\Photo\Index.aspx" />
     <Content Include="atomes\photos\Views\Shared\PhotoLink.ascx" />
     <Content Include="atomes\photos\Views\Shared\TagHierarchy.ascx" />

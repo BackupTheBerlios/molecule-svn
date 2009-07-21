@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Molecule.MvcWebSite\atomes\photo\bin\providers\</OutputPath>
+    <OutputPath>..\..\Molecule.MvcWebSite\atomes\photos\bin\providers\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
