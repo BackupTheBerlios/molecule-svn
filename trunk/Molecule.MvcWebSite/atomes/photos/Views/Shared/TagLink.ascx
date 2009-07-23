@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<TagLinkData>" %>
 
 <% if(Model.TextOnly)
-       Writer.Write(Html.ActionLink(Model.Tag.Name, "Index", "Tag", new { id = Model.Tag.Id }, null));
+       Writer.Write(Html.RouteLink(Model.Tag.Name, "Tag", new { id = Model.Tag.Id}));
    else{ %>
 <%--<photo:PhotoLink runat="server" Description='<%= Model.Tag.Name %>'
     PhotoId='<%= PhotoLibrary.GetFirstPhotoByTag(Model.Tag.Id).Id %>'

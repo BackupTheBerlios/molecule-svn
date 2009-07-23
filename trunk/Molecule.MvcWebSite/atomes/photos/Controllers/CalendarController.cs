@@ -8,6 +8,7 @@ using WebPhoto.Services;
 using Molecule.MvcWebSite.atomes.photos.Data;
 using WebPhoto.Providers;
 using Mono.Rocks;
+using System.Globalization;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
@@ -15,31 +16,48 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
     {   
         public ActionResult Year(int? year, string tagId)
         {
-            if (!year.HasValue)
-                year = DateTime.Now.Year;
-
             ITagInfo tag = null;
 
             if (!String.IsNullOrEmpty(tagId))
             {
-                year = PhotoLibrary.GetFirstPhotoByTag(tagId).Date.Year;
+                if(!year.HasValue)
+                    year = PhotoLibrary.GetFirstPhotoByTag(tagId).Date.Year;
+                tag = PhotoLibrary.GetTag(tagId);
             }
+            else if (!year.HasValue)
+                year = DateTime.Now.Year;
 
-            var data = new YearCalendarData()
+            return View(new YearCalendarData()
             {
                 Tag = tag,
                 Year = year.Value,
                 Items = (from i in 12.Times()
-                         select CalendarItem.CreateMonth(new DateTime(year.Value, i+1, 1), tagId)).ToList()
-            };
-
-            return View(data);
+                         select CalendarItem.CreateMonth(new DateTime(year.Value, i + 1, 1), tagId)).ToList()
+            });
         }
 
-        public ActionResult Month(int year, int month)
+        public ActionResult Month(int year, int month, string tagId)
         {
-            return View();
+            return View(new MonthCalendarData()
+            {
+                Tag = !String.IsNullOrEmpty(tagId) ? PhotoLibrary.GetTag(tagId) : null,
+                Year = year,
+                Month = month,
+                Items = getCalendarItems(year, month, tagId)
+            });
         }
 
+        private IEnumerable<CalendarItem> getCalendarItems(int year, int month, string tagId)
+        {
+            var firstDayOfMonth = new DateTime(year, month, 1);
+            var firstVisibleDay = firstDayOfMonth;
+            while (firstVisibleDay.DayOfWeek != DateTimeFormatInfo.CurrentInfo.FirstDayOfWeek)
+                firstVisibleDay -= TimeSpan.FromDays(1);
+
+            for (DateTime d = firstVisibleDay;
+                d < firstVisibleDay + TimeSpan.FromDays(42);
+                d += TimeSpan.FromDays(1))
+                    yield return CalendarItem.CreateDay(d, month, tagId);
+        }
     }
 }

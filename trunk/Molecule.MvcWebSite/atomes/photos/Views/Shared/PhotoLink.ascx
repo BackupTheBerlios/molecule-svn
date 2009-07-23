@@ -1,10 +1,9 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PhotoLinkData>" %>
 <div class="PhotoLink">
-<% var navigateUrl = Model.NavigateUrl ??
+<% var navigateUrl = Model.NavigateUrl ?? (Model.Photo != null ?
        //Url.Action("Index", "photo",
        //new { id = Model.Photo.Id, tagId = Model.Tag != null ? Model.Tag.Id : "" });
-       Url.RouteUrl("Tag", new { action = "Index", controller = "photo",
-           id = Model.Photo.Id, tagId = Model.Tag != null ? Model.Tag.Id : "" });  %>
+       Url.RouteUrl("Photo", new {id = Model.Photo.Id, tagId = Model.Tag != null ? Model.Tag.Id : "" }) : "");  %>
 <a href='<%= navigateUrl %>'>
     
     <%if (!String.IsNullOrEmpty(Model.HoverText)){ %>
