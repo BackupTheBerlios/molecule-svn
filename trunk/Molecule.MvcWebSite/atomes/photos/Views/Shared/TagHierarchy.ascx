@@ -1,28 +1,25 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TagHierarchy.ascx.cs" Inherits="Molecule.WebSite.atomes.photo.TagHierarchy" %>
-<%@ Register Src="TagLink.ascx" TagName="TagLink" TagPrefix="photo" %>
-<%@ Import Namespace="WebPhoto.Providers" %>
-<%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<TagHierarchyData>" %>
 <%@ Import Namespace="System.Globalization" %>
 <span style="font-size:120%">
-<%--<asp:HyperLink runat="server" NavigateUrl="~/atomes/photo/Default.aspx" Text="Photos" />
-<asp:Repeater runat="server" ID="TagHierarchyView">
-    <HeaderTemplate> > 
-    </HeaderTemplate>
-    <ItemTemplate>
-        <photo:TagLink runat="server" Tag="<%#(ITagInfo)Container.DataItem %>" TextOnly="true" />
-    </ItemTemplate>
-    <SeparatorTemplate> > </SeparatorTemplate>
-</asp:Repeater>
-<% if (Year.HasValue){ %>
- > <asp:HyperLink ID="YearLink" runat="server" >
-    <asp:Label runat="server"><%= Year.Value %></asp:Label>
-</asp:HyperLink>
-    <% if (Month.HasValue)
-       { %>
- > <asp:HyperLink ID="MonthLink" runat="server" >
-    <asp:Label runat="server"><%= DateTimeFormatInfo.CurrentInfo.GetMonthName(Month.Value) %></asp:Label>
-</asp:HyperLink>
-<%     }
- } %>--%>
+ > <%= Html.RouteLink("Photos", "Tag", new { id = "" }) %>
+ <%if (Model.Tag != null)
+   {
+       foreach (var tag in PhotoLibrary.GetTagHierarchy(Model.Tag.Id))
+       {
+           Writer.Write(" > ");
+           Html.RenderPartial("TagLink", new TagLinkData() { Tag = tag, TextOnly = true });
+       }
+   }
+   if (Model.Year.HasValue)
+   {%> > 
+       <%=Html.RouteLink(Model.Year.Value.ToString(),
+           Model.Tag != null ? "TagYear" : "Year", new { year = Model.Year.Value })%> 
+       <%if (Model.Month.HasValue)
+         {%> > 
+           <%=Html.RouteLink(DateTimeFormatInfo.CurrentInfo.GetMonthName(Model.Month.Value),
+               Model.Tag != null ? "TagMonth" : "Month",
+                          new { year = Model.Year.Value, month = Model.Month.Value })%>
+   <%}
+   }%>
  </span>
 

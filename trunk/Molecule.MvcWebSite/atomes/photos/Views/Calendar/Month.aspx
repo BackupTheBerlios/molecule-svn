@@ -7,7 +7,7 @@ Inherits="System.Web.Mvc.ViewPage<MonthCalendarData>" %>
     <link href="/atomes/photos/style/calendar.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <%--<photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag"/>--%>
+    <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Month = Model.Month, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
         <%--<asp:HyperLink ID="HyperLinkPrevious" runat="server">

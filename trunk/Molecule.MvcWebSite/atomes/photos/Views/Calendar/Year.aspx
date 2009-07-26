@@ -1,13 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master"
 Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
-
-<%@ Import Namespace="Molecule.WebSite.atomes.photo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/atomes/photos/style/common.css" rel="stylesheet" type="text/css" />
     <link href="/atomes/photos/style/calendar.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <%--<photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag"/>--%>
+    <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
         <%--<asp:HyperLink ID="HyperLinkPrevious" runat="server">

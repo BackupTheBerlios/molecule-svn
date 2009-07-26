@@ -4,7 +4,7 @@
     <link href="/atomes/photos/style/photo.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <%--<photo:TagHierarchy ID="TagHierarchy" runat="server" TagQueryStringField="tag" />--%>
+    <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.CurrentTag }); %>
     <div class="photoCurrent">
     <%if(Model.PreviousPhoto != null)
           Html.RenderPartial("PhotoLink", new PhotoLinkData() { Photo = Model.PreviousPhoto, Tag = Model.CurrentTag

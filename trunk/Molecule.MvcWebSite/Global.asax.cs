@@ -18,14 +18,21 @@ namespace Molecule.MvcWebSite
             routes.MapRoute(
                 "Tag",                                              // Route name
                 "photos/Tag/{id}",                           // URL with parameters
-                new { atome = "photos", controller = "Tag", action = "Index"}  // Parameter defaults
+                new { atome = "photos", controller = "Tag", action = "Index", id = ""}  // Parameter defaults
             );
 
             routes.MapRoute(
                 "Photo",                                              // Route name
+                "photos/photo/{id}",                           // URL with parameters
+                new { atome = "photos", controller = "Photo", action = "Index", id = "" }  // Parameter defaults
+                );
+
+            routes.MapRoute(
+                "TagPhoto",                                              // Route name
                 "photos/Tag/{tagId}/photo/{id}",                           // URL with parameters
                 new { atome = "photos", controller = "Photo", action = "Index", id = "", tagId = "" }  // Parameter defaults
                 );
+            
             
             routes.MapRoute(
                 "Year",                                              // Route name

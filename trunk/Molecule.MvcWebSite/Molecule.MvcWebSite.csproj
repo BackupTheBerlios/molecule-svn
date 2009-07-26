@@ -111,6 +111,7 @@
     <Compile Include="atomes\photos\Data\CalendarItem.cs" />
     <Compile Include="atomes\photos\Data\MonthCalendarData.cs" />
     <Compile Include="atomes\photos\Data\PhotoIndexData.cs" />
+    <Compile Include="atomes\photos\Data\TagHierarchyData.cs" />
     <Compile Include="atomes\photos\Data\YearCalendarData.cs" />
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
@@ -126,13 +127,6 @@
     <Compile Include="atomes\photos\Services\TagUserAuthorizations.cs" />
     <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photos\Data\TagLinkData.cs" />
-    <Compile Include="atomes\photos\Views\Shared\TagHierarchy.ascx.cs">
-      <DependentUpon>TagHierarchy.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\photos\Views\Shared\TagHierarchy.ascx.designer.cs">
-      <DependentUpon>TagHierarchy.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -6,7 +6,7 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
     <link href="/atomes/photos/style/tag.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-<%--<photo:TagHierarchy ID="tagHierarchy" runat="server" TagQueryStringField="id" />>--%>
+<% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag }); %>
 <% if(Model.SubTags.Any()){ %>
 <h2><%= PhotoLibrary.GetLocalizedTagName() %>s</h2>
 <% Html.RenderPartial("TagList", Model.SubTags);
