@@ -37,8 +37,8 @@
         </a>
 
         <%--<photo:Map ID="PhotoMap" runat="server" />--%>
-        <a href="<%= Url.RouteUrl(Model.CurrentTag != null ? "TagMonth" : "Month",
-        new { year = Model.Photo.Date.Year, month = Model.Photo.Date.Month }) %>">
+        <a href="<%= Model.CurrentTag == null ? Url.RouteUrl("Month", new { year = Model.Photo.Date.Year, month = Model.Photo.Date.Month })
+        : Url.RouteUrl("TagMonth", new { year = Model.Photo.Date.Year, month = Model.Photo.Date.Month, tagId = Model.CurrentTag.Id })  %>">
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

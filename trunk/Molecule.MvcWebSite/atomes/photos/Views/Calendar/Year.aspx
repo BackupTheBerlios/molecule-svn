@@ -8,9 +8,10 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
-        <%--<asp:HyperLink ID="HyperLinkPrevious" runat="server">
-            <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-previous.png" />
-        </asp:HyperLink>--%>
+        <a href="<%= Model.Tag == null ? Url.RouteUrl("Year", new { year = Model.PreviousYear })
+            : Url.RouteUrl("TagYear", new { year = Model.PreviousYear, tagId = Model.Tag.Id }) %>">
+            <img style="border:none" src="/App_Themes/bloup/images/go-previous.png" />
+        </a>
     </div>
     <div class="BlockItem">
         <table style="border-collapse:collapse">
@@ -44,8 +45,9 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
         </table>
     </div>
     <div class="BlockItem">
-        <%--<asp:HyperLink ID="HyperLinkNext" runat="server">
-            <img style="border:none" src="../../App_Themes/<%=Theme %>/images/go-next.png" />
-        </asp:HyperLink>--%>
+        <a href="<%= Model.Tag == null ? Url.RouteUrl("Year", new { year = Model.NextYear })
+            : Url.RouteUrl("TagYear", new { year = Model.NextYear, tagId = Model.Tag.Id }) %>">
+            <img style="border:none" src="/App_Themes/bloup/images/go-next.png" />
+        </a>
     </div>
 </asp:Content>

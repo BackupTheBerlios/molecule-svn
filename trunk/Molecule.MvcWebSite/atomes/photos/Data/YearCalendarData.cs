@@ -11,5 +11,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Data
         public IEnumerable<CalendarItem> Items { get; set; }
         public int Year { get; set; }
         public ITagInfo Tag { get; set; }
+        public int PreviousYear { get; set; }
+        public int NextYear { get; set; }
     }
 }

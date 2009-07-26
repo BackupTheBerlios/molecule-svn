@@ -31,6 +31,8 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             {
                 Tag = tag,
                 Year = year.Value,
+                PreviousYear = year.Value - 1,
+                NextYear = year.Value + 1,
                 Items = (from i in 12.Times()
                          select CalendarItem.CreateMonth(new DateTime(year.Value, i + 1, 1), tagId)).ToList()
             });
@@ -42,6 +44,10 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             {
                 Tag = !String.IsNullOrEmpty(tagId) ? PhotoLibrary.GetTag(tagId) : null,
                 Year = year,
+                PreviousMonth = month == 1 ? 12 : month - 1,
+                NextMonth = month == 12 ? 1 : month + 1,
+                PreviousYear = month == 1 ? year - 1 : year,
+                NextYear = month == 12 ? year + 1 : year,
                 Month = month,
                 Items = getCalendarItems(year, month, tagId)
             });
