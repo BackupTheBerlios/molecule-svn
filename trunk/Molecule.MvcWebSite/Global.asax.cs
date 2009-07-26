@@ -17,7 +17,7 @@ namespace Molecule.MvcWebSite
 
             routes.MapRoute(
                 "Tag",                                              // Route name
-                "photos/Tag/{id}",                           // URL with parameters
+                "photos/tag/{id}",                           // URL with parameters
                 new { atome = "photos", controller = "Tag", action = "Index", id = ""}  // Parameter defaults
             );
 
@@ -29,32 +29,32 @@ namespace Molecule.MvcWebSite
 
             routes.MapRoute(
                 "TagPhoto",                                              // Route name
-                "photos/Tag/{tagId}/photo/{id}",                           // URL with parameters
+                "photos/tag/{tagId}/photo/{id}",                           // URL with parameters
                 new { atome = "photos", controller = "Photo", action = "Index", id = "", tagId = "" }  // Parameter defaults
                 );
             
             
             routes.MapRoute(
                 "Year",                                              // Route name
-                "photos/Calendar/{year}",                           // URL with parameters
+                "photos/calendar/{year}",                           // URL with parameters
                 new { atome = "photos", controller = "Calendar", action = "Year", year = DateTime.Now.Year }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "Month",                                              // Route name
-                "photos/Calendar/{year}/{month}",                           // URL with parameters
+                "photos/calendar/{year}/{month}",                           // URL with parameters
                 new { atome = "photos", controller = "Calendar", action = "Month" }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "TagYear",                                              // Route name
-                "photos/Tag/{tagId}/Calendar/{year}",                           // URL with parameters
+                "photos/tag/{tagId}/calendar/{year}",                           // URL with parameters
                 new { atome = "photos", controller = "Calendar", action = "Year", year = DateTime.Now.Year }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "TagMonth",                                              // Route name
-                "photos/Tag/{tagId}/Calendar/{year}/{month}",                           // URL with parameters
+                "photos/tag/{tagId}/calendar/{year}/{month}",                           // URL with parameters
                 new { atome = "photos", controller = "Calendar", action = "Month" }  // Parameter defaults
             );
 

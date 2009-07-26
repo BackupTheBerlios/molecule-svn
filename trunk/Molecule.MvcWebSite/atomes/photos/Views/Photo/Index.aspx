@@ -13,8 +13,6 @@
           Html.RenderPartial("PhotoLink", new PhotoLinkData() { Photo = Model.NextPhoto, Tag = Model.CurrentTag
               ,HoverIconUrl = "/App_Themes/bloup/images/go-next.png", Description = "Photo suivante" });
         %><br />
-        <%--<photo:FullSizePhoto ID="FullSizePhoto" runat="server" PhotoId='<%#CurrentPhoto.Id %>' /> --%>
-
         <div id="photo">
             <div id="metadatas" class="metadatas">
                 <%= Html.Grid(Model.Photo.Metadatas.Select((kvp) => new {Key = kvp.Key, Value = kvp.Value}))
@@ -33,14 +31,14 @@
         </div>
         <br />
             
-        <a href="<%= Url.Action("File", "photo", new { id = Model.Photo.Id, size= PhotoFileSize.Raw }, null) %>">
+        <a href="<%= Url.Action("File", "photo", new { id = Model.Photo.Id, size = PhotoFileSize.Raw }, null) %>">
             <div class="ActionImage"><img alt="Original" src="/atomes/photos/images/zoom-original.png" /></div>
             <%= Resources.photo.OriginaleImage %>
         </a>
-        
+
         <%--<photo:Map ID="PhotoMap" runat="server" />--%>
-        
-        <a href="todo">
+        <a href="<%= Url.RouteUrl(Model.CurrentTag != null ? "TagMonth" : "Month",
+        new { year = Model.Photo.Date.Year, month = Model.Photo.Date.Month }) %>">
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<TagHierarchyData>" %>
 <%@ Import Namespace="System.Globalization" %>
 <span style="font-size:120%">
- > <%= Html.RouteLink("Photos", "Tag", new { id = "" }) %>
+<%= Html.RouteLink("Photos", "Tag", new { id = "" }) %>
  <%if (Model.Tag != null)
    {
        foreach (var tag in PhotoLibrary.GetTagHierarchy(Model.Tag.Id))
