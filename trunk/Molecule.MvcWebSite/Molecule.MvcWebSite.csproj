@@ -106,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\photos\Atome.cs" />
     <Compile Include="atomes\photos\Controllers\CalendarController.cs" />
     <Compile Include="atomes\photos\Controllers\TagController.cs" />
     <Compile Include="atomes\photos\Data\CalendarItem.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IAtome.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

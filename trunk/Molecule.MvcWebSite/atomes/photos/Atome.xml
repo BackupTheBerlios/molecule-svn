@@ -2,4 +2,5 @@
 <Atome>
   <Name>Photos</Name>
   <PreferencesPage>Admin.aspx</PreferencesPage>
+  <ClassName>Molecule.MvcWebSite.atomes.photos.Atome</ClassName>
 </Atome>

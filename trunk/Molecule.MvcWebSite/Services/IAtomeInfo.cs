@@ -22,14 +22,16 @@
 // THE SOFTWARE.
 
 using System;
+using Molecule.MvcWebSite;
 
 namespace Molecule.WebSite.Services
 {
-    public interface IAtomeInfo
+    public interface IAtomeInfo : IAtome
     {
         string PreferencesPagePath { get; }
         string Name { get; }
         string Path { get; }
-        bool HasPreferencesPage{get;}
+        bool HasPreferencesPage{ get; }
+        string ClassName { get; }
     }
 }

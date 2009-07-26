@@ -32,6 +32,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Molecule.MvcWebSite;
 
 namespace Molecule.WebSite.Services
 {
@@ -39,13 +40,18 @@ namespace Molecule.WebSite.Services
     {
         Molecule.Serialization.Atome atome;
         string atomePath;
+        IAtome atomeInstance;
+
         internal AtomeInfo(Molecule.Serialization.Atome atome, string atomePath)
         {
             this.atome = atome;
             this.atomePath = atomePath;
+            if(atome.ClassName != null)
+                atomeInstance = (IAtome)Activator.CreateInstance(Type.GetType(atome.ClassName));
         }
-        public string Path { get {return atomePath; } }
+        public string Path { get { return atomePath; } }
         public string Name { get { return atome.Name; } }
+        public string ClassName { get { return atome.ClassName; } }
 
         private string mapAtomeRelativePath(string relativePath)
         {
@@ -70,5 +76,15 @@ namespace Molecule.WebSite.Services
         {
             return Name.GetHashCode();
         }
+
+        #region IAtome Members
+
+        public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
+        {
+            if(atomeInstance != null)
+                atomeInstance.RegisterRoutes(routes);
+        }
+
+        #endregion
     }
 }
