@@ -36,5 +36,9 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             });
         }
 
+        public static string IndexUrl(UrlHelper helper, ITagInfo tag)
+        {
+            return helper.Action("Index", "Tag", new { id = tag != null ? tag.Id : null });
+        }
     }
 }

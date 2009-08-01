@@ -1,10 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PhotoLinkData>" %>
 <div class="PhotoLink">
-<% var navigateUrl = Model.NavigateUrl ?? (Model.Photo != null ?
-       Model.Tag != null ? Url.RouteUrl("TagPhoto", new {id = Model.Photo.Id, tagId = Model.Tag.Id })
-                        : Url.RouteUrl("Photo", new { id = Model.Photo.Id })
-       : "");  %>
-<a href='<%= navigateUrl %>'>
+<% var navigateUrl = Model.NavigateUrl ?? PhotoController.IndexUrl(Url, Model.Photo, Model.Tag); %>
+<a href="<%= navigateUrl %>">
     
     <%if (!String.IsNullOrEmpty(Model.HoverText)){ %>
     <div class="PhotoLink_HoverText"><%= Model.HoverText%></div>
@@ -12,7 +9,7 @@
     <%if (Model.Photo != null)
       { %>
     <div class="PhotoLink_HoverBackground"></div>
-        <img src="<%= Url.Action("File", "photo", new { id = Model.Photo.Id, size= PhotoFileSize.Thumbnail }, null) %>"
+        <img src="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Thumbnail) %>"
         title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail" />
     </a>
     <%} %>

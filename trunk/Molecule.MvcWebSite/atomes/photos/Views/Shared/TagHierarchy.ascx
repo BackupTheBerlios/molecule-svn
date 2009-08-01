@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<TagHierarchyData>" %>
 <%@ Import Namespace="System.Globalization" %>
 <span style="font-size:120%">
-<%= Html.RouteLink("Photos", "Tag", new { id = "" }) %>
+<a href="<%= TagController.IndexUrl(Url, null)%>">Photos</a>
  <%if (Model.Tag != null)
    {
        foreach (var tag in PhotoLibrary.GetTagHierarchy(Model.Tag.Id))
@@ -12,13 +12,11 @@
    }
    if (Model.Year.HasValue)
    {%> > 
-       <%=Html.RouteLink(Model.Year.Value.ToString(),
-           Model.Tag != null ? "TagYear" : "Year", new { year = Model.Year.Value })%> 
+       <a href="<%= CalendarController.YearUrl(Url, Model.Year.Value, Model.Tag)%> "><%= Model.Year %></a>
        <%if (Model.Month.HasValue)
          {%> > 
-           <%=Html.RouteLink(DateTimeFormatInfo.CurrentInfo.GetMonthName(Model.Month.Value),
-               Model.Tag != null ? "TagMonth" : "Month",
-                          new { year = Model.Year.Value, month = Model.Month.Value })%>
+           <a href="<%=CalendarController.MonthUrl(Url, Model.Year.Value, Model.Month.Value, Model.Tag)%>">
+           <%= DateTimeFormatInfo.CurrentInfo.GetMonthName(Model.Month.Value)%></a>
    <%}
    }%>
  </span>

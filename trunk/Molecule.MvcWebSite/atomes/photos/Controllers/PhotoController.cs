@@ -8,7 +8,7 @@ using WebPhoto.Providers;
 using Molecule.MvcWebSite.atomes.photos.Data;
 using Molecule.MvcWebSite.atomes.photos.Controllers;
 
-namespace Molecule.MvcWebSite.photo.Controllers
+namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     [HandleError]
     public class PhotoController : Controller
@@ -25,6 +25,11 @@ namespace Molecule.MvcWebSite.photo.Controllers
                 });
         }
 
+        public static string IndexUrl(UrlHelper helper, IPhotoInfo photo, ITagInfo tag)
+        {
+            return helper.Action("Index", "Photo", new { id = photo != null ? photo.Id : null, tagId = tag != null ? tag.Id : null });
+        }
+
         public ActionResult File(string id, PhotoFileSize size)
         {
             //TODO : data cache
@@ -33,6 +38,11 @@ namespace Molecule.MvcWebSite.photo.Controllers
                 Photo = PhotoLibrary.GetPhoto(id),
                 Size = size
             };
+        }
+
+        public static string FileUrl(UrlHelper helper, IPhotoInfo photo, PhotoFileSize size)
+        {
+            return helper.Action("File", "Photo", new { id = photo != null ? photo.Id : null, size = size });
         }
     }
 
