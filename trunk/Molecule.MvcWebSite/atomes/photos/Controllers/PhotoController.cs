@@ -7,12 +7,18 @@ using WebPhoto.Services;
 using WebPhoto.Providers;
 using Molecule.MvcWebSite.atomes.photos.Data;
 using Molecule.MvcWebSite.atomes.photos.Controllers;
+using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
+using Molecule.MvcWebSite.atomes.photos.Views;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     [HandleError]
     public class PhotoController : Controller
     {
+
+        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoController));
+
         public ActionResult Index(string id, string tagId)
         {
             return View(new PhotoIndexData()

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\log4net.dll</HintPath>
@@ -128,6 +132,7 @@
     <Compile Include="atomes\photos\Services\TagUserAuthorizations.cs" />
     <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photos\Data\TagLinkData.cs" />
+    <Compile Include="atomes\photos\Views\Tag\ZipPhotoFilesResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

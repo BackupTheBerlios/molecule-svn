@@ -8,7 +8,7 @@ using WebPhoto.Services;
 using System.IO;
 using WebPhoto.Providers;
 
-namespace Molecule.MvcWebSite.atomes.photos.Controllers
+namespace Molecule.MvcWebSite.atomes.photos.Views
 {
     public class PhotoFileResult : ActionResult
     {
