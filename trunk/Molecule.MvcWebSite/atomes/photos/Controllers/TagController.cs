@@ -8,10 +8,11 @@ using WebPhoto.Providers;
 using WebPhoto.Services;
 using Molecule.MvcWebSite.atomes.photos.Data;
 using Molecule.MvcWebSite.atomes.photos.Views;
+using Molecule.MvcWebSite.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
-    public class TagController : Controller
+    public class TagController : PageControllerBase
     {
         public ActionResult Index(string id)
         {
@@ -19,16 +20,6 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             if (!String.IsNullOrEmpty(id))
                 tag = PhotoLibrary.GetTag(id);
 
-            //if (photos.Any())
-            //{
-            //TODO
-            //this.PhotoListView.DataSource = photos;
-            //this.PhotoListView.DataBind();
-            //this.CalendarLink.NavigateUrl = MonthCalendar.GetUrlFor(photos.First().Date, tagId);
-            //this.DownloadLink.NavigateUrl = Download.GetUrlFor(tagId, PhotoDataPager.StartRowIndex, PhotoDataPager.PageSize );				
-            //}
-            //else
-            //this.photosPlaceHolder.Visible = false;
             return View(new TagIndexData()
             {
                 SubTags = PhotoLibrary.GetTagsByTag(id),

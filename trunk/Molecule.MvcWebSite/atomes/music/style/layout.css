@@ -1,0 +1,147 @@
+select
+{
+    width: 100%;
+    height:150px;
+}
+
+#artistscontainer
+{
+    width: 48%;
+    height: 180px;
+    position: relative;
+    float: left;
+}
+
+#albumscontainer
+{
+    position: relative;
+    float: right;
+    width: 49%;
+    height: 180px;
+    display: block;
+    top: 0px;
+    left: 0px;
+}
+
+.itemList
+{
+	width:100%;
+}
+
+#navigationPanel
+{
+    position: static;
+    height: 300px;
+    top: 300px;
+}
+
+#playlistcontainer
+{
+    width: 49%;
+    float: right;
+    position: relative;
+    height: 230px;
+}
+
+#playerpanel
+{
+    height: 147px;
+}
+#playerControls
+{
+	top:17px;
+    height: 230px;
+    float: left;
+    width: 48%;
+    position: relative;
+}
+
+#songscontainer img,
+#playerControls img,
+#playlistTable a,
+#playlistTable img
+{
+	cursor:pointer;
+	border-style:none;
+}
+
+.listRemove span
+{
+	visibility:hidden;
+}
+
+#playlistTable
+{
+	border-collapse: collapse;
+}
+
+#songscontainer
+{
+	position: relative;
+	margin-top:10px;
+}
+
+#songscontainer table
+{
+    border-collapse: collapse;
+    width:100%;
+}
+
+#currentSongPositionLabel
+{
+	margin-top:10px;
+}
+
+#currentSongArtistLabel
+{
+	margin-top:8px;
+}
+
+#currentSongTitleLabel
+{
+	margin-top:15px;
+	font-size:110%;
+	font-weight:bolder;
+}
+
+#songInformationPanel
+{
+	clear:both;
+}
+
+#songsLabelPanel
+{
+	width:68%;
+	float:left;
+	position: relative;
+}
+
+#covertArtPanel
+{
+	position:relative;
+	float:right;
+	display:block;
+	top:0px;
+	left:0px;
+}
+
+#coverArtPanel img
+{
+    width: 100px;
+}
+
+#nextButton
+{
+	margin-right:35px;
+}
+
+#currentVolumeLabel
+{
+	display:inline-block;
+	position:relative;
+	width:30px;
+	bottom:8px;
+}
+
+
+

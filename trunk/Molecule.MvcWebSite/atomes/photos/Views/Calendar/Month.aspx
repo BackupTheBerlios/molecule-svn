@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master"
-Inherits="System.Web.Mvc.ViewPage<MonthCalendarData>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master" Inherits="System.Web.Mvc.ViewPage<MonthCalendarData>" %>
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

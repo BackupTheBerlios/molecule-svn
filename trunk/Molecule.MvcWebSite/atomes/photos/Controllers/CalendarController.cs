@@ -9,10 +9,11 @@ using Molecule.MvcWebSite.atomes.photos.Data;
 using WebPhoto.Providers;
 using Mono.Rocks;
 using System.Globalization;
+using Molecule.MvcWebSite.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
-    public class CalendarController : Controller
+    public class CalendarController : PageControllerBase
     {   
         public ActionResult Year(int? year, string tagId)
         {

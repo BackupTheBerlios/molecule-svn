@@ -10,11 +10,12 @@ using Molecule.MvcWebSite.atomes.photos.Controllers;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using Molecule.MvcWebSite.atomes.photos.Views;
+using Molecule.MvcWebSite.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     [HandleError]
-    public class PhotoController : Controller
+    public class PhotoController : PageControllerBase
     {
 
         private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoController));

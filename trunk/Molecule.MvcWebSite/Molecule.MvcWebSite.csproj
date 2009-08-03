@@ -110,6 +110,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="atomes\music\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\music\Atome.cs" />
+    <Compile Include="atomes\music\Controllers\PlayerController.cs" />
+    <Compile Include="atomes\music\CoverArt\CoverArtFile.aspx.cs">
+      <DependentUpon>CoverArtFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\music\CoverArt\CoverArtService.cs" />
+    <Compile Include="atomes\music\CoverArt\CoverArtSpec.cs" />
+    <Compile Include="atomes\music\Data\IndexData.cs" />
+    <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\music\Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="atomes\music\Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="atomes\music\IO\CompressionHelper.cs" />
+    <Compile Include="atomes\music\Lastfm\Account.cs" />
+    <Compile Include="atomes\music\Lastfm\AudioscrobblerConnection.cs" />
+    <Compile Include="atomes\music\Lastfm\IQueue.cs" />
+    <Compile Include="atomes\music\Lastfm\LastfmCore.cs" />
+    <Compile Include="atomes\music\Lastfm\LastfmService.cs" />
+    <Compile Include="atomes\music\Lastfm\Queue.cs" />
+    <Compile Include="atomes\music\Services\MusicLibrary.cs" />
     <Compile Include="atomes\photos\Atome.cs" />
     <Compile Include="atomes\photos\Controllers\CalendarController.cs" />
     <Compile Include="atomes\photos\Controllers\TagController.cs" />
@@ -136,7 +168,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PageControllerBase.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -145,6 +177,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IAtome.cs" />
+    <Compile Include="Models\PageData.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -262,6 +295,20 @@
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="App_Themes\bloup\molecule.cssx" />
     <None Include="Atome.xsd" />
+    <Content Include="atomes\music\Views\Web.config" />
+    <Content Include="atomes\music\Admin.aspx" />
+    <Content Include="atomes\music\Atome.xml" />
+    <Content Include="atomes\music\CoverArt\CoverArtFile.aspx" />
+    <Content Include="atomes\music\Views\Player\Index.aspx" />
+    <Content Include="atomes\music\Download.aspx" />
+    <Content Include="atomes\music\scripts\default.js" />
+    <Content Include="atomes\music\scripts\sm2player.js" />
+    <Content Include="atomes\music\scripts\soundmanager2-nodebug-jsmin.js" />
+    <Content Include="atomes\music\scripts\soundmanager2.js" />
+    <Content Include="atomes\music\soundmanager2.swf" />
+    <Content Include="atomes\music\stublibrary\song1.mp3" />
+    <Content Include="atomes\music\stublibrary\song2.mp3" />
+    <Content Include="atomes\music\style\layout.css" />
     <Content Include="atomes\photos\images\frame.png" />
     <Content Include="atomes\photos\images\internet-web-browser.png" />
     <Content Include="atomes\photos\images\office-calendar.png" />
@@ -294,7 +341,6 @@
     <Content Include="Views\Shared\Page.Master" />
     <Content Include="atomes\photos\Views\Web.config" />
     <Content Include="atomes\photos\Atome.xml" />
-    <Content Include="atomes\a2\Atome.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Molecule\Molecule.csproj">
@@ -309,10 +355,6 @@
       <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
       <Name>WebPhoto.Providers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="atomes\a1\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

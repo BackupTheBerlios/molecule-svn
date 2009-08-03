@@ -38,6 +38,7 @@
     <%--<div id="updateProgress" class="updatePanel">
         <asp:Label runat="server" Text="<%$ Resources:Common,Loading %>" />
     </div>--%>
+    <% var data = (Molecule.MvcWebSite.Models.PageData)ViewData["PageData"]; %>
     <div id="pagePanel">
         <div id="header">
             <h1>
@@ -54,22 +55,18 @@
         <div id="sideBar">
             <div id="menuPanel">
                 <div class="menuContent" id="menuContent">
-                    <%--<%$Resources:molecule,Welcome%>--%>Welcome
+                <%= Resources.molecule.Welcome %>
+                 
+                    <%--<%$Resources:molecule,Welcome%>--%>
                     <%--<asp:LoginName runat="server" />--%>
                     !
                     <ul>
-                        <%--<asp:Repeater runat="server" DataSourceID="SiteMapDataSource">
-                            <ItemTemplate>
-                                <asp:PlaceHolder runat="server" Visible='<%# AtomeService.IsCurrentUserAuthorized((string)Eval("Url")) %>'>
-                                    <li>
-                                        <asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>' Text='<%# Eval("Title") %>'></asp:HyperLink></li>
-                                </asp:PlaceHolder>
-                            </ItemTemplate>
-                        </asp:Repeater>--%>
+                    <% foreach (var atome in data.Atomes){%>
+                        <li><a href="/<%= atome.Name %>/"><%= atome.Name %></a></li>
+
+                    <% } %>
                     </ul>
-                    <%--<asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" ShowStartingNode="False" />
-                    <asp:LoginStatus runat="server" />
-                    </asp:Panel>--%>
+                    <%--<asp:LoginStatus runat="server" />--%>
                 </div>
                 <div id="logPanel">
                     <%--<asp:LoginView runat="server">

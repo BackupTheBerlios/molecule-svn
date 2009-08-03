@@ -22,51 +22,7 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
 <% } %>
 </ul>
  <%}%>
-    
-<%--<asp:PlaceHolder runat="server" ID="photosPlaceHolder">
-<h2>Photos</h2>
-    <asp:ListView ID="PhotoListView" runat="server" 
-                        onpagepropertieschanging="PhotoListView_PagePropertiesChanging">
-        <ItemTemplate>
-            <photo:PhotoLink runat="server" TagId='<%# tagId %>' PhotoId='<%# Eval("Id") %>' />
-        </ItemTemplate>
-        <LayoutTemplate>
-            <div id="itemPlaceholder" runat="server">
-            </div>
-        </LayoutTemplate>
-    </asp:ListView>
-    <br />
-    <asp:DataPager runat="server" ID="PhotoDataPager" PagedControlID="PhotoListView"
-        QueryStringField="page" PageSize="21">
-        <Fields>
-            <asp:NextPreviousPagerField ButtonType="Link" PreviousPageText="<"
-                ShowNextPageButton="false" ShowPreviousPageButton="True" />
-            <asp:NumericPagerField />
-            <asp:NextPreviousPagerField ButtonType="Link" NextPageText=">"
-                ShowPreviousPageButton="false" ShowNextPageButton="True"  />
-        </Fields>
-    </asp:DataPager>
-    <br />
-<asp:HyperLink runat="server" id="CalendarLink">
-<div class="ActionImage">
-    <img alt="calendar" src="images/office-calendar.png" />
-</div>
-<asp:Literal ID="Literal1" runat="server" Text='<%$Resources:photo,Calendar %>' />
-</asp:HyperLink>
 
-<asp:HyperLink runat="server" id="DownloadLink">
-<div class="ActionImage">
-    <img alt="download" src="../../App_Themes/<%= Theme %>/images/document-save.png" />
-</div>
-<asp:Literal ID="Literal2" runat="server" Text='<%$Resources:photo,DownloadPage %>' />
-</asp:HyperLink>
-
-
-</asp:PlaceHolder>
-
-
-
---%>
 <br />
 <%  var first = Model.Photos.FirstOrDefault();
     if (first != null)
