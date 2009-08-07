@@ -28,6 +28,11 @@ select
 	width:100%;
 }
 
+.navigationList
+{
+	overflow: auto; height: 150px;
+}
+
 #navigationPanel
 {
     position: static;

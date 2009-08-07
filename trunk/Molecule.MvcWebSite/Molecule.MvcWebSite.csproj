@@ -111,6 +111,7 @@
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\music\Atome.cs" />
+    <Compile Include="atomes\music\Controllers\LibraryController.cs" />
     <Compile Include="atomes\music\Controllers\PlayerController.cs" />
     <Compile Include="atomes\music\CoverArt\CoverArtFile.aspx.cs">
       <DependentUpon>CoverArtFile.aspx</DependentUpon>
@@ -118,7 +119,10 @@
     </Compile>
     <Compile Include="atomes\music\CoverArt\CoverArtService.cs" />
     <Compile Include="atomes\music\CoverArt\CoverArtSpec.cs" />
+    <Compile Include="atomes\music\Data\AlbumData.cs" />
+    <Compile Include="atomes\music\Data\ArtistData.cs" />
     <Compile Include="atomes\music\Data\IndexData.cs" />
+    <Compile Include="atomes\music\Data\SongData.cs" />
     <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>

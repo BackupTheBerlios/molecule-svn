@@ -229,7 +229,7 @@ namespace WebMusic.Services
 
         protected override string ProviderDirectory
         {
-            get { return HttpContext.Current.Server.MapPath("~/atomes/webmusic/bin/providers"); }
+            get { return HttpContext.Current.Server.MapPath("~/atomes/music/bin/providers"); }
         }
     }
 }

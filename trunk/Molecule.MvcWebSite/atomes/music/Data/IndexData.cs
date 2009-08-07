@@ -8,8 +8,8 @@ namespace Molecule.MvcWebSite.atomes.music.Data
 {
     public class IndexData
     {
-        public IEnumerable<IArtist> Artists { get; set; }
-        public IEnumerable<IAlbum> Albums { get; set; }
-        public IEnumerable<ISong> Songs { get; set; }
+        public IEnumerable<IArtistInfo> Artists { get; set; }
+        public IEnumerable<IAlbumInfo> Albums { get; set; }
+        public IEnumerable<ISongInfo> Songs { get; set; }
     }
 }

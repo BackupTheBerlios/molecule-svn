@@ -10,10 +10,23 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
             background: url("/App_Themes/bloup/images/list-remove.png") no-repeat;
         }
     </style>
+    <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getJSON("/Music/Library/Artists", function(artists) {
+                $.each(artists, function(i, item) {
+                    $("#artistTable").append("<li>" + item.Name + "</li>");
+                });
+            });
+        });
+
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-
     <div id="fileNotFoundPanel" class="informationPanel">
         <img alt="Warning" src="/App_Themes/bloup/images/dialog-warning.png" />
         <%= Resources.webmusic.SongError %>
@@ -59,130 +72,65 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <div id="navigationPanel">
         <div id="artistscontainer">
             <h2><%= Resources.webmusic.Artists %></h2>
-            <div id="artistList" style="overflow: auto; height: 150px;" class="thinBox">
-                <%--<asp:DataList ID="arl" runat="server" DataSourceID="ArtistDataSource" DataKeyField="Id"
-                    OnSelectedIndexChanged="ArtistList_SelectedIndexChanged" CssClass="itemList hoverTable">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>' CommandArgument='<%# Eval("Id") %>'
-                            CommandName="Select" />
-                    </ItemTemplate>
-                </asp:DataList>
-                <asp:ObjectDataSource ID="ArtistDataSource" runat="server" SelectMethod="GetArtists"
-                    TypeName="WebMusic.Services.MusicLibrary"></asp:ObjectDataSource>--%>
+            <div class="navigationList thinBox">
+                <ul id="artistTable">
+                </ul>
             </div>
         </div>
         <div id="albumscontainer">
             <h2><%= Resources.webmusic.Albums %></h2>
-            <div id="albumList" style="overflow: auto; height: 150px;" class="thinBox">
-                <%--<asp:UpdatePanel ID="albumUpdatePanel" UpdateMode="Conditional" runat="server" ChildrenAsTriggers="false">
-                    <ContentTemplate>
-                        <asp:DataList ID="all" runat="server" DataSourceID="AlbumDataSource" DataKeyField="Id"
-                            OnSelectedIndexChanged="AlbumList_SelectedIndexChanged" CssClass="itemList hoverTable">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="aib" runat="server" Text='<%# Eval("Name") %>' CommandArgument='<%# Eval("Id") %>'
-                                    CommandName="Select" />
-                            </ItemTemplate>
-                        </asp:DataList>
-                        <asp:ObjectDataSource ID="AlbumDataSource" runat="server" SelectMethod="GetAlbumsByArtist"
-                            TypeName="WebMusic.Services.MusicLibrary">
-                            <SelectParameters>
-                                <asp:SessionParameter Name="artist" SessionField="music.currentArtist" Type="String" />
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="arl" EventName="ItemCommand" />
-                    </Triggers>
-                </asp:UpdatePanel>--%>
+            <div class="navigationList thinBox">
+                <table class="itemList hoverTable">
+                <%foreach (var album in Model.Albums)
+                  { %>
+                    <tr><td><a href=""><%= album.Name %></a></td></tr>
+                <%} %>
+                </table>
             </div>
         </div>
     </div>
     <div id="songscontainer">
-        <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
-            <ContentTemplate>
-                <table id="songsView" class="hoverTable">
-                    <asp:Repeater ID="sv" runat="server" DataSourceID="SongDataSource">
-                        <HeaderTemplate>
-                            <thead>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" ID="til" Text="<%= Resources.webmusic.Title %>" />
-                                    </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="arl" Text="<%= Resources.webmusic.Artist %>" />
-                                    </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="all" Text="<%$ Resources:webmusic,Album %>" />
-                                    </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="trl" Text="<%$ Resources:webmusic,Track %>" />
-                                    </td>
-                                    <td>
-                                        <asp:Label runat="server" ID="dl" Text="<%$ Resources:webmusic,Duration %>" />
-                                    </td>
-                                    <td style="text-align: right">
-                                        <img alt="" src="/App_Themes/<%= Theme %>/images/media-playback-start-small.png"
-                                            onclick="songsView_onclick('playAll')" />
-                                        <img alt="" src="/App_Themes/<%= Theme %>/images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
-                                        <img alt="" src="/App_Themes/<%= Theme %>/images/document-save.png" onclick="songsView_onclick('downloadAll')" />
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <tr>
-                                <td style="display: none">
-                                    <%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>
-                                </td>
-                                <td>
-                                    <%# Server.HtmlEncode(((ISong)Container.DataItem).Title) %>
-                                </td>
-                                <td>
-                                    <%# Server.HtmlEncode(((ISong)Container.DataItem).Artist.Name) %>
-                                </td>
-                                <td>
-                                    <%# Server.HtmlEncode(((ISong)Container.DataItem).Album.Name) %>
-                                </td>
-                                <td>
-                                    <%# Eval("AlbumTrack") %>
-                                </td>
-                                <td>
-                                    <%# FormatDuration(((ISong)Container.DataItem).Duration) %>
-                                </td>
-                                <td style="text-align: right">
-                                    <img alt="" src="/App_Themes/<%= Theme %>/images/media-playback-start-small.png"
-                                        onclick="songsViewItem_onclick(this,'play')" />
-                                    <img alt="" src="/App_Themes/<%= Theme %>/images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
-                                    <a href="Download.aspx?songId=<%# Server.UrlEncode(((ISong)(Container.DataItem)).Id)%>">
-                                        <img alt="" src="/App_Themes/<%= Theme %>/images/document-save.png" /></a>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            </tbody>
-                        </FooterTemplate>
-                    </asp:Repeater>
-                    <asp:ObjectDataSource ID="SongDataSource" runat="server" SelectMethod="GetSongByArtistAndAlbum"
-                        TypeName="WebMusic.Services.MusicLibrary">
-                        <SelectParameters>
-                            <asp:SessionParameter Name="album" SessionField="music.currentAlbum" Type="String" />
-                            <asp:SessionParameter Name="artist" SessionField="music.currentArtist" Type="String" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                </table>
-            </ContentTemplate>
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="all" EventName="ItemCommand" />
-            </Triggers>
-        </asp:UpdatePanel>--%>
+        <table id="songsView" class="hoverTable">
+            <thead>
+                <tr>
+                    <td><%= Resources.webmusic.Title %></td>
+                    <td><%= Resources.webmusic.Artist %></td>
+                    <td><%= Resources.webmusic.Album %></td>
+                    <td><%= Resources.webmusic.Track %></td>
+                    <td><%= Resources.webmusic.Duration %></td>
+                    <td style="text-align: right">
+                        <img alt="" src="/App_Themes/bloup/images/media-playback-start-small.png" onclick="songsView_onclick('playAll')" />
+                        <img alt="" src="/App_Themes/bloup/images/list-add.png" onclick="songsView_onclick('enqueueAll')" />
+                        <img alt="" src="/App_Themes/bloup/images/document-save.png" onclick="songsView_onclick('downloadAll')" />
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            <%--<%foreach (var song in Model.Songs)
+              { %>
+                <tr>
+                    <td style="display: none"><%= Server.UrlEncode(song.Id)%></td>
+                    <td><%= Server.HtmlEncode(song.Title) %></td>
+                    <td><%= Server.HtmlEncode(song.Artist.Name)%></td>
+                    <td><%= Server.HtmlEncode(song.Album.Name)%></td>
+                    <td><%= song.AlbumTrack.ToString() %></td>
+                    <td><%= song.Duration.Minutes.ToString("00") + ":" + song.Duration.Seconds.ToString("00") %></td>
+                    <td style="text-align: right">
+                        <img alt="" src="/App_Themes/bloup/images/media-playback-start-small.png"
+                            onclick="songsViewItem_onclick(this,'play')" />
+                        <img alt="" src="/App_Themes/bloup/images/list-add.png" onclick="songsViewItem_onclick(this,'enqueue')" />
+                        <a href="Download.aspx?songId=<%= Server.UrlEncode(song.Id)%>">
+                            <img alt="" src="/App_Themes/bloup/images/document-save.png" /></a>
+                    </td>
+                </tr>
+             <%} %>--%>
+            </tbody>
+        </table>
     </div>
     
-    <script type="text/javascript" src="/atomes/music/scripts/default.js" />
-    <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js" />
-    <script type="text/javascript" src="/atomes/music/scripts/sm2player.js" />
+    
     
     <script type="text/javascript">
-        init();
+        
     </script>
 </asp:Content>

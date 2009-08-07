@@ -181,7 +181,7 @@ namespace WebMusic.Providers.Stub
                 get
                 {
                     string virtualPath = AlbumTrack % 2 == 1 ? "song1.mp3" : "song2.mp3";
-                    return HttpContext.Current.Server.MapPath("/atomes/webmusic/stublibrary/" + virtualPath);
+                    return HttpContext.Current.Server.MapPath("/atomes/music/stublibrary/" + virtualPath);
                 }
             }
 

@@ -23,7 +23,7 @@ namespace WebMusic.CoverArt
             {
                 log.Debug("Requested cover art for the song with ID ");
             }
-            ISong song = Services.MusicLibrary.GetSong(id);
+            var song = Services.MusicLibrary.GetSong(id);
             if (song == null)
                 throw new ApplicationException("Unknown media with id " + id);
             string coverArtPath = CoverArtService.FetchCoverArt(song.Artist.Name, song.Album.Name);

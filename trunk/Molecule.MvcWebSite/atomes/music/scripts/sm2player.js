@@ -1,4 +1,4 @@
-﻿soundManager.url = '/';
+﻿
 var currentSong;
 var currentVolume = 70;
 var volumeIncrement = 5;

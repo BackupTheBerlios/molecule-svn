@@ -108,6 +108,7 @@
     <Compile Include="Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\JpegHeaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceNotFoundException.cs" />
     <Compile Include="Runtime\Plugin.cs" />

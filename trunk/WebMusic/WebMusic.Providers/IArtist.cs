@@ -28,10 +28,13 @@ using System.Text;
 
 namespace WebMusic.Providers
 {
-    public interface IArtist
+    public interface IArtistInfo
     {
-        IEnumerable<IAlbum> Albums { get; }
         string Name { get; }
         string Id { get; }
+    }
+    public interface IArtist : IArtistInfo
+    {
+        IEnumerable<IAlbum> Albums { get; }
     }
 }

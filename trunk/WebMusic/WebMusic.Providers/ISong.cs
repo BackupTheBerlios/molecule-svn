@@ -28,14 +28,18 @@ using System.Text;
 
 namespace WebMusic.Providers
 {
-    public interface ISong
+    public interface ISongInfo
     {
         string Id { get; }
         string Title { get; }
-        IArtist Artist { get; }
-        IAlbum Album { get; }
         string MediaFilePath { get; }
         uint? AlbumTrack { get; }
-        TimeSpan Duration {get;}
+        TimeSpan Duration { get; }
+    }
+
+    public interface ISong : ISongInfo
+    {
+        IArtist Artist { get; }
+        IAlbum Album { get; }
     }
 }

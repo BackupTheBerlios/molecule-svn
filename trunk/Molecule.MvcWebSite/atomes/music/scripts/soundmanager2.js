@@ -76,7 +76,7 @@ function SoundManager(smURL,smID) {
   this.version = null;
   this.versionNumber = 'V2.95a.20090501';
   this.movieURL = null;
-  this.url = null;
+  this.url = '/atomes/music/';
   this.altURL = null;
   this.swfLoaded = false;
   this.enabled = false;
