@@ -34,7 +34,8 @@
      		            column.For(x => x.Value);
      	            }) %>
             </div>
-            <img src="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Normal) %>" alt="" />
+            <img src="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Normal) %>"
+                alt="" width="<%=Model.PhotoSize.Width %>" height="<%=Model.PhotoSize.Height %>" />
         </div>
         <div id="photoDescriptionContainer" style="font-size: 110%">
             <p>

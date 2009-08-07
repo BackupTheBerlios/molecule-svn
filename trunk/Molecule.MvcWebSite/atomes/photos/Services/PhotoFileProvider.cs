@@ -32,6 +32,7 @@ using Molecule.IO;
 using Mono.Rocks;
 using Molecule.Web;
 using Molecule.Configuration;
+using Molecule.Metadata;
 
 
 namespace WebPhoto.Services
@@ -66,6 +67,14 @@ namespace WebPhoto.Services
                 generatePhotoFile(imagePath, thumbnailPath, size, clip);
             }
             return thumbnailPath;
+        }
+
+        public static Size GetPhotoSize(string imagePath, PhotoFileSize size)
+        {
+            if (ThumbnailClip == PhotoFileClip.Square && size == PhotoFileSize.Thumbnail)
+                return new Size((int)size, (int)size);
+            else
+                return JpegHeaderReader.GetDimensions(GetResizedPhoto(imagePath, size));
         }
 
         public static int QualityLevel

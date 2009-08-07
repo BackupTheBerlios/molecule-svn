@@ -29,6 +29,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Molecule.Security;
+using System.Drawing;
 
 namespace WebPhoto.Services
 {

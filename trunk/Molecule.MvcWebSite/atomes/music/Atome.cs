@@ -18,5 +18,7 @@ namespace Molecule.MvcWebSite.atomes.music
                 new { atome = "music", controller = "Player", action = "Index" }  // Parameter defaults
             );
         }
+
+        
     }
 }

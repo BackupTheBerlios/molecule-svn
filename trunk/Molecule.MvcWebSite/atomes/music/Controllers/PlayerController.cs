@@ -13,5 +13,10 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
         {
             return View();
         }
+
+        public ActionResult File(string songId)
+        {
+            return null;
+        }
     }
 }

@@ -10,43 +10,27 @@ using WebPhoto.Providers;
 
 namespace Molecule.MvcWebSite.atomes.photos.Views
 {
-    public class PhotoFileResult : ActionResult
+    public class PhotoFileResult : FilePathResult
     {
 
-        public PhotoFileResult()
+        public PhotoFileResult(IPhotoInfo photo, PhotoFileSize size)
+            : base(getFile(photo, size), "image/jpeg")
         {
         }
 
-        public PhotoFileSize Size { get; set; }
-        public IPhotoInfo Photo { get; set; }
-
         public override void ExecuteResult(ControllerContext context)
         {
-            //if (!String.IsNullOrEmpty(FileDownloadName)) {
-            //    context.HttpContext.Response.AddHeader("content-disposition",
-            //      "attachment; filename=" + this.FileDownloadName);
-            //}
-
-            //string filePath = context.HttpContext.Server.MapPath(this.VirtualPath);
             var response = context.HttpContext.Response;
-
-            FileInfo fileInfo = null;
-            if (Size != PhotoFileSize.Raw)
-            {
-                var thumbFile = PhotoFileProvider.GetResizedPhoto(Photo.MediaFilePath, Size);
-                fileInfo = new FileInfo(thumbFile);
-            }
-            else
-            {
-                fileInfo = new FileInfo(Photo.MediaFilePath);
-            }
-            response.AddHeader("Content-Length", fileInfo.Length.ToString());
-            response.ContentType = "image/jpeg";
             response.Cache.SetExpires(DateTime.Now.Add(TimeSpan.FromDays(30)));
             response.Cache.SetCacheability(HttpCacheability.Public);
             response.Cache.SetValidUntilExpires(false);
-            response.WriteFile(fileInfo.FullName);
-            response.Flush();
+            base.ExecuteResult(context);
+        }
+
+        private static string getFile(IPhotoInfo photo, PhotoFileSize size)
+        {
+            return size != PhotoFileSize.Raw ? PhotoFileProvider.GetResizedPhoto(photo.MediaFilePath, size)
+                                             : photo.MediaFilePath;
         }
     }
 }

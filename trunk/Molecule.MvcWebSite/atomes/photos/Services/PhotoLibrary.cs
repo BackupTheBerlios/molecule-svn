@@ -39,7 +39,6 @@ namespace WebPhoto.Services
         
         protected override void OnProviderUpdated()
         {
-            System.Diagnostics.Trace.WriteLine("OnProviderUpdated");
             CallProvider(provider =>
                 rootTags = provider.GetRootTags().ToList());
 
@@ -77,7 +76,7 @@ namespace WebPhoto.Services
 
         #region Helpers
 
-        private static IEnumerable<ITag> getAllTags(IEnumerable<ITag> rootTags)
+        internal static IEnumerable<ITag> getAllTags(IEnumerable<ITag> rootTags)
         {
             foreach (var tag in rootTags)
             {

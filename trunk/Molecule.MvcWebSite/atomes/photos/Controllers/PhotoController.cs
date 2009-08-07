@@ -22,13 +22,15 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 
         public ActionResult Index(string id, string tagId)
         {
+            var photo = PhotoLibrary.GetPhoto(id);
             return View(new PhotoIndexData()
                 {
-                    Photo = PhotoLibrary.GetPhoto(id),
+                    Photo = photo,
                     NextPhoto = PhotoLibrary.GetNextPhoto(id, tagId),
                     PreviousPhoto = PhotoLibrary.GetPreviousPhoto(id, tagId),
                     CurrentTag = !String.IsNullOrEmpty(tagId) ? PhotoLibrary.GetTag(tagId) : null,
                     PhotoTags = PhotoLibrary.GetTagsByPhoto(id),
+                    PhotoSize = PhotoFileProvider.GetPhotoSize(photo.MediaFilePath, PhotoFileSize.Normal)
                 });
         }
 
@@ -40,11 +42,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
         public ActionResult File(string id, PhotoFileSize size)
         {
             //TODO : data cache
-            return new PhotoFileResult()
-            {
-                Photo = PhotoLibrary.GetPhoto(id),
-                Size = size
-            };
+            return new PhotoFileResult(PhotoLibrary.GetPhoto(id), size);
         }
 
         public static string FileUrl(UrlHelper helper, IPhotoInfo photo, PhotoFileSize size)
