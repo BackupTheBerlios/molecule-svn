@@ -20,6 +20,9 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             return new JsonResult() { Data = MusicLibrary.GetAlbums().Select((a) => new AlbumData(a)) };
         }
 
-        
+        public JsonResult AlbumsByArtist(string id)
+        {
+            return new JsonResult() { Data = MusicLibrary.GetAlbumsByArtist(id).Select((a) => new AlbumData(a)) };
+        }
     }
 }

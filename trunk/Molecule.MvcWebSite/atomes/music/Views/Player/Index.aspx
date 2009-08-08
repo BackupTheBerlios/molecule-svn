@@ -16,12 +16,38 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            loadArtists();
+            loadAlbums();
+        });
+
+        function loadArtists() {
             $.getJSON("/Music/Library/Artists", function(artists) {
                 $.each(artists, function(i, item) {
-                    $("#artistTable").append("<li>" + item.Name + "</li>");
+                    var a = $("<a href='#'>" + item.Name + "</a>");
+                    a.click(function(e) {
+                        e.preventDefault();
+                        loadAlbumByArtist(item.Id);
+                    });
+                    $("#artistList").append($("<li/>").append(a));
                 });
+                $("#artistList a")
             });
-        });
+        }
+        
+        function loadAlbums() {
+            $.getJSON("/Music/Library/Albums", displayAlbums);
+        }
+
+        function loadAlbumByArtist(id) {
+            $.getJSON("/Music/Library/AlbumsByArtist/"+id, displayAlbums);
+        }
+
+        function displayAlbums(albums) {
+            $("#albumList li").remove();
+            $.each(albums, function(i, item) {
+                $("#albumList").append("<li><a href='#'>" + item.Name + "</a></li>");
+            });
+        }
 
     </script>
 
@@ -73,19 +99,15 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <div id="artistscontainer">
             <h2><%= Resources.webmusic.Artists %></h2>
             <div class="navigationList thinBox">
-                <ul id="artistTable">
+                <ul id="artistList">
                 </ul>
             </div>
         </div>
         <div id="albumscontainer">
             <h2><%= Resources.webmusic.Albums %></h2>
             <div class="navigationList thinBox">
-                <table class="itemList hoverTable">
-                <%foreach (var album in Model.Albums)
-                  { %>
-                    <tr><td><a href=""><%= album.Name %></a></td></tr>
-                <%} %>
-                </table>
+                <ul id="albumList">
+                </ul>
             </div>
         </div>
     </div>
