@@ -51,7 +51,8 @@ namespace Molecule.MvcWebSite.atomes.music.Data
 
         public string Duration
         {
-            get { return ((int)Math.Truncate(song.Duration.TotalMinutes)) + ":" + song.Duration.Seconds; }
+            get { return ((int)Math.Truncate(song.Duration.TotalMinutes)).ToString("00")
+                + ":" + song.Duration.Seconds.ToString("00"); }
         }
     }
 }
