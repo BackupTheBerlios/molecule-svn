@@ -16,36 +16,67 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            loadArtists();
-            loadAlbums();
+            getArtists(updateArtistList);
+            getAlbums(updateAlbumList);
         });
 
-        function loadArtists() {
-            $.getJSON("/Music/Library/Artists", function(artists) {
-                $.each(artists, function(i, item) {
-                    var a = $("<a href='#'>" + item.Name + "</a>");
-                    a.click(function(e) {
-                        e.preventDefault();
-                        loadAlbumByArtist(item.Id);
-                    });
-                    $("#artistList").append($("<li/>").append(a));
-                });
-                $("#artistList a")
-            });
-        }
-        
-        function loadAlbums() {
-            $.getJSON("/Music/Library/Albums", displayAlbums);
+        function getArtists(callback) {
+            $.getJSON("/Music/Library/Artists", callback);
         }
 
-        function loadAlbumByArtist(id) {
-            $.getJSON("/Music/Library/AlbumsByArtist/"+id, displayAlbums);
+        function getAlbums(callback) {
+            $.getJSON("/Music/Library/Albums", callback);
         }
 
-        function displayAlbums(albums) {
+        function getAlbumByArtist(id, callback) {
+            $.getJSON("/Music/Library/AlbumsByArtist/"+id, callback);
+        }
+
+        function getSongsByAlbum(id, callback) {
+            $.getJSON("/Music/Library/SongsByAlbum/" + id, callback);
+        }
+
+        function updateAlbumList(albums) {
             $("#albumList li").remove();
             $.each(albums, function(i, item) {
-                $("#albumList").append("<li><a href='#'>" + item.Name + "</a></li>");
+                var a = $("<a href='#'>" + item.Name + "</a>");
+                a.click(function(e) {
+                e.preventDefault();
+                getSongsByAlbum(item.Id, updateSongList);
+                });
+                $("#albumList").append($("<li/>").append(a));
+            });
+        }
+
+        function updateArtistList(artists) {
+            $("#artistList li").remove();
+            $.each(artists, function(i, item) {
+                var a = $("<a href='#'>" + item.Name + "</a>");
+                a.click(function(e) {
+                e.preventDefault();
+                getAlbumByArtist(item.Id, updateAlbumList);
+                });
+                $("#artistList").append($("<li/>").append(a));
+            });
+        }
+
+        function updateSongList(songs) {
+            $("#songsView > tbody tr").remove();
+            $.each(songs, function(i, song) {
+                $("#songsView").append("<tr><td style='display: none'>" + song.Id + "</td>\
+                    <td>" + song.Title + "</td>\
+                    <td>" + song.ArtistName + "</td>\
+                    <td>" + song.AlbumName + "</td>\
+                    <td>" + song.AlbumTrack + "</td>\
+                    <td>" + song.Duration + "</td>\
+                    <td style='text-align: right'>\
+                        <img alt='' src='/App_Themes/bloup/images/media-playback-start-small.png'\
+                            onclick=\"songsViewItem_onclick(this,'play')\" />\
+                        <img alt='' src=\"/App_Themes/bloup/images/list-add.png\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
+                        <a href=\"\">\
+                            <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
+                    </td>\
+                </tr>");
             });
         }
 

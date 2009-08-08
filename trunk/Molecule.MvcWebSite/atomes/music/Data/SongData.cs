@@ -6,19 +6,32 @@ using WebMusic.Providers;
 
 namespace Molecule.MvcWebSite.atomes.music.Data
 {
-    public class SongData : ISongInfo
+    public class SongData
     {
         ISongInfo song;
 
-        public SongData(ISongInfo song)
+        public SongData(ISongInfo song, string artistName, string albumName)
         {
             this.song = song;
+            ArtistName = artistName;
+            AlbumName = albumName;
         }
-        #region ISongInfo Members
 
         public string Id
         {
             get { return song.Id; }
+        }
+
+        public string ArtistName
+        {
+            get;
+            private set;
+        }
+
+        public string AlbumName
+        {
+            get;
+            private set;
         }
 
         public string Title
@@ -36,11 +49,9 @@ namespace Molecule.MvcWebSite.atomes.music.Data
             get { return song.AlbumTrack; }
         }
 
-        public TimeSpan Duration
+        public string Duration
         {
-            get { return song.Duration; }
+            get { return ((int)Math.Truncate(song.Duration.TotalMinutes)) + ":" + song.Duration.Seconds; }
         }
-
-        #endregion
     }
 }

@@ -33,6 +33,13 @@ select
 	overflow: auto; height: 150px;
 }
 
+.navigationList ul
+{
+	list-style-type:none;
+	padding:5px;
+	margin:0px;
+}
+
 #navigationPanel
 {
     position: static;
