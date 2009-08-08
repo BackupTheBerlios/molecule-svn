@@ -20,21 +20,21 @@ var playlistActionCellTemplate = "<a class=\"listRemove\" onclick=\"playlistItem
 
 function init()
 {
-    soundManager.url = ".";
+    soundManager.url = "/atomes/music/";
     playlist = new Array();
-    playlistView = $get("playlistTable");
-    playlistPanel = $get("playlistPanel"); 
-    coverArtImage = $get("coverArtImage");
-    playButton = $get("playButton");
-    pauseButton = $get("pauseButton");
-    repeatAllCheckBox = $get("repeatAllCheckBox");
-    currentSongArtistLabel = $get("currentSongArtistLabel");
-    currentSongTitleLabel = $get("currentSongTitleLabel");
-    currentSongPositionLabel = $get("currentSongPositionLabel");
-    currentVolumeLabel = $get("currentVolumeLabel");
+    playlistView = document.getElementById("playlistTable");
+    playlistPanel = document.getElementById("playlistPanel"); 
+    coverArtImage = document.getElementById("coverArtImage");
+    playButton = document.getElementById("playButton");
+    pauseButton = document.getElementById("pauseButton");
+    repeatAllCheckBox = document.getElementById("repeatAllCheckBox");
+    currentSongArtistLabel = document.getElementById("currentSongArtistLabel");
+    currentSongTitleLabel = document.getElementById("currentSongTitleLabel");
+    currentSongPositionLabel = document.getElementById("currentSongPositionLabel");
+    currentVolumeLabel = document.getElementById("currentVolumeLabel");
     updateCurrentVolume(getVolume());
-    errorLoadingMessage = $get("fileNotFoundPanel");
-    songAddedToPlaylist = $get("fileAddedToPlaylistPanel");
+    errorLoadingMessage = document.getElementById("fileNotFoundPanel");
+    songAddedToPlaylist = document.getElementById("fileAddedToPlaylistPanel");
     updateCurrentVolume(getVolume());
 }
 
@@ -210,7 +210,7 @@ function playlistItem_onclick(item, action)
 
 function songsView_onclick(action)
 {
-    var songsView = $get("songsView");
+    var songsView = document.getElementById("songsView");
     if(action == 'enqueueAll')
     {
         for(i = 1; i < songsView.rows.length; i++)//skip first header row
@@ -289,7 +289,7 @@ function Song(id, artist, title, album) {
     this.album = album;
     this.getUrl = function()
     {
-        return "/"+id+".media";
+        return "/Music/Player/File/"+id;
     }
 };
 

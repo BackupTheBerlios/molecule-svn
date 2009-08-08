@@ -23,9 +23,9 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             return View(data);
         }
 
-        public ActionResult File(string songId)
+        public ActionResult File(string id)
         {
-            return new FilePathResult(MusicLibrary.GetSongs().First().MediaFilePath, "audio/mpeg");
+            return new FilePathResult(MusicLibrary.GetSong(id).MediaFilePath, "audio/mpeg");
         }
     }
 }

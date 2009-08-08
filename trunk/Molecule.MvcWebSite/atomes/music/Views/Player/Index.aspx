@@ -18,6 +18,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         $(document).ready(function() {
             getArtists(updateArtistList);
             getAlbums(updateAlbumList);
+            init();
         });
 
         function getArtists(callback) {
