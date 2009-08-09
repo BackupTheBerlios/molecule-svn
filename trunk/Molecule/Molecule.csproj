@@ -119,6 +119,7 @@
     <Compile Include="Serialization\Atome.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="Web\CssVariablesExtender.cs" />
+    <Compile Include="Web\Mvc\HelperExtensions.cs" />
     <Compile Include="Web\Security\SQLiteMembershipProvider.cs" />
     <Compile Include="Web\Security\SQLiteRoleProvider.cs" />
     <Compile Include="Web\Singleton.cs" />
@@ -131,9 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Web\Mvc\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

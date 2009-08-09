@@ -1,9 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master"
 Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexData>" %>
 
+<%@ Import Namespace="Molecule.MvcWebSite.atomes.music.Controllers" %>
+
 <%@ Import Namespace="WebMusic.Providers" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="/atomes/music/style/layout.css" rel="stylesheet" type="text/css" />
+    <script>
+    <%= Url.JQueryActionScript<LibraryController>((l) => l.AlbumsByArtist(""))%>
+    </script>
     <style type="text/css" runat="server">
         #playlistTable tr:hover .listRemove
         {
@@ -14,74 +19,6 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            getArtists(updateArtistList);
-            getAlbums(updateAlbumList);
-            init();
-        });
-
-        function getArtists(callback) {
-            $.getJSON("/Music/Library/Artists", callback);
-        }
-
-        function getAlbums(callback) {
-            $.getJSON("/Music/Library/Albums", callback);
-        }
-
-        function getAlbumByArtist(id, callback) {
-            $.getJSON("/Music/Library/AlbumsByArtist/"+id, callback);
-        }
-
-        function getSongsByAlbum(id, callback) {
-            $.getJSON("/Music/Library/SongsByAlbum/" + id, callback);
-        }
-
-        function updateAlbumList(albums) {
-            $("#albumList li").remove();
-            $.each(albums, function(i, item) {
-                var a = $("<a href='#'>" + item.Name + "</a>");
-                a.click(function(e) {
-                e.preventDefault();
-                getSongsByAlbum(item.Id, updateSongList);
-                });
-                $("#albumList").append($("<li/>").append(a));
-            });
-        }
-
-        function updateArtistList(artists) {
-            $("#artistList li").remove();
-            $.each(artists, function(i, item) {
-                var a = $("<a href='#'>" + item.Name + "</a>");
-                a.click(function(e) {
-                e.preventDefault();
-                getAlbumByArtist(item.Id, updateAlbumList);
-                });
-                $("#artistList").append($("<li/>").append(a));
-            });
-        }
-
-        function updateSongList(songs) {
-            $("#songsView > tbody tr").remove();
-            $.each(songs, function(i, song) {
-                $("#songsView").append("<tr><td style='display: none'>" + song.Id + "</td>\
-                    <td>" + song.Title + "</td>\
-                    <td>" + song.ArtistName + "</td>\
-                    <td>" + song.AlbumName + "</td>\
-                    <td>" + song.AlbumTrack + "</td>\
-                    <td>" + song.Duration + "</td>\
-                    <td style='text-align: right'>\
-                        <img alt='' src='/App_Themes/bloup/images/media-playback-start-small.png'\
-                            onclick=\"songsViewItem_onclick(this,'play')\" />\
-                        <img alt='' src=\"/App_Themes/bloup/images/list-add.png\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
-                        <a href=\"\">\
-                            <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
-                    </td>\
-                </tr>");
-            });
-        }
-
-    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
