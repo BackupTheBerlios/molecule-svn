@@ -1,24 +1,8 @@
 ﻿$(document).ready(function() {
-    getArtists(updateArtistList);
-    getAlbums(updateAlbumList);
+    library_Artists(updateArtistList);
+    library_Albums(updateAlbumList);
     init();
 });
-
-function getArtists(callback) {
-    $.getJSON("/Music/Library/Artists", callback);
-}
-
-function getAlbums(callback) {
-    $.getJSON("/Music/Library/Albums", callback);
-}
-
-function getAlbumByArtist(id, callback) {
-    $.getJSON("/Music/Library/AlbumsByArtist/" + id, callback);
-}
-
-function getSongsByAlbum(id, callback) {
-    $.getJSON("/Music/Library/SongsByAlbum/" + id, callback);
-}
 
 function updateAlbumList(albums) {
     $("#albumList li").remove();
@@ -27,7 +11,7 @@ function updateAlbumList(albums) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
-            getSongsByAlbum(item.Id, updateSongList);
+            library_SongsByAlbum(item.Id, updateSongList);
         });
         albumList.append($("<li/>").append(a));
     });
@@ -40,7 +24,7 @@ function updateArtistList(artists) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
-            getAlbumByArtist(item.Id, updateAlbumList);
+            library_AlbumsByArtist(item.Id, updateAlbumList);
         });
         artistList.append($("<li/>").append(a));
     });

@@ -6,8 +6,11 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
 <%@ Import Namespace="WebMusic.Providers" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="/atomes/music/style/layout.css" rel="stylesheet" type="text/css" />
-    <script>
-    <%= Url.JQueryActionScript<LibraryController>((l) => l.AlbumsByArtist(""))%>
+    <script type="text/javascript">
+    <%= Url.JQueryActionScript<LibraryController>((l) => l.AlbumsByArtist(""),"library_") %>
+    <%= Url.JQueryActionScript<LibraryController>((l) => l.SongsByAlbum(""),"library_") %>
+    <%= Url.JQueryActionScript<LibraryController>((l) => l.Artists(),"library_") %>
+    <%= Url.JQueryActionScript<LibraryController>((l) => l.Albums(),"library_") %>
     </script>
     <style type="text/css" runat="server">
         #playlistTable tr:hover .listRemove
