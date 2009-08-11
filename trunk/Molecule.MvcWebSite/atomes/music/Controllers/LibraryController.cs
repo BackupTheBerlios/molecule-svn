@@ -10,6 +10,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
     public class LibraryController : Controller
     {
+        
         public JsonResult Artists()
         {
             return new JsonResult() { Data = MusicLibrary.GetArtists().Select((a)=>new ArtistData(a)) };

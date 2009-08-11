@@ -1,6 +1,6 @@
 ﻿$(document).ready(function() {
-    library_Artists(updateArtistList);
-    library_Albums(updateAlbumList);
+    library.Artists(updateArtistList);
+    library.Albums(updateAlbumList);
     init();
 });
 
@@ -11,7 +11,7 @@ function updateAlbumList(albums) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
-            library_SongsByAlbum(item.Id, updateSongList);
+            library.SongsByAlbum(item.Id, updateSongList);
         });
         albumList.append($("<li/>").append(a));
     });
@@ -24,7 +24,7 @@ function updateArtistList(artists) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
-            library_AlbumsByArtist(item.Id, updateAlbumList);
+            library.AlbumsByArtist(item.Id, updateAlbumList);
         });
         artistList.append($("<li/>").append(a));
     });
@@ -128,8 +128,6 @@ function setPlaylistSelectedIndex(index)
     playlistSelectedIndex = index;
     playlistView.rows[playlistSelectedIndex].className = "selectedRow";
 }
-
-
 
 function playLastSong()
 {
