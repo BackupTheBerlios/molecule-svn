@@ -99,13 +99,8 @@ function playSelectedSong()
     coverArtImage.alt = currentSong.album;
     coverArtImage.title = currentSong.album;
     coverArtImage.style.display ="inline";
-    UseCallback('idSongCurrentlyPlaying;'+currentSong.id,null);    
+    library.SongCurrentlyPlaying(currentSong.id, null);    
 }
-function SongEvent(arg, context)
-    {
-
-    }
-
 
 function removeSelectedSong()
 {
@@ -173,7 +168,7 @@ function enqueueSong(id, artist, title, album)
 
 function onEnded()
 {
-    UseCallback('idSongPlayed;'+currentSong.id,null);    
+    library.SongPlayed(currentSong.id,null);    
     onPause();
     var nbItem = playlist.length;
     if(playlistSelectedIndex < nbItem -1)
