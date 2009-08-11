@@ -19,20 +19,19 @@ namespace Molecule.Web.Mvc
 
         public static string JQueryProxyScript<C>(this UrlHelper helper, string prefix) where C : IController
         {
-            CheckController<C>();
-
-            var jsonMethods = from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
-                      where mi.ReturnType == typeof(JsonResult)
-                      select mi;
+            checkController<C>();
 
             string funcName = prefix + typeof(C).Name.Replace("Controller", "");
             var firstLetter = funcName.Substring(0, 1);
-
             funcName = firstLetter.ToUpper() + funcName.Substring(1);
 
             var variableName = firstLetter.ToLower() + funcName.Substring(1);
 
-            string res = "function " + funcName + "(){\n";
+            var res = "function " + funcName + "(){\n";
+
+            var jsonMethods = from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
+                              where mi.ReturnType == typeof(JsonResult)
+                              select mi;
 
             foreach (var mi in jsonMethods)
                 res += generateJQueryFunction(helper, null, mi) + "\n";
@@ -41,27 +40,7 @@ namespace Molecule.Web.Mvc
             return res;
         }
 
-        public static string JQueryActionScript<C>(this UrlHelper helper, Expression<Func<C, JsonResult>> action)
-            where C : IController
-        {
-            return JQueryActionScript<C>(helper, action, null);
-        }
-
-        public static string JQueryActionScript<C>(this UrlHelper helper, Expression<Func<C, JsonResult>> action, string prefix)
-            where C : IController
-        {
-            CheckController<C>();
-
-            var expr = action.Body as MethodCallExpression;
-            if (expr == null)
-                throw new ArgumentException("action must be a method controller call.");
-
-            var method = expr.Method;
-
-            return generateJQueryFunction(helper, prefix, method);
-        }
-
-        private static void CheckController<C>() where C : IController
+        private static void checkController<C>() where C : IController
         {
             var cType = typeof(C);
 
@@ -84,8 +63,7 @@ namespace Molecule.Web.Mvc
             foreach (var param in parameterNames)
                 routeValues.Add(param, "#" + param);
             var url = helper.Action(actionName, controllerName, routeValues);
-            if (hasParameters)
-                url += "";
+
             var code = "\n\t\tvar args = \"" + url + "\";\n";
             foreach (var param in parameterNames)
                 code += "\t\targs = args.replace(\"#" + param + "\"," + param + ");\n";
