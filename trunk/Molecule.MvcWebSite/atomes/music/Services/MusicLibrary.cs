@@ -33,6 +33,7 @@ using Molecule.Web;
 using System.Web;
 using Molecule.Runtime;
 using Molecule.Atome;
+using Mono.Rocks;
 
 
 namespace WebMusic.Services
@@ -191,24 +192,31 @@ namespace WebMusic.Services
             }		
         }
 		
+        
 		
-        public static IEnumerable<ISong> SearchSongs(string pattern, bool inAlbums, bool inTitles, bool inArtists)
+        public static SearchResult Search(string pattern)
         {
             pattern = pattern.ToLower();
-            return from song in Instance.songs.Values
-                   let artists = from artist in Instance.artists.Values
-                          where artist.Name.ToLower().Contains(pattern)
-                          select artist
-                   let albums = from album in Instance.albums.Values
-                         where album.Name.ToLower().Contains(pattern)
-                         select album
-                   where inTitles && song.Title.ToLower().Contains(pattern)
-                   || inAlbums && albums.Contains(song.Album)
-                   || inArtists && artists.Contains(song.Artist)
-                   orderby song.AlbumTrack
-                   orderby song.Album.Name
-                   orderby song.Artist.Name                   
-                   select song;
+
+            var songs = (from song in Instance.songs.Values
+                        where song.Title.ToLower().Contains(pattern)
+                        || song.Album.Name.ToLower().Contains(pattern)
+                        || song.Artist.Name.ToLower().Contains(pattern)
+                        select song).ToList();
+
+            var albums = (from song in songs
+                         select song.Album).Distinct().ToList();
+
+            var artists = (from album in albums
+                           select album.Artist).Distinct().ToList();
+
+            return new SearchResult()
+            {
+                Albums = albums,
+                Artists = artists,
+                Songs = songs
+            };
+            
         }
 
         public static IEnumerable<string> SearchStringContainingPattern(string pattern, bool inAlbums, bool inTitles, bool inArtists)

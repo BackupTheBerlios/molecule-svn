@@ -14,14 +14,14 @@ namespace Molecule.Web.Mvc
     {
         public static string JQueryProxyScript<C>(this UrlHelper helper) where C : IController
         {
-            return JQueryProxyScript<C>(helper, "");
+            return JQueryProxyScript<C>(helper, null);
         }
 
         public static string JQueryProxyScript<C>(this UrlHelper helper, string prefix) where C : IController
         {
             checkController<C>();
 
-            string funcName = prefix + typeof(C).Name.Replace("Controller", "");
+            string funcName = prefix ?? typeof(C).Name.Replace("Controller", "");
             var firstLetter = funcName.Substring(0, 1);
             funcName = firstLetter.ToUpper() + funcName.Substring(1);
 
@@ -29,12 +29,10 @@ namespace Molecule.Web.Mvc
 
             var res = "function " + funcName + "(){\n";
 
-            var jsonMethods = from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
-                              where mi.ReturnType == typeof(JsonResult)
-                              select mi;
+            var functions = generateJQueryJsonFunctions<C>(helper).Concat(generateJQueryPostFunctions<C>(helper));
 
-            foreach (var mi in jsonMethods)
-                res += generateJQueryFunction(helper, null, mi) + "\n";
+            foreach (var func in functions)
+                res += func + "\n";
 
             res += "\n}\n" + variableName + " = new "+funcName+"();";
             return res;
@@ -50,7 +48,23 @@ namespace Molecule.Web.Mvc
                 throw new ArgumentException("C can't be abstract and its name must end with \"Controller\"", "C");
         }
 
-        private static string generateJQueryFunction(UrlHelper helper, string prefix, MethodInfo method)
+        private static IEnumerable<string> generateJQueryJsonFunctions<C>(UrlHelper helper) where C : IController
+        {
+            return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
+                              where mi.ReturnType == typeof(JsonResult)
+                              select generateJQueryFunction(helper, null, mi, "getJSON");
+        }
+
+        private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper) where C : IController
+        {
+            return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
+                              where mi.GetCustomAttributes(typeof(AcceptVerbsAttribute), false)
+                                .Any(att => ((AcceptVerbsAttribute)att).Verbs
+                                  .Contains(Enum.GetName(typeof(HttpVerbs), HttpVerbs.Post).ToUpper()))
+                              select generateJQueryFunction(helper, null, mi, "post");
+        }
+
+        private static string generateJQueryFunction(UrlHelper helper, string prefix, MethodInfo method, string jqueryFunc)
         {
             var controllerName = method.DeclaringType.Name.Replace("Controller","");
             var actionName = method.Name;
@@ -62,12 +76,12 @@ namespace Molecule.Web.Mvc
             var routeValues = new RouteValueDictionary();
             foreach (var param in parameterNames)
                 routeValues.Add(param, "#" + param);
-            var url = helper.Action(actionName, controllerName, routeValues);
+            var url = helper.Action(actionName, controllerName, routeValues).Replace("%23", "#");//remove # encoding, will be replaced by script at runtime.
 
             var code = "\n\t\tvar args = \"" + url + "\";\n";
             foreach (var param in parameterNames)
                 code += "\t\targs = args.replace(\"#" + param + "\"," + param + ");\n";
-            code += "\t\t$.getJSON(args, callback);\n\t";
+            code += "\t\t$."+jqueryFunc+"(args, callback);\n\t";
             return String.Format("\tthis.{0} = function({1}callback){{{2}}};", actionName, parameters, code);
         }
     }

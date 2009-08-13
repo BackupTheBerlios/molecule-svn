@@ -8,13 +8,11 @@ namespace Molecule.MvcWebSite.atomes.music.Data
 {
     public class SongData
     {
-        ISongInfo song;
+        ISong song;
 
-        public SongData(ISongInfo song, string artistName, string albumName)
+        public SongData(ISong song)
         {
             this.song = song;
-            ArtistName = artistName;
-            AlbumName = albumName;
         }
 
         public string Id
@@ -24,14 +22,12 @@ namespace Molecule.MvcWebSite.atomes.music.Data
 
         public string ArtistName
         {
-            get;
-            private set;
+            get{ return song.Artist.Name;}
         }
 
         public string AlbumName
         {
-            get;
-            private set;
+            get { return song.Album.Name; }
         }
 
         public string Title

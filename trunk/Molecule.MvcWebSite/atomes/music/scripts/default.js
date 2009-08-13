@@ -1,6 +1,14 @@
-﻿$(document).ready(function() {
+﻿/// <reference path="~/Scripts/jquery-1.3.2-vsdoc.js" />
+$(document).ready(function() {
     library.Artists(updateArtistList);
     library.Albums(updateAlbumList);
+    $("#searchButton").click(function() {
+        var result = library.Search($("#search").attr("value"), function(result) {
+            updateAlbumList(result.Albums);
+            updateArtistList(result.Artists);
+            updateSongList(result.Songs);
+        });
+    });
     init();
 });
 

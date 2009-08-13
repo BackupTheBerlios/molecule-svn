@@ -6,16 +6,17 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
 <%@ Import Namespace="WebMusic.Providers" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="/atomes/music/style/layout.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-    <%= Url.JQueryProxyScript<LibraryController>() %>
-    </script>
-    <style type="text/css" runat="server">
+        <style id="Style1" type="text/css" runat="server">
         #playlistTable tr:hover .listRemove
         {
             background: url("/App_Themes/bloup/images/list-remove.png") no-repeat;
         }
     </style>
+    <script type="text/javascript">
+    <%= Url.JQueryProxyScript<PlayerController>("library") %>
+    </script>
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/filter.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2.js"></script>
@@ -64,7 +65,9 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
             <label for="repeatAllCheckBox"><%= Resources.webmusic.RepeatAll%></label>
         </div>
     </div>
+    <input id="search" type="text"></input><button id="searchButton">Rechercher</button>
     <div id="navigationPanel">
+        
         <div id="artistscontainer">
             <h2><%= Resources.webmusic.Artists %></h2>
             <div class="navigationList thinBox">
