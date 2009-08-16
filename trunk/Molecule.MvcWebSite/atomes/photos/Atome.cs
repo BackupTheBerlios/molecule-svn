@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using WebPhoto.Services;
+using Molecule.MvcWebSite.atomes.photos.Controllers;
 
 
 namespace Molecule.MvcWebSite.atomes.photos
@@ -29,7 +30,7 @@ namespace Molecule.MvcWebSite.atomes.photos
 
         public Type PreferencesController
         {
-            get { return null; }
+            get { return typeof(AdminController); }
         }
 
         #endregion

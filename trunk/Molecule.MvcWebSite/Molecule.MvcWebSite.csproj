@@ -149,13 +149,19 @@
     <Compile Include="atomes\music\Lastfm\Queue.cs" />
     <Compile Include="atomes\music\Services\MusicLibrary.cs" />
     <Compile Include="atomes\photos\Atome.cs" />
+    <Compile Include="atomes\photos\Controllers\AdminController.cs" />
     <Compile Include="atomes\photos\Controllers\CalendarController.cs" />
     <Compile Include="atomes\photos\Controllers\TagController.cs" />
+    <Compile Include="atomes\photos\Data\AdminData.cs" />
     <Compile Include="atomes\photos\Data\CalendarItem.cs" />
     <Compile Include="atomes\photos\Data\MonthCalendarData.cs" />
     <Compile Include="atomes\photos\Data\PhotoIndexData.cs" />
     <Compile Include="atomes\photos\Data\TagHierarchyData.cs" />
     <Compile Include="atomes\photos\Data\YearCalendarData.cs" />
+    <Compile Include="atomes\photos\Views\Admin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
     </Compile>
@@ -309,6 +315,7 @@
     <None Include="App_Themes\bloup\molecule.cssx" />
     <None Include="Atome.xsd" />
     <Content Include="atomes\music\Views\Admin\Index.aspx" />
+    <Content Include="atomes\photos\Views\Admin\Index.aspx" />
     <Content Include="Views\Shared\PreferencesPage.Master" />
     <Content Include="atomes\music\Views\Web.config" />
     <Content Include="atomes\music\Atome.xml" />
