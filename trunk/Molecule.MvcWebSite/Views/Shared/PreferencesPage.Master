@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/Page.Master" %>
+<%@ Import Namespace="Molecule.WebSite.Services" %>
+<asp:Content runat="server" ID="contentHead" ContentPlaceHolderID="head">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="mainContent">
+    <h2>
+        <div ID="tabDefault" class="<%= AtomeService.CurrentPathIsAtome ? "tabTitle" : "tabSelectedTitle" %>">
+            <a href="admin/Default.aspx"><%=Resources.Common.General%></a>
+        </div>
+        <% var data = (Molecule.MvcWebSite.Models.PreferencesPageData)ViewData["PreferencesPageData"];
+           foreach (var atome in data.Atomes)
+           { %>
+        
+                <div class='<%= AtomeService.CurrentPathIsAtome && atome ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
+                    <a href="<%= Url.Action("", atome.PreferencesControllerName, new { atome = atome.Name }) %>"><%= atome.Name %></a>
+                </div>
+         <%} %>
+            
+    </h2>
+    <br />
+    <br />
+    <br />
+    <asp:ContentPlaceHolder runat="server" ID="preferencesContent">
+    </asp:ContentPlaceHolder>
+</asp:Content>

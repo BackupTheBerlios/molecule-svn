@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using WebPhoto.Services;
 
+
 namespace Molecule.MvcWebSite.atomes.photos
 {
     public class Atome : Molecule.MvcWebSite.IAtome
@@ -24,6 +25,11 @@ namespace Molecule.MvcWebSite.atomes.photos
                 "photos",                           // URL with parameters
                 new { atome = "photos", controller = "Tag", action = "Index" }  // Parameter defaults
             );
+        }
+
+        public Type PreferencesController
+        {
+            get { return null; }
         }
 
         #endregion

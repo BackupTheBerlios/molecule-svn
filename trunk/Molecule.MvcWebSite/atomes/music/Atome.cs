@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Molecule.MvcWebSite.atomes.music.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.music
 {
@@ -19,6 +20,16 @@ namespace Molecule.MvcWebSite.atomes.music
             );
         }
 
-        
+
+
+        #region IAtome Members
+
+
+        public Type PreferencesController
+        {
+            get { return typeof(AdminController); }
+        }
+
+        #endregion
     }
 }

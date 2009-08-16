@@ -9,14 +9,16 @@ using Molecule.WebSite.Services;
 
 namespace Molecule.MvcWebSite.Controllers
 {
-    public abstract class PageControllerBase : Controller
+    public abstract class PreferencesPageControllerBase : PageControllerBase
     {
-        public PageControllerBase()
+        public PreferencesPageControllerBase()
         {
-            ViewData["PageData"] = new PageData()
+            ViewData["PreferencesPageData"] = new PreferencesPageData()
             {
-                Atomes = AtomeService.GetAtomes()
+                Atomes = AtomeService.GetAtomesWithPreferences()
             };
         }
+
+        
     }
 }

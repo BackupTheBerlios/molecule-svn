@@ -111,6 +111,7 @@
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\music\Atome.cs" />
+    <Compile Include="atomes\music\Controllers\AdminController.cs" />
     <Compile Include="atomes\music\Controllers\PlayerController.cs" />
     <Compile Include="atomes\music\CoverArt\CoverArtFile.aspx.cs">
       <DependentUpon>CoverArtFile.aspx</DependentUpon>
@@ -118,12 +119,17 @@
     </Compile>
     <Compile Include="atomes\music\CoverArt\CoverArtService.cs" />
     <Compile Include="atomes\music\CoverArt\CoverArtSpec.cs" />
+    <Compile Include="atomes\music\Data\AdminData.cs" />
     <Compile Include="atomes\music\Data\AlbumData.cs" />
     <Compile Include="atomes\music\Data\ArtistData.cs" />
     <Compile Include="atomes\music\Data\IndexData.cs" />
     <Compile Include="atomes\music\Data\SearchData.cs" />
     <Compile Include="atomes\music\Data\SongData.cs" />
     <Compile Include="atomes\music\Services\SearchResult.cs" />
+    <Compile Include="atomes\music\Views\Admin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
@@ -168,6 +174,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PreferencesPageControllerBase.cs" />
     <Compile Include="Controllers\PageControllerBase.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -178,6 +185,8 @@
     </Compile>
     <Compile Include="IAtome.cs" />
     <Compile Include="Models\PageData.cs" />
+    <Compile Include="Models\PreferencesPageData.cs" />
+    <Compile Include="Models\ProviderSelectorData.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +197,10 @@
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
     <Compile Include="Services\IAtomeUserAuthorizations.cs" />
+    <Compile Include="Views\Shared\ProviderSelector.ascx.cs">
+      <DependentUpon>ProviderSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -295,6 +308,8 @@
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="App_Themes\bloup\molecule.cssx" />
     <None Include="Atome.xsd" />
+    <Content Include="atomes\music\Views\Admin\Index.aspx" />
+    <Content Include="Views\Shared\PreferencesPage.Master" />
     <Content Include="atomes\music\Views\Web.config" />
     <Content Include="atomes\music\Atome.xml" />
     <Content Include="atomes\music\CoverArt\CoverArtFile.aspx" />
@@ -340,6 +355,7 @@
     <Content Include="Views\Shared\Page.Master" />
     <Content Include="atomes\photos\Views\Web.config" />
     <Content Include="atomes\photos\Atome.xml" />
+    <Content Include="Views\Shared\ProviderSelector.ascx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Molecule\Molecule.csproj">

@@ -23,15 +23,17 @@
 
 using System;
 using Molecule.MvcWebSite;
+using System.Web.Routing;
 
 namespace Molecule.WebSite.Services
 {
-    public interface IAtomeInfo : IAtome
+    public interface IAtomeInfo
     {
-        string PreferencesPagePath { get; }
+        string PreferencesControllerName { get; }
         string Name { get; }
         string Path { get; }
-        bool HasPreferencesPage{ get; }
+        bool HasPreferences{ get; }
         string ClassName { get; }
+        void RegisterRoutes(RouteCollection routes);
     }
 }

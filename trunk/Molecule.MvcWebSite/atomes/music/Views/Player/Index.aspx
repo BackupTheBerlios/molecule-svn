@@ -65,7 +65,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
             <label for="repeatAllCheckBox"><%= Resources.webmusic.RepeatAll%></label>
         </div>
     </div>
-    <input id="search" type="text"></input><button id="searchButton">Rechercher</button>
+    <input id="search" type="text"/><button id="searchButton">Rechercher</button>
     <div id="navigationPanel">
         
         <div id="artistscontainer">

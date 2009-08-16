@@ -9,5 +9,6 @@ namespace Molecule.MvcWebSite
     public interface IAtome
     {
         void RegisterRoutes(RouteCollection routes);
+        Type PreferencesController { get; }
     }
 }

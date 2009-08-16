@@ -34,6 +34,7 @@ namespace Molecule.Serialization
     public class Atome
     {
         public string Name { get; set; }
+        [Obsolete]
         public string PreferencesPage { get; set; }
         public string ClassName { get; set; }
 

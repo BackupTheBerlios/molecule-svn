@@ -41,6 +41,8 @@ using System.Text.RegularExpressions;
 using Molecule.Configuration;
 using Molecule.Collections;
 using Mono.Rocks;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Molecule.WebSite.Services
 {
@@ -86,9 +88,9 @@ namespace Molecule.WebSite.Services
 
         static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>[^/]+)", RegexOptions.Compiled);
 
-        public static bool IsAtomeVirtualPath(string virtualPath)
+        public static bool IsAtome(HttpContext context)
         {
-            return virtualPathRegex.Match(virtualPath).Success;
+            return GetAtome(context) != null;
         }
 
         public static IAtomeInfo CurrentAtome
@@ -96,7 +98,7 @@ namespace Molecule.WebSite.Services
             get
             {
 
-                return GetAtomeByVirtualPath(HttpContext.Current.Request.Path);
+                return GetAtome(HttpContext.Current);
             }
         }
 
@@ -104,26 +106,39 @@ namespace Molecule.WebSite.Services
         {
             get
             {
-                return IsAtomeVirtualPath(HttpContext.Current.Request.Path);
+                
+                return IsAtome(HttpContext.Current);
             }
         }
 
-        public static IAtomeInfo GetAtomeByVirtualPath(string virtualPath)
+        public static IAtomeInfo GetAtome(HttpContext context)
         {
-            Match match = virtualPathRegex.Match(virtualPath);
-            if (match.Success)
-            {
-                var atomeDir = match.Groups[1].Value;
-                var atomeVirtualPath = VirtualPathUtility.Combine(atomesBaseDir, atomeDir);
-                return GetAtomes().First(atome => atome.Path.Equals(atomeVirtualPath));
-            }
-            else return null;
+            var rd = RouteTable.Routes.GetRouteData(new HttpContextWrapper(context));
+            object atomeName;
+            rd.Values.TryGetValue("atome", out atomeName);
+            if (atomeName == null)
+                return null;
+            else
+                return GetAtome((string)atomeName);
+            //Match match = virtualPathRegex.Match(virtualPath);
+            //if (match.Success)
+            //{
+            //    var atomeDir = match.Groups[1].Value;
+            //    var atomeVirtualPath = VirtualPathUtility.Combine(atomesBaseDir, atomeDir);
+            //    return GetAtomes().First(atome => atome.Path.Equals(atomeVirtualPath));
+            //}
+            //else return null;
         }
 
-        public static IEnumerable<IAtomeInfo> GetAtomesWithAdminWebControl()
+        public static IAtomeInfo GetAtome(string atomeName)
+        {
+            return GetAtomes().First(a => a.Name == atomeName);
+        }
+
+        public static IEnumerable<IAtomeInfo> GetAtomesWithPreferences()
         {
             return from atome in GetAtomes()
-                   where atome.HasPreferencesPage
+                   where atome.HasPreferences
                    select atome;
         }
 
@@ -140,15 +155,15 @@ namespace Molecule.WebSite.Services
 
 		
 		
-        public static bool IsCurrentUserAuthorized(string url)
+        public static bool IsCurrentUserAuthorized(HttpContext context)
         {
-            var atome = GetAtomeByVirtualPath(url);
+            var atome = GetAtome(context);
 
             if (atome == null)
             {
-                if (url.Contains("admin") && !HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
-                    //preference path (workaround a mono bug that does not filter sitemap correctly)
-                    return false;
+                //if (url.Contains("admin") && !HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
+                //    //preference path (workaround a mono bug that does not filter sitemap correctly)
+                //    return false;
 
                 return true; //only handle atome authorizations
             }
