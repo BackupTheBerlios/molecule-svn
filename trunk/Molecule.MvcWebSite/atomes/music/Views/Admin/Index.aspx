@@ -5,23 +5,18 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.AdminDat
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="preferencesContent" runat="server">
-<%=Resources.webmusic.GetSongsFrom %>
+<%var form = Html.BeginForm("Save", "Admin", new { atome = "Music" }, FormMethod.Post); %>
+<%= Resources.webmusic.GetSongsFrom %>
+<br />
 <% Html.RenderPartial("ProviderSelector", Model); %>
-   <%-- <molecule:ProviderSelector ID="ProviderSelector1" runat="server" 
-        AtomeProviderTypeName="WebMusic.Services.MusicLibrary" />
---%>
 <br/>
-Last.Fm :<br />
-<%--    <asp:CheckBox ID="lastfmEnabledCheckBox" runat="server" AutoPostBack="True" 
-        oncheckedchanged="lastfmEnabledCheckBox_CheckedChanged" Text="Enable Lastfm" />
---%><br/>
-<%--<asp:Literal runat="server" Text='<%$Resources:Common,User %>' /> : 
-<asp:TextBox ID="lastFmUsername"  runat="server"></asp:TextBox>
+<h2>Last.fm</h2>
+<%= Html.CheckBox("lastfmEnabled", Model.LastfmEnabled) %> <label for="lastfmEnabled">Enable Last.fm</label>
 <br/>
-<asp:Literal ID="Literal1" runat="server" Text='<%$Resources:Common,Password %>' /> : 
-<asp:TextBox ID="lastFmUserPassword"  TextMode="password" runat="server"></asp:TextBox>
+<label for="lastfmUsername"><%= Resources.Common.User %></label> : <%= Html.TextBox("lastfmUsername", Model.LastfmUsername) %>
 <br/>
-
-<asp:Button ID="preferencesButton" runat="server" Text="<%$ Resources:Common,Save %>" OnCommand="preferencesButton_Click" >
-</asp:Button>--%>
+<label for="lastfmPassword"><%= Resources.Common.Password %></label> : <%= Html.TextBox("lastfmPassword", Model.LastfmPassword)%>
+<br/>
+<input type="submit" value="<%= Resources.Common.Save %>" />
+<% form.EndForm(); %>
 </asp:Content>

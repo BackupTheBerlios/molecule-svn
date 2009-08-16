@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ProviderSelectorData>" %>
-<% var form = Html.BeginForm();
-   var providerItems = from p in Model.Providers select new SelectListItem() { Text = p.Name, Value = p.Id }; %> 
-<%= Html.DropDownList("providerSelector", providerItems)%>
+<%foreach(var p in Model.Providers){ %> 
+<%= Html.RadioButton("provider", p.Id, p.Id == Model.SelectedProviderId) + p.Name %>
+<br />
+<%} %>
 <input type="submit" value="<%= Resources.Common.Reload %>" />
-<% form.EndForm(); %>

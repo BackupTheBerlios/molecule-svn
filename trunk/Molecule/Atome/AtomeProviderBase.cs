@@ -101,6 +101,8 @@ namespace Molecule.Atome
             get { return Singleton<TAtome>.Instance.providerName; }
             set
             {
+                if (value == Singleton<TAtome>.Instance.providerName)
+                    return;
                 Singleton<TAtome>.Instance.providerName = value;
                 Singleton<TAtome>.Instance.resetProvider();
                 ConfigurationClient.Set<string>(ConfigurationNamespace, libraryProviderConfKey, value);

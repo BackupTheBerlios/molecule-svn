@@ -9,5 +9,6 @@ namespace Molecule.MvcWebSite.Models
     public class ProviderSelectorData
     {
         public IEnumerable<ProviderInfo> Providers { get; set; }
+        public string SelectedProviderId { get; set; }
     }
 }

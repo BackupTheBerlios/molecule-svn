@@ -8,5 +8,8 @@ namespace Molecule.MvcWebSite.atomes.music.Data
 {
     public class AdminData : ProviderSelectorData
     {
+        public bool LastfmEnabled { get; set; }
+        public string LastfmUsername { get; set; }
+        public string LastfmPassword { get; set; }
     }
 }
