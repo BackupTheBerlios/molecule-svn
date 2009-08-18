@@ -70,7 +70,7 @@ namespace Molecule.WebSite.Services
 
         public bool HasPreferences
         {
-            get { return atomeInstance.PreferencesController != null; }
+            get { return atomeInstance != null && atomeInstance.PreferencesController != null; }
         }
 
         public override bool Equals(object obj)
