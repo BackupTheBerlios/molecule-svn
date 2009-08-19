@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Molecule.MvcWebSite.atomes.music.Controllers;
+using Molecule.MvcWebSite.atomes.admin.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.admin
 {
@@ -12,7 +12,6 @@ namespace Molecule.MvcWebSite.atomes.admin
     {
         public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
         {
-
             routes.MapRoute(
                 "PreferencesRoute",                                              // Route name
                 "Preferences",                           // URL with parameters
@@ -27,7 +26,12 @@ namespace Molecule.MvcWebSite.atomes.admin
 
         public Type PreferencesController
         {
-            get { return typeof(AdminController); }
+            get { return typeof(PreferencesController); }
+        }
+
+        public IEnumerable<string> ControllerNamespaces
+        {
+            get { yield return "Molecule.MvcWebSite.atomes.admin.Controllers"; }
         }
 
         #endregion

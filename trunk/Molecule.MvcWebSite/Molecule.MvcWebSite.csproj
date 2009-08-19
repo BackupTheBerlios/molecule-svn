@@ -131,7 +131,6 @@
     <Compile Include="atomes\music\Services\SearchResult.cs" />
     <Compile Include="atomes\music\Views\Admin\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -163,7 +162,6 @@
     <Compile Include="atomes\photos\Data\YearCalendarData.cs" />
     <Compile Include="atomes\photos\Views\Admin\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
     <Compile Include="atomes\photos\Controllers\PhotoController.cs">
@@ -208,7 +206,6 @@
     <Compile Include="Services\IAtomeUserAuthorizations.cs" />
     <Compile Include="Views\Shared\ProviderSelector.ascx.cs">
       <DependentUpon>ProviderSelector.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

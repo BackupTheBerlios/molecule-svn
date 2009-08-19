@@ -1,23 +1,47 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/PreferencesPage.Master"
-Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.photos.Data.AdminData>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/PreferencesPage.Master" Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.photos.Data.AdminData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
-<%var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
-<h2>Source</h2>
-<%= Resources.photo.GetPhotosFrom %>
-<br />
-<% Html.RenderPartial("ProviderSelector", Model); %>
-<br />
-    <%--<p><asp:Literal runat="server" Text='<%$Resources:photo,PhotoCollectionName %>' />
-    <asp:DropDownList ID="TagNameList" runat="server" DataValueField="Value" DataTextField="Name"
-        OnSelectedIndexChanged="TagNameList_SelectedIndexChanged" />
-    </p>
-    <asp:Button runat="server" Text="<%$ Resources:Common,Save %>" 
-        OnCommand="OkButton_OnClick" />
+    <%var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
+    <h2>
+        Source</h2>
+    <%= Resources.photo.GetPhotosFrom %>
+    <br />
+    <% Html.RenderPartial("ProviderSelector", Model); %>
+    <br />
+    <br />
+    <%= Resources.photo.PhotoCollectionName %>
+    <br />
+    <% foreach (var tagName in Model.TagNames)
+       { %>
+    <br />
+    <%= Html.RadioButton("tagName", tagName.Key, Model.SelectedTagName.Key == tagName.Key) + tagName.Value%>
+    <%} %>
+    <h2>
+        <%= Model.SelectedTagName.Value %>s partagés</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>TODO</td>
+                <% foreach (var u in Model.UserNames)
+                   { %><td><%= u%></td>
+                <%} %></tr>
+        </thead>
+        <tbody>
+            <% foreach (var tua in Model.TagUserAuthorizations)
+               { %>
+            <tr><td><%= tua.TagName%></td>
+                <%foreach (var auth in tua.Authorizations)
+                  { %><td><input <%=auth.Authorized?"checked=\"checked\"":"" %> value="<%=auth.Value %>" type="checkbox" name="authorizations" />
+                  </td>
+                <%} %></tr>
+            <%} %>
+        </tbody>
+    </table>
+    <%= Html.TreeList(Model.RootTags, t => t.Tags, t => t.Name) %>
+    <%--
     
-    <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s partagés</h2>
     <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
         TargetControlID="TagLink" PopupControlID="TagSelectPanel"
         CancelControlID="CancelButton"
@@ -89,5 +113,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.photos.Data.AdminDa
     <br />
      <asp:Button runat="server" ID="EmptyCacheButton" 
         Text='<%$Resources:photo,ReinitCache %>' onclick="EmptyCacheButton_Click" />--%>
-<% form.EndForm(); %>
+<br/>
+<input type="submit" value="<%= Resources.Common.Save %>" />
+    <% form.EndForm(); %>
 </asp:Content>

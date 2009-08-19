@@ -27,6 +27,8 @@ namespace Molecule.MvcWebSite
 
         protected void Application_Start()
         {
+            ControllerBuilder.Current.SetControllerFactory(typeof(ControllerFactory));
+
             RegisterRoutes(RouteTable.Routes);
 
             ViewEngines.Engines.Clear();

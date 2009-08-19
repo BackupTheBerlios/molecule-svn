@@ -10,5 +10,6 @@ namespace Molecule.MvcWebSite
     {
         void RegisterRoutes(RouteCollection routes);
         Type PreferencesController { get; }
+        IEnumerable<string> ControllerNamespaces { get; }
     }
 }

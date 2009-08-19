@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Molecule.WebSite.Services;
 
 namespace Molecule.MvcWebSite.Mvc
 {
@@ -10,10 +11,9 @@ namespace Molecule.MvcWebSite.Mvc
     {
         protected override Type GetControllerType(string controllerName)
         {
-            //var atome = base.RequestContext.RouteData.Values["atome"];
-            //var ctrlBaseName = atome != null ? atome.ToString() : "";
-            //var type = base.GetControllerType(ctrlBaseName + controllerName);
-            return base.GetControllerType(controllerName);
+            base.RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
+                return base.GetControllerType(controllerName);
+            
         }
     }
 }

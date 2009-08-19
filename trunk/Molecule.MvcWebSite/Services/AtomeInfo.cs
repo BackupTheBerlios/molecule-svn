@@ -33,6 +33,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using Molecule.MvcWebSite;
+using System.Collections.Generic;
 
 namespace Molecule.WebSite.Services
 {
@@ -90,6 +91,16 @@ namespace Molecule.WebSite.Services
         {
             if(atomeInstance != null)
                 atomeInstance.RegisterRoutes(routes);
+        }
+
+        #endregion
+
+        #region IAtomeInfo Members
+
+
+        public IEnumerable<string> ControllerNamespaces
+        {
+            get { return atomeInstance.ControllerNamespaces; }
         }
 
         #endregion

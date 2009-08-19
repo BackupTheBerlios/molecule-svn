@@ -24,6 +24,7 @@
 using System;
 using Molecule.MvcWebSite;
 using System.Web.Routing;
+using System.Collections.Generic;
 
 namespace Molecule.WebSite.Services
 {
@@ -35,5 +36,6 @@ namespace Molecule.WebSite.Services
         bool HasPreferences{ get; }
         string ClassName { get; }
         void RegisterRoutes(RouteCollection routes);
+        IEnumerable<string> ControllerNamespaces { get; }
     }
 }

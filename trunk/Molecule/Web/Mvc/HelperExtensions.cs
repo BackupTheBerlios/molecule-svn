@@ -12,6 +12,7 @@ namespace Molecule.Web.Mvc
 {
     public static class HelperExtensions
     {
+        #region JQueryProxyScript
         public static string JQueryProxyScript<C>(this UrlHelper helper) where C : IController
         {
             return JQueryProxyScript<C>(helper, null);
@@ -83,6 +84,21 @@ namespace Molecule.Web.Mvc
                 code += "\t\targs = args.replace(\"#" + param + "\"," + param + ");\n";
             code += "\t\t$."+jqueryFunc+"(args, callback);\n\t";
             return String.Format("\tthis.{0} = function({1}callback){{{2}}};", actionName, parameters, code);
+        }
+        #endregion
+
+        public static string TreeList<T>(this HtmlHelper helper, IEnumerable<T> dataSource, Func<T, IEnumerable<T>> childSelector, Func<T, string> formatter)
+        {
+            StringBuilder sb = new StringBuilder("<ul>\n");
+            foreach (var item in dataSource)
+            {
+                sb.AppendLine("<li>");
+                sb.AppendLine(formatter(item));
+                sb.AppendLine(TreeList(helper, childSelector(item), childSelector, formatter));
+                sb.AppendLine("</li>");
+            }
+            sb.AppendLine("</ul>");
+            return sb.ToString();
         }
     }
 }
