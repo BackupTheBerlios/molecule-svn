@@ -1,6 +1,17 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/PreferencesPage.Master" Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.photos.Data.AdminData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="../../../../Scripts/jquery.treeview.min.js"></script>
+    <link rel="stylesheet" href="/App_Themes/bloup/jquery.treeview.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function() {
+                $("#tagsTree").treeview({ collapsed: true, animated: "fast" });
+            });
+        });
+    </script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
     <%var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
@@ -15,89 +26,44 @@
     <br />
     <% foreach (var tagName in Model.TagNames)
        { %>
-    <br />
-    <%= Html.RadioButton("tagName", tagName.Key, Model.SelectedTagName.Key == tagName.Key) + tagName.Value%>
+    <%= Html.RadioButton("tagName", tagName.Key, Model.SelectedTagName.Key == tagName.Key) + tagName.Value%><br />
     <%} %>
-    <h2>
-        <%= Model.SelectedTagName.Value %>s partagés</h2>
+    <h2><%= Model.SelectedTagName.Value %>s partagés</h2>
+        
+        <%= Html.TreeList(Model.RootTags, t => t.Tags,
+        t => "<input " + (t.Selected ? "checked=\"checked\"" : "") + "value=" + t.Id + " type=\"checkbox\" name=\"sharedTags\" />" + t.Name
+                            , new Dictionary<string, object>() { { "id", "tagsTree" } })%>
+    <input type="submit" value="<%= Resources.Common.Save %>" />
+    
+    <h2><%=Resources.Common.Authorizations %></h2>
     <table>
         <thead>
             <tr>
-                <td>TODO</td>
+                <td></td>
                 <% foreach (var u in Model.UserNames)
-                   { %><td><%= u%></td>
+                   { %><td>
+                       <%= u%>
+                </td>
                 <%} %></tr>
         </thead>
         <tbody>
             <% foreach (var tua in Model.TagUserAuthorizations)
                { %>
-            <tr><td><%= tua.TagName%></td>
+            <tr>
+                <td>
+                    <%= tua.TagName%>
+                </td>
                 <%foreach (var auth in tua.Authorizations)
-                  { %><td><input <%=auth.Authorized?"checked=\"checked\"":"" %> value="<%=auth.Value %>" type="checkbox" name="authorizations" />
+                  { %><td>
+                      <input <%=auth.Authorized?"checked=\"checked\"":"" %> value="<%=auth.Value %>" type="checkbox"
+                          name="authorizations" />
                   </td>
                 <%} %></tr>
             <%} %>
         </tbody>
     </table>
-    <%= Html.TreeList(Model.RootTags, t => t.Tags, t => t.Name) %>
+       
     <%--
-    
-    <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
-        TargetControlID="TagLink" PopupControlID="TagSelectPanel"
-        CancelControlID="CancelButton"
-        BackgroundCssClass="modalBackground" />
-    <table>
-        <thead><tr><td><asp:Button runat="server" ID="TagLink"
-            Text='<%# WebPhoto.Services.PhotoLibrary.GetLocalizedTagName()+"s" %>'/></td>
-            <asp:Repeater ID="AuthHeaderRepeater"  runat="server">
-                <ItemTemplate>
-                    <td><asp:Label runat="server"><%# (string)Container.DataItem %></asp:Label></td>
-                </ItemTemplate>
-            </asp:Repeater> 
-            <td><asp:Literal runat="server" Text='<%$ Resources:Common,Anonymous %>' /></td>
-            </tr>
-        </thead>
-        <asp:ListView ID="AuthListView" runat="server" EnableViewState="true">
-        <ItemTemplate>
-            <tr>
-                <td>
-                    <asp:Label runat="server" ToolTip='<%# WebPhoto.Services.PhotoLibrary.GetTagFullPath((string)Eval("TagId")) %>'>
-                        <%# WebPhoto.Services.PhotoLibrary.AdminGetTag((string)Eval("TagId")).Name %>
-                    </asp:Label>
-                </td>
-                <asp:ListView runat="server" DataSource='<%# Eval("Authorizations") %>' EnableViewState="true">
-                    <ItemTemplate>
-                        <td>
-                            <asp:CheckBox runat="server"
-                            ToolTip='<%# Eval("TagId") +","+ Eval("User") %>' Checked='<%# Eval("Authorized") %>'
-                             OnCheckedChanged="OnAuthListView_CheckedChanged" />
-                        </td>
-                    </ItemTemplate>
-                    <LayoutTemplate>
-                        <td id="itemPlaceHolder" runat="server"></td>
-                    </LayoutTemplate>
-                </asp:ListView>
-            </tr>
-        </ItemTemplate>
-        <LayoutTemplate>
-            <tbody>
-                <tr ID="itemPlaceHolder" runat="server">
-                </tr>
-            </tbody>
-        </LayoutTemplate>
-        </asp:ListView>
-    </table>
-    <asp:Panel runat="server" ID="TagSelectPanel" CssClass="popup" DefaultButton="OkButton" Height="300" Width="300">
-        <div style="height:259px;overflow:auto; margin:5px">
-            <asp:TreeView ID="TagTreeView" runat="server" NodeIndent="10" ExpandDepth="20"
-                ontreenodecheckchanged="TagTreeView_TreeNodeCheckChanged" ShowCheckBoxes="All">
-            </asp:TreeView>
-        </div>
-        <div style="margin:5px; text-align:right;">
-            <asp:Button runat="server" ID="OkButton" Text="Ok" OnClick="OkButton_OnClick"/>
-            <asp:Button runat="server" ID="CancelButton" Text="Annuler" />
-        </div>
-    </asp:Panel>
     <br />
     <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
     <br />
@@ -113,7 +79,7 @@
     <br />
      <asp:Button runat="server" ID="EmptyCacheButton" 
         Text='<%$Resources:photo,ReinitCache %>' onclick="EmptyCacheButton_Click" />--%>
-<br/>
-<input type="submit" value="<%= Resources.Common.Save %>" />
+    <br />
+    <input type="submit" value="<%= Resources.Common.Save %>" />
     <% form.EndForm(); %>
 </asp:Content>

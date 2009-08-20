@@ -15,6 +15,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Data
 
         public string Id { get { return tagInfo.Id; } }
         public string Name { get { return tagInfo.Name; } }
+        public bool Selected { get { return PhotoLibrary.TagUserAuthorizations.ContainsTag(tagInfo.Id); } }
 
         public TagData(ITagInfo tagInfo)
         {

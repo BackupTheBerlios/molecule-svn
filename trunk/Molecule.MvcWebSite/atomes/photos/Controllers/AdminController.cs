@@ -39,16 +39,30 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             return View(res);
         }
 
-        public ActionResult Save(string provider, TagName tagName, string[] authorizations)
+        public ActionResult Save(string provider, TagName tagName, string[] authorizations, string[] sharedTags)
         {
             PhotoLibrary.CurrentProvider = provider;
             PhotoLibrary.TagName = tagName;
-            
+
+            //remove unchecked tag
+            PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => !sharedTags.Contains(tuai.TagId));
+
+            //add checked tag
+            foreach (var tagId in sharedTags)
+                if (!PhotoLibrary.TagUserAuthorizations.Any(tuai => tuai.TagId == tagId))
+                    PhotoLibrary.TagUserAuthorizations.AddTag(tagId);
+
+            //update autorizations
             foreach (var tua in PhotoLibrary.TagUserAuthorizations)
-                foreach (var auth in tua.Authorizations){
+            {
+                foreach (var auth in tua.Authorizations)
+                {
                     auth.Authorized = authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User));
                     PhotoLibrary.TagUserAuthorizations.Set(auth);
                 }
+            }
+
+            PhotoLibrary.SaveTagUserAuthorizations();
 
             return RedirectToAction("Index");
         }

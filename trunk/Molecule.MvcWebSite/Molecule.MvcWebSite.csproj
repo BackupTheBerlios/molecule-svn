@@ -319,6 +319,8 @@
     <Content Include="atomes\admin\Views\Preferences\Index.aspx" />
     <Content Include="atomes\music\Views\Admin\Index.aspx" />
     <Content Include="atomes\photos\Views\Admin\Index.aspx" />
+    <Content Include="Scripts\jquery.tools.min.js" />
+    <Content Include="Scripts\jquery.treeview.min.js" />
     <Content Include="Views\Shared\PreferencesPage.Master" />
     <Content Include="atomes\music\Views\Web.config" />
     <Content Include="atomes\music\Atome.xml" />

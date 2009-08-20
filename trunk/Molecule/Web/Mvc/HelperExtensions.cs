@@ -87,18 +87,33 @@ namespace Molecule.Web.Mvc
         }
         #endregion
 
-        public static string TreeList<T>(this HtmlHelper helper, IEnumerable<T> dataSource, Func<T, IEnumerable<T>> childSelector, Func<T, string> formatter)
+        public static string TreeList<T>(this HtmlHelper helper, IEnumerable<T> dataSource, Func<T, IEnumerable<T>> childSelector,
+            Func<T, string> formatter)
         {
-            StringBuilder sb = new StringBuilder("<ul>\n");
+            return TreeList(helper, dataSource, childSelector, formatter, new RouteValueDictionary());
+        }
+
+        public static string TreeList<T>(this HtmlHelper helper, IEnumerable<T> dataSource, Func<T, IEnumerable<T>> childSelector,
+            Func<T, string> formatter, IDictionary<string, object> htmlAttributes)
+        {
+
+            if (dataSource.Count() == 0)
+                return "";
+
+            var ulBuilder = new TagBuilder("ul");
+            ulBuilder.MergeAttributes(htmlAttributes);
+
+            var sb = new StringBuilder();
             foreach (var item in dataSource)
             {
-                sb.AppendLine("<li>");
-                sb.AppendLine(formatter(item));
-                sb.AppendLine(TreeList(helper, childSelector(item), childSelector, formatter));
-                sb.AppendLine("</li>");
+                var liBuilder = new TagBuilder("li");
+                liBuilder.InnerHtml = formatter(item) + TreeList(helper, childSelector(item), childSelector, formatter);
+                sb.AppendLine(liBuilder.ToString( TagRenderMode.Normal));
             }
-            sb.AppendLine("</ul>");
-            return sb.ToString();
+
+            ulBuilder.InnerHtml = sb.ToString();
+
+            return ulBuilder.ToString(TagRenderMode.Normal);
         }
     }
 }
