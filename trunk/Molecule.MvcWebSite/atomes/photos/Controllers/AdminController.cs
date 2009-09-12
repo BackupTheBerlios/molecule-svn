@@ -45,22 +45,21 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             PhotoLibrary.TagName = tagName;
 
             //remove unchecked tag
-            PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => !sharedTags.Contains(tuai.TagId));
+            PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => sharedTags == null || !sharedTags.Contains(tuai.TagId));
 
             //add checked tag
-            foreach (var tagId in sharedTags)
-                if (!PhotoLibrary.TagUserAuthorizations.Any(tuai => tuai.TagId == tagId))
-                    PhotoLibrary.TagUserAuthorizations.AddTag(tagId);
+            if(sharedTags != null)
+                foreach (var tagId in sharedTags)
+                    if (!PhotoLibrary.TagUserAuthorizations.Any(tuai => tuai.TagId == tagId))
+                        PhotoLibrary.TagUserAuthorizations.AddTag(tagId);
 
             //update autorizations
             foreach (var tua in PhotoLibrary.TagUserAuthorizations)
-            {
                 foreach (var auth in tua.Authorizations)
                 {
                     auth.Authorized = authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User));
                     PhotoLibrary.TagUserAuthorizations.Set(auth);
                 }
-            }
 
             PhotoLibrary.SaveTagUserAuthorizations();
 

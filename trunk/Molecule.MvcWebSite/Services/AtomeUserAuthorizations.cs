@@ -52,6 +52,12 @@ namespace Molecule.WebSite.Services
             return this.First(t => t.Atome == atome).Authorizations.First(aua => aua.User == user);
         }
 
+        public bool IsAuthorized(string atome, string user)
+        {
+            var auth = TryGet(atome, user);
+            return auth != null ? auth.Authorized : false;
+        }
+
 
         public AtomeUserAuthorization TryGet(string atome, string user)
         {

@@ -10,17 +10,6 @@ namespace Molecule.MvcWebSite.atomes.music
 {
     public class Atome : IAtome
     {
-        public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
-        {
-
-            routes.MapRoute(
-                "MusicRoute",                                              // Route name
-                "music",                           // URL with parameters
-                new { atome = "music", controller = "Player", action = "Index" }  // Parameter defaults
-            );
-        }
-
-
 
         #region IAtome Members
 
@@ -44,5 +33,17 @@ namespace Molecule.MvcWebSite.atomes.music
         }
 
         #endregion
+
+
+        public Type DefaultController
+        {
+            get { return typeof(PlayerController); }
+        }
+
+
+        public bool AdminOnly
+        {
+            get { return false; }
+        }
     }
 }

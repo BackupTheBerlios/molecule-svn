@@ -6,5 +6,6 @@ namespace Molecule.WebSite.Services
         AtomeUserAuthorization Get(string atome, string user);
         void Set(string atome, string user, bool value);
         AtomeUserAuthorization TryGet(string atome, string user);
+        bool IsAuthorized(string atome, string user);
     }
 }

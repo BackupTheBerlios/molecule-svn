@@ -93,6 +93,7 @@
     <Compile Include="Atome\IProvider.cs" />
     <Compile Include="Atome\ProviderException.cs" />
     <Compile Include="Atome\ProviderInfo.cs" />
+    <Compile Include="Collections\CollectionExtensions.cs" />
     <Compile Include="Collections\Dictionary.cs" />
     <Compile Include="Collections\IKeyedEnumerable.cs" />
     <Compile Include="Configuration\ConfigurationClient.cs" />

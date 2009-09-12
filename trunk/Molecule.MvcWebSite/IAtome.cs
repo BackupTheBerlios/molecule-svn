@@ -8,8 +8,9 @@ namespace Molecule.MvcWebSite
 {
     public interface IAtome
     {
-        void RegisterRoutes(RouteCollection routes);
         Type PreferencesController { get; }
+        Type DefaultController { get; }
         IEnumerable<string> ControllerNamespaces { get; }
+        bool AdminOnly { get; }
     }
 }

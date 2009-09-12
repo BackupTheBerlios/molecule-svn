@@ -18,15 +18,6 @@ namespace Molecule.MvcWebSite.atomes.photos
 
         #region IAtome Members
 
-        public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
-        {
-
-            routes.MapRoute(
-                "PhotosRoute",                                              // Route name
-                "photos",                           // URL with parameters
-                new { atome = "photos", controller = "Tag", action = "Index" }  // Parameter defaults
-            );
-        }
 
         public Type PreferencesController
         {
@@ -44,5 +35,17 @@ namespace Molecule.MvcWebSite.atomes.photos
         }
 
         #endregion
+
+
+        public Type DefaultController
+        {
+            get { return typeof(TagController); }
+        }
+
+
+        public bool AdminOnly
+        {
+            get { return false; }
+        }
     }
 }

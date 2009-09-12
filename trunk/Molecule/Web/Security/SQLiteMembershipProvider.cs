@@ -137,6 +137,9 @@ namespace Molecule.Web.Security
             ValidatePasswordEventArgs args =
                 new ValidatePasswordEventArgs(username, password, true);
 
+            if (email == null)
+                email = "";
+
             OnValidatingPassword(args);
 
             if (args.Cancel)

@@ -316,6 +316,7 @@
     <None Include="Atome.xsd" />
     <Content Include="App_Themes\bloup\images\treeview-default-line.gif" />
     <Content Include="App_Themes\bloup\images\treeview-default.gif" />
+    <Content Include="atomes\admin\Views\Preferences\Create.aspx" />
     <Content Include="atomes\admin\Views\Web.config" />
     <Content Include="atomes\admin\Atome.xml" />
     <Content Include="atomes\admin\Views\Preferences\Index.aspx" />

@@ -34,6 +34,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using Molecule.MvcWebSite;
 using System.Collections.Generic;
+using System.Web.Routing;
+using System.Web.Mvc;
 
 namespace Molecule.WebSite.Services
 {
@@ -89,8 +91,13 @@ namespace Molecule.WebSite.Services
 
         public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
         {
-            if(atomeInstance != null)
-                atomeInstance.RegisterRoutes(routes);
+            if (atomeInstance != null && atomeInstance.DefaultController != null) {
+                routes.MapRoute(
+                    atome.Name+"Route",                                              // Route name
+                    atome.Name,                           // URL with parameters
+                    new { atome = atome.Name, controller = atomeInstance.DefaultController.Name.Replace("Controller","") , action = "Index" }  // Parameter defaults
+                );
+            }
         }
 
         #endregion
@@ -104,5 +111,11 @@ namespace Molecule.WebSite.Services
         }
 
         #endregion
+
+
+        public bool AdminOnly
+        {
+            get { return atomeInstance != null ? atomeInstance.AdminOnly : true; }
+        }
     }
 }
