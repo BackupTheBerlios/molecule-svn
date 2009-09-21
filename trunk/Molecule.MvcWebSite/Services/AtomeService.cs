@@ -116,7 +116,7 @@ namespace Molecule.WebSite.Services
             var rd = RouteTable.Routes.GetRouteData(new HttpContextWrapper(context));
             object atomeName;
             rd.Values.TryGetValue("atome", out atomeName);
-            if (atomeName == null)
+            if (atomeName == null || String.IsNullOrEmpty((string)atomeName))
                 return null;
             else
                 return GetAtome((string)atomeName);
@@ -185,8 +185,11 @@ namespace Molecule.WebSite.Services
                 return true; //only handle atome authorizations
 
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
-            if (currentUser == null)
-                return false;
+            if (String.IsNullOrEmpty(currentUser))
+                currentUser = AtomeUserAuthorizations.AnonymousUser;
+
+            if (HttpContext.Current.User != null && HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
+                return true;
 
             return AdminService.AtomeUserAuthorizations.Get(currentAtome.Name, currentUser).Authorized;
         }

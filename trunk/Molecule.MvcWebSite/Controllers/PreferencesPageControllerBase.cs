@@ -9,6 +9,7 @@ using Molecule.WebSite.Services;
 
 namespace Molecule.MvcWebSite.Controllers
 {
+    [Authorize(Roles = SQLiteProvidersHelper.AdminRoleName)]
     public abstract class PreferencesPageControllerBase : PageControllerBase
     {
         public PreferencesPageControllerBase()
@@ -18,7 +19,5 @@ namespace Molecule.MvcWebSite.Controllers
                 Atomes = AtomeService.GetAtomesWithPreferences()
             };
         }
-
-        
     }
 }

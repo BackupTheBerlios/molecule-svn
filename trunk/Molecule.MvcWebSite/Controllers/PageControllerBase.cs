@@ -9,9 +9,18 @@ using Molecule.WebSite.Services;
 
 namespace Molecule.MvcWebSite.Controllers
 {
-    public abstract class PageControllerBase : Controller
+    [Molecule.MvcWebSite.Mvc.Authorize()]
+    public abstract class PageControllerBase : PublicPageControllerBase
     {
         public PageControllerBase()
+            : base()
+        {
+        }
+    }
+
+    public abstract class PublicPageControllerBase : Controller
+    {
+        public PublicPageControllerBase()
         {
             ViewData["PageData"] = new PageData()
             {

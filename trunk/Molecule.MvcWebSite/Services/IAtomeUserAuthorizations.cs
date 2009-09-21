@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace Molecule.WebSite.Services
 {
-    public interface IAtomeUserAuthorizations
+    public interface IAtomeUserAuthorizations : IEnumerable<AtomeUserAuthorizationItem>
     {
         AtomeUserAuthorization Get(string atome, string user);
         void Set(string atome, string user, bool value);

@@ -111,6 +111,7 @@
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\admin\Atome.cs" />
+    <Compile Include="atomes\admin\Controllers\AuthentificationController.cs" />
     <Compile Include="atomes\admin\Controllers\PreferencesController.cs" />
     <Compile Include="atomes\admin\Data\PreferencesData.cs" />
     <Compile Include="atomes\music\Atome.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\PageData.cs" />
     <Compile Include="Models\PreferencesPageData.cs" />
     <Compile Include="Models\ProviderSelectorData.cs" />
+    <Compile Include="Mvc\AuthorizeAttribute.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,7 +318,8 @@
     <None Include="Atome.xsd" />
     <Content Include="App_Themes\bloup\images\treeview-default-line.gif" />
     <Content Include="App_Themes\bloup\images\treeview-default.gif" />
-    <Content Include="atomes\admin\Views\Preferences\Create.aspx" />
+    <Content Include="atomes\admin\Views\Authentification\LogOn.aspx" />
+    <Content Include="atomes\admin\Views\Preferences\CreateUser.aspx" />
     <Content Include="atomes\admin\Views\Web.config" />
     <Content Include="atomes\admin\Atome.xml" />
     <Content Include="atomes\admin\Views\Preferences\Index.aspx" />

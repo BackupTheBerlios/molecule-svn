@@ -32,21 +32,36 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Create()
+        public ActionResult CreateUser()
         {
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(string username, string password)
+        public ActionResult CreateUser(string username, string password)
         {
             Membership.CreateUser(username, password);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(string id)
+        public ActionResult DeleteUser(string id)
         {
             Membership.DeleteUser(id);
+            return RedirectToAction("Index");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Save(string[] authorizations)
+        {
+            //update autorizations
+            foreach (var aua in AdminService.AtomeUserAuthorizations)
+                foreach (var auth in aua.Authorizations) {
+                    bool authorized = authorizations.Contains(AtomeUserAuthorizationData.GetValue(auth.Atome, auth.User));
+                    AdminService.AtomeUserAuthorizations.Set(auth.Atome, auth.User, authorized);
+                }
+
+            AdminService.SaveAtomeUserAuthorizations();
+
             return RedirectToAction("Index");
         }
     }

@@ -11,8 +11,13 @@ namespace Molecule.MvcWebSite.Mvc
     {
         protected override Type GetControllerType(string controllerName)
         {
-            base.RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
-                return base.GetControllerType(controllerName);
+            //if (!AtomeService.IsCurrentUserAuthorized())
+                //return null;
+
+            if(AtomeService.CurrentAtome != null)
+                base.RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
+
+            return base.GetControllerType(controllerName);
             
         }
     }
