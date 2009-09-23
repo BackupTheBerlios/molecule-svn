@@ -186,4 +186,7 @@
   <data name="GetSongsFrom" xml:space="preserve">
     <value>Get music from</value>
   </data>
+  <data name="Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
 </root>

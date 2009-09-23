@@ -72,7 +72,7 @@ namespace Molecule.WebSite.Services
                     var atomeInfo = new AtomeInfo(Molecule.Serialization.Atome.LoadFrom(atomeDescriptionPath), virtualAtomeDir);
                     atomes.Add(atomeInfo);
                     if (log.IsInfoEnabled)
-                        log.Info("Found atome " + atomeInfo.Name);
+                        log.Info("Found atome " + atomeInfo.Id);
                 }
                 else
                     log.Warn("Atome contained in " + atomeDir.Name + " directory doesn't contain an Atome.xml description file, will not be used.");
@@ -132,7 +132,7 @@ namespace Molecule.WebSite.Services
 
         public static IAtomeInfo GetAtome(string atomeName)
         {
-            return GetAtomes().First(a => String.Compare(a.Name, atomeName, true) == 0);
+            return GetAtomes().First(a => String.Compare(a.Id, atomeName, true) == 0);
         }
 
         public static IEnumerable<IAtomeInfo> GetAtomesWithPreferences()
@@ -173,7 +173,7 @@ namespace Molecule.WebSite.Services
             if (String.IsNullOrEmpty(currentUser))
                 currentUser = AtomeUserAuthorizations.AnonymousUser;
 
-            var auth = AdminService.AtomeUserAuthorizations.TryGet(atome.Name, currentUser);
+            var auth = AdminService.AtomeUserAuthorizations.TryGet(atome.Id, currentUser);
             return auth != null ? auth.Authorized : false;
         }
 
@@ -191,7 +191,7 @@ namespace Molecule.WebSite.Services
             if (HttpContext.Current.User != null && HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
                 return true;
 
-            return AdminService.AtomeUserAuthorizations.Get(currentAtome.Name, currentUser).Authorized;
+            return AdminService.AtomeUserAuthorizations.Get(currentAtome.Id, currentUser).Authorized;
         }
     }
 }

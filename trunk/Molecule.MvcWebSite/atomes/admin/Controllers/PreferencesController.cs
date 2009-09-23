@@ -26,7 +26,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
                 AuthorizableUsers = authorizableUsers,
                 Authorizations = from atome in AtomeService.GetAtomes()
                                  where !atome.AdminOnly
-                                 select new AtomeUserAuthorizationsData(atome.Name,authorizableUsers)
+                                 select new AtomeUserAuthorizationsData(atome.Id, authorizableUsers)
             };
             return View(res);
         }

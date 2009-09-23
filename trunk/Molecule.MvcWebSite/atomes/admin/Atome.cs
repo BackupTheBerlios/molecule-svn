@@ -45,5 +45,10 @@ namespace Molecule.MvcWebSite.atomes.admin
         {
             get { return true; }
         }
+
+        public string Name
+        {
+            get { return Resources.Common.Preferences; }
+        }
     }
 }

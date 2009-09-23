@@ -12,5 +12,6 @@ namespace Molecule.MvcWebSite
         Type DefaultController { get; }
         IEnumerable<string> ControllerNamespaces { get; }
         bool AdminOnly { get; }
+        string Name { get; }
     }
 }

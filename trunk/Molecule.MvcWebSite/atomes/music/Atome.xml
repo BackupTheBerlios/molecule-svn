@@ -1,6 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Atome>
-  <Name>Music</Name>
-  <PreferencesPage>Admin.aspx</PreferencesPage>
   <ClassName>Molecule.MvcWebSite.atomes.music.Atome</ClassName>
 </Atome>

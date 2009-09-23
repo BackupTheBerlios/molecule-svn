@@ -36,6 +36,7 @@ using Molecule.MvcWebSite;
 using System.Collections.Generic;
 using System.Web.Routing;
 using System.Web.Mvc;
+using System.IO;
 
 namespace Molecule.WebSite.Services
 {
@@ -44,16 +45,18 @@ namespace Molecule.WebSite.Services
         Molecule.Serialization.Atome atome;
         string atomePath;
         IAtome atomeInstance;
+        string id;
 
         internal AtomeInfo(Molecule.Serialization.Atome atome, string atomePath)
         {
             this.atome = atome;
             this.atomePath = atomePath;
+            this.id = System.IO.Path.GetFileName(this.atomePath);
             if(atome.ClassName != null)
                 atomeInstance = (IAtome)Activator.CreateInstance(Type.GetType(atome.ClassName));
         }
         public string Path { get { return atomePath; } }
-        public string Name { get { return atome.Name; } }
+        public string Id { get { return id; } }
         public string ClassName { get { return atome.ClassName; } }
 
         private string mapAtomeRelativePath(string relativePath)
@@ -79,12 +82,12 @@ namespace Molecule.WebSite.Services
         public override bool Equals(object obj)
         {
             AtomeInfo tobj = obj as AtomeInfo;
-            return tobj != null && tobj.Name == Name;
+            return tobj != null && tobj.Id == Id;
         }
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return Id.GetHashCode();
         }
 
         #region IAtome Members
@@ -93,9 +96,9 @@ namespace Molecule.WebSite.Services
         {
             if (atomeInstance != null && atomeInstance.DefaultController != null) {
                 routes.MapRoute(
-                    atome.Name+"Route",                                              // Route name
-                    atome.Name,                           // URL with parameters
-                    new { atome = atome.Name, controller = atomeInstance.DefaultController.Name.Replace("Controller","") , action = "Index" }  // Parameter defaults
+                    id+"Route",                                              // Route name
+                    id,                           // URL with parameters
+                    new { atome = id, controller = atomeInstance.DefaultController.Name.Replace("Controller","") , action = "Index" }  // Parameter defaults
                 );
             }
         }
@@ -116,6 +119,11 @@ namespace Molecule.WebSite.Services
         public bool AdminOnly
         {
             get { return atomeInstance != null ? atomeInstance.AdminOnly : true; }
+        }
+
+        public string Name
+        {
+            get { return atomeInstance.Name; }
         }
     }
 }

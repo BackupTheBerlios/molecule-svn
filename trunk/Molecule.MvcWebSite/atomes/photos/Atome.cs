@@ -47,5 +47,10 @@ namespace Molecule.MvcWebSite.atomes.photos
         {
             get { return false; }
         }
+
+        public string Name
+        {
+            get { return Resources.photo.Photos; }
+        }
     }
 }

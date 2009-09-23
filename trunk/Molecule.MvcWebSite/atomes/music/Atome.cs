@@ -45,5 +45,10 @@ namespace Molecule.MvcWebSite.atomes.music
         {
             get { return false; }
         }
+
+        public string Name
+        {
+            get { return Resources.webmusic.Music; }
+        }
     }
 }

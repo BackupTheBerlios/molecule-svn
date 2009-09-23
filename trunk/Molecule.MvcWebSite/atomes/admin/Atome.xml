@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Atome>
-  <Name>Admin</Name>
   <ClassName>Molecule.MvcWebSite.atomes.admin.Atome</ClassName>
 </Atome>

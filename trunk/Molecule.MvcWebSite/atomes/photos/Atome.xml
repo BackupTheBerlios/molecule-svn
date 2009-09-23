@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Atome>
-  <Name>Photos</Name>
   <ClassName>Molecule.MvcWebSite.atomes.photos.Atome</ClassName>
 </Atome>

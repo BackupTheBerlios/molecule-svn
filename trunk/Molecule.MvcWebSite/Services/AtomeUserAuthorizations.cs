@@ -25,7 +25,7 @@ namespace Molecule.WebSite.Services
         public AtomeUserAuthorizations(AtomeUserAuthorizations oldData)
         {
             var atomes = from atome in AtomeService.GetAtomes()
-                         select atome.Name;
+                         select atome.Id;
 
             var users = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
                          orderby user.UserName select user.UserName)

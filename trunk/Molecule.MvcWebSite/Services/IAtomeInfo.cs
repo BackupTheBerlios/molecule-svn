@@ -31,12 +31,12 @@ namespace Molecule.WebSite.Services
     public interface IAtomeInfo
     {
         string PreferencesControllerName { get; }
+        string Id { get; }
         string Name { get; }
         string Path { get; }
         bool HasPreferences{ get; }
         bool AdminOnly { get; }
         string ClassName { get; }
-
         void RegisterRoutes(RouteCollection routes);
         IEnumerable<string> ControllerNamespaces { get; }
     }
