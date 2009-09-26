@@ -130,9 +130,9 @@ namespace Molecule.WebSite.Services
             //else return null;
         }
 
-        public static IAtomeInfo GetAtome(string atomeName)
+        public static IAtomeInfo GetAtome(string atomeId)
         {
-            return GetAtomes().First(a => String.Compare(a.Id, atomeName, true) == 0);
+            return GetAtomes().First(a => String.Compare(a.Id, atomeId, true) == 0);
         }
 
         public static IEnumerable<IAtomeInfo> GetAtomesWithPreferences()
@@ -142,13 +142,16 @@ namespace Molecule.WebSite.Services
                    select atome;
         }
 
-		public static bool IsCurrentUserAuthorizedForAtome(string atomeName)
+		public static bool IsCurrentUserAuthorizedForAtome(string atomeId)
 		{
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
             if (currentUser == null)
                 currentUser = AtomeUserAuthorizations.AnonymousUser;
 
-            var auth = AdminService.AtomeUserAuthorizations.TryGet(atomeName, currentUser);
+            if (HttpContext.Current.User != null && HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
+                return true;
+
+            var auth = AdminService.AtomeUserAuthorizations.TryGet(atomeId, currentUser);
             return auth != null ? auth.Authorized : false;			
 			
 		}
@@ -168,13 +171,7 @@ namespace Molecule.WebSite.Services
                 return true; //only handle atome authorizations
             }
 
-
-            var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
-            if (String.IsNullOrEmpty(currentUser))
-                currentUser = AtomeUserAuthorizations.AnonymousUser;
-
-            var auth = AdminService.AtomeUserAuthorizations.TryGet(atome.Id, currentUser);
-            return auth != null ? auth.Authorized : false;
+            return IsCurrentUserAuthorizedForAtome(atome.Id);
         }
 
 		
@@ -184,14 +181,14 @@ namespace Molecule.WebSite.Services
             if (currentAtome == null)
                 return true; //only handle atome authorizations
 
-            var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
-            if (String.IsNullOrEmpty(currentUser))
-                currentUser = AtomeUserAuthorizations.AnonymousUser;
+            return IsCurrentUserAuthorizedForAtome(currentAtome.Id);
+        }
 
-            if (HttpContext.Current.User != null && HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))
-                return true;
-
-            return AdminService.AtomeUserAuthorizations.Get(currentAtome.Id, currentUser).Authorized;
+        public static IEnumerable<IAtomeInfo> GetAuthorizedAtomes()
+        {
+            return from atome in instance.atomes
+                   where IsCurrentUserAuthorizedForAtome(atome.Id)
+                   select atome as IAtomeInfo;
         }
     }
 }

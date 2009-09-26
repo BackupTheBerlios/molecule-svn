@@ -24,7 +24,7 @@ namespace Molecule.MvcWebSite.Controllers
         {
             ViewData["PageData"] = new PageData()
             {
-                Atomes = AtomeService.GetAtomes()
+                Atomes = AtomeService.GetAuthorizedAtomes()
             };
         }
     }

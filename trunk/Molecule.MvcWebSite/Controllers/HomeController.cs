@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace Molecule.MvcWebSite.Controllers
 {
     [HandleError]
-    public class HomeController : Controller
+    public class HomeController : PageControllerBase
     {
         public ActionResult Index()
         {

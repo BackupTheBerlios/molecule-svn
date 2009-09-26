@@ -31,11 +31,26 @@
         <div id="sideBar">
             <div id="menuPanel">
                 <div class="menuContent" id="menuContent">
-                <%= Resources.molecule.Welcome %>
-                 
-                    <%--<%$Resources:molecule,Welcome%>--%>
-                    <%--<asp:LoginName runat="server" />--%>
-                    !
+                
+                    <%
+                        if (Request.IsAuthenticated)
+                        {
+                    %>
+                    <%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> !<br /> [
+                    <%= Html.ActionLink("Log Off", "LogOff", new { atome = "admin", controller = "Authentification" })%>
+                    ]
+                    <%
+                        }
+    else
+    {
+                    %>
+                    [
+                    <%= Html.ActionLink("Log On", "LogOn",
+                        new { atome = "admin", controller = "Authentification", returnUrl = Page.Request.Url })%>
+                    ]
+                    <%
+                        }
+                    %>
                     <ul>
                     <% foreach (var atome in data.Atomes){%>
                         <li><a href="/<%= atome.Id %>/"><%= atome.Name %></a></li>

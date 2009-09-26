@@ -179,7 +179,6 @@
     <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photos\Data\TagLinkData.cs" />
     <Compile Include="atomes\photos\Views\Tag\ZipPhotoFilesResult.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PreferencesPageControllerBase.cs" />
@@ -223,12 +222,6 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
-    <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
@@ -327,6 +320,7 @@
     <Content Include="atomes\photos\Views\Admin\Index.aspx" />
     <Content Include="Scripts\jquery.tools.min.js" />
     <Content Include="Scripts\jquery.treeview.min.js" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\PreferencesPage.Master" />
     <Content Include="atomes\music\Views\Web.config" />
     <Content Include="atomes\music\Atome.xml" />
