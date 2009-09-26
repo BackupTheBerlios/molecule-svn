@@ -45,7 +45,7 @@ namespace Molecule.WebSite.Services
             this.atomePath = atomePath;
         }
         public string Path { get {return atomePath; } }
-        public string Name { get { return atome.Name; } }
+        public string Name { get { return "obsolete"; } }
         public string ClassName { get { return atome.ClassName; } }
 
         private string mapAtomeRelativePath(string relativePath)
@@ -54,11 +54,11 @@ namespace Molecule.WebSite.Services
                 return null;
             return System.IO.Path.Combine(atomePath, relativePath);
         }
-        public string PreferencesPagePath { get { return mapAtomeRelativePath(atome.PreferencesPage); } }
+        public string PreferencesPagePath { get { return mapAtomeRelativePath("obsolete"); } }
 
         public bool HasPreferencesPage
         {
-            get { return !String.IsNullOrEmpty(atome.PreferencesPage); }
+            get { return !String.IsNullOrEmpty("obsolete"); }
         }
 
         public override bool Equals(object obj)
