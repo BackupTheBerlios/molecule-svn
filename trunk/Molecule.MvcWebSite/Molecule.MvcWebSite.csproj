@@ -1,11 +1,12 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}</ProjectGuid>
-    <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{603C0E0B-DB56-11DC-BE95-000D561079B0};{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Molecule.MvcWebSite</RootNamespace>
@@ -31,23 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+    <Reference Include="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Mono.Rocks, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="MvcContrib, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MvcContrib, Version=1.0.0.916, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\MvcContrib.dll</HintPath>
     </Reference>
-    <Reference Include="MvcContrib.FluentHtml, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MvcContrib.FluentHtml, Version=1.0.0.916, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\MvcContrib.FluentHtml.dll</HintPath>
     </Reference>
@@ -56,58 +57,51 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Common.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Common.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Common.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>photo.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>photo.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\webmusic.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\webmusic.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\admin\Atome.cs" />
@@ -165,8 +159,7 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="atomes\photos\Views\Photo\PhotoFileResult.cs" />
-    <Compile Include="atomes\photos\Controllers\PhotoController.cs">
-    </Compile>
+    <Compile Include="atomes\photos\Controllers\PhotoController.cs" />
     <Compile Include="atomes\photos\Data\PhotoLinkData.cs" />
     <Compile Include="atomes\photos\Data\TagIndexData.cs" />
     <Compile Include="atomes\photos\Services\InternalTag.cs" />
@@ -226,60 +219,34 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\Common.fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.fr.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>webmusic.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\Common.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\molecule.fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\molecule.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>photo.fr.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\photo.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>photo.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>webmusic.fr.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
     <Content Include="App_Themes\bloup\images\audio-volume-low.png" />
     <Content Include="App_Themes\bloup\images\colorpicker.png" />
@@ -304,11 +271,6 @@
     <Content Include="App_Themes\bloup\images\refresh.png" />
     <Content Include="App_Themes\bloup\images\system-search.png" />
     <Content Include="App_Themes\bloup\progressbarlayout.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
-    <None Include="App_Themes\bloup\molecule.cssx" />
-    <None Include="Atome.xsd" />
     <Content Include="App_Themes\bloup\images\treeview-default-line.gif" />
     <Content Include="App_Themes\bloup\images\treeview-default.gif" />
     <Content Include="atomes\admin\Views\Authentification\LogOn.aspx" />
@@ -370,6 +332,11 @@
     <Content Include="Views\Shared\ProviderSelector.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
+    <None Include="App_Themes\bloup\molecule.cssx" />
+    <None Include="Atome.xsd" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Molecule\Molecule.csproj">
       <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
       <Name>Molecule</Name>
@@ -410,5 +377,10 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
 </Project>
