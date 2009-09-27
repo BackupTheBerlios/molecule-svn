@@ -17,10 +17,10 @@ namespace Molecule.MvcWebSite.Mvc
             if(AtomeService.CurrentAtome != null)
                 base.RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
 
-            if(AtomeService.CurrentPathIsAtome)
-                Console.WriteLine("ControllerFactory:" + AtomeService.CurrentAtome.Name);
-            Console.WriteLine("ControllerFactory:"+controllerName);
-            Console.WriteLine("ControllerFactory:" + HttpContext.Current.Request.Url);
+            //if(AtomeService.CurrentPathIsAtome)
+            //    Console.WriteLine("ControllerFactory:" + AtomeService.CurrentAtome.Name);
+            //Console.WriteLine("ControllerFactory:"+controllerName);
+            //Console.WriteLine("ControllerFactory:" + HttpContext.Current.Request.Url);
             
             return base.GetControllerType(controllerName);
             
