@@ -145,7 +145,7 @@ namespace Molecule.WebSite.Services
 		public static bool IsCurrentUserAuthorizedForAtome(string atomeId)
 		{
             var currentUser = HttpContext.Current.User != null ? HttpContext.Current.User.Identity.Name : "";
-            if (currentUser == null)
+            if (String.IsNullOrEmpty(currentUser))
                 currentUser = AtomeUserAuthorizations.AnonymousUser;
 
             if (HttpContext.Current.User != null && HttpContext.Current.User.IsInRole(SQLiteProvidersHelper.AdminRoleName))

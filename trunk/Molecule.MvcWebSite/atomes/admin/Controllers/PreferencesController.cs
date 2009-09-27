@@ -17,16 +17,17 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         {
             var authorizableUsers = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
                                       where !Roles.IsUserInRole(user.UserName, Molecule.SQLiteProvidersHelper.AdminRoleName)
-                                      select user.UserName).Concat(Resources.Common.Anonymous);
+                                      select user.UserName);
 
             var res = new PreferencesData() {
                 DeletableUsers = from user in Membership.GetAllUsers().Cast<MembershipUser>()
                                  where !Roles.IsUserInRole(user.UserName, Molecule.SQLiteProvidersHelper.AdminRoleName)
                                  select new DeletableUserData() { Name = user.UserName, LastLoginDate = user.LastLoginDate },
-                AuthorizableUsers = authorizableUsers,
+                AuthorizableUsers = authorizableUsers.Concat(Resources.Common.Anonymous),
                 Authorizations = from atome in AtomeService.GetAtomes()
                                  where !atome.AdminOnly
-                                 select new AtomeUserAuthorizationsData(atome.Id, authorizableUsers)
+                                 select new AtomeUserAuthorizationsData(atome.Id,
+                                     authorizableUsers.Concat(AtomeUserAuthorizations.AnonymousUser))
             };
             return View(res);
         }
