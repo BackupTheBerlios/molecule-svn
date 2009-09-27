@@ -16,6 +16,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         public AuthentificationController()
             : this(null, null)
         {
+            Console.WriteLine("AuthentificationController");
         }
 
         // This constructor is not used by the MVC framework but is instead provided for ease

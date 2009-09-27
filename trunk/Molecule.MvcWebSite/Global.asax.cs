@@ -15,14 +15,14 @@ namespace Molecule.MvcWebSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            foreach (var atome in AtomeService.GetAtomes())
-                atome.RegisterRoutes(routes);
-
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{atome}/{controller}/{action}/{*id}",                           // URL with parameters
                 new { atome = "", controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
+
+            foreach (var atome in AtomeService.GetAtomes())
+                atome.RegisterRoutes(routes);
         }
 
         protected void Application_Start()
