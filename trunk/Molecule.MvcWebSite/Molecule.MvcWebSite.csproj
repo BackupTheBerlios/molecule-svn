@@ -107,6 +107,7 @@
     <Compile Include="atomes\admin\Atome.cs" />
     <Compile Include="atomes\admin\Controllers\AuthentificationController.cs" />
     <Compile Include="atomes\admin\Controllers\PreferencesController.cs" />
+    <Compile Include="atomes\admin\Controllers\SetupController.cs" />
     <Compile Include="atomes\admin\Data\PreferencesData.cs" />
     <Compile Include="atomes\music\Atome.cs" />
     <Compile Include="atomes\music\Controllers\AdminController.cs" />
@@ -203,6 +204,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

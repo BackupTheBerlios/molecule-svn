@@ -17,9 +17,5 @@ namespace Molecule.MvcWebSite.Mvc
         {
             return AtomeService.IsCurrentUserAuthorized();
         }
-        public override void OnAuthorization(System.Web.Mvc.AuthorizationContext filterContext)
-        {
-            base.OnAuthorization(filterContext);
-        }
     }
 }

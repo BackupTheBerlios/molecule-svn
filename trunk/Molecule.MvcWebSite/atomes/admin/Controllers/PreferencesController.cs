@@ -41,13 +41,13 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateUser(string username, string password)
         {
-            Membership.CreateUser(username, password);
+            AdminService.CreateUser(username, password);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteUser(string id)
         {
-            Membership.DeleteUser(id);
+            AdminService.DeleteUser(id);
             return RedirectToAction("Index");
         }
 

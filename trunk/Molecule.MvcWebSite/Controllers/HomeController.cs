@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Molecule.WebSite.Services;
 
 namespace Molecule.MvcWebSite.Controllers
 {
@@ -11,13 +12,9 @@ namespace Molecule.MvcWebSite.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            if (AdminService.IsSetupAuthorized)
+                return RedirectToAction("Index", "Setup", new { atome = "admin" });
 
-            return View();
-        }
-
-        public ActionResult About()
-        {
             return View();
         }
     }

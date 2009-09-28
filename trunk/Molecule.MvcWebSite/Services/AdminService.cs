@@ -206,5 +206,21 @@ namespace Molecule.WebSite.Services
                 instance.atomeUserAuthorizations = null;
             }
         }
+
+        public static void CreateUser(string username, string password)
+        {
+            Membership.CreateUser(username, password);
+        }
+
+        public static void DeleteUser(string id)
+        {
+            Membership.DeleteUser(id);
+        }
+
+        public static void CreateAdmin(string username, string password)
+        {
+            CreateUser(username, password);
+            Roles.AddUserToRole(username, Molecule.SQLiteProvidersHelper.AdminRoleName);
+        }
     }
 }
