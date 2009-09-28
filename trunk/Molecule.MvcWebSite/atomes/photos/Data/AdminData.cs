@@ -25,7 +25,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Data
         {
             get
             {
-                return from tag in PhotoLibrary.GetTagsByTag(tagInfo.Id)
+                return from tag in PhotoLibrary.AdminGetTagsByTag(tagInfo.Id)
                        select new TagData(tag);
             }
         }
@@ -38,7 +38,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Data
         {
             this.tuai = tuai;
         }
-        public string TagName { get { return PhotoLibrary.GetTag(tuai.TagId).Name; } }
+        public string TagName { get { return PhotoLibrary.AdminGetTag(tuai.TagId).Name; } }
         public IEnumerable<TagUserAuthorizationData> Authorizations
         {
             get

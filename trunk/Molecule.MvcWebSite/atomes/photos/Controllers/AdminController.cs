@@ -32,7 +32,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
                 TagUserAuthorizations = from tuai in PhotoLibrary.TagUserAuthorizations
                                         select new TagUserAuthorizationItemData(tuai),
 
-                RootTags = from tag in PhotoLibrary.GetRootTags()
+                RootTags = from tag in PhotoLibrary.AdminGetRootTags()
                            select new TagData(tag)
 
             };
@@ -57,7 +57,8 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             foreach (var tua in PhotoLibrary.TagUserAuthorizations)
                 foreach (var auth in tua.Authorizations)
                 {
-                    auth.Authorized = authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User));
+                    auth.Authorized = authorizations != null ?
+                        authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User)) : false;
                     PhotoLibrary.TagUserAuthorizations.Set(auth);
                 }
 
