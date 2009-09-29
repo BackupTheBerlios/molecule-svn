@@ -5,7 +5,7 @@
     <h1><%= Resources.molecule.SetupWelcome %></h1>
     <h2><%= Resources.molecule.Setup %></h2>
     <%= Resources.molecule.SetupInstructions %><br />
-    <% var createForm = Html.BeginForm("CreateUser", "Preferences", new { atome = "admin" }, FormMethod.Post); %>
+    <% var createForm = Html.BeginForm(); %>
     <label for="username"><%= Resources.Common.User %> : </label><br />
     <%= Html.TextBox("username", Environment.UserName)%><br />
     <label for="password"><%= Resources.Common.Password %> : </label><br />
