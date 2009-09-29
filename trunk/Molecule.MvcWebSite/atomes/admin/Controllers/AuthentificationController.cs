@@ -10,13 +10,14 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
     public class AuthentificationController : PublicPageControllerBase
     {
+
+
         // This constructor is used by the MVC framework to instantiate the controller using
         // the default forms authentication and membership providers.
 
         public AuthentificationController()
             : this(null, null)
         {
-            Console.WriteLine("AuthentificationController");
         }
 
         // This constructor is not used by the MVC framework but is instead provided for ease
@@ -63,16 +64,14 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction<HomeController>(c => c.Index());
             }
         }
 
         public ActionResult LogOff()
         {
-
             FormsAuth.SignOut();
-
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction<HomeController>(c => c.Index());
         }
 
         #region Validation Methods

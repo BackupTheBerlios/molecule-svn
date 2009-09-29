@@ -6,23 +6,24 @@ using Molecule.MvcWebSite.Controllers;
 using System.Web.Mvc;
 using Molecule.WebSite.Services;
 using System.Web.Security;
+using MvcContrib;
 
 namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
     public class SetupController : PublicPageControllerBase
     {
+
         public ActionResult Index()
         {
-            return RedirectToAction("CreateAdmin");
+            return this.RedirectToAction(c => c.CreateAdmin());
         }
-
+        
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult CreateAdmin()
         {
             if (!AdminService.IsSetupAuthorized)
-            {
                 return new RedirectResult("~/");
-            }
+            
             return View();
         }
 
@@ -30,8 +31,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         public ActionResult CreateAdmin(string username, string password)
         {
             AdminService.CreateAdmin(username, password);
-            
-            return RedirectToAction("Index");
+            return this.RedirectToAction<PreferencesController>(c => c.Index(), Atome.Id);
         }
     }
 }

@@ -14,7 +14,9 @@ using Molecule.MvcWebSite.Controllers;
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     public class CalendarController : PageControllerBase
-    {   
+    {
+
+
         public ActionResult Year(int? year, string tagId)
         {
             ITagInfo tag = null;

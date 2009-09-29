@@ -10,6 +10,7 @@ namespace Molecule.MvcWebSite.atomes.music
 {
     public class Atome : IAtome
     {
+        public const string Id = "music";
 
         #region IAtome Members
 

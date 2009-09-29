@@ -12,6 +12,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
     public class AdminController : PreferencesPageControllerBase
     {
+
         public ActionResult Index()
         {
             return View(new AdminData()
@@ -41,7 +42,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
                 throw new ArgumentException("Lastfm password is too long.", "LastfmPassword");
             LastfmService.Password = LastfmPassword;
 
-            return RedirectToAction("Index");
+            return RedirectToAction<AdminController>(c => c.Index());
         }
     }
 }

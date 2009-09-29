@@ -13,5 +13,6 @@ namespace Molecule.MvcWebSite
         IEnumerable<string> ControllerNamespaces { get; }
         bool AdminOnly { get; }
         string Name { get; }
+        
     }
 }

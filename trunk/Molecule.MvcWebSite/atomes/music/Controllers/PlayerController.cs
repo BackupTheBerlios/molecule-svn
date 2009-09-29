@@ -14,6 +14,8 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
     [Authorize]
     public class PlayerController : PageControllerBase
     {
+
+
         public ActionResult Index()
         {
             return View();

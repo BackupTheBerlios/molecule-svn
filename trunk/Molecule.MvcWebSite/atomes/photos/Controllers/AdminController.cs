@@ -12,6 +12,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     public class AdminController : PreferencesPageControllerBase
     {
+
         public ActionResult Index()
         {
             
@@ -64,7 +65,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 
             PhotoLibrary.SaveTagUserAuthorizations();
 
-            return RedirectToAction("Index");
+            return RedirectToAction<AdminController>(c => c.Index());
         }
     }
 }

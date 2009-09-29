@@ -10,14 +10,8 @@ namespace Molecule.MvcWebSite.atomes.admin
 {
     public class Atome : IAtome
     {
-        //public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
-        //{
-        //    routes.MapRoute(
-        //        "PreferencesRoute",                                              // Route name
-        //        "Preferences",                           // URL with parameters
-        //        new { atome = "admin", controller = "Preferences", action = "Index" }  // Parameter defaults
-        //    );
-        //}
+        
+        public const string Id = "admin";
 
         #region IAtome Members
 

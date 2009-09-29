@@ -13,6 +13,8 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
     public class PreferencesController : PreferencesPageControllerBase
     {
+
+
         public ActionResult Index()
         {
             var authorizableUsers = (from user in Membership.GetAllUsers().Cast<MembershipUser>()
@@ -42,13 +44,13 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         public ActionResult CreateUser(string username, string password)
         {
             AdminService.CreateUser(username, password);
-            return RedirectToAction("Index");
+            return RedirectToAction<PreferencesController>(c => c.Index());
         }
 
         public ActionResult DeleteUser(string id)
         {
             AdminService.DeleteUser(id);
-            return RedirectToAction("Index");
+            return RedirectToAction<PreferencesController>(c => c.Index());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -63,7 +65,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
 
             AdminService.SaveAtomeUserAuthorizations();
 
-            return RedirectToAction("Index");
+            return RedirectToAction<PreferencesController>(c => c.Index());
         }
     }
 }

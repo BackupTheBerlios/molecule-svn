@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Molecule.MvcWebSite.Models;
 using Molecule.WebSite.Services;
 using System.Web.Security;
+using System.Linq.Expressions;
 
 namespace Molecule.MvcWebSite.Controllers
 {
@@ -27,6 +28,21 @@ namespace Molecule.MvcWebSite.Controllers
             {
                 Atomes = AtomeService.GetAuthorizedAtomes()
             };
+        }
+
+
+        protected RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, string atomeId)
+            where T : PublicPageControllerBase
+        {
+            var res = MvcContrib.ControllerExtensions.RedirectToAction<T>(this, action);
+            res.RouteValues.Add("atome", atomeId);
+            return res;
+        }
+
+        protected RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action)
+            where T : PublicPageControllerBase
+        {
+            return MvcContrib.ControllerExtensions.RedirectToAction<T>(this, action);
         }
     }
 }

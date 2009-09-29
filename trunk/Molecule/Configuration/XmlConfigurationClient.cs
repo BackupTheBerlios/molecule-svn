@@ -45,7 +45,9 @@ namespace Molecule.Configuration
         
         private static string file_path {
             get {
-                return Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData), Path.Combine("molecule","config.xml"));
+                
+                return Path.Combine(Molecule.IO.XdgBaseDirectorySpec.GetUserDirectory(
+                    "XDG_CONFIG_HOME", ".molecule"),"config.xml");
             }
         }
         private static XmlDocument xml_document;

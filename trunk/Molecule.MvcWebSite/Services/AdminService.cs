@@ -189,8 +189,7 @@ namespace Molecule.WebSite.Services
 
         protected void saveAuthorizations()
         {
-            ConfigurationClient.Set(confNamespace, confAtomeUserAuthorizationsKey,
-            atomeUserAuthorizations);
+            ConfigurationClient.Set(confNamespace, confAtomeUserAuthorizationsKey, atomeUserAuthorizations);
         }
 
         public static void SaveAtomeUserAuthorizations()

@@ -12,6 +12,8 @@ namespace Molecule.MvcWebSite.atomes.photos
 {
     public class Atome : Molecule.MvcWebSite.IAtome
     {
+        public const string Id = "photos";
+
         public Atome()
         {
         }

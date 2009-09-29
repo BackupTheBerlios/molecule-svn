@@ -14,6 +14,8 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     public class TagController : PageControllerBase
     {
+
+
         public ActionResult Index(string id)
         {
             ITagInfo tag = null;

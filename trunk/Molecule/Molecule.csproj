@@ -58,6 +58,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Mono.Rocks.dll</HintPath>
     </Reference>
+    <Reference Include="MvcContrib, Version=1.0.0.916, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\MvcContrib.dll</HintPath>
+    </Reference>
     <Reference Include="PdnLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\PdnLib.dll</HintPath>
