@@ -90,11 +90,15 @@
     <Compile Include="App_GlobalResources\Common.fr.designer.cs">
       <DependentUpon>Common.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\molecule.designer.cs">
-      <DependentUpon>molecule.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\molecule1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>molecule.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.designer.cs">
       <DependentUpon>photo.resx</DependentUpon>
@@ -194,6 +198,7 @@
     <Compile Include="Models\ProviderSelectorData.cs" />
     <Compile Include="Mvc\AuthorizeAttribute.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
+    <Compile Include="Mvc\UrlHelperExtensions.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
@@ -233,9 +238,11 @@
     </Content>
     <Content Include="App_GlobalResources\molecule.fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\molecule.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>

@@ -35,14 +35,16 @@ namespace Molecule.MvcWebSite.Controllers
             where T : PublicPageControllerBase
         {
             var res = MvcContrib.ControllerExtensions.RedirectToAction<T>(this, action);
-            res.RouteValues.Add("atome", atomeId);
+            if (!String.IsNullOrEmpty(atomeId))
+                res.RouteValues.Add("atome", atomeId);
             return res;
         }
 
         protected RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
-            return MvcContrib.ControllerExtensions.RedirectToAction<T>(this, action);
+            var currentAtome = AtomeService.CurrentAtome;
+            return RedirectToAction<T>(action, currentAtome != null ? currentAtome.Id : null);
         }
     }
 }

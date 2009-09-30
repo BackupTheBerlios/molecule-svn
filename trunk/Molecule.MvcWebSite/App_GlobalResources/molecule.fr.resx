@@ -123,6 +123,18 @@
   <data name="LastLogin" xml:space="preserve">
     <value>Dernière connexion</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Erreur d'authentification.</value>
+  </data>
+  <data name="LoginInstructions" xml:space="preserve">
+    <value>Saisissez ci-dessous votre nom d'utilisateur et mot de passe.</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
   <data name="NewUser" xml:space="preserve">
     <value>Nouvel utilisateur</value>
   </data>
@@ -131,6 +143,9 @@
   </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>Mot de passe obligatoire</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Retenir mes identifiants</value>
   </data>
   <data name="Setup" xml:space="preserve">
     <value>Mise en route</value>

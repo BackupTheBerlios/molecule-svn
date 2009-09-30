@@ -123,6 +123,18 @@
   <data name="LastLogin" xml:space="preserve">
     <value>Last login</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log On</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Login was unsuccessful.</value>
+  </data>
+  <data name="LoginInstructions" xml:space="preserve">
+    <value>Please enter your login and an associated password.</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
   <data name="NewUser" xml:space="preserve">
     <value>New user</value>
   </data>
@@ -131,6 +143,9 @@
   </data>
   <data name="PasswordRequired" xml:space="preserve">
     <value>Password required</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
   </data>
   <data name="Setup" xml:space="preserve">
     <value>Setup</value>

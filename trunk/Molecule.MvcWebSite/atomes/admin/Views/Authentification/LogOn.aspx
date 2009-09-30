@@ -2,29 +2,29 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-<h2>Log On</h2>
+<h2><%= Resources.molecule.Login %></h2>
     <p>
-        Please enter your username and password.
+        <%= Resources.molecule.LoginInstructions %>
     </p>
-    <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary(Resources.molecule.LoginError) %>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <p>
-                <label for="username">Username:</label>
+                <label for="username"><%= Resources.Common.User %> :</label>
                 <%= Html.TextBox("username") %>
                 <%= Html.ValidationMessage("username") %>
             </p>
             <p>
-                <label for="password">Password:</label>
+                <label for="password"><%= Resources.Common.Password %> :</label>
                 <%= Html.Password("password") %>
                 <%= Html.ValidationMessage("password") %>
             </p>
             <p>
-                <%= Html.CheckBox("rememberMe") %> <label for="rememberMe">Remember me?</label>
+                <%= Html.CheckBox("rememberMe") %> <label for="rememberMe"><%= Resources.molecule.RememberMe %></label>
             </p>
             <p>
-                <input type="submit" value="Log On" />
+                <input type="submit" value="<%= Resources.molecule.Login %>" />
             </p>
         </div>
     <% } %>

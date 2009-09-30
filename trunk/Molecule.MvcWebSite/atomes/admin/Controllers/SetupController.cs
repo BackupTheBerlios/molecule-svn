@@ -31,7 +31,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         public ActionResult CreateAdmin(string username, string password)
         {
             AdminService.CreateAdmin(username, password);
-            return this.RedirectToAction<PreferencesController>(c => c.Index(), Atome.Id);
+            return this.RedirectToAction<PreferencesController>(c => c.Index());
         }
     }
 }

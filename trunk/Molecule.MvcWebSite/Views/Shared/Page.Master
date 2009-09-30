@@ -37,7 +37,7 @@
                         {
                     %>
                     <%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> !<br /> [
-                    <%= Html.ActionLink("Log Off", "LogOff", new { atome = "admin", controller = "Authentification" })%>
+                    <%= Html.ActionLink(Resources.molecule.LogOff, "LogOff", new { atome = "admin", controller = "Authentification" })%>
                     ]
                     <%
                         }
@@ -45,7 +45,7 @@
     {
                     %>
                     [
-                    <%= Html.ActionLink("Log On", "LogOn",
+                    <%= Html.ActionLink(Resources.molecule.Login, "LogOn",
                         new { atome = "admin", controller = "Authentification", returnUrl = Page.Request.Url })%>
                     ]
                     <%
