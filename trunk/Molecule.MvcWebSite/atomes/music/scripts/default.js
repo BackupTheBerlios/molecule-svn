@@ -18,6 +18,7 @@ $(document).ready(function() {
         if (event.keyCode == 13) {
             artistsWaitEffect();
             albumsWaitEffect();
+            songsWaitEffect();
             var searchString = $("#search").attr("value");
             if (searchString != "") {
                 library.Search($("#search").attr("value"), function(result) {
@@ -52,16 +53,20 @@ function albumsWaitEffect() {
     $("#albumList").hide();
 }
 
+function songsWaitEffect() {
+    $("#songsView").hide();
+}
+
 function updateAlbumList(albums) {
     $("#albumsWaiting").hide();
     $("#albumList li").remove();
-    $("#albumList").fadeIn(1000);
+    $("#albumList").fadeIn(200);
     var albumList = $("#albumList");
     $.each(albums, function(i, item) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
-            
+            songsWaitEffect();
             library.SongsByAlbum(item.Id, updateSongList);
         });
         albumList.append($("<li/>").append(a));
@@ -70,8 +75,9 @@ function updateAlbumList(albums) {
 
 function updateArtistList(artists) {
     $("#artistsWaiting").hide();
+    $("#artistList").fadeIn(200);
     $("#artistList li").remove();
-    $("#artistList").fadeIn(1000);
+    
     var artistList = $("#artistList");
     $.each(artists, function(i, item) {
         var a = $("<a href='#'>" + item.Name + "</a>");
@@ -82,10 +88,13 @@ function updateArtistList(artists) {
         });
         artistList.append($("<li/>").append(a));
     });
+
+    
 }
 
 function updateSongList(songs) {
     $("#songsView > tbody tr").remove();
+    $("#songsView").show(200);
     $.each(songs, function(i, song) {
         $("#songsView").append("<tr><td style='display: none'>" + song.Id + "</td>\
                     <td>" + song.Title + "</td>\
