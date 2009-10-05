@@ -345,6 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
+    <Content Include="App_Themes\bloup\jquery.treeview.css" />
     <Content Include="App_Themes\bloup\molecule.css" />
     <None Include="Atome.xsd" />
   </ItemGroup>

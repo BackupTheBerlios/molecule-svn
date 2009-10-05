@@ -54,7 +54,7 @@ function albumsWaitEffect() {
 }
 
 function songsWaitEffect() {
-    $("#songsView").hide();
+    //$("#songsView").fadeTo(0, 0.01);
 }
 
 function updateAlbumList(albums) {

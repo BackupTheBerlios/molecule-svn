@@ -17,7 +17,6 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2-nodebug-jsmin.js"></script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <div id="fileNotFoundPanel" class="informationPanel">
