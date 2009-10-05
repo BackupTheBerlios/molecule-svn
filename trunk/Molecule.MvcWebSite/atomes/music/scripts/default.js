@@ -54,7 +54,7 @@ function albumsWaitEffect() {
 }
 
 function songsWaitEffect() {
-    //$("#songsView").fadeTo(0, 0.01);
+    $("#songsView").fadeTo(0, 0.01);
 }
 
 function updateAlbumList(albums) {
@@ -93,10 +93,15 @@ function updateArtistList(artists) {
 }
 
 function updateSongList(songs) {
-    $("#songsView > tbody tr").remove();
-    $("#songsView").show(200);
+    //$("#songsView > tbody tr").remove();
+
+    $("#songsView").fadeTo(200, 1);
+
+    var rows = "";
+    
     $.each(songs, function(i, song) {
-        $("#songsView").append("<tr><td style='display: none'>" + song.Id + "</td>\
+
+        rows = rows + "<tr><td style='display: none'>" + song.Id + "</td>\
                     <td>" + song.Title + "</td>\
                     <td>" + song.ArtistName + "</td>\
                     <td>" + song.AlbumName + "</td>\
@@ -109,8 +114,11 @@ function updateSongList(songs) {
                         <a href=\"\">\
                             <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
                     </td>\
-                </tr>");
+                </tr>";
+
+
     });
+    $("#songsView > tbody").html(rows);
 }
 
 var player;
