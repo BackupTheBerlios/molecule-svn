@@ -29,6 +29,7 @@ $(document).ready(function() {
             }
             else {
                 retreiveAlbumsAndArtists();
+                updateSongList({});
             }
         }
     });
