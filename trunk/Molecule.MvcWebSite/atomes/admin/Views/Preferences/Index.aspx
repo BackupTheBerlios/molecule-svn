@@ -43,7 +43,7 @@
             <% foreach (var auAuth in Model.Authorizations) { %>
             <tr>
                 <td>
-                    <%= auAuth.Atome%></td>
+                    <%= auAuth.Atome %></td>
                 <% foreach (var auth in auAuth.Authorizations) { %>
                 <td><input <%=auth.Authorized?"checked=\"checked\"":"" %> value="<%= auth.Value %>"
                         type="checkbox" name="authorizations" /></td>

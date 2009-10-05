@@ -189,4 +189,7 @@
   <data name="Music" xml:space="preserve">
     <value>Music</value>
   </data>
+  <data name="EnableLastFmNotification" xml:space="preserve">
+    <value>Enable Last.fm notification</value>
+  </data>
 </root>

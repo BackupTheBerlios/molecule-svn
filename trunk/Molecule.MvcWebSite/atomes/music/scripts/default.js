@@ -1,24 +1,67 @@
 ﻿/// <reference path="~/Scripts/jquery-1.3.2-vsdoc.js" />
 $(document).ready(function() {
-    library.Artists(updateArtistList);
-    library.Albums(updateAlbumList);
-    $("#searchButton").click(function() {
-        var result = library.Search($("#search").attr("value"), function(result) {
-            updateAlbumList(result.Albums);
-            updateArtistList(result.Artists);
-            updateSongList(result.Songs);
-        });
+
+    retreiveAlbumsAndArtists();
+
+    $("#previousButton").click(previousButton_onclick);
+    $("#playButton").click(playButton_onclick);
+    $("#pauseButton").click(pauseButton_onclick);
+    $("#nextButton").click(nextButton_onclick);
+    $("#volumeDownButton").click(volumeDownButton_onclick);
+    $("#volumeUpButton").click(volumeUpButton_onclick);
+    $("#playlistTable").keydown(playlist_onkeydown);
+    $("#playAllButton").click(function() { songsView_onclick('playAll'); });
+    $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
+    $("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
+
+    $("#search").keyup(function(event) {
+        if (event.keyCode == 13) {
+            artistsWaitEffect();
+            albumsWaitEffect();
+            var searchString = $("#search").attr("value");
+            if (searchString != "") {
+                library.Search($("#search").attr("value"), function(result) {
+                    updateAlbumList(result.Albums);
+                    updateArtistList(result.Artists);
+                    updateSongList(result.Songs);
+                });
+            }
+            else {
+                retreiveAlbumsAndArtists();
+            }
+        }
     });
     init();
 });
 
+function retreiveAlbumsAndArtists() {
+    artistsWaitEffect();
+    library.Artists(updateArtistList);
+
+    albumsWaitEffect();
+    library.Albums(updateAlbumList);
+}
+
+function artistsWaitEffect() {
+    $("#artistsWaiting").show();
+    $("#artistList").hide();
+}
+
+function albumsWaitEffect() {
+    $("#albumsWaiting").show();
+    $("#albumList").hide();
+}
+
 function updateAlbumList(albums) {
+    $("#albumsWaiting").hide();
     $("#albumList li").remove();
+    $("#albumList").fadeIn(1000);
     var albumList = $("#albumList");
     $.each(albums, function(i, item) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
+            
             library.SongsByAlbum(item.Id, updateSongList);
         });
         albumList.append($("<li/>").append(a));
@@ -26,12 +69,15 @@ function updateAlbumList(albums) {
 }
 
 function updateArtistList(artists) {
+    $("#artistsWaiting").hide();
     $("#artistList li").remove();
+    $("#artistList").fadeIn(1000);
     var artistList = $("#artistList");
     $.each(artists, function(i, item) {
         var a = $("<a href='#'>" + item.Name + "</a>");
         a.click(function(e) {
             e.preventDefault();
+            albumsWaitEffect();
             library.AlbumsByArtist(item.Id, updateAlbumList);
         });
         artistList.append($("<li/>").append(a));

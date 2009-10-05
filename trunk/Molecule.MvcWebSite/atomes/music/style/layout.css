@@ -47,6 +47,11 @@ select
     top: 300px;
 }
 
+#playlistPanel
+{
+	overflow: auto; height: 150px;
+}
+
 #playlistcontainer
 {
     width: 49%;
@@ -102,6 +107,7 @@ select
 #currentSongPositionLabel
 {
 	margin-top:10px;
+	font-family: Courier New;
 }
 
 #currentSongArtistLabel
@@ -142,6 +148,11 @@ select
     width: 100px;
 }
 
+#coverArtImage
+{
+	display: none;
+}
+
 #nextButton
 {
 	margin-right:35px;
@@ -153,6 +164,16 @@ select
 	position:relative;
 	width:30px;
 	bottom:8px;
+}
+
+#search
+{
+	width: 45%;
+}
+
+#pauseButton
+{
+	display: none;
 }
 
 

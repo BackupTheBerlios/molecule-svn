@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Last.fm notification.
+        /// </summary>
+        internal static string EnableLastFmNotification {
+            get {
+                return ResourceManager.GetString("EnableLastFmNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enqueue.
         /// </summary>
         internal static string Enqueue {

@@ -190,7 +190,8 @@ margin-bottom:4px;
 .thinBorder,
 .thinBox,
 .tabSelectedTitle,
-.tabTitle
+.tabTitle,
+input
 {
 	border:1px;
 	border-style:solid;
@@ -381,4 +382,16 @@ table td
 	background-color: #000000;
 	filter:alpha(opacity=30);
 	opacity:0.30;
+}
+
+.searchTextBox
+{
+	background: #2e3436 url(images/system-search.png) no-repeat 2px 2px;
+	padding-left:20px;
+}
+
+input
+{
+	background-color: #2e3436;
+	color:white;
 }

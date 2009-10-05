@@ -106,11 +106,15 @@
     <Compile Include="App_GlobalResources\photo.fr.designer.cs">
       <DependentUpon>photo.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\webmusic.designer.cs">
-      <DependentUpon>webmusic.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\webmusic.fr.designer.cs">
+    <Compile Include="App_GlobalResources\webmusic.fr1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\webmusic1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>webmusic.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\admin\Atome.cs" />
     <Compile Include="atomes\admin\Controllers\AuthentificationController.cs" />
@@ -133,9 +137,6 @@
     <Compile Include="atomes\music\Data\SearchData.cs" />
     <Compile Include="atomes\music\Data\SongData.cs" />
     <Compile Include="atomes\music\Services\SearchResult.cs" />
-    <Compile Include="atomes\music\Views\Admin\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
     <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
@@ -198,7 +199,7 @@
     <Compile Include="Models\ProviderSelectorData.cs" />
     <Compile Include="Mvc\AuthorizeAttribute.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
-    <Compile Include="Mvc\UrlHelperExtensions.cs" />
+    <Compile Include="Mvc\HelperExtensions.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
@@ -232,6 +233,7 @@
     <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\Common.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
@@ -255,6 +257,7 @@
     <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic.fr1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
     <Content Include="App_Themes\bloup\images\audio-volume-low.png" />

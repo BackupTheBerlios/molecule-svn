@@ -11,7 +11,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.AdminDat
 <% Html.RenderPartial("ProviderSelector", Model); %>
 <br/>
 <h2>Last.fm</h2>
-<%= Html.CheckBox("lastfmEnabled", Model.LastfmEnabled) %> <label for="lastfmEnabled">Enable Last.fm</label>
+<%= Html.CheckBox("lastfmEnabled", Model.LastfmEnabled) %> <label for="lastfmEnabled"><%= Resources.webmusic.EnableLastFmNotification %></label>
 <br/>
 <label for="lastfmUsername"><%= Resources.Common.User %></label> : <%= Html.TextBox("lastfmUsername", Model.LastfmUsername) %>
 <br/>
