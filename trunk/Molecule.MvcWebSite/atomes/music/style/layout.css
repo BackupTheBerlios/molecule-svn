@@ -1,26 +1,31 @@
-select
-{
-    width: 100%;
-    height:150px;
-}
 
+#playlistcontainer,
+#playerControls,
+#albumscontainer,
 #artistscontainer
 {
-    width: 48%;
-    height: 180px;
-    position: relative;
-    float: left;
+    width: 49%;
+    display:inline-block;
 }
 
+#playlistcontainer,
 #albumscontainer
 {
-    position: relative;
-    float: right;
-    width: 49%;
-    height: 180px;
-    display: block;
-    top: 0px;
-    left: 0px;
+	margin-left:10px;
+	clear:right;
+}
+
+#playlistcontainer
+{
+	height:230px;
+	overflow: auto;
+}
+
+#playerControls
+{
+	overflow: auto;
+	height:215px;
+	padding-top:15px;
 }
 
 .itemList
@@ -28,9 +33,11 @@ select
 	width:100%;
 }
 
-.navigationList
+.navigationList,
+#playlistPanel
 {
-	overflow: auto; height: 150px;
+	overflow: auto;
+	height:150px;
 }
 
 .navigationList ul
@@ -40,37 +47,12 @@ select
 	margin:0px;
 }
 
-#navigationPanel
-{
-    position: static;
-    height: 300px;
-    top: 300px;
-}
-
-#playlistPanel
-{
-	overflow: auto; height: 150px;
-}
-
-#playlistcontainer
-{
-    width: 49%;
-    float: right;
-    position: relative;
-    height: 230px;
-}
-
+#navigationPanel,
 #playerpanel
 {
-    height: 147px;
-}
-#playerControls
-{
-	top:17px;
-    height: 230px;
-    float: left;
-    width: 48%;
-    position: relative;
+	height:auto;
+	clear:both;
+	margin-bottom:20px;
 }
 
 #songscontainer img,
@@ -94,8 +76,7 @@ select
 
 #songscontainer
 {
-	position: relative;
-	margin-top:10px;
+	margin-top:20px;
 }
 
 #songscontainer table
@@ -106,7 +87,7 @@ select
 
 #currentSongPositionLabel
 {
-	margin-top:10px;
+	margin-top:5px;
 	font-family: Courier New;
 }
 
@@ -122,35 +103,13 @@ select
 	font-weight:bolder;
 }
 
-#songInformationPanel
-{
-	clear:both;
-}
-
-#songsLabelPanel
-{
-	width:68%;
-	float:left;
-	position: relative;
-}
-
-#covertArtPanel
-{
-	position:relative;
-	float:right;
-	display:block;
-	top:0px;
-	left:0px;
-}
-
-#coverArtPanel img
-{
-    width: 100px;
-}
-
 #coverArtImage
 {
 	display: none;
+	width: 100px;
+    height:100px;
+    margin-bottom:5px;
+    margin-top:5px;
 }
 
 #nextButton
@@ -168,7 +127,10 @@ select
 
 #search
 {
-	width: 45%;
+	width:50%;
+	margin-left:25%;
+	margin-right:25%;
+	margin-top:20px;
 }
 
 #pauseButton

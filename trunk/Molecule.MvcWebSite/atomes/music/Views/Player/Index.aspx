@@ -27,54 +27,50 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <div id="fileAddedToPlaylistPanel" class="informationPanel">
         <%=Resources.webmusic.SongsAdded %>
     </div>
-    <div id="playerpanel">
-        <div id="playerControls">
-            <img id="previousButton" alt="Précédent" src="<%= Url.Theme("images/media-skip-backward.png")%>" />&nbsp;
-            <img id="playButton" alt="Jouer" src="<%= Url.Theme("images/media-playback-start.png")%>" />
-            <img id="pauseButton" alt="Pause" src="<%= Url.Theme("images/media-playback-pause.png")%>" />
-            <img id="nextButton" alt="Suivant" src="<%= Url.Theme("images/media-skip-forward.png")%>" />
-            <img id="volumeDownButton" alt="Diminuer volume" src="<%= Url.Theme("images/audio-volume-low.png")%>" />
-            <div id="currentVolumeLabel"></div>
-            <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />
-            <div id="songInformationPanel">
-                <div id="songsLabelPanel">
-                    <div id="currentSongTitleLabel"></div>
-                    <div id="currentSongArtistLabel"></div>
-                    <div id="currentSongPositionLabel"></div>
-                </div>
-                <div id="coverArtPanel">
-                    <img alt="" id="coverArtImage" class="thinBorder" src="" />
-                </div>
-            </div>
+    
+    <div id="playerControls">
+        <img id="previousButton" alt="Précédent" src="<%= Url.Theme("images/media-skip-backward.png")%>" />&nbsp;
+        <img id="playButton" alt="Jouer" src="<%= Url.Theme("images/media-playback-start.png")%>" />
+        <img id="pauseButton" alt="Pause" src="<%= Url.Theme("images/media-playback-pause.png")%>" />
+        <img id="nextButton" alt="Suivant" src="<%= Url.Theme("images/media-skip-forward.png")%>" />
+        <img id="volumeDownButton" alt="Diminuer volume" src="<%= Url.Theme("images/audio-volume-low.png")%>" />
+        <div id="currentVolumeLabel"></div>
+        <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />
+        <div id="currentSongTitleLabel"></div>
+        <div id="currentSongArtistLabel"></div>
+        <div id="currentSongPositionLabel"></div>
+        <img alt="" id="coverArtImage" class="thinBorder" src="" />
+    </div>
+    
+    <div id="playlistcontainer">
+        <h2><%= Resources.webmusic.Playlist %></h2>
+        <div id="playlistPanel" class="thinBox">
+            <table id="playlistTable" class="itemList hoverTable"></table>
         </div>
-        <div id="playlistcontainer">
-            <h2><%= Resources.webmusic.Playlist %></h2>
-            <div id="playlistPanel" class="thinBox">
-                <table id="playlistTable" class="itemList hoverTable"></table>
-            </div>
-            <input id="repeatAllCheckBox" type="checkbox" />
-            <label for="repeatAllCheckBox"><%= Resources.webmusic.RepeatAll%></label>
+        <input id="repeatAllCheckBox" type="checkbox" />
+        <label for="repeatAllCheckBox"><%= Resources.webmusic.RepeatAll%></label>
+    </div>
+
+    <div id="artistscontainer">
+        <h2><%= Resources.webmusic.Artists %></h2>
+        <div class="navigationList thinBox">
+            <span id="artistsWaiting">Waiting...</span>
+            <ul id="artistList">
+            </ul>
         </div>
     </div>
-    <input id="search" class="searchTextBox" type="text"/>
-    <div id="navigationPanel">
-        <div id="artistscontainer">
-            <h2><%= Resources.webmusic.Artists %></h2>
-            <div class="navigationList thinBox">
-                <span id="artistsWaiting">Waiting...</span>
-                <ul id="artistList">
-                </ul>
-            </div>
-        </div>
-        <div id="albumscontainer">
-            <h2><%= Resources.webmusic.Albums %></h2>
-            <div class="navigationList thinBox">
-                <span id="albumsWaiting">Waiting...</span>
-                <ul id="albumList">
-                </ul>
-            </div>
+    
+    <div id="albumscontainer">
+        <h2><%= Resources.webmusic.Albums %></h2>
+        <div class="navigationList thinBox">
+            <span id="albumsWaiting">Waiting...</span>
+            <ul id="albumList">
+            </ul>
         </div>
     </div>
+
+     <input id="search" class="searchTextBox" type="text" />
+     
     <div id="songscontainer">
         <table id="songsView" class="hoverTable">
             <thead>
