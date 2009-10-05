@@ -42,6 +42,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <img alt="" id="coverArtImage" class="thinBorder" src="" />
     </div>
     
+    
     <div id="playlistcontainer">
         <h2><%= Resources.webmusic.Playlist %></h2>
         <div id="playlistPanel" class="thinBox">

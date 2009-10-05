@@ -6,7 +6,7 @@
 <head runat="server">
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/favicon.ico" type="image/ico" />
-    <link type="text/css" rel="stylesheet" href="../../App_Themes/bloup/molecule.cssx" />
+    <link type="text/css" rel="stylesheet" href="../../App_Themes/bloup/molecule.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
