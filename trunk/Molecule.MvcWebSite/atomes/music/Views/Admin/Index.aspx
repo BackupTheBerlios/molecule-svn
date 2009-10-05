@@ -17,6 +17,6 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.AdminDat
 <br/>
 <label for="lastfmPassword"><%= Resources.Common.Password %></label> : <%= Html.TextBox("lastfmPassword", Model.LastfmPassword)%>
 <br/>
-<input type="submit" value="<%= Resources.Common.Save %>" />
+<input type="submit" name="save" value="<%= Resources.Common.Save %>" />
 <% form.EndForm(); %>
 </asp:Content>

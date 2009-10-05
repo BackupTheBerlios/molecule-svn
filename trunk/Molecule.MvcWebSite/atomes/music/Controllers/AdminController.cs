@@ -26,8 +26,11 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Save(string provider, bool LastfmEnabled, string LastfmUsername, string LastfmPassword)
+        public ActionResult Save(string provider, bool LastfmEnabled, string LastfmUsername, string LastfmPassword, string reload)
         {
+            if(reload != null)
+                return Reload(provider);
+
             if (!MusicLibrary.Providers.Any(p => p.Id == provider))
                 throw new ArgumentException("Invalid provider id.", "provider");
 
@@ -42,6 +45,14 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
                 throw new ArgumentException("Lastfm password is too long.", "LastfmPassword");
             LastfmService.Password = LastfmPassword;
 
+            return RedirectToAction<AdminController>(c => c.Index());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Reload(string provider)
+        {
+            MusicLibrary.CurrentProvider = null;
+            MusicLibrary.CurrentProvider = provider;
             return RedirectToAction<AdminController>(c => c.Index());
         }
     }

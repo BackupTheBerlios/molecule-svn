@@ -117,7 +117,6 @@ namespace WebMusic.Services
 
         public static IEnumerable<IArtist> GetArtists()
         {
-			
             return  Instance.artists.Values.OrderBy(artist => artist.Name);
         }
 

@@ -3,4 +3,4 @@
 <%= Html.RadioButton("provider", p.Id, p.Id == Model.SelectedProviderId) + p.Name %>
 <br />
 <%} %>
-<input type="submit" value="<%= Resources.Common.Reload %>" />
+<input type="submit" name="reload" value="<%= Resources.Common.Reload %>" />

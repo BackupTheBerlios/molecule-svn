@@ -387,8 +387,7 @@ function Song(id, artist, title, album) {
     this.artist = artist;
     this.title = title;
     this.album = album;
-    this.getUrl = function()
-    {
+    this.getUrl = function(){
         return "/Music/Player/File/"+id;
     }
 };

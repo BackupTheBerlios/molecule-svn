@@ -48,6 +48,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             return new JsonResult() { Data = MusicLibrary.GetSongsByAlbum(id).Select((s) => new SongData(s)) };
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Search(string search)
         {
             return new JsonResult() { Data = new SearchData(MusicLibrary.Search(search)) };

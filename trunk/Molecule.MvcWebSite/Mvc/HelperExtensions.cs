@@ -64,7 +64,7 @@ namespace Molecule.Web.Mvc
 
             var res = "function " + funcName + "(){\n";
 
-            var functions = generateJQueryJsonFunctions<C>(helper).Concat(generateJQueryPostFunctions<C>(helper));
+            var functions = generateJQueryPostFunctions<C>(helper);
 
             foreach (var func in functions)
                 res += func + "\n";
@@ -93,9 +93,13 @@ namespace Molecule.Web.Mvc
         private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper) where C : IController
         {
             return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
-                   where mi.GetCustomAttributes(typeof(AcceptVerbsAttribute), false)
+                   let jsonResultType = typeof(JsonResult)
+                   let AcceptVerbsAttributeType = typeof(AcceptVerbsAttribute)
+                   let httpVersType = typeof(HttpVerbs)
+                   where mi.ReturnType == jsonResultType ||
+                   mi.GetCustomAttributes(AcceptVerbsAttributeType, false)
                      .Any(att => ((AcceptVerbsAttribute)att).Verbs
-                       .Contains(Enum.GetName(typeof(HttpVerbs), HttpVerbs.Post).ToUpper()))
+                       .Contains(Enum.GetName(httpVersType, HttpVerbs.Post).ToUpper()))
                    select generateJQueryFunction(helper, null, mi, "post");
         }
 
@@ -116,7 +120,7 @@ namespace Molecule.Web.Mvc
             var code = "\n\t\tvar args = \"" + url + "\";\n";
             foreach (var param in parameterNames)
                 code += "\t\targs = args.replace(\"#" + param + "\"," + param + ");\n";
-            code += "\t\t$." + jqueryFunc + "(args, callback);\n\t";
+            code += "\t\t$." + jqueryFunc + "(args, null, callback, \"json\");\n\t";
             return String.Format("\tthis.{0} = function({1}callback){{{2}}};", actionName, parameters, code);
         }
         #endregion
