@@ -36,10 +36,10 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <img id="volumeDownButton" alt="Diminuer volume" src="<%= Url.Theme("images/audio-volume-low.png")%>" />
         <div id="currentVolumeLabel"></div>
         <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />
-        <div id="currentSongTitleLabel"></div>
-        <div id="currentSongArtistLabel"></div>
-        <div id="currentSongPositionLabel"></div>
-        <img alt="" id="coverArtImage" class="thinBorder" src="" />
+        <div id="currentSongTitleLabel" class="songInfo"></div>
+        <div id="currentSongArtistLabel" class="songInfo"></div>
+        <div id="currentSongPositionLabel" class="songInfo"></div>
+        <img alt="" id="coverArtImage" class="songInfo" class="thinBorder" src="" />
     </div>
     
     

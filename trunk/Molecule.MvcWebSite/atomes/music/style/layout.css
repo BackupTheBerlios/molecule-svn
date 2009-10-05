@@ -93,19 +93,19 @@
 
 #currentSongArtistLabel
 {
-	margin-top:8px;
+	margin-top:5px;
 }
 
 #currentSongTitleLabel
 {
-	margin-top:15px;
+	margin-top:10px;
 	font-size:110%;
 	font-weight:bolder;
 }
 
 #coverArtImage
 {
-	display: none;
+	display:none;
 	width: 100px;
     height:100px;
     margin-bottom:5px;

@@ -147,12 +147,14 @@ function playSelectedSong()
 {
     var currentSong = playlist[playlistSelectedIndex];
     playSong(currentSong.getUrl());
+    $(".songInfo").hide();
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
+    $("#coverArtImage").show();
     coverArtImage.src = "CoverArt/CoverArtFile.aspx?id="+currentSong.id;
     coverArtImage.alt = currentSong.album;
     coverArtImage.title = currentSong.album;
-    coverArtImage.style.display ="inline";
+    $(".songInfo").fadeIn(200);
     library.SongCurrentlyPlaying(currentSong.id, null);    
 }
 
