@@ -15,7 +15,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 
         public ActionResult Index()
         {
-            return View(new AdminData()
+            var res = View(new AdminData()
             {
                 Providers = MusicLibrary.Providers,
                 SelectedProviderId = MusicLibrary.CurrentProvider,
@@ -23,6 +23,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
                 LastfmUsername = LastfmService.Username,
                 LastfmPassword = LastfmService.Password
             });
+            return res;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

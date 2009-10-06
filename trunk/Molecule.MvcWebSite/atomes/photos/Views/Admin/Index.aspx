@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
     <script type="text/javascript" src="../../../../Scripts/jquery.treeview.min.js"></script>
-    <link rel="stylesheet" href="/App_Themes/bloup/jquery.treeview.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href='<%= Url.Theme("jquery.treeview.css") %>' type="text/css" />
     <script type="text/javascript">
         $(document).ready(function() {
             $(function() {
@@ -14,9 +14,8 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
-    <%var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
-    <h2>
-        Source</h2>
+    <% var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
+    <h2>Source</h2>
     <%= Resources.photo.GetPhotosFrom %>
     <br />
     <% Html.RenderPartial("ProviderSelector", Model); %>

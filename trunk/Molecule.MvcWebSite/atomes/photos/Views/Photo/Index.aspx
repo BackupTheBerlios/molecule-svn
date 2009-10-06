@@ -13,7 +13,7 @@
                   Photo = Model.PreviousPhoto,
                   Tag = Model.CurrentTag
                   ,
-                  HoverIconUrl = "/App_Themes/bloup/images/go-previous.png",
+                  HoverIconUrl = Url.Theme("images/go-previous.png"),
                   Description = "Photo Précédente"
               });
           if (Model.NextPhoto != null)
@@ -22,7 +22,7 @@
                   Photo = Model.NextPhoto,
                   Tag = Model.CurrentTag
                   ,
-                  HoverIconUrl = "/App_Themes/bloup/images/go-next.png",
+                  HoverIconUrl = Url.Theme("images/go-next.png"),
                   Description = "Photo suivante"
               });
         %><br />

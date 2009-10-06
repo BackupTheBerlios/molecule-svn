@@ -259,32 +259,32 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>webmusic.fr1.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="App_Themes\bloup\images\audio-volume-high.png" />
-    <Content Include="App_Themes\bloup\images\audio-volume-low.png" />
-    <Content Include="App_Themes\bloup\images\colorpicker.png" />
-    <Content Include="App_Themes\bloup\images\dialog-warning.png" />
-    <Content Include="App_Themes\bloup\images\document-save.png" />
-    <Content Include="App_Themes\bloup\images\folder.png" />
-    <Content Include="App_Themes\bloup\images\go-next.png" />
-    <Content Include="App_Themes\bloup\images\go-previous.png" />
-    <Content Include="App_Themes\bloup\images\list-add.png" />
-    <Content Include="App_Themes\bloup\images\list-remove.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-pause.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-start-small.png" />
-    <Content Include="App_Themes\bloup\images\media-playback-start.png" />
-    <Content Include="App_Themes\bloup\images\media-skip-backward.png" />
-    <Content Include="App_Themes\bloup\images\media-skip-forward.png" />
-    <Content Include="App_Themes\bloup\images\molecule-128.png" />
-    <Content Include="App_Themes\bloup\images\molecule-16.png" />
-    <Content Include="App_Themes\bloup\images\molecule-24.png" />
-    <Content Include="App_Themes\bloup\images\molecule-32.png" />
-    <Content Include="App_Themes\bloup\images\molecule-48.png" />
-    <Content Include="App_Themes\bloup\images\molecule-64.png" />
-    <Content Include="App_Themes\bloup\images\refresh.png" />
-    <Content Include="App_Themes\bloup\images\system-search.png" />
-    <Content Include="App_Themes\bloup\progressbarlayout.css" />
-    <Content Include="App_Themes\bloup\images\treeview-default-line.gif" />
-    <Content Include="App_Themes\bloup\images\treeview-default.gif" />
+    <Content Include="Themes\bloup\images\audio-volume-high.png" />
+    <Content Include="Themes\bloup\images\audio-volume-low.png" />
+    <Content Include="Themes\bloup\images\colorpicker.png" />
+    <Content Include="Themes\bloup\images\dialog-warning.png" />
+    <Content Include="Themes\bloup\images\document-save.png" />
+    <Content Include="Themes\bloup\images\folder.png" />
+    <Content Include="Themes\bloup\images\go-next.png" />
+    <Content Include="Themes\bloup\images\go-previous.png" />
+    <Content Include="Themes\bloup\images\list-add.png" />
+    <Content Include="Themes\bloup\images\list-remove.png" />
+    <Content Include="Themes\bloup\images\media-playback-pause.png" />
+    <Content Include="Themes\bloup\images\media-playback-start-small.png" />
+    <Content Include="Themes\bloup\images\media-playback-start.png" />
+    <Content Include="Themes\bloup\images\media-skip-backward.png" />
+    <Content Include="Themes\bloup\images\media-skip-forward.png" />
+    <Content Include="Themes\bloup\images\molecule-128.png" />
+    <Content Include="Themes\bloup\images\molecule-16.png" />
+    <Content Include="Themes\bloup\images\molecule-24.png" />
+    <Content Include="Themes\bloup\images\molecule-32.png" />
+    <Content Include="Themes\bloup\images\molecule-48.png" />
+    <Content Include="Themes\bloup\images\molecule-64.png" />
+    <Content Include="Themes\bloup\images\refresh.png" />
+    <Content Include="Themes\bloup\images\system-search.png" />
+    <Content Include="Themes\bloup\progressbarlayout.css" />
+    <Content Include="Themes\bloup\images\treeview-default-line.gif" />
+    <Content Include="Themes\bloup\images\treeview-default.gif" />
     <Content Include="atomes\admin\Views\Authentification\LogOn.aspx" />
     <Content Include="atomes\admin\Views\Preferences\CreateUser.aspx" />
     <Content Include="atomes\admin\Views\Web.config" />
@@ -344,9 +344,9 @@
     <Content Include="Views\Shared\ProviderSelector.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Themes\bloup\images\molecule-6-rot.svg" />
-    <Content Include="App_Themes\bloup\jquery.treeview.css" />
-    <Content Include="App_Themes\bloup\molecule.css" />
+    <None Include="Themes\bloup\images\molecule-6-rot.svg" />
+    <Content Include="Themes\bloup\jquery.treeview.css" />
+    <Content Include="Themes\bloup\molecule.css" />
     <None Include="Atome.xsd" />
   </ItemGroup>
   <ItemGroup>

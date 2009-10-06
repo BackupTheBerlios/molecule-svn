@@ -10,7 +10,7 @@
     <br />
     <div class="BlockItem">
      <a href="<%= CalendarController.MonthUrl(Url, Model.PreviousYear, Model.PreviousMonth, Model.Tag) %>">
-            <img style="border:none" src="/App_Themes/bloup/images/go-previous.png" />
+            <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         </a>
     </div>
     <div class="BlockItem">
@@ -48,7 +48,7 @@
     </div>
     <div class="BlockItem">
     <a href="<%= CalendarController.MonthUrl(Url, Model.NextYear, Model.NextMonth, Model.Tag) %>">
-            <img style="border:none" src="/App_Themes/bloup/images/go-next.png" />
+            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
         </a>
     </div>
 </asp:Content>

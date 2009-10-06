@@ -21,7 +21,7 @@
                 <td><%= user.Name %></td>
                 <td><%= user.LastLoginDate %></td>
                 <td><a href="<%= Url.Action("DeleteUser", "Preferences", new { id = user.Name }) %>">
-                    <img alt="Delete" src="/App_Themes/bloup/images/list-remove.png" /></a> </td>
+                    <img alt="Delete" src="<%= Url.Theme("images/list-remove.png")%>" /></a> </td>
             </tr>
             <%} %>
         </tbody>

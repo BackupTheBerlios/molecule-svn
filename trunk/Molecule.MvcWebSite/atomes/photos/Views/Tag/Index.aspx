@@ -29,7 +29,7 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
     {%>
 <a href="<%= TagController.ZipUrl(Url, Model.Tag) %>">
             <div class="ActionImage">
-    <img alt="download" src="/App_Themes/bloup/images/document-save.png" />
+    <img alt="download" src="<%= Url.Theme("images/document-save.png")%>" />
 </div>
             <%= Resources.photo.DownloadPage%>
         </a>

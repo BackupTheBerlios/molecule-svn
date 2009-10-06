@@ -9,7 +9,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     <br />
     <div class="BlockItem">
         <a href="<%= CalendarController.YearUrl(Url, Model.PreviousYear, Model.Tag) %>">
-            <img style="border:none" src="/App_Themes/bloup/images/go-previous.png" />
+            <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         </a>
     </div>
     <div class="BlockItem">
@@ -45,7 +45,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     </div>
     <div class="BlockItem">
         <a href="<%= CalendarController.YearUrl(Url, Model.NextYear, Model.Tag) %>">
-            <img style="border:none" src="/App_Themes/bloup/images/go-next.png" />
+            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
         </a>
     </div>
 </asp:Content>

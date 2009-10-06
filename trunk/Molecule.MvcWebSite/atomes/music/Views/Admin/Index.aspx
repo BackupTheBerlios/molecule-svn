@@ -9,7 +9,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.AdminDat
 <%= Resources.webmusic.GetSongsFrom %>
 <br />
 <% Html.RenderPartial("ProviderSelector", Model); %>
-<br/>
+<br />
 <h2>Last.fm</h2>
 <%= Html.CheckBox("lastfmEnabled", Model.LastfmEnabled) %> <label for="lastfmEnabled"><%= Resources.webmusic.EnableLastFmNotification %></label>
 <br/>

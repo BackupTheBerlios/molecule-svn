@@ -6,6 +6,7 @@
 <head runat="server">
    <%-- <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="~/favicon.ico" type="image/ico" />--%>
+    <link type="text/css" rel="stylesheet" href="<%= Url.Theme("molecule.css") %>" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -16,7 +17,7 @@
     <% var data = (Molecule.MvcWebSite.Models.PageData)ViewData["PageData"]; %>
     <div id="pagePanel">
         <div id="header">
-            <h1>&nbsp;<div id="logo"><img alt="logo" src="/App_Themes/bloup/images/molecule-24.png" /></div>
+            <h1>&nbsp;<div id="logo"><img alt="logo" src="<%= Url.Theme("images/molecule-24.png")%>" /></div>
                 <span><%= AdminService.MoleculeTitle %></span><%--<span><%=Page.Title%></span>--%></h1>
         </div>
         <div id="sideBar">

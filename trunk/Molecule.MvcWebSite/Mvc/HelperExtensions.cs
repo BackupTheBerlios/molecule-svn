@@ -10,12 +10,13 @@ using System.IO;
 using System.Reflection;
 using System.Web.Routing;
 using System.Text;
+using System.Configuration;
 
 namespace Molecule.Web.Mvc
 {
     public static class UrlHelperExtensions
     {
-        const string currentThemeKey = "Molecule.CurrentTheme";
+        const string themeKey = "theme";
         public static string Action<T>(this UrlHelper helper, Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
@@ -34,17 +35,8 @@ namespace Molecule.Web.Mvc
 
         public static string Theme(this UrlHelper helper, string relativeUrl)
         {
-            var currentTheme = (string)helper.RequestContext.HttpContext.Application[currentThemeKey];
-            if (currentTheme == null)
-            {
-                var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("/");
-                var res = config.SectionGroups["system.web"].Sections["pages"] as System.Web.Configuration.PagesSection;
-                currentTheme = res.Theme;
-                helper.RequestContext.HttpContext.Application[currentThemeKey] = currentTheme;
-            }
-            return "/App_Themes/" + currentTheme + "/" + relativeUrl;
+            return "/Themes/" + ConfigurationSettings.AppSettings[themeKey] + "/" + relativeUrl;
         }
-
 
         #region JQueryProxyScript
         public static string JQueryProxyScript<C>(this UrlHelper helper) where C : IController
