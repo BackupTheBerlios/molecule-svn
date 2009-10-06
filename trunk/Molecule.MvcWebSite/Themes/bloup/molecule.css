@@ -191,7 +191,7 @@ margin-bottom:4px;
 .thinBox,
 .tabSelectedTitle,
 .tabTitle,
-input
+input[type="text"]
 {
 	border:1px;
 	border-style:solid;
@@ -390,7 +390,7 @@ table td
 	padding-left:20px;
 }
 
-input
+input[type="text"]
 {
 	background-color: #2e3436;
 	color:white;
