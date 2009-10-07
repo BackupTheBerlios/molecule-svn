@@ -127,7 +127,6 @@
     <Compile Include="Serialization\Atome.cs" />
     <Compile Include="Services.cs" />
     <Compile Include="Web\CssVariablesExtender.cs" />
-    <Compile Include="Web\Mvc\HelperExtensions.cs" />
     <Compile Include="Web\Security\SQLiteMembershipProvider.cs" />
     <Compile Include="Web\Security\SQLiteRoleProvider.cs" />
     <Compile Include="Web\Singleton.cs" />

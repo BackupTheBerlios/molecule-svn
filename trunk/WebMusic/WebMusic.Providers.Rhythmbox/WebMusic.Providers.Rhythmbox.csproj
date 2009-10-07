@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}</ProjectGuid>
@@ -21,13 +21,13 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <OutputType>Library</OutputType>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <AssemblyName>WebMusic.Providers.Rhythmbox</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputType>Library</OutputType>
-    <OutputPath>..\..\Molecule.WebSite\atomes\webmusic\bin\providers\</OutputPath>
+    <OutputPath>..\..\Molecule.MvcWebSite\atomes\music\bin\providers\</OutputPath>
     <DebugSymbols>true</DebugSymbols>
     <RootNamespace>
     </RootNamespace>
@@ -39,7 +39,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputType>Library</OutputType>
-    <OutputPath>..\Molecule.WebSite\atomes\webmusic\bin\providers\</OutputPath>
+    <OutputPath>..\..\Molecule.MvcWebSite\atomes\music\bin\providers\</OutputPath>
     <RootNamespace>
     </RootNamespace>
     <Optimize>true</Optimize>
