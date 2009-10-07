@@ -369,7 +369,7 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true' And '$(OS)' == 'Windows_NT'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
   </Target>
   <ProjectExtensions>
