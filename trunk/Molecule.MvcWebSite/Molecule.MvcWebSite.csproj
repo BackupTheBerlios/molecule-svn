@@ -84,6 +84,20 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Molecule\Molecule.csproj">
+      <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
+      <Name>Molecule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebMusic\WebMusic.Providers\WebMusic.Providers.csproj">
+      <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
+      <Name>WebMusic.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebPhoto\WebPhoto.Providers\WebPhoto.Providers.csproj">
+      <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
+      <Name>WebPhoto.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="App_GlobalResources\Common.designer.cs">
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
@@ -348,20 +362,6 @@
     <Content Include="Themes\bloup\jquery.treeview.css" />
     <Content Include="Themes\bloup\molecule.css" />
     <None Include="Atome.xsd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Molecule\Molecule.csproj">
-      <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>
-      <Name>Molecule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebMusic\WebMusic.Providers\WebMusic.Providers.csproj">
-      <Project>{63C6457A-B924-41DB-AA55-07BA6482F7F1}</Project>
-      <Name>WebMusic.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebPhoto\WebPhoto.Providers\WebPhoto.Providers.csproj">
-      <Project>{6432DC42-CF0D-437A-909C-41E416F531B2}</Project>
-      <Name>WebPhoto.Providers</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
