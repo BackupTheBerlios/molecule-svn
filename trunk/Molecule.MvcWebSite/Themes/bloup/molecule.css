@@ -217,10 +217,25 @@ h2
 	font-size:18px;
 }
 
-h1
+h1,
+#header img
 {
 	font-size:18px;
+	display:block;
+	vertical-align:middle;
+	float:left;
+	position:relative;
+	margin-left:5px;
+}
 
+h1
+{
+	margin-top:18px;
+}
+
+#header img
+{
+	margin-top:5px;
 }
 
 a:link

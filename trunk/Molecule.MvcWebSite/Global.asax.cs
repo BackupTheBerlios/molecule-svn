@@ -15,14 +15,14 @@ namespace Molecule.MvcWebSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            if(Type.GetType ("Mono.Runtime") != null)
+            if (Type.GetType("Mono.Runtime") != null)
                 defaultRoute(routes);
 
             foreach (var atome in AtomeService.GetAtomes())
                 atome.RegisterRoutes(routes);
 
             if (Type.GetType("Mono.Runtime") == null)
-                defaultRoute(routes);
+               defaultRoute(routes);
         }
 
         private static void defaultRoute(RouteCollection routes)

@@ -16,9 +16,8 @@
     </div>--%>
     <% var data = (Molecule.MvcWebSite.Models.PageData)ViewData["PageData"]; %>
     <div id="pagePanel">
-        <div id="header">&nbsp;<div id="logo"><img alt="logo" src="<%= Url.Theme("images/molecule-24.png")%>" /></div>
-            <h1>
-                <span><%= AdminService.MoleculeTitle %></span><%--<span><%=Page.Title%></span>--%></h1>
+        <div id="header"><img alt="logo" src="<%= Url.Theme("images/molecule-24.png")%>" />
+            <h1><%= AdminService.MoleculeTitle %></h1>
         </div>
         <div id="sideBar">
             <div id="menuPanel">
