@@ -21,7 +21,7 @@
         </div>
         <div id="sideBar">
             <div id="menuPanel">
-                <div class="menuContent" id="menuContent">
+                <div id="menuContent">
                 
                     <%
                         if (Request.IsAuthenticated) {

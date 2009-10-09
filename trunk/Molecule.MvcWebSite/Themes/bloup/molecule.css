@@ -57,7 +57,7 @@ body
     z-index : 1;
 }
 
-#menuPanel ul
+#sideBar ul
 {
 
 	margin-top:5px;
@@ -68,7 +68,7 @@ body
 
 }
 
-#menuPanel li
+#sideBar li
 {
 margin-top:4px;
 margin-bottom:4px;
@@ -101,10 +101,6 @@ margin-bottom:4px;
 #logPanel li:hover
 {
     background-color: #999999;
-}
-
-.menuContent
-{
 }
 
 #maincontentPanel
