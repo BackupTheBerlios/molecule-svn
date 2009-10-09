@@ -22,9 +22,7 @@
         <div id="sideBar">
             <div id="menuPanel">
                 <div id="menuContent">
-                
-                    <%
-                        if (Request.IsAuthenticated) {
+                    <% if (Request.IsAuthenticated) {
                        %><%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> !<br />
                     [<%= Html.ActionLink(Resources.molecule.LogOff, "LogOff", new { atome = "admin", controller = "Authentification" })%>]
                     <%
