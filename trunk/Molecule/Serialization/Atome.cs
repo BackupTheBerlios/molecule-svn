@@ -27,6 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Molecule.Serialization
 {
@@ -37,11 +38,8 @@ namespace Molecule.Serialization
 
         public static Atome LoadFrom(string xmlFilePath)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(Atome));
-            using (FileStream fs = File.OpenRead(xmlFilePath))
-            {
-                return (Atome)ser.Deserialize(fs);
-            }
+            var doc = XDocument.Load(xmlFilePath);
+            return new Atome() { ClassName = doc.Descendants("ClassName").First().Value };
         }
     }
 }
