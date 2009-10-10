@@ -29,7 +29,7 @@ namespace Molecule.MvcWebSite
         {
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{atome}/{controller}/{action}/{*id}",                           // URL with parameters
+                "{controller}/{action}/{*id}",                           // URL with parameters
                 new { atome = "", controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
         }

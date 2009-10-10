@@ -97,7 +97,7 @@ namespace Molecule.WebSite.Services
             if (atomeInstance != null && atomeInstance.DefaultController != null) {
                 routes.MapRoute(
                     id+"Route",                                              // Route name
-                    id,                           // URL with parameters
+                    id+"/{controller}/{action}/{*id}",                           // URL with parameters
                     new { atome = id, controller = atomeInstance.DefaultController.Name.Replace("Controller","") , action = "Index" }  // Parameter defaults
                 );
             }

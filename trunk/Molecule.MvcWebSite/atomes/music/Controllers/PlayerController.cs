@@ -8,6 +8,8 @@ using Molecule.MvcWebSite.atomes.music.Data;
 using WebMusic.Services;
 using WebMusic.Providers;
 using log4net;
+using WebMusic.CoverArt;
+using System.IO;
 
 namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
@@ -15,7 +17,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
     public class PlayerController : PageControllerBase
     {
 
-
+       
         public ActionResult Index()
         {
             return View();
@@ -78,6 +80,21 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 
                 WebMusic.Lastfm.LastfmService.NowPlaying(song.Artist.Name, song.Title, song.Album.Name, (int)song.Duration.TotalSeconds, (int)song.AlbumTrack.Value);
             }
+        }
+
+        public FileResult CovertArt(string id)
+        {
+            if (log.IsDebugEnabled)
+                log.Debug("Requested cover art for the song with ID ");
+
+            var song = MusicLibrary.GetSong(id).Check(id);
+
+            string coverArtPath = CoverArtService.FetchCoverArt(song.Artist.Name, song.Album.Name);
+
+            if (!String.IsNullOrEmpty(coverArtPath) && System.IO.File.Exists(coverArtPath))
+                return new FilePathResult(coverArtPath, "image/jpeg");
+            else
+                throw new ResourceNotFoundException(id);
         }
     }
 }

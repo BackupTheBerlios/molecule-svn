@@ -46,5 +46,7 @@ namespace Molecule.MvcWebSite.Controllers
             var currentAtome = AtomeService.CurrentAtome;
             return RedirectToAction<T>(action, currentAtome != null ? currentAtome.Id : null);
         }
+
+        
     }
 }

@@ -17,7 +17,7 @@ namespace Molecule.Web.Mvc
     public static class UrlHelperExtensions
     {
         const string themeKey = "theme";
-        public static string Action<T>(this UrlHelper helper, Expression<Action<T>> action)
+        private static string Action<T>(UrlHelper helper, Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
             var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);

@@ -169,7 +169,7 @@ function playSelectedSong()
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
     $("#coverArtImage").show();
-    coverArtImage.src = "CoverArt/CoverArtFile.aspx?id="+currentSong.id;
+    coverArtImage.src = covertArtUrl.replace("#id",currentSong.id);
     coverArtImage.alt = currentSong.album;
     coverArtImage.title = currentSong.album;
     $(".songInfo").fadeIn(200);

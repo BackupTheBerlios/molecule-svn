@@ -25,9 +25,7 @@
                     <% if (Request.IsAuthenticated) {
                        %><%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> !<br />
                     [<%= Html.ActionLink(Resources.molecule.LogOff, "LogOff", new { atome = "admin", controller = "Authentification" })%>]
-                    <%
-                        }
-                        else
+                    <% }else
                         {
                     %>[<%= Html.ActionLink(Resources.molecule.Login, "LogOn",
                         new { atome = "admin", controller = "Authentification", returnUrl = Page.Request.Url })%>]
@@ -94,7 +92,7 @@
             </asp:ContentPlaceHolder>
         </div>
         <div id="footer">
-            © 2008 by <a href=".">Molecule Builder</a> | <a href=".">About</a> | <a href=".">Sitemap</a>
+            © 2009 by <a href=".">Molecule Builder</a> | <a href=".">About</a> | <a href=".">Sitemap</a>
         </div>
      </div>
 </body>
