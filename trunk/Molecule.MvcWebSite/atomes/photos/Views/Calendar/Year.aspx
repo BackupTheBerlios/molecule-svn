@@ -8,9 +8,10 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
-        <a href='<%= Url.Action<CalendarController>(c => c.Year(Model.PreviousYear, Model.Tag != null ? Model.Tag.Id : null)) %>'>
+        <% using(Html.ActionLink<CalendarController>(c => c.Year(Model.PreviousYear,
+               Model.Tag.NotNull(t => t.Id)), Atome.Id)){ %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
-        </a>
+        <%} %>
     </div>
     <div class="BlockItem">
         <table style="border-collapse:collapse">
@@ -28,13 +29,9 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
                                    Tag = Model.Tag,
                                    HoverText = item.Name,
                                    Description = item.Description,
-                                   NavigateUrl = Url.RouteUrl("TagMonth",
-                                      new
-                                      {
-                                          tagId = Model.Tag.Id,
-                                          year = Model.Year,
-                                          month = i*6+m+1,
-                                      }, null)
+                                   NavigateUrl = Url.Action<CalendarController>(c =>
+                                       c.Month(Model.Year,i*6+m+1, Model.Tag.NotNull(t => t.Id)), Atome.Id)
+                                     
                                }); %>
                         </td>
                     <%}); %>
@@ -44,8 +41,9 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
         </table>
     </div>
     <div class="BlockItem">
-        <a href="<%= Url.Action<CalendarController>(c => c.Year(Model.NextYear, Model.Tag != null ? Model.Tag.Id : null)) %>">
+        <% using (Html.ActionLink<CalendarController>(c => c.Year(Model.NextYear,
+               Model.Tag.NotNull(t => t.Id)), Atome.Id)) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
-        </a>
+        <%} %>
     </div>
 </asp:Content>

@@ -9,9 +9,10 @@
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Month = Model.Month, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
-     <a href='<%= Url.Action<CalendarController>(c => c.Month(Model.PreviousYear, Model.PreviousMonth, Model.Tag != null ? Model.Tag.Id : null)) %>'>
+     <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.PreviousYear,
+            Model.PreviousMonth, Model.Tag.NotNull(t => t.Id)), Atome.Id)) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
-        </a>
+        <%} %>
     </div>
     <div class="BlockItem">
     <table style="border-collapse:collapse;padding:0px;margin:0px">
@@ -47,8 +48,9 @@
         </table>
     </div>
     <div class="BlockItem">
-    <a href="<%= Url.Action<CalendarController>(c => c.Month(Model.NextYear, Model.NextMonth, Model.Tag != null ? Model.Tag.Id : null)) %>">
+    <% using (Html.ActionLink<CalendarController>(c =>
+           c.Month(Model.NextYear, Model.NextMonth, Model.Tag.NotNull(t => t.Id)), Atome.Id)){ %>
             <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
-        </a>
+        <%} %>
     </div>
 </asp:Content>

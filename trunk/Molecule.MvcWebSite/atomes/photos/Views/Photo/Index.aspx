@@ -34,7 +34,7 @@
      		            column.For(x => x.Value);
      	            }) %>
             </div>
-            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal)) %>"
+            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Atome.Id) %>"
                 alt="" width="<%=Model.PhotoSize.Width %>" height="<%=Model.PhotoSize.Height %>" />
         </div>
         <div id="photoDescriptionContainer" style="font-size: 110%">
@@ -43,20 +43,20 @@
             </p>
         </div>
         <br />
-        <a href="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw)) %>">
+        <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw), Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="Original" src="/atomes/photos/images/zoom-original.png" /></div>
-            <%= Resources.photo.OriginaleImage %>
-        </a>
+            <%= Resources.photo.OriginaleImage%>
+        <%} %>
         <%--<photo:Map ID="PhotoMap" runat="server" />--%>
         
-        <a href="<%= Url.Action<CalendarController>(c => c.Month(Model.Photo.Date.Year,
-            Model.Photo.Date.Month, Model.CurrentTag != null ? Model.CurrentTag.Id : null)) %>">
+        <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.Photo.Date.Year,
+            Model.Photo.Date.Month, Model.CurrentTag.NotNull(t=> t.Id)), Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>
-            <%= Resources.photo.Calendar %>
-        </a>
+            <%= Resources.photo.Calendar%>
+        <%} %>
         <h2>
             <%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
         <% Html.RenderPartial("TagList", Model.PhotoTags); %>

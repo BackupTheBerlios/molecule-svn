@@ -69,8 +69,7 @@ namespace Molecule.WebSite.Services
         {
             get
             {
-                return atomeInstance.PreferencesController != null ?
-                    atomeInstance.PreferencesController.Name.Replace("Controller", "") : null;
+                return atomeInstance.PreferencesController.NotNull(c => c.Name.Replace("Controller", ""));
             }
         }
 

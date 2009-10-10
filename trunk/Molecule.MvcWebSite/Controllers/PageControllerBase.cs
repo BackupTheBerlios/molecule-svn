@@ -44,7 +44,7 @@ namespace Molecule.MvcWebSite.Controllers
             where T : PublicPageControllerBase
         {
             var currentAtome = AtomeService.CurrentAtome;
-            return RedirectToAction<T>(action, currentAtome != null ? currentAtome.Id : null);
+            return RedirectToAction<T>(action, currentAtome.NotNull(a => a.Id));
         }
 
         

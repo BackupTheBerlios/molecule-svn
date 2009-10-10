@@ -21,10 +21,6 @@ namespace Molecule.Web.Mvc
             public TagBuilder(HttpResponseBase httpResponse, string tagName)
                 : base(tagName)
             {
-                if (httpResponse == null)
-                {
-                    throw new ArgumentNullException("httpResponse");
-                }
                 _httpResponse = httpResponse;
             }
 

@@ -5,6 +5,7 @@ using System.Web;
 using Molecule.WebSite.Services;
 using System.Web.Security;
 using System.Xml.Serialization;
+using Molecule;
 
 namespace WebPhoto.Services
 {
@@ -38,7 +39,7 @@ namespace WebPhoto.Services
                 var userAuths = new List<TagUserAuthorization>();
                 foreach (var user in users)
                 {
-                    var auth = oldData != null ? oldData.TryGet(item.TagId, user) : null;
+                    var auth = oldData.NotNull( o => o.TryGet(item.TagId, user));
                     if (auth == null)
                         auth = new TagUserAuthorization(item.TagId, user, defaultAuthorization);
                     userAuths.Add(auth);

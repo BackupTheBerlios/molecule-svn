@@ -36,7 +36,7 @@ namespace Molecule.WebSite.Services
                 var userAuths = new List<AtomeUserAuthorization>();
                 foreach (var user in users)
                 {
-                    var auth = oldData != null ? oldData.TryGet(atome, user) : null;
+                    var auth = oldData.NotNull(d => d.TryGet(atome, user));
                     if(auth == null)
                         auth = new AtomeUserAuthorization(atome, user, defaultAuthorization);
                     userAuths.Add(auth);

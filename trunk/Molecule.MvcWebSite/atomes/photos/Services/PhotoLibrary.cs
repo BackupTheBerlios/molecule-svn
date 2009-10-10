@@ -213,7 +213,7 @@ namespace WebPhoto.Services
             {
                 if (isTagged(current.Value, tagId))
                     yield return current.Value;
-                current = current.Next;
+                current = current.Previous;
             }
         }
 

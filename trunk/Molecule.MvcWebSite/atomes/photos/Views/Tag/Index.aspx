@@ -34,7 +34,8 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
             <%= Resources.photo.DownloadPage%>
         <%}
 
-        using (Html.ActionLink<CalendarController>(c => c.Month(first.Date.Year, first.Date.Month, Model.Tag.Id), Atome.Id)){ %>
+        using (Html.ActionLink<CalendarController>(c => c.Month(first.Date.Year,
+            first.Date.Month, Model.Tag.Id), Atome.Id)){ %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>
