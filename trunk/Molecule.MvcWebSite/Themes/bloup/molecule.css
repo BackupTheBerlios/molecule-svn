@@ -41,6 +41,7 @@ body
 }
 
 
+
 #sideBar
 {
 	float: left;
@@ -224,7 +225,20 @@ h1,
 	margin-left:5px;
 }
 
-h1
+#loginStatus
+{
+	position:relative;
+	float:right;
+	vertical-align:middle;
+	margin-right:5px;
+}
+
+#loginStatus a
+{
+	color:White;
+}
+
+h1,#loginStatus
 {
 	margin-top:18px;
 }
@@ -240,7 +254,6 @@ a:link
 	color:#f57900;
 	font-weight:bolder;
 }
-
 
 a:active{text-decoration:none; color:#f57900;	font-weight:bolder;}
 a:visited{text-decoration:none; color:#f57900;	font-weight:bolder;}

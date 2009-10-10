@@ -34,10 +34,10 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
                 });
         }
 
-        public static string IndexUrl(UrlHelper helper, IPhotoInfo photo, ITagInfo tag)
-        {
-            return helper.Action("Index", "Photo", new { id = photo != null ? photo.Id : null, tagId = tag != null ? tag.Id : null });
-        }
+        //public static string IndexUrl(UrlHelper helper, IPhotoInfo photo, ITagInfo tag)
+        //{
+        //    return helper.Action("Index", "Photo", new { id = photo != null ? photo.Id : null, tagId = tag != null ? tag.Id : null });
+        //}
 
         public ActionResult File(string id, PhotoFileSize size)
         {
@@ -45,10 +45,10 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             return new PhotoFileResult(PhotoLibrary.GetPhoto(id), size);
         }
 
-        public static string FileUrl(UrlHelper helper, IPhotoInfo photo, PhotoFileSize size)
-        {
-            return helper.Action("File", "Photo", new { id = photo != null ? photo.Id : null, size = size });
-        }
+        //public static string FileUrl(UrlHelper helper, IPhotoInfo photo, PhotoFileSize size)
+        //{
+        //    return helper.Action("File", "Photo", new { id = photo != null ? photo.Id : null, size = size });
+        //}
     }
 
     //public partial class Photo : System.Web.UI.Page

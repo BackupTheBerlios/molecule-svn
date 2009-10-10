@@ -18,12 +18,8 @@
     <div id="pagePanel">
         <div id="header"><img alt="logo" src="<%= Url.Theme("images/molecule-24.png")%>" />
             <h1><%= AdminService.MoleculeTitle %></h1>
-        </div>
-        <div id="sideBar">
-            <div id="menuPanel">
-                <div id="menuContent">
-                    <% if (Request.IsAuthenticated) {
-                       %><%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> !<br />
+            <span id="loginStatus"><% if (Request.IsAuthenticated) {
+                       %><%= Resources.molecule.Welcome + " " + Html.Encode(Page.User.Identity.Name) %> ! 
                     [<%= Html.ActionLink(Resources.molecule.LogOff, "LogOff", new { atome = "admin", controller = "Authentification" })%>]
                     <% }else
                         {
@@ -31,7 +27,11 @@
                         new { atome = "admin", controller = "Authentification", returnUrl = Page.Request.Url })%>]
                     <%
                         }
-                    %>
+                    %></span>
+        </div>
+        <div id="sideBar">
+            <div id="menuPanel">
+                <div id="menuContent">
                     <ul><% foreach (var atome in data.Atomes){%>
                         <li><a href="/<%= atome.Id %>/"><%= atome.Name %></a></li><% } %>
                     </ul>

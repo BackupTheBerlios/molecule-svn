@@ -214,6 +214,7 @@
     <Compile Include="Mvc\AuthorizeAttribute.cs" />
     <Compile Include="Mvc\ControllerFactory.cs" />
     <Compile Include="Mvc\HelperExtensions.cs" />
+    <Compile Include="Mvc\MvcElement.cs" />
     <Compile Include="Mvc\ViewEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />

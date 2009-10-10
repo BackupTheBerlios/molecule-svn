@@ -11,10 +11,13 @@ using System.Reflection;
 using System.Web.Routing;
 using System.Text;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Molecule.Web.Mvc
 {
-    public static class UrlHelperExtensions
+    
+
+    public static class HelperExtensions
     {
         const string themeKey = "theme";
         private static string Action<T>(UrlHelper helper, Expression<Action<T>> action)
@@ -31,6 +34,33 @@ namespace Molecule.Web.Mvc
             if (!String.IsNullOrEmpty(atomeId))
                 routeValues.Add("atome", atomeId);
             return helper.RouteUrl(routeValues);
+        }
+
+        public static string ActionLink<T>(this HtmlHelper helper, string linkText, Expression<Action<T>> action, string atomeId)
+           where T : PublicPageControllerBase
+        {
+            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action, atomeId);
+
+            var tagBuilder = new TagBuilder("a")
+            {
+                InnerHtml = (!String.IsNullOrEmpty(linkText)) ? HttpUtility.HtmlEncode(linkText) : String.Empty
+            };
+            //tagBuilder.MergeAttributes(htmlAttributes);
+            tagBuilder.MergeAttribute("href", url);
+            return tagBuilder.ToString(TagRenderMode.Normal);
+        }
+
+        public static TagBuilder ActionLink<T>(this HtmlHelper helper, Expression<Action<T>> action, string atomeId)
+            where T : PublicPageControllerBase
+        {
+            
+            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action, atomeId);
+
+            var tagBuilder = new TagBuilder(helper.ViewContext.HttpContext.Response, "a");
+            tagBuilder.MergeAttribute("href", url);
+
+            tagBuilder.Write(TagRenderMode.StartTag);
+            return tagBuilder;
         }
 
         public static string Theme(this UrlHelper helper, string relativeUrl)
@@ -145,5 +175,7 @@ namespace Molecule.Web.Mvc
 
             return ulBuilder.ToString(TagRenderMode.Normal);
         }
+
+        
     }
 }

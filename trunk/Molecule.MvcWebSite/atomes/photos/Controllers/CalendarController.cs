@@ -41,10 +41,10 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             });
         }
 
-        public static string YearUrl(UrlHelper helper, int? year, ITagInfo tag)
-        {
-            return helper.Action("Year", "Calendar", new { year = year, tagId = tag != null ? tag.Id : null });
-        }
+        //public static string YearUrl(UrlHelper helper, int? year, ITagInfo tag)
+        //{
+        //    return helper.Action("Year", "Calendar", new { year = year, tagId = tag != null ? tag.Id : null });
+        //}
 
         public ActionResult Month(int year, int month, string tagId)
         {
@@ -61,10 +61,10 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             });
         }
 
-        public static string MonthUrl(UrlHelper helper, int year, int month, ITagInfo tag)
-        {
-            return helper.Action("Month", "Calendar", new { year = year, month = month, tagId = tag != null ? tag.Id : null });
-        }
+        //public static string MonthUrl(UrlHelper helper, int year, int month, ITagInfo tag)
+        //{
+        //    return helper.Action("Month", "Calendar", new { year = year, month = month, tagId = tag != null ? tag.Id : null });
+        //}
 
         private IEnumerable<CalendarItem> getCalendarItems(int year, int month, string tagId)
         {

@@ -2,7 +2,7 @@
 
 <% if(Model.TextOnly){
        %>
-       <a href="<%= TagController.IndexUrl(Url, Model.Tag) %>"><%= Model.Tag.Name %></a>
+       <a href="<%= Url.Action<TagController>(c => c.Index(Model.Tag != null ? Model.Tag.Id : null), Atome.Id) %>"><%= Model.Tag.Name %></a>
    <%}else{ %>
 <%--<photo:PhotoLink runat="server" Description='<%= Model.Tag.Name %>'
     PhotoId='<%= PhotoLibrary.GetFirstPhotoByTag(Model.Tag.Id).Id %>'

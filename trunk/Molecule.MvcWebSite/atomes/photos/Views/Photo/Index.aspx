@@ -34,7 +34,7 @@
      		            column.For(x => x.Value);
      	            }) %>
             </div>
-            <img src="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Normal) %>"
+            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal)) %>"
                 alt="" width="<%=Model.PhotoSize.Width %>" height="<%=Model.PhotoSize.Height %>" />
         </div>
         <div id="photoDescriptionContainer" style="font-size: 110%">
@@ -43,14 +43,15 @@
             </p>
         </div>
         <br />
-        <a href="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Raw) %>">
+        <a href="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw)) %>">
             <div class="ActionImage">
                 <img alt="Original" src="/atomes/photos/images/zoom-original.png" /></div>
             <%= Resources.photo.OriginaleImage %>
         </a>
         <%--<photo:Map ID="PhotoMap" runat="server" />--%>
         
-        <a href="<%= CalendarController.MonthUrl(Url, Model.Photo.Date.Year, Model.Photo.Date.Month, Model.CurrentTag) %>">
+        <a href="<%= Url.Action<CalendarController>(c => c.Month(Model.Photo.Date.Year,
+            Model.Photo.Date.Month, Model.CurrentTag != null ? Model.CurrentTag.Id : null)) %>">
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

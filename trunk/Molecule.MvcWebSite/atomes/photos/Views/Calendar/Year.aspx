@@ -8,7 +8,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
     <div class="BlockItem">
-        <a href="<%= CalendarController.YearUrl(Url, Model.PreviousYear, Model.Tag) %>">
+        <a href='<%= Url.Action<CalendarController>(c => c.Year(Model.PreviousYear, Model.Tag != null ? Model.Tag.Id : null)) %>'>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         </a>
     </div>
@@ -44,7 +44,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
         </table>
     </div>
     <div class="BlockItem">
-        <a href="<%= CalendarController.YearUrl(Url, Model.NextYear, Model.Tag) %>">
+        <a href="<%= Url.Action<CalendarController>(c => c.Year(Model.NextYear, Model.Tag != null ? Model.Tag.Id : null)) %>">
             <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
         </a>
     </div>

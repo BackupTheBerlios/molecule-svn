@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<PhotoLinkData>" %>
 <div class="PhotoLink">
-<% var navigateUrl = Model.NavigateUrl ?? PhotoController.IndexUrl(Url, Model.Photo, Model.Tag); %>
+<% var navigateUrl = Model.NavigateUrl ?? Url.Action<PhotoController>(c => c.Index(Model.Photo.Id,
+       Model.Tag != null ? Model.Tag.Id : null), Atome.Id); %>
 <a href="<%= navigateUrl %>">
     
     <%if (!String.IsNullOrEmpty(Model.HoverText)){ %>
@@ -9,7 +10,7 @@
     <%if (Model.Photo != null)
       { %>
     <div class="PhotoLink_HoverBackground"></div>
-        <img src="<%= PhotoController.FileUrl(Url, Model.Photo, PhotoFileSize.Thumbnail) %>"
+        <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail)) %>"
         title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail" />
     </a>
     <%} %>

@@ -26,19 +26,20 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
 <br />
 <%  var first = Model.Photos.FirstOrDefault();
     if (first != null)
-    {%>
-<a href="<%= TagController.ZipUrl(Url, Model.Tag) %>">
+    {
+        using (Html.ActionLink<TagController>(c => c.Zip(Model.Tag.Id), Atome.Id)){ %>
             <div class="ActionImage">
-    <img alt="download" src="<%= Url.Theme("images/document-save.png")%>" />
-</div>
+                <img alt="download" src="<%= Url.Theme("images/document-save.png")%>" />
+            </div>
             <%= Resources.photo.DownloadPage%>
-        </a>
-        
-<a href="<%= CalendarController.MonthUrl(Url, first.Date.Year, first.Date.Month, Model.Tag) %>">
+        <%}
+
+        using (Html.ActionLink<CalendarController>(c => c.Month(first.Date.Year, first.Date.Month, Model.Tag.Id), Atome.Id)){ %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>
             <%= Resources.photo.Calendar%>
-        </a>
-<%} %>
+        
+      <%}
+    } %>
 </asp:Content>
