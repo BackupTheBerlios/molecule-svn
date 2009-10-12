@@ -120,8 +120,7 @@ namespace Molecule.Metadata
 						(gpsDirectory.GetString( com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE_REF).Equals("N")? -1 : 1	)*
 						ConvertDMSToDecimalDegrees(latitudeRationals[0].DoubleValue(), 
 					                           latitudeRationals[1].DoubleValue(), 
-					                           latitudeRationals[2].DoubleValue());
-					Console.WriteLine(	this.Latitude);	
+					                           latitudeRationals[2].DoubleValue());	
 					
 					Rational[] longitudeRationals = gpsDirectory.GetRationalArray(com.drew.metadata.exif.GpsDirectory.TAG_GPS_LONGITUDE);
 					this.Longitude = 
@@ -129,7 +128,6 @@ namespace Molecule.Metadata
 						ConvertDMSToDecimalDegrees(longitudeRationals[0].DoubleValue(), 
 					                                           longitudeRationals[1].DoubleValue(), 
 					                                           longitudeRationals[2].DoubleValue());	
-					Console.WriteLine(this.Longitude);
 					
 				}
 			}

@@ -11,7 +11,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         }
     </style>
     <script type="text/javascript">
-    <%= Url.JQueryProxyScript<PlayerController>("library") %>
+    <%= Url.JQueryProxyScript<PlayerController>(Molecule.MvcWebSite.atomes.music.Atome.Id, "library") %>
     var covertArtUrl = "<%= Url.Action<PlayerController>(c => c.CovertArt("#id")) %>";
     </script>
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>

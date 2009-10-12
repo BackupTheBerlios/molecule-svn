@@ -30,6 +30,7 @@ namespace Molecule.WebSite.Services
 {
     public interface IAtomeInfo
     {
+        string DefaultControllerName { get; }
         string PreferencesControllerName { get; }
         string Id { get; }
         string Name { get; }

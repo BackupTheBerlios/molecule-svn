@@ -34,7 +34,7 @@
      		            column.For(x => x.Value);
      	            }) %>
             </div>
-            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Atome.Id) %>"
+            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>"
                 alt="" width="<%=Model.PhotoSize.Width %>" height="<%=Model.PhotoSize.Height %>" />
         </div>
         <div id="photoDescriptionContainer" style="font-size: 110%">
@@ -43,7 +43,8 @@
             </p>
         </div>
         <br />
-        <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw), Atome.Id)) { %>
+        <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw),
+               Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="Original" src="/atomes/photos/images/zoom-original.png" /></div>
             <%= Resources.photo.OriginaleImage%>
@@ -51,7 +52,8 @@
         <%--<photo:Map ID="PhotoMap" runat="server" />--%>
         
         <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.Photo.Date.Year,
-            Model.Photo.Date.Month, Model.CurrentTag.NotNull(t=> t.Id)), Atome.Id)) { %>
+            Model.Photo.Date.Month, Model.CurrentTag.NotNull(t => t.Id)),
+            Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

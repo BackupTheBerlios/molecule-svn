@@ -36,7 +36,7 @@
                         <li><%if (AtomeService.CurrentPathIsAtome && atome == AtomeService.CurrentAtome)
                               {%><%= atome.Name %>
                         <%}else{ %>
-                        <a href="/<%=atome.Id%>"><%= atome.Name %></a><%} %></li><% } %>
+                        <a href="<%= Url.Action("Index", atome.DefaultControllerName, new { atome = atome.Id}) %>"><%= atome.Name %></a><%} %></li><% } %>
                     </ul>
                     <%--<asp:LoginStatus runat="server" />--%>
                 </div>

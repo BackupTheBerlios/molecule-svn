@@ -65,6 +65,15 @@ namespace Molecule.WebSite.Services
                 return null;
             return System.IO.Path.Combine(atomePath, relativePath);
         }
+
+        public string DefaultControllerName
+        {
+            get
+            {
+                return atomeInstance.DefaultController.NotNull(c => c.Name.Replace("Controller", ""));
+            }
+        }
+
         public string PreferencesControllerName
         {
             get
@@ -94,11 +103,12 @@ namespace Molecule.WebSite.Services
         public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
         {
             if (atomeInstance != null && atomeInstance.DefaultController != null) {
+
+                var parameters = new { atome = id, controller = DefaultControllerName , action = "Index", id="" };  // Parameter defaults
                 routes.MapRoute(
-                    id+"Route",                                              // Route name
-                    id+"/{controller}/{action}/{*id}",                           // URL with parameters
-                    new { atome = id, controller = atomeInstance.DefaultController.Name.Replace("Controller","") , action = "Index" }  // Parameter defaults
-                );
+                    id + "Route",                                              // Route name
+                    id + "/{controller}/{action}/{*id}",                           // URL with parameters
+                    parameters);
             }
         }
 

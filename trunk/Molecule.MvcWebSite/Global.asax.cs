@@ -13,23 +13,24 @@ namespace Molecule.MvcWebSite
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            //routes.Clear();
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            if (Type.GetType("Mono.Runtime") != null)
+            //if (Type.GetType("Mono.Runtime") != null)
+            //    defaultRoute(routes);
+
+            //foreach (var atome in AtomeService.GetAtomes())
+            //    atome.RegisterRoutes(routes);
+
+            //if (Type.GetType("Mono.Runtime") == null)
                 defaultRoute(routes);
-
-            foreach (var atome in AtomeService.GetAtomes())
-                atome.RegisterRoutes(routes);
-
-            if (Type.GetType("Mono.Runtime") == null)
-               defaultRoute(routes);
         }
 
         private static void defaultRoute(RouteCollection routes)
         {
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{*id}",                           // URL with parameters
+                "{atome}/{controller}/{action}/{*id}",                           // URL with parameters
                 new { atome = "", controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
         }

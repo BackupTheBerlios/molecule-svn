@@ -78,7 +78,7 @@ namespace WebMusic.Providers.Banshee
             defaultLibraryPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_MUSIC_DIR", "Music");
 
             string connectionString = String.Format("URI=file:{0},version=3", bansheeDatabase);
-            Console.WriteLine(connectionString);
+
             using (IDbConnection dbcon = new SqliteConnection(connectionString))
             {
                 dbcon.Open();

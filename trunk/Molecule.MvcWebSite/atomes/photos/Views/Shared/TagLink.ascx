@@ -2,7 +2,8 @@
 
 <% if(Model.TextOnly){%>
        <%= Html.ActionLink<TagController>(Model.Tag.Name,
-           c => c.Index(Model.Tag.NotNull(t => t.Id)), Atome.Id) %>
+                      c => c.Index(Model.Tag.NotNull(t => t.Id)),
+                             Molecule.MvcWebSite.atomes.photos.Atome.Id)%>
    <%}else{ %>
 <%--<photo:PhotoLink runat="server" Description='<%= Model.Tag.Name %>'
     PhotoId='<%= PhotoLibrary.GetFirstPhotoByTag(Model.Tag.Id).Id %>'

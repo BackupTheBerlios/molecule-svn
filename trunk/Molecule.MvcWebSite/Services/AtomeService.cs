@@ -132,7 +132,6 @@ namespace Molecule.WebSite.Services
 
         public static IAtomeInfo GetAtome(string atomeId)
         {
-            Console.WriteLine(atomeId);
             return GetAtomes().First(a => String.Compare(a.Id, atomeId, true) == 0);
         }
 

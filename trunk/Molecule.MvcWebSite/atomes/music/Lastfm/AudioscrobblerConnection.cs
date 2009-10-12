@@ -614,7 +614,6 @@ namespace WebMusic.Lastfm
                                         str_track_number,
                                         mbrainzid);
 
-            Console.WriteLine("Submitting via non-uri handler.");
             NowPlaying(uri);
         }
 

@@ -10,7 +10,7 @@
            foreach (var atome in data.Atomes)
            { %>
                 <div class='<%= AtomeService.CurrentPathIsAtome && atome ==  AtomeService.CurrentAtome ? "tabSelectedTitle" : "tabTitle" %>'>
-                    <a href="<%= Url.Action("", atome.PreferencesControllerName, new { atome = atome.Id }) %>"><%= atome.Name %></a>
+                    <a href='<%= Url.Action("Index", atome.PreferencesControllerName, new { atome = atome.Id }) %>'><%= atome.Name %></a>
                 </div>
          <%} %>
     </h2>

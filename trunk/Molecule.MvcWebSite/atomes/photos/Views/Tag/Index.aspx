@@ -27,7 +27,8 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
 <%  var first = Model.Photos.FirstOrDefault();
     if (first != null)
     {
-        using (Html.ActionLink<TagController>(c => c.Zip(Model.Tag.Id), Atome.Id)){ %>
+        using (Html.ActionLink<TagController>(c => c.Zip(Model.Tag.Id),
+            Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="download" src="<%= Url.Theme("images/document-save.png")%>" />
             </div>
@@ -35,7 +36,7 @@ Inherits="System.Web.Mvc.ViewPage<TagIndexData>" %>
         <%}
 
         using (Html.ActionLink<CalendarController>(c => c.Month(first.Date.Year,
-            first.Date.Month, Model.Tag.Id), Atome.Id)){ %>
+            first.Date.Month, Model.Tag.Id), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

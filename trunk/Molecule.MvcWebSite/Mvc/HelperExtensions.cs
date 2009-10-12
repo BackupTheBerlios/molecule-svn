@@ -31,6 +31,7 @@ namespace Molecule.Web.Mvc
             where T : PublicPageControllerBase
         {
             var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);
+            routeValues = new RouteValueDictionary(routeValues.ToDictionary(p => p.Key.ToLower(), p => p.Value));
             if (!String.IsNullOrEmpty(atomeId))
                 routeValues.Add("atome", atomeId);
             return helper.RouteUrl(routeValues);
@@ -41,8 +42,7 @@ namespace Molecule.Web.Mvc
         {
             var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action, atomeId);
 
-            var tagBuilder = new TagBuilder("a")
-            {
+            var tagBuilder = new TagBuilder("a"){
                 InnerHtml = (!String.IsNullOrEmpty(linkText)) ? HttpUtility.HtmlEncode(linkText) : String.Empty
             };
             //tagBuilder.MergeAttributes(htmlAttributes);
@@ -69,12 +69,12 @@ namespace Molecule.Web.Mvc
         }
 
         #region JQueryProxyScript
-        public static string JQueryProxyScript<C>(this UrlHelper helper) where C : IController
+        public static string JQueryProxyScript<C>(this UrlHelper helper, string atomeId) where C : IController
         {
-            return JQueryProxyScript<C>(helper, null);
+            return JQueryProxyScript<C>(helper, atomeId, null);
         }
 
-        public static string JQueryProxyScript<C>(this UrlHelper helper, string prefix) where C : IController
+        public static string JQueryProxyScript<C>(this UrlHelper helper, string atomeId, string prefix) where C : IController
         {
             checkController<C>();
 
@@ -86,7 +86,7 @@ namespace Molecule.Web.Mvc
 
             var res = "function " + funcName + "(){\n";
 
-            var functions = generateJQueryPostFunctions<C>(helper);
+            var functions = generateJQueryPostFunctions<C>(helper, atomeId);
 
             foreach (var func in functions)
                 res += func + "\n";
@@ -105,14 +105,14 @@ namespace Molecule.Web.Mvc
                 throw new ArgumentException("C can't be abstract and its name must end with \"Controller\"", "C");
         }
 
-        private static IEnumerable<string> generateJQueryJsonFunctions<C>(UrlHelper helper) where C : IController
+        private static IEnumerable<string> generateJQueryJsonFunctions<C>(UrlHelper helper, string atomeId) where C : IController
         {
             return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
                    where mi.ReturnType == typeof(JsonResult)
-                   select generateJQueryFunction(helper, null, mi, "getJSON");
+                   select generateJQueryFunction(helper, null, mi, "getJSON", atomeId);
         }
 
-        private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper) where C : IController
+        private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper, string atomeId) where C : IController
         {
             return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
                    let jsonResultType = typeof(JsonResult)
@@ -122,10 +122,10 @@ namespace Molecule.Web.Mvc
                    mi.GetCustomAttributes(AcceptVerbsAttributeType, false)
                      .Any(att => ((AcceptVerbsAttribute)att).Verbs
                        .Contains(Enum.GetName(httpVersType, HttpVerbs.Post).ToUpper()))
-                   select generateJQueryFunction(helper, null, mi, "post");
+                   select generateJQueryFunction(helper, null, mi, "post", atomeId);
         }
 
-        private static string generateJQueryFunction(UrlHelper helper, string prefix, MethodInfo method, string jqueryFunc)
+        private static string generateJQueryFunction(UrlHelper helper, string prefix, MethodInfo method, string jqueryFunc, string atomeId)
         {
             var controllerName = method.DeclaringType.Name.Replace("Controller", "");
             var actionName = method.Name;
@@ -137,6 +137,7 @@ namespace Molecule.Web.Mvc
             var routeValues = new RouteValueDictionary();
             foreach (var param in parameterNames)
                 routeValues.Add(param, "#" + param);
+            routeValues.Add("atome", atomeId);
             var url = helper.Action(actionName, controllerName, routeValues).Replace("%23", "#");//remove # encoding, will be replaced by script at runtime.
 
             var code = "\n\t\tvar args = \"" + url + "\";\n";

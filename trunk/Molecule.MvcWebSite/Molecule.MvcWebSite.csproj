@@ -200,8 +200,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PreferencesPageControllerBase.cs" />
     <Compile Include="Controllers\PageControllerBase.cs" />
-    <Compile Include="Default2.aspx.cs">
-      <DependentUpon>Default2.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -359,7 +359,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
-    <Content Include="Default2.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Themes\bloup\jquery.treeview.css" />
     <Content Include="Themes\bloup\molecule.css" />
     <None Include="Atome.xsd" />

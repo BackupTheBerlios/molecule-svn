@@ -62,7 +62,7 @@ namespace WebMusic.CoverArt
             string lastfmAlbum = HttpUtility.UrlEncode(albumTitle);
 
             string parameters = String.Format("?method={0}&api_key={1}&artist={2}&album={3}", "album.getinfo", lastFmKey, lastfmArtist, lastfmAlbum);
-			Console.WriteLine(String.Format(lastFmUrl, parameters));
+
 			HttpWebRequest request = HttpWebRequest.Create(String.Format(lastFmUrl, parameters)) as HttpWebRequest;
             
             WebResponse response = null;
