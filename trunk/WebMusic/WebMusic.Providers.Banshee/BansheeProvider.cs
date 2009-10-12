@@ -234,7 +234,7 @@ namespace WebMusic.Providers.Banshee
                     "FROM CoreArtists, CoreTracks, CoreAlbums " +
                     "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 and MimeType = 'taglib/mp3'";
                 dbcmd.CommandText = sql;
-
+                
 
                 using (IDataReader reader = dbcmd.ExecuteReader())
                 {
