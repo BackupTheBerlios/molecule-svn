@@ -32,6 +32,7 @@ using WebMusic.Providers.Base;
 using WebMusic;
 using Molecule.Runtime;
 using Molecule.IO;
+using GConf;
 
 [assembly: PluginContainer]
 
@@ -49,6 +50,7 @@ namespace WebMusic.Providers.Banshee
 
         static BansheeProvider()
         {
+			
             string configDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".config");
             string bansheeDir = Path.Combine(configDir, "banshee-1");
             if (!Directory.Exists(bansheeDir))
@@ -75,8 +77,9 @@ namespace WebMusic.Providers.Banshee
 
         public void Initialize()
         {
-            defaultLibraryPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_MUSIC_DIR", "Music");
-
+            //defaultLibraryPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_MUSIC_DIR", "Music");
+			defaultLibraryPath = new Client().Get("/apps/banshee-1/library/base_location") as string;
+			Console.WriteLine(defaultLibraryPath);
             string connectionString = String.Format("URI=file:{0},version=3", bansheeDatabase);
 
             using (IDbConnection dbcon = new SqliteConnection(connectionString))
@@ -229,7 +232,7 @@ namespace WebMusic.Providers.Banshee
                 string sql =
                     "SELECT CoreTracks.UriType, CoreTracks.TrackID, CoreArtists.ArtistID, CoreAlbums.AlbumID, CoreTracks.Title, CoreTracks.Uri, CoreTracks.TrackNumber, CoreTracks.Duration " +
                     "FROM CoreArtists, CoreTracks, CoreAlbums " +
-                    "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1";
+                    "WHERE CoreArtists.ArtistID = CoreTracks.ArtistID and CoreTracks.AlbumID = CoreAlbums.AlbumID and PrimarySourceID = 1 and MimeType = 'taglib/mp3'";
                 dbcmd.CommandText = sql;
 
 
@@ -249,6 +252,10 @@ namespace WebMusic.Providers.Banshee
                         {
                             uri = Path.Combine(this.defaultLibraryPath, uri);
                         }
+						else if(uriType == 2)
+						{
+							uri = new Uri(uri).LocalPath;	
+						}
                         if (artists.ContainsKey(artistId))
                         {
                             artists[artistId].AddSong(albumId, title, uri, trackNumber, trackId, duration);
