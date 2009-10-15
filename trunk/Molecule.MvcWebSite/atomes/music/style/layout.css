@@ -43,8 +43,14 @@
 .navigationList ul
 {
 	list-style-type:none;
-	padding:5px;
+	padding:0px 5px 0px 0px;
 	margin:0px;
+}
+
+.navigationList li
+{
+	width:100%;
+	padding:2px;
 }
 
 #navigationPanel,

@@ -277,7 +277,8 @@ table thead
 }
 
 
-.hoverTable tr:hover { 
+.hoverTable tr:hover,
+.hoverList li:hover { 
     background-color:#999999;
     border-width : 0px;
 }
