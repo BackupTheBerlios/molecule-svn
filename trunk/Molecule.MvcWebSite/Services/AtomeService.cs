@@ -86,7 +86,6 @@ namespace Molecule.WebSite.Services
             return instance.atomes.Cast<IAtomeInfo>();
         }
 
-        static Regex virtualPathRegex = new Regex(@"/atomes/(?<atome>[^/]+)", RegexOptions.Compiled);
 
         public static bool IsAtome(HttpContext context)
         {

@@ -20,12 +20,6 @@ namespace Molecule.Web.Mvc
     public static class HelperExtensions
     {
         const string themeKey = "theme";
-        private static string Action<T>(UrlHelper helper, Expression<Action<T>> action)
-            where T : PublicPageControllerBase
-        {
-            var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);
-            return helper.RouteUrl(routeValues);
-        }
 
         public static string Action<T>(this UrlHelper helper, Expression<Action<T>> action, string atomeId)
             where T : PublicPageControllerBase
@@ -65,7 +59,7 @@ namespace Molecule.Web.Mvc
 
         public static string Theme(this UrlHelper helper, string relativeUrl)
         {
-            return "/Themes/" + ConfigurationSettings.AppSettings[themeKey] + "/" + relativeUrl;
+            return "/Themes/" + System.Configuration.ConfigurationManager.AppSettings[themeKey] + "/" + relativeUrl;
         }
 
         #region JQueryProxyScript
@@ -105,12 +99,12 @@ namespace Molecule.Web.Mvc
                 throw new ArgumentException("C can't be abstract and its name must end with \"Controller\"", "C");
         }
 
-        private static IEnumerable<string> generateJQueryJsonFunctions<C>(UrlHelper helper, string atomeId) where C : IController
-        {
-            return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
-                   where mi.ReturnType == typeof(JsonResult)
-                   select generateJQueryFunction(helper, null, mi, "getJSON", atomeId);
-        }
+//        private static IEnumerable<string> generateJQueryJsonFunctions<C>(UrlHelper helper, string atomeId) where C : IController
+//        {
+//            return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
+//                   where mi.ReturnType == typeof(JsonResult)
+//                   select generateJQueryFunction(helper, null, mi, "getJSON", atomeId);
+//        }
 
         private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper, string atomeId) where C : IController
         {
@@ -131,8 +125,6 @@ namespace Molecule.Web.Mvc
             var actionName = method.Name;
             var parameterNames = from p in method.GetParameters() select p.Name;
             var parameters = parameterNames.Aggregate("", (s, p) => s += p + ", ");
-
-            bool hasParameters = parameterNames.Any();
 
             var routeValues = new RouteValueDictionary();
             foreach (var param in parameterNames)

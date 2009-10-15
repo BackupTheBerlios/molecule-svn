@@ -59,12 +59,6 @@ namespace Molecule.WebSite.Services
         public string Id { get { return id; } }
         public string ClassName { get { return atome.ClassName; } }
 
-        private string mapAtomeRelativePath(string relativePath)
-        {
-            if (String.IsNullOrEmpty(relativePath))
-                return null;
-            return System.IO.Path.Combine(atomePath, relativePath);
-        }
 
         public string DefaultControllerName
         {

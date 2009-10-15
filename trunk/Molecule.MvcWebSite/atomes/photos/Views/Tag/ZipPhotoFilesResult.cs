@@ -28,7 +28,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Views
                 zipOutputStream.SetLevel(0);
                 foreach (var photo in Photos)
                 {
-                    FileInfo fileInfo = new FileInfo(photo.MediaFilePath);
+                    //FileInfo fileInfo = new FileInfo(photo.MediaFilePath);
                     ZipEntry entry = new ZipEntry(Tag.Name + @"\" + photo.Id + ".jpg");
                     zipOutputStream.PutNextEntry(entry);
                     using (FileStream fs = System.IO.File.OpenRead(photo.MediaFilePath))

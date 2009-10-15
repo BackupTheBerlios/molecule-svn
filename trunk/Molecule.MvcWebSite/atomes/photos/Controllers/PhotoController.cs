@@ -18,7 +18,7 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
     public class PhotoController : PageControllerBase
     {
         
-        private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoController));
+        //private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoController));
 
         public ActionResult Index(string id, string tagId)
         {

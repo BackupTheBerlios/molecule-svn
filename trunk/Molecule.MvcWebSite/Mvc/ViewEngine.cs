@@ -35,8 +35,6 @@ namespace Molecule.MvcWebSite.Mvc
 
 
 
-        private VirtualPathProvider _vpp;
-
         public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
         {
             if (controllerContext == null)
