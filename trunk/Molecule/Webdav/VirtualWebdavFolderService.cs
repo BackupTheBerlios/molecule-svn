@@ -14,12 +14,12 @@ namespace Molecule.Webdav
             this.fileProviders = new Dictionary<string, IVirtualWebdavFolder>();
         }
 
-        public void RegisterFileProvider(IVirtualWebdavFolder fileProvider)
+        public void RegisterVirtualWebdavFolder(IVirtualWebdavFolder fileProvider)
         {
             this.fileProviders.Add(fileProvider.RootDirectoryName, fileProvider);
         }
 
-        public IVirtualWebdavFolder GetFileProvider(string name)
+        public IVirtualWebdavFolder GetVirtualWebdavFolder(string name)
         {
             if (fileProviders.ContainsKey(name))
             {
@@ -28,7 +28,7 @@ namespace Molecule.Webdav
             return null;
         }
 
-        public IEnumerable<string> GetFileProviderRootsName()
+        public IEnumerable<string> GetVirtualWebdavFolderRootsName()
         {
             return from f in fileProviders select f.Key;
 

@@ -29,7 +29,6 @@ namespace Molecule.MvcWebSite
 
         private static void defaultRoute(RouteCollection routes)
         {
-            routes.MapRoute("webdavRoot", "webdav/", new { controller = "Webdav", action = "Index" }).RouteHandler = new WebdavRouteHandler();
             routes.MapRoute("webdav", "webdav/{*path}", new { controller = "Webdav", action = "Index" }).RouteHandler = new WebdavRouteHandler();
 
             routes.MapRoute(

@@ -42,7 +42,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             List<WebdavFileInfo> filesInfoToSend = infoFilesListed;
             if (depth > 0)
             {
-                filesInfoToSend = infoFilesListed.Concat<WebdavFileInfo>(from fp in Singleton<VirtualWebdavFolderService>.Instance.GetFileProviderRootsName()
+                filesInfoToSend = infoFilesListed.Concat<WebdavFileInfo>(from fp in Singleton<VirtualWebdavFolderService>.Instance.GetVirtualWebdavFolderRootsName()
                                                                               select new WebdavFileInfo { LastAccessTime = DateTime.Now, 
                                                                                   IsFile = false, 
                                                                                   Size = 4096, 
@@ -118,7 +118,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             // loosy method to test if the client want to list the root
             if (filePathElements.Length > 1)
             {
-                fileProvider = Singleton<VirtualWebdavFolderService>.Instance.GetFileProvider(filePathElements[1]);
+                fileProvider = Singleton<VirtualWebdavFolderService>.Instance.GetVirtualWebdavFolder(filePathElements[1]);
                 if (fileProvider != null)
                 {
                     infoFilesEnumerable = fileProvider.List(filePath.Substring(filePathElements[0].Length + 1)).ToList<WebdavFileInfo>();
