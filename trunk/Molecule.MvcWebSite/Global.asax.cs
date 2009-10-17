@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Molecule.WebSite.Services;
 using Molecule.MvcWebSite.Mvc;
+using Molecule.MvcWebSite.RouteHandlers;
 
 namespace Molecule.MvcWebSite
 {
@@ -28,6 +29,9 @@ namespace Molecule.MvcWebSite
 
         private static void defaultRoute(RouteCollection routes)
         {
+            routes.MapRoute("webdavRoot", "webdav/", new { controller = "Webdav", action = "Index" }).RouteHandler = new WebdavRouteHandler();
+            routes.MapRoute("webdav", "webdav/{*path}", new { controller = "Webdav", action = "Index" }).RouteHandler = new WebdavRouteHandler();
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{atome}/{controller}/{action}/{*id}",                           // URL with parameters
