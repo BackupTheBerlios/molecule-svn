@@ -229,8 +229,8 @@
     <Compile Include="Views\Shared\ProviderSelector.ascx.cs">
       <DependentUpon>ProviderSelector.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Webdav\HttpMethods\OptionMethod.cs" />
-    <Compile Include="Webdav\HttpMethods\PropFindMethod.cs" />
+    <Compile Include="WebdavInternal\HttpMethods\OptionMethod.cs" />
+    <Compile Include="WebdavInternal\HttpMethods\PropFindMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
@@ -393,9 +393,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
