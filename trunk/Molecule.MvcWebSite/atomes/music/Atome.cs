@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Molecule.MvcWebSite.atomes.music.Controllers;
+using Molecule.Web;
+using Molecule.Webdav;
 
 namespace Molecule.MvcWebSite.atomes.music
 {
@@ -13,6 +15,12 @@ namespace Molecule.MvcWebSite.atomes.music
         public const string Id = "music";
 
         #region IAtome Members
+
+
+        public Atome()
+        {
+            Singleton<VirtualWebdavFolderService>.Instance.RegisterVirtualWebdavFolder(new VirtualWebdavFolder());
+        }
 
 
         public Type PreferencesController

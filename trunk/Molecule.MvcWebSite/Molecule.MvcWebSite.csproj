@@ -169,6 +169,7 @@
     <Compile Include="atomes\music\Lastfm\LastfmService.cs" />
     <Compile Include="atomes\music\Lastfm\Queue.cs" />
     <Compile Include="atomes\music\Services\MusicLibrary.cs" />
+    <Compile Include="atomes\music\VirtualWebdavFolder.cs" />
     <Compile Include="atomes\photos\Atome.cs" />
     <Compile Include="atomes\photos\Controllers\AdminController.cs" />
     <Compile Include="atomes\photos\Controllers\CalendarController.cs" />

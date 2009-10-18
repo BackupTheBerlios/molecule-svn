@@ -40,15 +40,6 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             XNamespace ApacheNameSpance = "http://apache.org/dav/props/";
 
             List<WebdavFileInfo> filesInfoToSend = infoFilesListed;
-            if (depth > 0)
-            {
-                filesInfoToSend = infoFilesListed.Concat<WebdavFileInfo>(from fp in Singleton<VirtualWebdavFolderService>.Instance.GetVirtualWebdavFolderRootsName()
-                                                                              select new WebdavFileInfo { LastAccessTime = DateTime.Now, 
-                                                                                  IsFile = false, 
-                                                                                  Size = 4096, 
-                                                                                  FileName = fp }).ToList<WebdavFileInfo>();
-            }
-            
             // add the root, don't knwo how to retrieve the size
             // so by default it will be 4096
             DirectoryInfo dirInfo = new DirectoryInfo("c:\\test");
@@ -59,7 +50,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                             new XElement(WebDavNameSpace + "multistatus", new XAttribute(XNamespace.Xmlns + "D", WebDavNameSpace),
                                         from fi in filesInfoToSend
                                         select new XElement(WebDavNameSpace + "response", new XAttribute(XNamespace.Xmlns + "default", ApacheNameSpance),
-                                                new XElement(WebDavNameSpace + "href", "http://127.0.0.1:1110/webdav/" + fi.FileName.Replace('\\', '/')),
+                                                new XElement(WebDavNameSpace + "href", "webdav/" + fi.FileName.Replace('\\', '/')),
                                                 new XElement(WebDavNameSpace + "propstat",
                                                     new XElement(WebDavNameSpace + "prop",
                                                         new XElement(WebDavNameSpace + "getlastmodified", fi.LastAccessTime.ToString("ddd, d MMM yyyy hh:mm:ss zzz", CultureInfo.CreateSpecificCulture("en-US"))),
@@ -136,6 +127,17 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                 }
                 infoFilesEnumerable.Insert(0, new WebdavFileInfo { LastAccessTime = DateTime.Now, FileName = String.Empty, Size = 4096 });
                 infoFilesEnumerable.Insert(1, new WebdavFileInfo { LastAccessTime = DateTime.Now, FileName = "collection", Size = 4096 });
+                if (depth > 0)
+                {
+                    infoFilesEnumerable = infoFilesEnumerable.Concat<WebdavFileInfo>(from fp in Singleton<VirtualWebdavFolderService>.Instance.GetVirtualWebdavFolderRootsName()
+                                                                                select new WebdavFileInfo
+                                                                                {
+                                                                                    LastAccessTime = DateTime.Now,
+                                                                                    IsFile = false,
+                                                                                    Size = 4096,
+                                                                                    FileName = fp
+                                                                                }).ToList<WebdavFileInfo>();
+                }
             }
 
 
