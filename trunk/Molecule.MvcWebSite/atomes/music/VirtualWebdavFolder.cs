@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using WebMusic.Providers.Base;
 
 namespace Molecule.MvcWebSite.atomes.music
 {
@@ -73,9 +74,33 @@ namespace Molecule.MvcWebSite.atomes.music
             return null;
         }
 
-        public byte[] GetFile(string path)
+        public string GetFile(string path)
         {
-            throw new System.NotImplementedException();
+            string[] pathElements = path.Split('/');
+
+            if (pathElements.Length == 3)
+            {
+                List<ISong> songs = new List<ISong>();
+                var album = MusicLibrary.GetAlbumsByArtist(pathElements[0]).Where<IAlbum>(a => a.Name.Equals(pathElements[1]));
+                foreach (IAlbum a in album)
+                {
+                    songs = songs.Concat<ISong>(a.Songs).ToList<ISong>();
+                }
+                int startIndex = pathElements[2].IndexOf('-');
+                // add the white space
+                startIndex = startIndex+1;
+                int endIndex = pathElements[2].LastIndexOf('.');
+                string songTitle = pathElements[2].Substring(startIndex+1, endIndex - startIndex - 1);
+                foreach (ISong s in songs)
+                {
+                    if (s.Title.Equals(songTitle))
+                    {
+                        return s.MediaFilePath;
+
+                    }
+                }
+            }
+            return null;
         }
 
         #endregion

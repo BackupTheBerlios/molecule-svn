@@ -11,6 +11,6 @@ namespace Molecule.Webdav
 
         IEnumerable<WebdavFileInfo> List(string path);
 
-        byte[] GetFile(string path);
+        string GetFile(string path);
     }
 }

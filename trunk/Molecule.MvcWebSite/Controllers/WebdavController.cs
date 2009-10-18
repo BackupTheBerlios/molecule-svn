@@ -25,6 +25,12 @@ namespace Molecule.MvcWebSite.Controllers
                 PropFindMethod propFindMethod = new PropFindMethod();
                 propFindMethod.HandleRequest(this);
             }
+            else if (this.Request.RequestType.Equals(GetMethod.Name))
+            {
+                GetMethod getMethod = new GetMethod();
+                getMethod.HandleRequest(this);
+
+            }
       
             return null;
         }
