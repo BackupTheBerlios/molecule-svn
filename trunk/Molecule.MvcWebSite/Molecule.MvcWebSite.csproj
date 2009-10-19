@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,7 +40,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\references\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
@@ -105,13 +105,9 @@
       <DependentUpon>Common.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.designer.cs">
@@ -121,13 +117,9 @@
       <DependentUpon>photo.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\webmusic.fr1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\webmusic1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>webmusic.resx</DependentUpon>
     </Compile>
     <Compile Include="atomes\admin\Atome.cs" />
@@ -248,27 +240,24 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Views\Web.config" />
     <Content Include="App_GlobalResources\Common.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
       <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
     </Content>
     <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>webmusic1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\Common.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
       <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
     </Content>
     <Content Include="App_GlobalResources\molecule.fr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.fr.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
     </Content>
     <Content Include="App_GlobalResources\molecule.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
     </Content>
     <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>
@@ -281,7 +270,6 @@
     <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>webmusic.fr1.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Themes\bloup\images\audio-volume-high.png" />
     <Content Include="Themes\bloup\images\audio-volume-low.png" />
@@ -366,13 +354,13 @@
     <Content Include="atomes\photos\Views\Web.config" />
     <Content Include="atomes\photos\Atome.xml" />
     <Content Include="Views\Shared\ProviderSelector.ascx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Themes\bloup\images\molecule-6-rot.svg" />
     <Content Include="Default.aspx" />
     <Content Include="Themes\bloup\jquery.treeview.css" />
     <Content Include="Themes\bloup\molecule.css" />
     <Content Include="Views\Webdav\Index.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Themes\bloup\images\molecule-6-rot.svg" />
     <None Include="Atome.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

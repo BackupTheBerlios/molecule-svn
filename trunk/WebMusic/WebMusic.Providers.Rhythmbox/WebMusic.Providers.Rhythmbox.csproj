@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <ProjectGuid>{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}</ProjectGuid>
@@ -62,7 +62,7 @@
       <Visible>False</Visible>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\..\Molecule\Molecule.csproj">
       <Project>{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}</Project>

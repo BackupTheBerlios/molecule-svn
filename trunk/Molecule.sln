@@ -28,15 +28,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Molecule.MvcWebSite", "Molecule.MvcWebSite\Molecule.MvcWebSite.csproj", "{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188857E2-5554-4455-922C-8F25DE959FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188857E2-5554-4455-922C-8F25DE959FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188857E2-5554-4455-922C-8F25DE959FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188857E2-5554-4455-922C-8F25DE959FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5328FC2C-EB3D-48A2-AC5D-4CD4C9DC569E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,21 +56,6 @@ Global
 		{63C6457A-B924-41DB-AA55-07BA6482F7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C6457A-B924-41DB-AA55-07BA6482F7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63C6457A-B924-41DB-AA55-07BA6482F7F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E0E4868-2846-4F48-8F5D-EDCA3F80C101}.Release|Any CPU.Build.0 = Release|Any CPU
-		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{089A5D23-335F-4DDE-BCFC-9C4C795BC659}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B243DAF-7F4E-4549-AC62-9ECE5F8ED721}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6432DC42-CF0D-437A-909C-41E416F531B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6432DC42-CF0D-437A-909C-41E416F531B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6432DC42-CF0D-437A-909C-41E416F531B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,21 +64,18 @@ Global
 		{72D247CB-1535-412A-B20C-38A6C898341A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72D247CB-1535-412A-B20C-38A6C898341A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72D247CB-1535-412A-B20C-38A6C898341A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD52453-91E8-4FB2-81A1-F2179588F00A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5209A18-9A63-4E68-B270-650B90BCA424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5209A18-9A63-4E68-B270-650B90BCA424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5209A18-9A63-4E68-B270-650B90BCA424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5209A18-9A63-4E68-B270-650B90BCA424}.Release|Any CPU.Build.0 = Release|Any CPU
-		{188857E2-5554-4455-922C-8F25DE959FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{188857E2-5554-4455-922C-8F25DE959FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{188857E2-5554-4455-922C-8F25DE959FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{188857E2-5554-4455-922C-8F25DE959FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{63C6457A-B924-41DB-AA55-07BA6482F7F1} = {FE2280FB-1C8D-4986-9BC4-C510F40C0E62}
@@ -96,7 +89,14 @@ Global
 		{188857E2-5554-4455-922C-8F25DE959FDA} = {2BB2A173-8402-45AB-9001-E2B5ED4C192E}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Molecule\Molecule.csproj
 		version = 0.1
-		StartupItem = Molecule.WebSite\Molecule.WebSite.csproj
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
