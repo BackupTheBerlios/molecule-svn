@@ -48,11 +48,17 @@ namespace Molecule.Atome
                 var instance = Singleton<TAtome>.Instance;
                 if (instance.provider == null)
                 {
-                    if (log.IsInfoEnabled)
-                        log.Info("Updating data with provider "+CurrentProvider);
-                    instance.OnProviderUpdated();
-                    if (log.IsInfoEnabled)
-                        log.Info("Data updated.");
+                    lock (instance.providerLock)
+                    {
+                        if (instance.provider == null)
+                        {
+                            if (log.IsInfoEnabled)
+                                log.Info("Updating data with provider " + CurrentProvider);
+                            instance.OnProviderUpdated();
+                            if (log.IsInfoEnabled)
+                                log.Info("Data updated.");
+                        }
+                    }
                 }
                 return instance;
             }
