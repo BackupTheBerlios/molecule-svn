@@ -25,6 +25,7 @@ using System;
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 using Mono.Data.Sqlite;
 using WebMusic.Providers.Base;
@@ -270,10 +271,9 @@ namespace WebMusic.Providers.Banshee
 
         public System.Collections.Generic.IEnumerable<WebMusic.Providers.IArtist> GetArtists()
         {
-            foreach (var key in artists)
-            {
-                yield return key.Value;
-            }
+            return from artist in artists.Values
+				where artist.Albums.Any()
+				select artist as IArtist;
         }
     }
 }
