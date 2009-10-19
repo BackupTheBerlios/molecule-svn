@@ -230,6 +230,7 @@
     <Compile Include="Views\Shared\ProviderSelector.ascx.cs">
       <DependentUpon>ProviderSelector.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebdavInternal\HttpMethods\GetMethod.cs" />
     <Compile Include="WebdavInternal\HttpMethods\OptionMethod.cs" />
     <Compile Include="WebdavInternal\HttpMethods\PropFindMethod.cs" />
   </ItemGroup>
