@@ -34,7 +34,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             webDavRoot = "webdav/";
 		}
 
-        private string GenerateResponse(int depth, List<WebdavFileInfo> infoFilesListed)
+        private string GenerateResponse(int depth, List<WebdavFileInfo> infoFilesListed, string urlAuthority)
         {
             XNamespace WebDavNameSpace = "DAV:";
             XNamespace ApacheNameSpance = "http://apache.org/dav/props/";
@@ -50,7 +50,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                             new XElement(WebDavNameSpace + "multistatus", new XAttribute(XNamespace.Xmlns + "D", WebDavNameSpace),
                                         from fi in filesInfoToSend
                                         select new XElement(WebDavNameSpace + "response", new XAttribute(XNamespace.Xmlns + "default", ApacheNameSpance),
-                                                new XElement(WebDavNameSpace + "href", "webdav/" + fi.FileName.Replace('\\', '/')),
+                                                new XElement(WebDavNameSpace + "href", "http://"+ urlAuthority +"/webdav/" + fi.FileName.Replace('\\', '/')),
                                                 new XElement(WebDavNameSpace + "propstat",
                                                     new XElement(WebDavNameSpace + "prop",
                                                         new XElement(WebDavNameSpace + "getlastmodified", fi.LastAccessTime.ToString("ddd, d MMM yyyy hh:mm:ss zzz", CultureInfo.CreateSpecificCulture("en-US"))),
@@ -94,9 +94,6 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             {
                 return;
             }
-
-
-            var atomes = AtomeService.GetAtomes();
         
             // look if we have to parse the request to parse the request to an IFileProvider
             // remove first character which is a /
@@ -141,7 +138,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             }
 
 
-            string res = this.GenerateResponse(depth, infoFilesEnumerable);
+            string res = this.GenerateResponse(depth, infoFilesEnumerable, context.Request.Url.Authority );
 			using (StreamReader sr = new StreamReader(context.Request.InputStream))
 			{
 				Console.WriteLine("Lecture" +sr.ReadToEnd());
