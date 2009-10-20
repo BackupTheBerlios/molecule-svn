@@ -12,27 +12,26 @@ namespace Molecule.MvcWebSite.Controllers
     {
         //
         // GET: /WebDAV/
-
+       
         public ActionResult Index()
         {
             if (this.Request.RequestType.Equals(OptionMethod.Name))
             {
                 OptionMethod optionMethod = new OptionMethod();
-                optionMethod.HandleRequest(this);
+                return optionMethod.HandleRequest(this);
             }
             else if (this.Request.RequestType.Equals(PropFindMethod.Name))
             {
                 PropFindMethod propFindMethod = new PropFindMethod();
-                propFindMethod.HandleRequest(this);
+                return propFindMethod.HandleRequest(this);
             }
             else if (this.Request.RequestType.Equals(GetMethod.Name))
             {
                 GetMethod getMethod = new GetMethod();
-                getMethod.HandleRequest(this);
-
+                return getMethod.HandleRequest(this);
             }
       
-            return null;
+            return new EmptyResult();
         }
 
     }

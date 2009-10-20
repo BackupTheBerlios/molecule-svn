@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Molecule.Webdav;
 using Molecule.Web;
+using System.Collections.Generic;
 
 namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 {
@@ -18,7 +19,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
         {
         }
 
-        public void HandleRequest(Controller context)
+        public ActionResult HandleRequest(Controller context)
         {
             string[] pathElements = context.Request.Path.Split('/');
             if (pathElements.Length > 1)
@@ -31,15 +32,13 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                     string filePath = virtualWebdavFolder.GetFile(path);
                     if (!String.IsNullOrEmpty(filePath))
                     {
-                        context.Response.WriteFile(filePath);
-                        context.Response.StatusCode = 200;
                         // TODO: add a real etag support
-                        context.Response.AppendHeader("Etag", "b0c5faef67f106ef634ad2a82e838b95");
-                        context.Response.End();
+                        return new WebdavUploadFileActionResult(filePath, 200, new Dictionary<string, string>() { { "Etag", "b0c5faef67f106ef634ad2a82e838b95" } });
                     }
                 }
 
             }
+            return new EmptyResult();
         }
 
         public static string Name

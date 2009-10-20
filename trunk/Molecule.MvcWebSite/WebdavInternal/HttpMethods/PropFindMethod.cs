@@ -28,9 +28,6 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 
 		public PropFindMethod()
 		{
-            // fileProviders = new Dictionary<string, IFileProvider>();
-            // DirectoryProvider dp = new DirectoryProvider();
-            // fileProviders.Add(dp.RootDirectoryName, dp);
             webDavRoot = "webdav/";
 		}
 
@@ -42,7 +39,6 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
             List<WebdavFileInfo> filesInfoToSend = infoFilesListed;
             // add the root, don't knwo how to retrieve the size
             // so by default it will be 4096
-            DirectoryInfo dirInfo = new DirectoryInfo("c:\\test");
 
             XDocument doc = new XDocument(
                             new XDeclaration("1.0", "UTF-8", "yes"),
@@ -82,17 +78,17 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
         }
 
 
-		public void HandleRequest(Controller context)
+		public ActionResult HandleRequest(Controller context)
 		{
             string depthRaw = context.Request.Headers.Get("Depth");
             if (depthRaw == null)
             {
-                return;
+                return new EmptyResult();
             }
             int depth;
             if (!Int32.TryParse(depthRaw, out depth))
             {
-                return;
+                return new EmptyResult();
             }
         
             // look if we have to parse the request to parse the request to an IFileProvider
@@ -143,10 +139,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 			{
 				Console.WriteLine("Lecture" +sr.ReadToEnd());
 			}
-			context.Response.Write(res);
-			context.Response.StatusCode = 207;
-			context.Response.ContentType = "text/xml";
-			context.Response.End();
+            return new WebdavActionResult(res, 207, null);
 		}
 		
 		public static string Name

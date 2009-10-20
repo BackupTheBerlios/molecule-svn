@@ -4,6 +4,7 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Molecule.Collections;
 
 namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 {
@@ -16,12 +17,14 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 		{
 		}
 		
-		public void HandleRequest(Controller context)
+		public ActionResult HandleRequest(Controller context)
 		{
             // Send back a hard coded response
-            context.Response.AppendHeader("Allow", "GET, HEAD, POST, PUT, DELETE, OPTIONS, PROPFIND, MKCOL, LOCK, UNLOCK");
-			context.Response.AppendHeader("DAV", "1,2");			
-			context.Response.End();
+            WebdavActionResult actionResult = new WebdavActionResult(String.Empty, 200, new Dictionary<string, string> { 
+                                                                                            { "DAV", "1,2" },
+                                                                                            { "Allow", "GET, HEAD, POST, PUT, DELETE, OPTIONS, PROPFIND, MKCOL, LOCK, UNLOCK"}
+                                                                                            });
+            return actionResult;
 		}
 		
 		public static string Name
