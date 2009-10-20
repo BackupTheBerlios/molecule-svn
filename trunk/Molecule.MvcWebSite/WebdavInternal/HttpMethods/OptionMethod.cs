@@ -20,7 +20,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 		public ActionResult HandleRequest(Controller context)
 		{
             // Send back a hard coded response
-            WebdavActionResult actionResult = new WebdavActionResult(String.Empty, 200, new Dictionary<string, string> { 
+            WebdavResult actionResult = new WebdavResult(String.Empty, 200, new Dictionary<string, string> { 
                                                                                             { "DAV", "1,2" },
                                                                                             { "Allow", "GET, HEAD, POST, PUT, DELETE, OPTIONS, PROPFIND, MKCOL, LOCK, UNLOCK"}
                                                                                             });

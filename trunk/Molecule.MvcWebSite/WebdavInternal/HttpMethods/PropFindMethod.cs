@@ -139,7 +139,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
 			{
 				Console.WriteLine("Lecture" +sr.ReadToEnd());
 			}
-            return new WebdavActionResult(res, 207, null);
+            return new WebdavResult(res, 207, null);
 		}
 		
 		public static string Name

@@ -33,7 +33,7 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                     if (!String.IsNullOrEmpty(filePath))
                     {
                         // TODO: add a real etag support
-                        return new WebdavUploadFileActionResult(filePath, 200, new Dictionary<string, string>() { { "Etag", "b0c5faef67f106ef634ad2a82e838b95" } });
+                        return new WebdavUploadFileResult(filePath, 200, new Dictionary<string, string>() { { "Etag", "b0c5faef67f106ef634ad2a82e838b95" } });
                     }
                 }
 
