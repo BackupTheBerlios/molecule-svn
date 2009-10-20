@@ -100,6 +100,15 @@ namespace WebMusic.Services
 
         private static void updateAlbumsRecentlyAdded(IEnumerable<string> albumsRecentlyAdded)
         {
+            var process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = "gconftool-2";
+            process.StartInfo.Arguments = "-g /desktop/gnome";
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            var output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            
+            Console.WriteLine(output);
             Molecule.Log.LogService.Instance.ClearType("Music");
             if (albumsRecentlyAdded != null)
             {

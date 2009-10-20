@@ -44,26 +44,19 @@ namespace WebMusic.Providers.Banshee
     {
 
         private Dictionary<string, Artist> artists;
-        private static readonly string bansheeDatabase;
-        private static readonly string defaultLibraryPath;
+        private static string bansheeDatabase;
+        private string defaultLibraryPath;
         public List<string> albumsRecentlyAdded;
 
         static BansheeProvider()
         {
-			
-            string configDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".config");
-            string bansheeDir = Path.Combine(configDir, "banshee-1");
+            var configDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".config");
+            var bansheeDir = Path.Combine(configDir, "banshee-1");
             if (!Directory.Exists(bansheeDir))
                 bansheeDir = Path.Combine(configDir, "banshee");
 
             bansheeDatabase = Path.Combine(bansheeDir, "banshee.db");
-			
-			defaultLibraryPath = Molecule.GConf.Helper.Read("/apps/banshee-1/library/base_location");
-			// = new Client().Get("/apps/banshee-1/library/base_location") as string;
-			Console.WriteLine(defaultLibraryPath);
-
         }
-
 
         public BansheeProvider()
         {
@@ -82,6 +75,9 @@ namespace WebMusic.Providers.Banshee
         public void Initialize()
         {
             //defaultLibraryPath = XdgBaseDirectorySpec.GetUserDirectory("XDG_MUSIC_DIR", "Music");
+
+
+            defaultLibraryPath = Molecule.GConf.Helper.Read("/apps/banshee-1/library/base_location");
 			
             string connectionString = String.Format("URI=file:{0},version=3", bansheeDatabase);
 

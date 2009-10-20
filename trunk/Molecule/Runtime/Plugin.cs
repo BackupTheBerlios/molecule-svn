@@ -125,12 +125,12 @@ namespace Molecule.Runtime
             {
                 string fileName = Path.GetFileName(file);
                 
-                if(log.IsDebugEnabled)
-                    log.Debug("Scan "+file);
-                if (log.IsDebugEnabled)
-                    log.Debug("file size : " + (new FileInfo(file).Length));
-                if(log.IsDebugEnabled)
-                    log.Debug("file date : " + (new FileInfo(file).CreationTime));
+                //if(log.IsDebugEnabled)
+                //    log.Debug("Scan "+file);
+                //if (log.IsDebugEnabled)
+                //    log.Debug("file size : " + (new FileInfo(file).Length));
+                //if(log.IsDebugEnabled)
+                //    log.Debug("file date : " + (new FileInfo(file).CreationTime));
 
                 Assembly assembly;
                 Type[] assemblyTypes;
