@@ -43,6 +43,7 @@ namespace Molecule.MvcWebSite
 
         protected void Application_Start()
         {
+            log4net.GlobalContext.Properties["currentuser"] = Environment.UserName;
             log4net.Config.XmlConfigurator.Configure();
 
             if (log.IsInfoEnabled)

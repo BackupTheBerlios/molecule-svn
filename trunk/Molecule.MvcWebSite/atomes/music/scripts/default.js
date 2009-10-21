@@ -103,9 +103,9 @@ function updateSongList(songs) {
     $.each(songs, function(i, song) {
 
         rows = rows + "<tr><td style='display: none'>" + song.Id + "</td>\
-                    <td>" + song.Title + "</td>\
-                    <td>" + song.ArtistName + "</td>\
-                    <td>" + song.AlbumName + "</td>\
+                    <td><span>" + song.Title + "</span></td>\
+                    <td><span>" + song.ArtistName + "</span></td>\
+                    <td><span>" + song.AlbumName + "</span></td>\
                     <td>" + song.AlbumTrack + "</td>\
                     <td>" + song.Duration + "</td>\
                     <td style='text-align: right'>\

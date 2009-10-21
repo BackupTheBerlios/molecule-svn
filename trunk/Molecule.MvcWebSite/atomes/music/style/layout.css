@@ -91,6 +91,15 @@
     width:100%;
 }
 
+
+#songsView span
+{
+	overflow:hidden;
+	display:block;
+	max-width:200px;
+	height:18px;
+}
+
 #currentSongPositionLabel
 {
 	margin-top:5px;

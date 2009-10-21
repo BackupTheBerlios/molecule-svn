@@ -100,15 +100,6 @@ namespace WebMusic.Services
 
         private static void updateAlbumsRecentlyAdded(IEnumerable<string> albumsRecentlyAdded)
         {
-            var process = new System.Diagnostics.Process();
-            process.StartInfo.FileName = "gconftool-2";
-            process.StartInfo.Arguments = "-g /desktop/gnome";
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
-            var output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-            
-            Console.WriteLine(output);
             Molecule.Log.LogService.Instance.ClearType("Music");
             if (albumsRecentlyAdded != null)
             {
@@ -190,14 +181,18 @@ namespace WebMusic.Services
 			// if we have not selected an artist we are looking for something like a compilation
 			if(!String.IsNullOrEmpty(album) && String.IsNullOrEmpty(artist) && Instance.albums.ContainsKey(album)) 
 			{
-                foreach (var song in Instance.albums[album].Songs.OrderBy(song => song.AlbumTrack))
-                    yield return song;				
+                return from song in Instance.albums[album].Songs
+                       orderby song.AlbumTrack
+                       select song;
 			}
             else if (!String.IsNullOrEmpty(album) && !String.IsNullOrEmpty(artist) && Instance.artists.ContainsKey(artist) && Instance.albums.ContainsKey(album))
             {
-                foreach (var song in Instance.albums[album].Songs.Where(song => song.Artist.Id == artist).OrderBy(song => song.AlbumTrack))
-                    yield return song;
-            }		
+                return from song in Instance.albums[album].Songs
+                       where song.Artist.Id == artist
+                       orderby song.AlbumTrack
+                       select song;
+            }
+            return new List<ISong>();
         }
 		
         

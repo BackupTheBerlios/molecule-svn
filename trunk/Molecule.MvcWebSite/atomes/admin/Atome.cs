@@ -28,7 +28,6 @@ namespace Molecule.MvcWebSite.atomes.admin
 
         #endregion
 
-
         public Type DefaultController
         {
             get { return PreferencesController; }
