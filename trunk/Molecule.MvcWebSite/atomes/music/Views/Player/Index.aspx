@@ -39,7 +39,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <div id="currentSongTitleLabel" class="songInfo"></div>
         <div id="currentSongArtistLabel" class="songInfo"></div>
         <div id="currentSongPositionLabel" class="songInfo"></div>
-        <img alt="" id="coverArtImage" class="songInfo" class="thinBorder" src="" />
+        <div id="coverArt" class="songInfo" class="thinBorder" /></div>
     </div>
     
     

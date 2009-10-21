@@ -147,7 +147,7 @@ function init()
     playlist = new Array();
     playlistView = document.getElementById("playlistTable");
     playlistPanel = document.getElementById("playlistPanel"); 
-    coverArtImage = document.getElementById("coverArtImage");
+    //coverArtImage = document.getElementById("coverArtImage");
     playButton = document.getElementById("playButton");
     pauseButton = document.getElementById("pauseButton");
     repeatAllCheckBox = document.getElementById("repeatAllCheckBox");
@@ -168,10 +168,28 @@ function playSelectedSong()
     $(".songInfo").hide();
     currentSongArtistLabel.innerHTML = currentSong.artist;
     currentSongTitleLabel.innerHTML = currentSong.title;
-    $("#coverArtImage").show();
-    coverArtImage.src = covertArtUrl.replace("#id",currentSong.id);
-    coverArtImage.alt = currentSong.album;
-    coverArtImage.title = currentSong.album;
+    var newsrc = covertArtUrl.replace("#id", currentSong.id);
+
+    $("#coverArt img").remove();
+    
+    var img = new Image();
+    $(img)
+        .load(function() {
+            $(this).hide();
+            
+            $("#coverArt")
+                .append(this)
+                .attr('title', currentSong.album);
+            $(this).fadeIn();
+        })
+        .error(function() {
+            //TODO
+        })
+        .attr('src', newsrc);
+
+    
+    //coverArtImage.alt = currentSong.album;
+    //coverArtImage.title = currentSong.album;
     $(".songInfo").fadeIn(200);
     library.SongCurrentlyPlaying(currentSong.id, null);    
 }
@@ -354,9 +372,9 @@ function songsView_onclick(action)
 function songsViewRowAction(row, action)
 {
     var songId = row.cells[0].innerHTML;
-    var songTitle = row.cells[1].innerHTML;
-    var songArtist = row.cells[2].innerHTML;
-    var songAlbum = trim(row.cells[3].innerHTML);
+    var songTitle = row.cells[1].childNodes[0].innerHTML;
+    var songArtist = row.cells[2].childNodes[0].innerHTML;
+    var songAlbum = trim(row.cells[3].childNodes[0].innerHTML);
     if(action == 'play' || action == 'enqueue')
         enqueueSong(songId, songArtist, songTitle, songAlbum);
     if(action == 'play')

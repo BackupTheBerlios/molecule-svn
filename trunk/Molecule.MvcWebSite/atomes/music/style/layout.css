@@ -118,12 +118,8 @@
 	font-weight:bolder;
 }
 
-#coverArtImage
+#coverArt
 {
-	display:none;
-	width: 100px;
-    height:100px;
-    margin-bottom:5px;
     margin-top:5px;
 }
 
