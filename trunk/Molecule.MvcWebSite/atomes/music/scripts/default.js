@@ -1,7 +1,6 @@
 ﻿/// <reference path="~/Scripts/jquery-1.3.2-vsdoc.js" />
-$(document).ready(function() {
 
-    retreiveAlbumsAndArtists();
+$(document).ready(function() {
 
     $("#previousButton").click(previousButton_onclick);
     $("#playButton").click(playButton_onclick);
@@ -15,26 +14,58 @@ $(document).ready(function() {
     $("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
     $("#search").keyup(function(event) {
-        if (event.keyCode == 13) {
-            artistsWaitEffect();
-            albumsWaitEffect();
-            songsWaitEffect();
-            var searchString = $("#search").attr("value");
-            if (searchString != "") {
-                library.Search($("#search").attr("value"), function(result) {
-                    updateAlbumList(result.Albums);
-                    updateArtistList(result.Artists);
-                    updateSongList(result.Songs);
-                });
-            }
-            else {
-                retreiveAlbumsAndArtists();
-                updateSongList({});
-            }
+    if (event.keyCode == 13) {
+            $.historyLoad($("#search").attr("value"));
         }
     });
+
+    // Initialize history plugin.
+    // The callback is called at once by present location.hash.
+    $.historyInit(pageload, "Player");
+    
     init();
 });
+
+// PageLoad function
+// This function is called when:
+// 1. after calling $.historyInit();
+// 2. after calling $.historyLoad();
+// 3. after pushing "Go Back" button of a browser
+function pageload(hash) {
+    // alert("pageload: " + hash);
+    // hash doesn't contain the first # character.
+    if (hash) {
+        // restore ajax loaded state
+        if ($.browser.msie) {
+            // jquery's $.load() function does't work when hash include special characters like aao.
+            //hash = encodeURIComponent(hash);
+        }
+        $("#search").attr("value", hash);
+        searchRequested();
+        
+    } else {
+    //default content
+        retreiveAlbumsAndArtists();
+    }
+}
+
+function searchRequested() {
+    artistsWaitEffect();
+    albumsWaitEffect();
+    songsWaitEffect();
+    var searchString = $("#search").attr("value");
+    if (searchString != "") {
+        library.Search($("#search").attr("value"), function(result) {
+            updateAlbumList(result.Albums);
+            updateArtistList(result.Artists);
+            updateSongList(result.Songs);
+        });
+    }
+    else {
+        retreiveAlbumsAndArtists();
+        updateSongList({});
+    }
+}
 
 function retreiveAlbumsAndArtists() {
     artistsWaitEffect();

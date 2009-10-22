@@ -30,21 +30,25 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 
         static ILog log = LogManager.GetLogger(typeof(PlayerController));
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Artists()
         {
             return new JsonResult() { Data = MusicLibrary.GetArtists().Select((a) => new ArtistData(a)) };
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Albums()
         {
             return new JsonResult() { Data = MusicLibrary.GetAlbums().Select((a) => new AlbumData(a)) };
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult AlbumsByArtist(string id)
         {
             return new JsonResult() { Data = MusicLibrary.GetAlbumsByArtist(id).Select((a) => new AlbumData(a)) };
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult SongsByAlbum(string id)
         {
             return new JsonResult() { Data = MusicLibrary.GetSongsByAlbum(id).Select((s) => new SongData(s)) };

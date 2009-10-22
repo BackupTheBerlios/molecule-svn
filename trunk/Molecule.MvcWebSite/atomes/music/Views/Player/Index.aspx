@@ -4,7 +4,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
 <%@ Import Namespace="WebMusic.Providers" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="/atomes/music/style/layout.css" rel="stylesheet" type="text/css" />
-        <style id="Style1" type="text/css" runat="server">
+        <style type="text/css">
         #playlistTable tr:hover .listRemove
         {
             background: url("<%= Url.Theme("images/list-remove.png")%>" no-repeat;
@@ -15,6 +15,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     var covertArtUrl = "<%= Url.Action<PlayerController>(c => c.CovertArt("#id"),Molecule.MvcWebSite.atomes.music.Atome.Id ) %>";
     </script>
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
+     <script type="text/javascript" src="../../../../Scripts/jquery.history.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/soundmanager2-nodebug-jsmin.js"></script>
