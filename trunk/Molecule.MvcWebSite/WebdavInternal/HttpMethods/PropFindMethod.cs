@@ -67,7 +67,6 @@ namespace Molecule.MvcWebSite.WebdavInternal.HttpMethods
                             )
                     );
             infoFilesListed = null;
-            doc.Save("c:\\template.xml");
             return doc.ToString();
         }
 
