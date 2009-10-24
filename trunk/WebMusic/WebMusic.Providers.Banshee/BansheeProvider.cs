@@ -1,4 +1,4 @@
-﻿//
+//
 // BansheeProvider.cs
 //
 // Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
@@ -239,7 +239,7 @@ namespace WebMusic.Providers.Banshee
                 {
                     while (reader.Read())
                     {
-                        int uriType = reader.GetInt32(0);
+                        //int uriType = reader.GetInt32(0);
                         string trackId = reader.GetValue(1).ToString();
                         string artistId = reader.GetValue(2).ToString();
                         string albumId = reader.GetValue(3).ToString();
@@ -247,14 +247,12 @@ namespace WebMusic.Providers.Banshee
                         string uri = reader.GetValue(5).ToString();
                         uint trackNumber = UInt32.Parse(reader.GetValue(6).ToString());
                         var duration = TimeSpan.FromMilliseconds(Int32.Parse(reader.GetValue(7).ToString()));
-                        if (uriType == 1)
-                        {
-                            uri = Path.Combine(defaultLibraryPath, uri);
-                        }
-						else if(uriType == 2)
-						{
-							uri = new Uri(uri).LocalPath;	
-						}
+                        if (uri.StartsWith("file://"))
+							uri = new Uri(uri).LocalPath;
+                            
+						else
+							uri = Path.Combine(defaultLibraryPath, uri);
+						
                         if (artists.ContainsKey(artistId))
                         {
                             artists[artistId].AddSong(albumId, title, uri, trackNumber, trackId, duration);
