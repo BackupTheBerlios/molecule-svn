@@ -17,10 +17,7 @@ namespace Molecule.MvcWebSite.Controllers
         {
             if (AdminService.IsSetupAuthorized)
                 return RedirectToAction<SetupController>(c => c.Index(), Molecule.MvcWebSite.atomes.admin.Atome.Id);
-
-            Console.WriteLine("UserLanguages : " + Request.UserLanguages.Aggregate("", (s1, s2) => s1 + " " + s2));
-            Console.WriteLine("UICulture : "+System.Globalization.CultureInfo.CurrentUICulture.Name);
-            return View();
+           return View();
         }
     }
 }
