@@ -1,4 +1,4 @@
-﻿/// <reference path="~/Scripts/jquery-1.3.2-vsdoc.js" />
+/// <reference path="~/Scripts/jquery-1.3.2-vsdoc.js" />
 
 $(document).ready(function() {
 
@@ -22,6 +22,8 @@ $(document).ready(function() {
     // Initialize history plugin.
     // The callback is called at once by present location.hash.
     $.historyInit(pageload, "Player");
+    
+    retreiveAlbumsAndArtists();
     
     init();
 });
