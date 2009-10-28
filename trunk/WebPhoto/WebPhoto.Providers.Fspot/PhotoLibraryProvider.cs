@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
+// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,12 +39,13 @@ namespace WebPhoto.Providers.Fspot
     {
 		
         private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoLibraryProvider));			
-		private static string fspotDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),".gnome2/f-spot/photos.db");	
+		private static string fspotDatabase = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"f-spot/photos.db");	
 		private static  string connectionString;		
 		private List<Tag> rootTags;
-		private static System.Collections.Generic.Dictionary<string,Photo> photos;		
+		private static System.Collections.Generic.Dictionary<string,Photo> photos;
 		public PhotoLibraryProvider()
 		{
+			
 		}		
 		
         [IsUsablePlugin]
@@ -167,9 +168,9 @@ namespace WebPhoto.Providers.Fspot
 			    log.Debug("Retrieve photos from the fspot database");
             }
 			
-			SqliteCommand cmd = new SqliteCommand("SELECT  photos.id , versions.uri, photos.time, photos.description  " +
+			SqliteCommand cmd = new SqliteCommand("SELECT  photos.id , versions.base_uri, versions.filename, photos.time, photos.description  " +
 				                                  "FROM  photos, "+		                                      
-			                                  	  "(select MAX(version_id) version, photo_id id, uri uri "+   
+			                                  	  "(select MAX(version_id) version, photo_id id, base_uri base_uri, filename filename "+   
 				                                  "from photo_versions  "+		                                      
 			                                      "group by photo_id) versions "+
 			                                      "WHERE photos.id = versions.id " , conn);
@@ -182,9 +183,10 @@ namespace WebPhoto.Providers.Fspot
 				
 				while(reader.Read()) {
 					string photoId = reader.GetValue (0).ToString();
-					string photoUri = reader.GetValue (1).ToString();
-					string photoTime = reader.GetValue(2).ToString();
-					string photoDescription = reader.GetValue(3).ToString();					
+					string photoUri = reader.GetValue(1).ToString() + reader.GetValue(2).ToString();
+					string photoTime = reader.GetValue(3).ToString();
+					log.Debug("photoDescription");
+					string photoDescription = reader.GetValue(4).ToString();					
 					if( photoUri.ToLower().EndsWith(".jpg") && File.Exists(new Uri(photoUri).LocalPath))
 					{
 						Photo photo = new Photo(photoUri);
@@ -202,9 +204,11 @@ namespace WebPhoto.Providers.Fspot
 			}
 			finally
 			{
-				reader.Close();
+				if(reader != null)
+					reader.Close();
 				reader = null;
-				cmd.Dispose();
+				if(cmd != null)
+					cmd.Dispose();
 				cmd = null;	
 			}			
 			if(log.IsInfoEnabled)
