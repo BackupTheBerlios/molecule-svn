@@ -50,7 +50,7 @@ namespace WebMusic.Providers.Banshee
 
         static BansheeProvider()
         {
-            var configDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".config");
+            var configDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var bansheeDir = Path.Combine(configDir, "banshee-1");
             if (!Directory.Exists(bansheeDir))
                 bansheeDir = Path.Combine(configDir, "banshee");

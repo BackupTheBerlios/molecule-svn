@@ -1,4 +1,4 @@
-﻿//
+//
 // Artist.cs
 //
 // Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
@@ -29,7 +29,7 @@ namespace WebMusic.Providers.Base
 
 	public class Artist : IArtist
 	{
-		private string name;
+		private string name = "Unknown";
 		private string id;
 		
 		private Dictionary<string, Album> albums;
@@ -90,7 +90,8 @@ namespace WebMusic.Providers.Base
 		
 		public Artist(string id, string name)
 		{
-			this.name = name;
+			if(!String.IsNullOrEmpty(name))
+				this.name = name;
 			this.id = id;
 			this.albums = new Dictionary<string, Album>();
 		}

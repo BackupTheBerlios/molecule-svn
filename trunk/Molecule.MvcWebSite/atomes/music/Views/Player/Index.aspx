@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Page.Master"
 Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexData>" %>
 <%@ Import Namespace="Molecule.MvcWebSite.atomes.music.Controllers" %>
 <%@ Import Namespace="WebMusic.Providers" %>
@@ -34,13 +34,13 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <img id="playButton" alt="Jouer" src="<%= Url.Theme("images/media-playback-start.png")%>" />
         <img id="pauseButton" alt="Pause" src="<%= Url.Theme("images/media-playback-pause.png")%>" />
         <img id="nextButton" alt="Suivant" src="<%= Url.Theme("images/media-skip-forward.png")%>" />
+        <div id="currentSongPositionLabel" class="songInfo"></div>
         <img id="volumeDownButton" alt="Diminuer volume" src="<%= Url.Theme("images/audio-volume-low.png")%>" />
         <div id="currentVolumeLabel"></div>
-        <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />
+        <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />  
         <div id="currentSongTitleLabel" class="songInfo"></div>
         <div id="currentSongArtistLabel" class="songInfo"></div>
-        <div id="currentSongPositionLabel" class="songInfo"></div>
-        <div id="coverArt" class="songInfo" class="thinBorder" /></div>
+        <div id="coverArt" class="songInfo"></div>
     </div>
     
     
@@ -82,7 +82,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
                     <td><%= Resources.webmusic.Album %></td>
                     <td><%= Resources.webmusic.Track %></td>
                     <td><%= Resources.webmusic.Duration %></td>
-                    <td style="text-align: right">
+                    <td style="text-align: right; width:60px">
                         <img id="playAllButton" alt="" src="<%= Url.Theme("images/media-playback-start-small.png") %>" />
                         <img id="enqueueAllButton" alt="" src="<%= Url.Theme("images/list-add.png") %>" />
                         <img id="downloadAllButton" alt="" src="<%= Url.Theme("images/document-save.png") %>" />

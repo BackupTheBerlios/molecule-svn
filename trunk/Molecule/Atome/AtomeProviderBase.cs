@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,8 +36,6 @@ namespace Molecule.Atome
             timer.Elapsed += (s, t) =>
             {
                 Singleton<TAtome>.Instance.resetProvider();
-                if (log.IsInfoEnabled)
-                    log.Info("Provider reset.");
             };
         }
 
@@ -68,6 +66,8 @@ namespace Molecule.Atome
 
         private void resetProvider()
         {
+			if(log.IsDebugEnabled)
+				log.Debug("Provider reset");
             lock (providerLock)
             {
                 provider = null;
@@ -82,8 +82,12 @@ namespace Molecule.Atome
                 {
                     if (provider == null)
                     {
+						if(log.IsInfoEnabled)
+							log.Info("Initializing provider "+providerName+"...");
                         provider = Plugin<IProvider>.CreateInstance(providerName, ProviderDirectory);
                         provider.Initialize();
+						if(log.IsInfoEnabled)
+							log.Info("Provider "+providerName+" initialized.");
                     }
                 }
             }

@@ -1,4 +1,4 @@
-﻿
+
 
 body
 {
@@ -419,4 +419,9 @@ input[type="text"]
 {
 	background-color: #2e3436;
 	color:white;
+}
+
+#songInfo
+{
+ width:auto;
 }

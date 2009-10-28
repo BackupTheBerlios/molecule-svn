@@ -18,6 +18,8 @@ $(document).ready(function() {
             $.historyLoad($("#search").attr("value"));
         }
     });
+    
+    $(".songInfo").hide();
 
     // Initialize history plugin.
     // The callback is called at once by present location.hash.
@@ -97,13 +99,13 @@ function updateAlbumList(albums) {
     $("#albumList").fadeIn(200);
     var albumList = $("#albumList");
     $.each(albums, function(i, item) {
-        var a = $("<a href='#'>" + item.Name + "</a>");
+        var a = $("<li><a href='#'>" + item.Name + "</a></li>");
         a.click(function(e) {
             e.preventDefault();
             songsWaitEffect();
             library.SongsByAlbum(item.Id, updateSongList);
         });
-        albumList.append($("<li/>").append(a));
+        albumList.append(a);
     });
 }
 
@@ -114,13 +116,13 @@ function updateArtistList(artists) {
     
     var artistList = $("#artistList");
     $.each(artists, function(i, item) {
-        var a = $("<a href='#'>" + item.Name + "</a>");
+        var a = $("<li><a href='#'>" + item.Name + "</a></li>");
         a.click(function(e) {
             e.preventDefault();
             albumsWaitEffect();
             library.AlbumsByArtist(item.Id, updateAlbumList);
         });
-        artistList.append($("<li/>").append(a));
+        artistList.append(a);
     });
 
     

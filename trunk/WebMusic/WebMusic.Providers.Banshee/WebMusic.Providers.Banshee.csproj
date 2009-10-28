@@ -14,6 +14,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <AssemblyName>WebMusic.Providers.Banshee</AssemblyName>
+    <RootNamespace>WebMusic.Providers.Banshee</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputType>Library</OutputType>

@@ -24,6 +24,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <AssemblyName>WebMusic.Providers.Rhythmbox</AssemblyName>
+    <RootNamespace>WebMusic.Providers.Rhythmbox</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputType>Library</OutputType>

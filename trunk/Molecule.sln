@@ -89,8 +89,7 @@ Global
 		{188857E2-5554-4455-922C-8F25DE959FDA} = {2BB2A173-8402-45AB-9001-E2B5ED4C192E}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Molecule\Molecule.csproj
-		version = 0.1
+		StartupItem = Molecule.MvcWebSite\Molecule.MvcWebSite.csproj
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

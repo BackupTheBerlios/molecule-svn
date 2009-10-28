@@ -6,6 +6,7 @@
 {
     width: 48%;
     display:inline-block;
+    vertical-align:top;
 }
 
 #playlistcontainer,
@@ -15,22 +16,19 @@
 	clear:right;
 }
 
-#playlistcontainer
-{
-	height:230px;
-	overflow: auto;
-}
-
 #playerControls
 {
-	overflow: auto;
-	height:215px;
 	padding-top:15px;
 }
 
 .itemList
 {
 	width:100%;
+}
+
+.hoverList li:hover
+{
+	cursor:pointer;
 }
 
 .navigationList,
@@ -51,14 +49,6 @@
 {
 	width:100%;
 	padding:2px;
-}
-
-#navigationPanel,
-#playerpanel
-{
-	height:auto;
-	clear:both;
-	margin-bottom:20px;
 }
 
 #songscontainer img,
@@ -102,8 +92,12 @@
 
 #currentSongPositionLabel
 {
-	margin-top:5px;
+
 	font-family: Courier New;
+	display:inline-block;
+	position:relative;
+	bottom:7px;
+	margin-right:10px;
 }
 
 #currentSongArtistLabel
@@ -125,7 +119,7 @@
 
 #nextButton
 {
-	margin-right:35px;
+	margin-right:10px;
 }
 
 #currentVolumeLabel
@@ -133,7 +127,7 @@
 	display:inline-block;
 	position:relative;
 	width:30px;
-	bottom:8px;
+	bottom:7px;
 }
 
 #search
