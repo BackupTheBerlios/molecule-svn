@@ -1,4 +1,6 @@
-﻿// load OSM map on element 'id' and center on provided location
+﻿
+
+// load OSM map on element 'id' and center on provided location
 function loadMap(id, lat, lon, thumbnail) {
     var zoom = 10
 
@@ -34,7 +36,7 @@ function loadMap(id, lat, lon, thumbnail) {
     // add photo thumbnail
     var sizef = new OpenLayers.Size(86, 90);
     var offsetf = new OpenLayers.Pixel(-(sizef.w / 2), -sizef.h);
-    var iconf = new OpenLayers.Icon('images/frame.png', sizef, offsetf);
+    var iconf = new OpenLayers.Icon('/atomes/photos/images/frame.png', sizef, offsetf);
     layerMarkers.addMarker(new OpenLayers.Marker(lonLat, iconf));
     var size = new OpenLayers.Size(80, 80);
     var offset = new OpenLayers.Pixel(-(size.w / 2), -size.h - 7);

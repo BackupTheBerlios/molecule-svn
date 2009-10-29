@@ -61,7 +61,8 @@
             <%} %>
         </tbody>
     </table>
-       
+    <h2><%= Resources.Common.AdvancedParameters %></h2>
+    <%= Resources.photo.ImageQuality %>:
     <%--
     <br />
     <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
