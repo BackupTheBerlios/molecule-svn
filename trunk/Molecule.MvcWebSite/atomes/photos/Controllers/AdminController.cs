@@ -40,8 +40,13 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             return View(res);
         }
 
-        public ActionResult Save(string provider, TagName tagName, string[] authorizations, string[] sharedTags)
+        public ActionResult Save(string provider, TagName tagName, string[] authorizations, string[] sharedTags, bool reloadProvider)
         {
+            if (!PhotoLibrary.Providers.Any(p => p.Id == provider))
+                throw new ArgumentException("Invalid provider id.", "provider");
+
+            if(reloadProvider)  
+                PhotoLibrary.CurrentProvider = null;
             PhotoLibrary.CurrentProvider = provider;
             PhotoLibrary.TagName = tagName;
 

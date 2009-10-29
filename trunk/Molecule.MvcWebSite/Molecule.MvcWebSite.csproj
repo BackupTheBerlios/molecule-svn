@@ -108,17 +108,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\molecule.fr.designer.cs">
+    <Compile Include="App_GlobalResources\molecule.fr2.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule1.designer.cs">
       <DependentUpon>molecule.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\photo.designer.cs">
-      <DependentUpon>photo.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\photo.fr.designer.cs">
-      <DependentUpon>photo.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.fr2.designer.cs">
       <AutoGen>True</AutoGen>
@@ -233,9 +229,6 @@
     <Compile Include="Services\CssVariableInfo.cs" />
     <Compile Include="Services\IAtomeInfo.cs" />
     <Compile Include="Services\IAtomeUserAuthorizations.cs" />
-    <Compile Include="Views\Shared\ProviderSelector.ascx.cs">
-      <DependentUpon>ProviderSelector.ascx</DependentUpon>
-    </Compile>
     <Compile Include="WebdavInternal\WebdavUploadFileResult.cs" />
     <Compile Include="WebdavInternal\HttpMethods\GetMethod.cs" />
     <Compile Include="WebdavInternal\HttpMethods\OptionMethod.cs" />
@@ -274,10 +267,12 @@
     <Content Include="App_GlobalResources\molecule.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule.fr2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\molecule.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>molecule.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>

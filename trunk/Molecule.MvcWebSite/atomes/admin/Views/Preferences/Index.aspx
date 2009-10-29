@@ -52,16 +52,15 @@
             </tr>
         </tbody>
     </table>
-    <%--    
+   
 
-    <h2><asp:Label ID="Label6" runat="server" Text="<%$Resources:molecule,Theme%>" /></h2>
+    <h2><%= Resources.molecule.Theme%></h2>
     <p>
-    Titre : <asp:TextBox runat="server" ID="titleTextBox"></asp:TextBox>
+    <label for="title"><%= Resources.molecule.Title %> :</label>
+    <%= Html.TextBox("title", Model.Title) %>
     </p>
-    <p>
-        <asp:CheckBox ID="LogoCheckBox" runat="server" Text="<%$Resources:molecule,DisplayLogo%>" 
-            oncheckedchanged="LogoCheckBox_CheckedChanged" />
-    </p>
+
+        <%-- 
     <p>
         <asp:ListView ID="CssVariableList" runat="server" DataSourceID="CssVariablesSource" DataKeyNames="Key">
             <ItemTemplate>
