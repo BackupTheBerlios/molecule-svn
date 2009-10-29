@@ -125,7 +125,7 @@
   </data>
   <data name="DownloadPage" xml:space="preserve">
     <value>Télécharger les photos de la page</value>
-  </data>  
+  </data>
   <data name="Collection" xml:space="preserve">
     <value>Collection</value>
   </data>
@@ -158,5 +158,8 @@
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Carte</value>
   </data>
 </root>

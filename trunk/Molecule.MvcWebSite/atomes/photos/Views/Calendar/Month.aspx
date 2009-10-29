@@ -6,16 +6,20 @@
     <link href="/atomes/photos/style/calendar.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+   
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Month = Model.Month, Year = Model.Year }); %>
-    <br />
-    <div class="BlockItem">
-     <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.PreviousYear,
+      <br />
+      <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.PreviousYear,
             Model.PreviousMonth, Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         <%} %>
-    </div>
-    <div class="BlockItem">
-    <table style="border-collapse:collapse;padding:0px;margin:0px">
+     <% using (Html.ActionLink<CalendarController>(c =>
+           c.Month(Model.NextYear, Model.NextMonth, Model.Tag.NotNull(t => t.Id)),
+           Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
+        <%} %>
+
+    <table class="calendarTable">
         <thead>
             <tr>
             <%for (int i = 0; i < 7; i++)
@@ -31,7 +35,7 @@
                 <tr>
                 <% Model.Items.Skip(i * 7).Take(7).ForEach(item =>
                       { %>
-                    <td class='<%= item.IsEmpty ?"":"thinBorder" %>' style="padding:0px">
+                    <td class='<%= item.IsEmpty ?"":"thinBorder calendarItem" %>'>
                     <% Html.RenderPartial("PhotoLink",
                                new PhotoLinkData()
                                {
@@ -46,12 +50,5 @@
                 <%} %>
             </tbody>
         </table>
-    </div>
-    <div class="BlockItem">
-    <% using (Html.ActionLink<CalendarController>(c =>
-           c.Month(Model.NextYear, Model.NextMonth, Model.Tag.NotNull(t => t.Id)),
-           Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
-            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
-        <%} %>
-    </div>
+   
 </asp:Content>

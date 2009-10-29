@@ -132,6 +132,9 @@
   <data name="Close" xml:space="preserve">
     <value>Fermer</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
   <data name="Display" xml:space="preserve">
     <value>Affichage</value>
   </data>

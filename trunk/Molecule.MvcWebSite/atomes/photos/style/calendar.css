@@ -1,1 +1,10 @@
-﻿
+﻿.calendarTable
+{
+	border-collapse:collapse;padding:0px;margin:0px;
+}
+
+.calendarItem
+{
+	border-style:dashed;
+	padding:2px;
+}

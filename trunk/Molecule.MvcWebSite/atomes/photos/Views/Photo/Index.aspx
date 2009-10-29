@@ -40,21 +40,12 @@
                   Description = "Photo suivante"
               });
         %><br />
-        <div id="photo">
-            <div id="metadatas" class="metadatas">
-                <%= Html.Grid(Model.Photo.Metadatas.Select((kvp) => new {Key = kvp.Key, Value = kvp.Value}))
-                    .Columns(column => {
-                        column.For(x => x.Key);
-     		            column.For(x => x.Value);
-     	            }) %>
+        <div class="thinBox" style="display:inline-block">
+        <div id="photo" style="width:<%=Model.PhotoSize.Width %>px;height:<%=Model.PhotoSize.Height %>px;background: url(<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>)">
+            <div id="photoDescription" style="width:100%">
+               <span style="padding:5px;display:block"><%= Model.Photo.Description %></span>
             </div>
-            <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>"
-                alt="" width="<%=Model.PhotoSize.Width %>" height="<%=Model.PhotoSize.Height %>" />
         </div>
-        <div id="photoDescriptionContainer" style="font-size: 110%">
-            <p>
-                <%= Model.Photo.Description %>
-            </p>
         </div>
         <br />
         <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw),
@@ -75,9 +66,15 @@
         <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
         <% Html.RenderPartial("TagList", Model.PhotoTags); %>
         <% if (Model.Photo.Latitude.HasValue && Model.Photo.Longitude.HasValue){ %>
-        <h2><%= Resources.photo.LocateOnMap %></h2>
+        <h2><%= Resources.photo.Map %></h2>
         <div id="map">
         </div>
         <% } %>
+        <h2><%= Resources.Common.Details %></h2>
+        <%= Html.Grid(Model.Photo.Metadatas.Select((kvp) => new {Key = kvp.Key, Value = kvp.Value}))
+            .Columns(column => {
+                column.For(x => x.Key);
+	            column.For(x => x.Value);
+            }) %> 
     </div>
 </asp:Content>

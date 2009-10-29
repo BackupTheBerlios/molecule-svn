@@ -132,11 +132,14 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="Display" xml:space="preserve">
     <value>Display</value>
   </data>
   <data name="General" xml:space="preserve">
-    <value>Général</value>
+    <value>General</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>

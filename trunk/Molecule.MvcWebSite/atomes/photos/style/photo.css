@@ -4,12 +4,7 @@
 	width:642;
 }
 
-#photo
-{
-	display:inline-block;
-	padding:4px;
-	border: solid 1px Grey;
-}
+
 
 .PhotoLink
 {
@@ -18,27 +13,22 @@
 	margin-top:10px;
 }
 
-.metadatas
+#photo
 {
-	position: absolute;
-	margin: 12px;
+	position:relative;
+	border: solid 1px Grey;
+}
+
+#photoDescription
+{
+	position:absolute;
+	bottom:0px;
 	background-color: #000000;
-	opacity: 50;
+	opacity: 0.5;
 	filter: alpha(opacity=50); /*ie only*/
-	padding: 1ex;
 }
 
-.metadatas thead
-{
-	visibility:collapse;
-}
-
-.metadatas table
-{
-	border: none;
-}
-
-.metadatas table tr td:first-child
+.grid tr td:first-child
 {
 	text-align: right;
 	padding-right: 1ex;
@@ -46,10 +36,15 @@
 	color: #f57900;
 }
 
-.metadatas table tr td
+.grid tr td
 {
 	text-align: left;
 	border: none;
+}
+
+.grid thead
+{
+	display:none;
 }
 
 p

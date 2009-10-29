@@ -122,7 +122,7 @@
   </data>
   <data name="Calendar" xml:space="preserve">
     <value>See on calendar</value>
-  </data> 
+  </data>
   <data name="DownloadPage" xml:space="preserve">
     <value>Download photos on the page</value>
   </data>
@@ -158,5 +158,8 @@
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
   </data>
 </root>

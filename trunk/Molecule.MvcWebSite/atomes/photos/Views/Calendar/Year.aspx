@@ -7,21 +7,22 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
-    <div class="BlockItem">
         <% using(Html.ActionLink<CalendarController>(c => c.Year(Model.PreviousYear,
                Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)){ %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         <%} %>
-    </div>
-    <div class="BlockItem">
-        <table style="border-collapse:collapse">
+        <% using (Html.ActionLink<CalendarController>(c => c.Year(Model.NextYear,
+               Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
+        <%} %>
+        <table style="calendarTable">
             <tbody>
             <% 2.Times().ForEach(i =>
                { %>
                 <tr>
                 <%Model.Items.Skip(i * 6).Take(6).ForEach((item, m) =>
               { %>
-                        <td class="thinBorder" style="padding:0px">
+                        <td class="thinBorder calendarItem">
                         <% Html.RenderPartial("PhotoLink",
                                new PhotoLinkData()
                                {
@@ -40,11 +41,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
                 <%}); %>
             </tbody>
         </table>
-    </div>
-    <div class="BlockItem">
-        <% using (Html.ActionLink<CalendarController>(c => c.Year(Model.NextYear,
-               Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
-            <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
-        <%} %>
-    </div>
+
+        
+
 </asp:Content>
