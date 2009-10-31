@@ -34,13 +34,20 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
                                         select new TagUserAuthorizationItemData(tuai),
 
                 RootTags = from tag in PhotoLibrary.AdminGetRootTags()
-                           select new TagData(tag)
+                           select new TagData(tag),
+
+                ImageQuality = PhotoLibrary.ImageQualityLevel
 
             };
             return View(res);
         }
 
-        public ActionResult Save(string provider, TagName tagName, string[] authorizations, string[] sharedTags, bool reloadProvider)
+        public ActionResult Save(string provider,
+            TagName tagName,
+            string[] authorizations,
+            string[] sharedTags,
+            bool reloadProvider,
+            int imageQuality)
         {
             if (!PhotoLibrary.Providers.Any(p => p.Id == provider))
                 throw new ArgumentException("Invalid provider id.", "provider");
@@ -49,6 +56,8 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
                 PhotoLibrary.CurrentProvider = null;
             PhotoLibrary.CurrentProvider = provider;
             PhotoLibrary.TagName = tagName;
+
+            PhotoLibrary.ImageQualityLevel = imageQuality;
 
             //remove unchecked tag
             PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => sharedTags == null || !sharedTags.Contains(tuai.TagId));

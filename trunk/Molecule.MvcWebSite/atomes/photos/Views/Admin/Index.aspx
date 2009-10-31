@@ -11,7 +11,6 @@
             });
         });
     </script>
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="preferencesContent" runat="server">
     <% var form = Html.BeginForm("Save", "Admin", new { atome = "Photos" }, FormMethod.Post); %>
@@ -62,23 +61,13 @@
         </tbody>
     </table>
     <h2><%= Resources.Common.AdvancedParameters %></h2>
-    <%= Resources.photo.ImageQuality %>:
-    <%--
-    <br />
-    <asp:Button Text="<%$ Resources:Common,Save %>" runat="server" OnClick="save_onclick" />
-    <br />
-    <h2><asp:Literal runat="server" Text='<%$Resources:Common,AdvancedParameters %>' /></h2>
-    
-    <br />
-   <asp:Literal runat="server" Text='<%$Resources:photo,ImageQuality %>' />: <asp:Label runat="server" ID="ImageQualityLabel" />%
-    <asp:TextBox runat="server" id="ImageQualityTextBox" />
-    <ajaxToolkit:SliderExtender ID="ImageQualityTextBox_SliderExtender" 
-        runat="server" Enabled="True" Maximum="100" Minimum="0" 
-        TargetControlID="ImageQualityTextBox" BoundControlID="ImageQualityLabel">
-    </ajaxToolkit:SliderExtender>
-    <br />
-     <asp:Button runat="server" ID="EmptyCacheButton" 
-        Text='<%$Resources:photo,ReinitCache %>' onclick="EmptyCacheButton_Click" />--%>
+    <%= Resources.photo.ImageQuality %> :
+    <%= Html.DropDownList("imageQuality", from quality in 40.Step(90, 10)
+                                          select new SelectListItem(){
+                                              Text = quality + "%",
+                                              Value = quality.ToString(),
+                                              Selected = Model.ImageQuality == quality
+                                          })%>
     <br />
     <input type="submit" value="<%= Resources.Common.Save %>" />
     <% form.EndForm(); %>

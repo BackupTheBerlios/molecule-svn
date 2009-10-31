@@ -45,7 +45,7 @@ namespace WebPhoto.Services
 
         const string confQualityLevelKey = "QualityLevel";
         const string confNamespace = "WebPhoto.PhotoFileProvider";
-        const int defaultQualityLevel = 65;
+        const int defaultQualityLevel = 70;
 
         int qualityLevel;
 

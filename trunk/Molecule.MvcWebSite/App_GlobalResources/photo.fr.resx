@@ -159,6 +159,9 @@
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
   </data>
+  <data name="ImageQualityInfo" xml:space="preserve">
+    <value>Plus la qualité des images est elevée, plus leur chargement est lent. Diminuez la qualité si vous avez une faible bande passante.</value>
+  </data>
   <data name="Map" xml:space="preserve">
     <value>Carte</value>
   </data>

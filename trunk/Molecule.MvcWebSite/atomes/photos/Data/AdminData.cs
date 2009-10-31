@@ -71,5 +71,6 @@ namespace Molecule.MvcWebSite.atomes.photos.Data
         public IEnumerable<string> UserNames { get; set; }
         public IEnumerable<TagUserAuthorizationItemData> TagUserAuthorizations { get; set; }
         public IEnumerable<TagData> RootTags { get; set; }
+        public int ImageQuality { get; set; }
     }
 }
