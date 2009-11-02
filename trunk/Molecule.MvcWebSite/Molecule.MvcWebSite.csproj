@@ -171,6 +171,7 @@
     <Compile Include="atomes\music\Lastfm\LastfmService.cs" />
     <Compile Include="atomes\music\Lastfm\Queue.cs" />
     <Compile Include="atomes\music\Services\MusicLibrary.cs" />
+    <Compile Include="atomes\music\Views\Player\SongsZipResult.cs" />
     <Compile Include="atomes\music\VirtualWebdavFolder.cs" />
     <Compile Include="atomes\photos\Atome.cs" />
     <Compile Include="atomes\photos\Controllers\AdminController.cs" />
@@ -394,7 +395,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1866</DevelopmentServerPort>
+          <DevelopmentServerPort>20758</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

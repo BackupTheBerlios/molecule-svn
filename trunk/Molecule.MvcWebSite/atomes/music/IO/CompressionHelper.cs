@@ -57,7 +57,6 @@ namespace WebMusic.IO
                     while ((n = fs.Read(buff, 0, buff.Length)) > 0)
                     {
                         zipOutputStream.Write(buff, 0, n);
-
                     }
                     fs.Close();
                 }

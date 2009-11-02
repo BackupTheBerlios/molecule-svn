@@ -147,7 +147,7 @@ function updateSongList(songs) {
                         <img alt='' src='/App_Themes/bloup/images/media-playback-start-small.png'\
                             onclick=\"songsViewItem_onclick(this,'play')\" />\
                         <img alt='' src=\"/App_Themes/bloup/images/list-add.png\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
-                        <a href=\"\">\
+                        <a href=\"" + "/Music/Player/File/" + song.Id + "\">\
                             <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
                     </td>\
                 </tr>";
@@ -396,11 +396,10 @@ function songsView_onclick(action)
     }
     else if(action == 'downloadAll')
     {
-        var songList = '{';
+        var songList = '';
         for(i = 1; i < songsView.rows.length; i++)//skip first header row
-            songList = songList + ',' + songsView.rows[i].cells[0].innerHTML;
-        songList = songList + '}';
-        location.href = "Download.aspx?songList="+songList;
+            songList = songList + i > 1 ? ',' : '' + songsView.rows[i].cells[0].innerHTML;
+        location.href = "/Music/Player/Files/" + songList;
     }
 }
 
@@ -414,6 +413,8 @@ function songsViewRowAction(row, action)
         enqueueSong(songId, songArtist, songTitle, songAlbum);
     if(action == 'play')
         playLastSong();
+    if (action == 'download')
+        location.href = "/Music/Player/File/" + songId;
 }
 
 function songsViewItem_onclick(element, action)
