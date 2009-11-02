@@ -77,6 +77,8 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error.
             {
                 ISong song = MusicLibrary.GetSong(id);
+                if (song == null)
+                    return;
                 if (log.IsDebugEnabled)
                     log.Debug("Scrobbling " + song.Title + " of " + song.Artist.Name);
 
@@ -90,6 +92,8 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error.
             {
                 ISong song = MusicLibrary.GetSong(id);
+                if (song == null)
+                    return;
                 if (log.IsDebugEnabled)
                     log.Debug("Currently playing  " + song.Title + " of " + song.Artist.Name);
 
