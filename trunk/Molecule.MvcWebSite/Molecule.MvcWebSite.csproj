@@ -156,13 +156,6 @@
     <Compile Include="atomes\music\Views\Player\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="atomes\music\Download.aspx.cs">
-      <DependentUpon>Download.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="atomes\music\Download.aspx.designer.cs">
-      <DependentUpon>Download.aspx</DependentUpon>
-    </Compile>
     <Compile Include="atomes\music\IO\CompressionHelper.cs" />
     <Compile Include="atomes\music\Lastfm\Account.cs" />
     <Compile Include="atomes\music\Lastfm\AudioscrobblerConnection.cs" />
@@ -326,7 +319,6 @@
     <Content Include="atomes\music\Atome.xml" />
     <Content Include="atomes\music\CoverArt\CoverArtFile.aspx" />
     <Content Include="atomes\music\Views\Player\Index.aspx" />
-    <Content Include="atomes\music\Download.aspx" />
     <Content Include="atomes\music\scripts\default.js" />
     <Content Include="atomes\music\scripts\sm2player.js" />
     <Content Include="atomes\music\scripts\soundmanager2-nodebug-jsmin.js" />
