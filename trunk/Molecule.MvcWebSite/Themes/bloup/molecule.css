@@ -194,12 +194,17 @@ input[type="text"]
 	border-style:solid;
 	border-color:#444444;
 }
+
 .thinBox
 {
 	padding:2px;
 }
 
-
+.hover_background:hover
+{
+	background-color:#f57900;
+	color:White;
+}
 
 .invisible
 {

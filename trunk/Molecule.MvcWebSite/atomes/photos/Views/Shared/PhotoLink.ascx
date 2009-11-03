@@ -10,9 +10,9 @@
     <%} %>
     <%if (Model.Photo != null)
       { %>
-    <div class="PhotoLink_HoverBackground"></div>
+    <%--<div class="PhotoLink_HoverBackground"></div>--%>
         <img src="<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>"
-        title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail thinBox" />
+        title="<%= Model.Description %>" alt="" class="PhotoLink_Thumbnail thinBox hover_background" />
     </a>
     <%} %>
     <% if (!String.IsNullOrEmpty(Model.HoverIconUrl)){ %>

@@ -41,11 +41,11 @@
               });
         %><br />
         <div class="thinBox" style="display:inline-block">
-        <div id="photo" style="width:<%=Model.PhotoSize.Width %>px;height:<%=Model.PhotoSize.Height %>px;background: url(<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>)">
-            <div id="photoDescription" style="width:100%">
-               <span style="padding:5px;display:block"><%= Model.Photo.Description %></span>
+            <div id="photo" style="width:<%=Model.PhotoSize.Width %>px;height:<%=Model.PhotoSize.Height %>px;background: url(<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>)">
+                <div id="photoDescription" style="width:100%">
+                   <span style="padding:5px;display:block"><%= Model.Photo.Description %></span>
+                </div>
             </div>
-        </div>
         </div>
         <br />
         <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw),

@@ -5,7 +5,6 @@
 }
 
 
-
 .PhotoLink
 {
 	display:inline-block;
@@ -13,11 +12,6 @@
 	margin-top:10px;
 }
 
-#photo
-{
-	position:relative;
-	border: solid 1px Grey;
-}
 
 #photoDescription
 {
@@ -34,6 +28,11 @@
 	padding-right: 1ex;
 	font-weight: bold;
 	color: #f57900;
+}
+
+#photo
+{
+	margin:2px;
 }
 
 .grid tr td
