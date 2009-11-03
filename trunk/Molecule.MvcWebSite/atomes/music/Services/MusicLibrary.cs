@@ -195,16 +195,41 @@ namespace WebMusic.Services
             return new List<ISong>();
         }
 		
-        
+        public const string AlbumPattern = "album:";
+        public const string TitlePattern = "title:";
+        public const string ArtistPattern = "artist:";
 		
         public static SearchResult Search(string pattern)
         {
-            pattern = pattern.ToLower();
+            bool searchInAlbum = true;
+            bool searchInTitle = true;
+            bool searchInArtist = true;
+
+            if (pattern.StartsWith(AlbumPattern))
+            {
+                pattern = pattern.Remove(0, AlbumPattern.Length);
+                searchInTitle = false;
+                searchInArtist = false;
+            }
+            else if (pattern.StartsWith(TitlePattern))
+            {
+                pattern = pattern.Remove(0, TitlePattern.Length);
+                searchInAlbum = false;
+                searchInArtist = false;
+            }
+            else if (pattern.StartsWith(ArtistPattern))
+            {
+                pattern = pattern.Remove(0, ArtistPattern.Length);
+                searchInTitle = false;
+                searchInAlbum = false;
+            }
+
+            pattern = pattern.Trim().ToLower();
 
             var songs = (from song in Instance.songs.Values
-                        where song.Title.ToLower().Contains(pattern)
-                        || song.Album.Name.ToLower().Contains(pattern)
-                        || song.Artist.Name.ToLower().Contains(pattern)
+                        where searchInTitle && song.Title.ToLower().Contains(pattern)
+                        || searchInAlbum && song.Album.Name.ToLower().Contains(pattern)
+                        || searchInArtist && song.Artist.Name.ToLower().Contains(pattern)
                         select song).ToList();
 
             var albums = (from song in songs
