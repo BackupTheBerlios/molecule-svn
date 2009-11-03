@@ -74,7 +74,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public void SongPlayed(string id)
         {
-            if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error.
+            if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error when other people are listening music.
             {
                 ISong song = MusicLibrary.GetSong(id);
                 if (song == null)
@@ -89,7 +89,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public void SongCurrentlyPlaying(string id)
         {
-            if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error.
+            if (User.IsInRole("admin"))//not using AuthorizeAttribute to avoid 401 error when other people are listening music.
             {
                 ISong song = MusicLibrary.GetSong(id);
                 if (song == null)

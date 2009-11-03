@@ -367,7 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
-    <None Include="Atome.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

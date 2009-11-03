@@ -49,8 +49,13 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
             bool reloadProvider,
             int imageQuality)
         {
+
+            
+
             if (!PhotoLibrary.Providers.Any(p => p.Id == provider))
                 throw new ArgumentException("Invalid provider id.", "provider");
+
+            var providerChanged = PhotoLibrary.CurrentProvider != provider;
 
             if(reloadProvider)  
                 PhotoLibrary.CurrentProvider = null;
@@ -59,24 +64,28 @@ namespace Molecule.MvcWebSite.atomes.photos.Controllers
 
             PhotoLibrary.ImageQualityLevel = imageQuality;
 
-            //remove unchecked tag
-            PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => sharedTags == null || !sharedTags.Contains(tuai.TagId));
+            if (providerChanged)
+                PhotoLibrary.TagUserAuthorizations.Clear();
+            else
+            {
+                //remove unchecked tag
+                PhotoLibrary.TagUserAuthorizations.RemoveAll(tuai => sharedTags == null || !sharedTags.Contains(tuai.TagId));
 
-            //add checked tag
-            if(sharedTags != null)
-                foreach (var tagId in sharedTags)
-                    if (!PhotoLibrary.TagUserAuthorizations.Any(tuai => tuai.TagId == tagId))
-                        PhotoLibrary.TagUserAuthorizations.AddTag(tagId);
+                //add checked tag
+                if (sharedTags != null)
+                    foreach (var tagId in sharedTags)
+                        if (!PhotoLibrary.TagUserAuthorizations.Any(tuai => tuai.TagId == tagId))
+                            PhotoLibrary.TagUserAuthorizations.AddTag(tagId);
 
-            //update autorizations
-            foreach (var tua in PhotoLibrary.TagUserAuthorizations)
-                foreach (var auth in tua.Authorizations)
-                {
-                    auth.Authorized = authorizations != null ?
-                        authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User)) : false;
-                    PhotoLibrary.TagUserAuthorizations.Set(auth);
-                }
-
+                //update autorizations
+                foreach (var tua in PhotoLibrary.TagUserAuthorizations)
+                    foreach (var auth in tua.Authorizations)
+                    {
+                        auth.Authorized = authorizations != null ?
+                            authorizations.Contains(TagUserAuthorizationData.GetValue(auth.TagId, auth.User)) : false;
+                        PhotoLibrary.TagUserAuthorizations.Set(auth);
+                    }
+            }
             PhotoLibrary.SaveTagUserAuthorizations();
 
             return RedirectToAction<AdminController>(c => c.Index());
