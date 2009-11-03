@@ -13,6 +13,8 @@ $(document).ready(function() {
     $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
     $("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
+    manualSearch = false;
+    
     $("#search").keyup(function(event) {
     if (event.keyCode == 13) {
             $.historyLoad($("#search").attr("value"));
@@ -45,8 +47,9 @@ function pageload(hash) {
             //hash = encodeURIComponent(hash);
         }
         $("#search").attr("value", hash);
-        searchRequested();
-        
+        if(!manualSearch)
+            searchRequested();
+        manualSearch = false;
     } else {
     //default content
         retreiveAlbumsAndArtists();
@@ -103,11 +106,16 @@ function updateAlbumList(albums) {
         a.click(function(e) {
             e.preventDefault();
             songsWaitEffect();
+            var search = "album:"+item.Name;
+            manualSearch = true; //we will directly get items from album ID by calling SongsByAlbum.
+            $.historyLoad(search);
             library.SongsByAlbum(item.Id, updateSongList);
         });
         albumList.append(a);
     });
 }
+
+var manualSearch;
 
 function updateArtistList(artists) {
     $("#artistsWaiting").hide();
