@@ -397,8 +397,11 @@ function songsView_onclick(action)
     else if(action == 'downloadAll')
     {
         var songList = '';
-        for(i = 1; i < songsView.rows.length; i++)//skip first header row
-            songList = songList + i > 1 ? ',' : '' + songsView.rows[i].cells[0].innerHTML;
+        for(i = 1; i < songsView.rows.length; i++){//skip first header row
+        	var separator = '';
+        	if(i > 1) separator = ',';
+            songList = songList + separator + songsView.rows[i].cells[0].innerHTML;
+        }
         location.href = "/Music/Player/Files/" + songList;
     }
 }
