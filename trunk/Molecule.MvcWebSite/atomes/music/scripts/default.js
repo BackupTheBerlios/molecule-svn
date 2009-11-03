@@ -11,7 +11,7 @@ $(document).ready(function() {
     $("#playlistTable").keydown(playlist_onkeydown);
     $("#playAllButton").click(function() { songsView_onclick('playAll'); });
     $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
-    $("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
+    //$("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
     manualSearch = false;
     
@@ -163,6 +163,15 @@ function updateSongList(songs) {
 
     });
     $("#songsView > tbody").html(rows);
+    
+    var songList = '';
+    $.each(songs, function(i, song) {//skip first header row
+        var separator = '';
+        if (i > 0) separator = ',';
+        songList = songList + separator + song.Id;
+    });
+    var href = "/Music/Player/Files/" + songList; 
+    $("#downloadAllLink").attr("href", href);
 }
 
 var player;

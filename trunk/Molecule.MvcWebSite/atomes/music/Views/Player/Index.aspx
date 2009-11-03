@@ -85,7 +85,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
                     <td style="text-align: right; width:60px">
                         <img id="playAllButton" alt="" src="<%= Url.Theme("images/media-playback-start-small.png") %>" />
                         <img id="enqueueAllButton" alt="" src="<%= Url.Theme("images/list-add.png") %>" />
-                        <img id="downloadAllButton" alt="" src="<%= Url.Theme("images/document-save.png") %>" />
+                        <a id="downloadAllLink" href=""><img id="downloadAllButton" alt="" src="<%= Url.Theme("images/document-save.png") %>" /></a>
                     </td>
                 </tr>
             </thead>
