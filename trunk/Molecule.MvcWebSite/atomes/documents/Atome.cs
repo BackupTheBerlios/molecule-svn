@@ -15,15 +15,7 @@ namespace Molecule.Atomes.Documents
     /// </summary>
     public class Atome : IAtome
     {
-        /// <summary>
-        /// Dummy constructor to avoid template instanciation. Remove it to enable atome.
-        /// </summary>
-        public Atome()
-        {
-            //REMOVE THIS TO ENABLE ATOME !
-            throw new NotImplementedException();
-        }
-
+       
         /// <summary>
         /// Id of the template. Must be equal to atome root folder name.
         /// </summary>
@@ -51,7 +43,7 @@ namespace Molecule.Atomes.Documents
         /// </summary>
         public Type DefaultController
         {
-            get { return typeof(Controllers.DefaultController); }
+            get { return typeof(Controllers.FolderController); }
         }
 
         /// <summary>

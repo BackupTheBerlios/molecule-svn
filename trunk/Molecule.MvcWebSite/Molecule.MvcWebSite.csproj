@@ -137,9 +137,10 @@
     <Compile Include="atomes\admin\Controllers\PreferencesController.cs" />
     <Compile Include="atomes\admin\Controllers\SetupController.cs" />
     <Compile Include="atomes\admin\Data\PreferencesData.cs" />
+    <Compile Include="atomes\documents\Data\FolderIndexData.cs" />
     <Compile Include="atomes\documents\DocumentInfo.cs" />
     <Compile Include="atomes\documents\Atome.cs" />
-    <Compile Include="atomes\documents\Controllers\DefaultController.cs" />
+    <Compile Include="atomes\documents\Controllers\FolderController.cs" />
     <Compile Include="atomes\documents\Controllers\PreferencesController.cs" />
     <Compile Include="atomes\documents\FolderInfo.cs" />
     <Compile Include="atomes\documents\AGenericInfo.cs" />
@@ -243,7 +244,7 @@
   <ItemGroup>
     <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
     <Content Include="atomes\documents\Atome.xml" />
-    <Content Include="atomes\documents\Views\Default\Index.aspx" />
+    <Content Include="atomes\documents\Views\Folder\Index.aspx" />
     <Content Include="atomes\documents\Views\Preferences\Index.aspx" />
     <Content Include="atomes\template\Atome.xml" />
     <Content Include="atomes\template\README.txt" />
@@ -385,10 +386,11 @@
     <Content Include="Views\Webdav\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atomes\documents\Views\Web.config" />
+    <Content Include="atomes\template\Views\Web.config" />
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="atomes\documents\Data\" />
     <Folder Include="atomes\template\Data\" />
     <Folder Include="logs\" />
   </ItemGroup>
