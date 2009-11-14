@@ -1,0 +1,1 @@
+﻿This is a template atome intended to be used for a new atome : copy template dir to youratome and start hacking :)

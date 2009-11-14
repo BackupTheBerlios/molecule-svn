@@ -235,6 +235,7 @@
   <ItemGroup>
     <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
     <Content Include="atomes\template\Atome.xml" />
+    <Content Include="atomes\template\README.txt" />
     <Content Include="atomes\template\Views\Default\Index.aspx" />
     <Content Include="atomes\template\Views\Preferences\Index.aspx" />
     <Content Include="favicon.ico" />
