@@ -69,10 +69,19 @@ namespace Molecule.WebSite.Services
                 string atomeDescriptionPath = Path.Combine(atomeDir.FullName, "Atome.xml");
                 if (File.Exists(atomeDescriptionPath))
                 {
-                    var atomeInfo = new AtomeInfo(Molecule.Serialization.Atome.LoadFrom(atomeDescriptionPath), virtualAtomeDir);
-                    atomes.Add(atomeInfo);
-                    if (log.IsInfoEnabled)
-                        log.Info("Found atome " + atomeInfo.Id);
+                    try
+                    {
+                        var atomeInfo = new AtomeInfo(Molecule.Serialization.Atome.LoadFrom(atomeDescriptionPath), virtualAtomeDir);
+
+                        atomes.Add(atomeInfo);
+                        if (log.IsInfoEnabled)
+                            log.Info("Found atome " + atomeInfo.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (log.IsWarnEnabled)
+                            log.Warn("Can't load atome located in "+atomeDir.Name, ex);
+                    }
                 }
                 else
                     log.Warn("Atome contained in " + atomeDir.Name + " directory doesn't contain an Atome.xml description file, will not be used.");

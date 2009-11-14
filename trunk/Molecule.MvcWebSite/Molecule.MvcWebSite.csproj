@@ -137,6 +137,7 @@
     <Compile Include="atomes\admin\Controllers\PreferencesController.cs" />
     <Compile Include="atomes\admin\Controllers\SetupController.cs" />
     <Compile Include="atomes\admin\Data\PreferencesData.cs" />
+    <Compile Include="atomes\template\Atome.cs" />
     <Compile Include="atomes\music\Atome.cs" />
     <Compile Include="atomes\music\Controllers\AdminController.cs" />
     <Compile Include="atomes\music\Controllers\PlayerController.cs" />
@@ -193,6 +194,8 @@
     <Compile Include="atomes\photos\Services\UserPhotoLibrary.cs" />
     <Compile Include="atomes\photos\Data\TagLinkData.cs" />
     <Compile Include="atomes\photos\Views\Tag\ZipPhotoFilesResult.cs" />
+    <Compile Include="atomes\template\Controllers\DefaultController.cs" />
+    <Compile Include="atomes\template\Controllers\PreferencesController.cs" />
     <Compile Include="Controllers\CssController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PreferencesPageControllerBase.cs" />
@@ -231,9 +234,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
+    <Content Include="atomes\template\Atome.xml" />
+    <Content Include="atomes\template\Views\Default\Index.aspx" />
+    <Content Include="atomes\template\Views\Preferences\Index.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.history.js" />
+    <Content Include="Scripts\jquery.MultiFile.pack.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
@@ -369,6 +376,7 @@
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="atomes\template\Data\" />
     <Folder Include="logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

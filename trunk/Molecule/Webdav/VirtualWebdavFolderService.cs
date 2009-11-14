@@ -16,7 +16,7 @@ namespace Molecule.Webdav
 
         public void RegisterVirtualWebdavFolder(IVirtualWebdavFolder fileProvider)
         {
-            this.fileProviders.Add(fileProvider.RootDirectoryName, fileProvider);
+            this.fileProviders[fileProvider.RootDirectoryName] = fileProvider;
         }
 
         public IVirtualWebdavFolder GetVirtualWebdavFolder(string name)
