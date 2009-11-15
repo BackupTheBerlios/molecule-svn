@@ -10,25 +10,25 @@ namespace Molecule
 {
     public static class StringExtensions
     {
-        public static string Zip(this string decompressed)
-        {
-            return internalZip(decompressed, CompressionMode.Compress);
-        }
+        //public static string Zip(this string decompressed)
+        //{
+        //    return internalZip(decompressed, CompressionMode.Compress);
+        //}
 
-        public static string UnZip(this string compressed)
-        {
-            return internalZip(compressed, CompressionMode.Decompress);
-        }
+        //public static string UnZip(this string compressed)
+        //{
+        //    return internalZip(compressed, CompressionMode.Decompress);
+        //}
 
-        private static string internalZip(string input, CompressionMode mode)
-        {
-            using (var inputStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(input)))
-            using (var compressStream = new DeflateStream(inputStream, CompressionMode.Compress, false))
-            using (var outputStream = new MemoryStream()) {
-                compressStream.WriteTo(outputStream);
-                return Convert.ToBase64String(outputStream.ToArray());
-            }
-        }
+        //private static string internalZip(string input, CompressionMode mode)
+        //{
+        //    using (var inputStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(input)))
+        //    using (var outputStream = new MemoryStream())
+        //    using (var compressStream = new DeflateStream(outputStream, CompressionMode.Compress, false)){
+        //        inputStream.WriteTo(compressStream);
+        //        return Convert.ToBase64String(outputStream.ToArray());
+        //    }
+        //}
 
         
     }

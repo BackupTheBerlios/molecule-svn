@@ -20,12 +20,17 @@ namespace Molecule.Atomes.Documents
 
         public static IFolderInfo GetRootFolder()
         {
-            return new FolderInfo(instance.baseDir);
+            return new FolderInfo(instance.baseDir, instance.baseDir);
         }
 
         public static IEnumerable<IFolderInfo> GetFolders(string folderId)
         {
-            return GetFolder(folderId).GetFolders();
+            return (GetFolder(folderId) as FolderInfo).GetFolders(instance.baseDir);
+        }
+
+        public static IEnumerable<IFolderInfo> GetFolders(IFolderInfo folderInfo)
+        {
+            return (folderInfo as FolderInfo).GetFolders(instance.baseDir);
         }
 
         public static IFolderInfo GetFolder(string id)
@@ -40,8 +45,15 @@ namespace Molecule.Atomes.Documents
 
         public static IEnumerable<IDocumentInfo> GetDocuments(string folderId)
         {
-            return GetFolder(folderId).GetDocuments();
+            return (GetFolder(folderId) as FolderInfo).GetDocuments(instance.baseDir);
         }
+
+        public static IEnumerable<IDocumentInfo> GetDocuments(IFolderInfo folderInfo)
+        {
+            return (folderInfo as FolderInfo).GetDocuments(instance.baseDir);
+        }
+
+       
     }
 
 

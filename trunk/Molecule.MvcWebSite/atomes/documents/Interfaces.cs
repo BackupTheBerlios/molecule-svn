@@ -9,14 +9,12 @@ namespace Molecule.Atomes.Documents
     {
         string Id { get; }
         string Name { get; }
+        string Path { get; }
     }
 
     public interface IFolderInfo : IGenericInfo
     {
 
-        IEnumerable<IFolderInfo> GetFolders();
-
-        IEnumerable<IDocumentInfo> GetDocuments();
     }
 
     public interface IDocumentInfo : IGenericInfo

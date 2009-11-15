@@ -244,7 +244,7 @@
   <ItemGroup>
     <Content Include="atomes\admin\Views\Setup\CreateAdmin.aspx" />
     <Content Include="atomes\documents\Atome.xml" />
-    <Content Include="atomes\documents\Views\Folder\Index.aspx" />
+    <Content Include="atomes\documents\Views\Folder\Display.aspx" />
     <Content Include="atomes\documents\Views\Preferences\Index.aspx" />
     <Content Include="atomes\template\Atome.xml" />
     <Content Include="atomes\template\README.txt" />

@@ -11,13 +11,14 @@ namespace Molecule.Atomes.Documents
         FileInfo fi;
 
         public DocumentInfo(string id, DirectoryInfo baseDir)
+            : base(id)
         {
-            base.Id = id;
-            fi = new FileInfo(id.UnZip());
+            fi = new FileInfo(System.IO.Path.Combine(baseDir.FullName,id));
             CheckParent(fi.Directory, baseDir);
         }
 
-        public DocumentInfo(FileInfo fi)
+        public DocumentInfo(FileInfo fi, DirectoryInfo baseDir)
+            : base(fi, baseDir)
         {
             this.fi = fi;
         }

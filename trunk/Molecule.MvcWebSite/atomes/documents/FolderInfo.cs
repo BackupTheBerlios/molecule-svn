@@ -9,18 +9,17 @@ namespace Molecule.Atomes.Documents
     public class FolderInfo : AGenericInfo, IFolderInfo
     {
         DirectoryInfo di;
-        string id;
 
-
-        public FolderInfo(DirectoryInfo di)
+        public FolderInfo(DirectoryInfo di, DirectoryInfo baseDir)
+            : base(di, baseDir)
         {
             this.di = di;
         }
 
         public FolderInfo(string id, DirectoryInfo baseDir)
+            : base(id)
         {
-            base.Id = id;
-            di = new DirectoryInfo(id.UnZip());
+            di = new DirectoryInfo(System.IO.Path.Combine(baseDir.FullName, id));
             CheckParent(di, baseDir);
         }
 
@@ -30,16 +29,16 @@ namespace Molecule.Atomes.Documents
             get { return di; }
         }
 
-        public IEnumerable<IFolderInfo> GetFolders()
+        public IEnumerable<IFolderInfo> GetFolders(DirectoryInfo baseDir)
         {
             return from dir in di.GetDirectories()
-                   select new FolderInfo(dir) as IFolderInfo;
+                   select new FolderInfo(dir, baseDir) as IFolderInfo;
         }
 
-        public IEnumerable<IDocumentInfo> GetDocuments()
+        public IEnumerable<IDocumentInfo> GetDocuments(DirectoryInfo baseDir)
         {
             return from file in di.GetFiles()
-                   select new DocumentInfo(file) as IDocumentInfo;
+                   select new DocumentInfo(file, baseDir) as IDocumentInfo;
         }
     }
 }

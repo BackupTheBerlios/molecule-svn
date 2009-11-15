@@ -8,26 +8,34 @@ namespace Molecule.Atomes.Documents
 {
     public abstract class AGenericInfo : IGenericInfo
     {
+        public AGenericInfo(string id)
+        {
+            this.id = id;
+        }
+
+        public AGenericInfo(FileSystemInfo fsi, DirectoryInfo baseDir)
+        {
+            Id = fsi.FullName.Remove(0, baseDir.FullName.Length).TrimStart('/', '\\');
+        }
+
         #region IGenericInfo Members
 
         string id;
 
         public string Id
         {
-            get
-            {
-                if (String.IsNullOrEmpty(id))
-                    id = Info.FullName.Zip();
-                return id;
-            }
-            protected set {
-                id = value;
-            }
+            get;
+            private set;
         }
 
         public string Name
         {
             get { return Info.Name; }
+        }
+
+        public string Path
+        {
+            get { return Info.FullName; }
         }
 
         #endregion
@@ -41,7 +49,7 @@ namespace Molecule.Atomes.Documents
         {
             var parent = item;
             while (parent != null) {
-                if (parent == baseDir)
+                if (parent.FullName == baseDir.FullName)
                     return;
                 parent = parent.Parent;
             }

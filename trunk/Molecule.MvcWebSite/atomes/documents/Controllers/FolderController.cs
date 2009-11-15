@@ -15,9 +15,25 @@ namespace Molecule.Atomes.Documents.Controllers
         /// </summary>
         public ActionResult Index()
         {
+            return RedirectToAction<FolderController>(c => c.Display(""));
+        }
+
+        public ActionResult Display(string path)
+        {
+            if (path == null)
+                path = "";
+            var folder = Service.GetFolder(path);
+
             return View(new FolderIndexData() {
-                CurrentFolder = Service.GetRootFolder()
+                CurrentFolder = folder,
+                Folders = Service.GetFolders(folder),
+                Documents = Service.GetDocuments(folder)
             });
+        }
+
+        public FileResult File(string filePath)
+        {
+            return new FilePathResult(Service.GetDocument(filePath).Path, "application/octet-stream");
         }
     }
 }
