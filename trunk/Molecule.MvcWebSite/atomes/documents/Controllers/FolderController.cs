@@ -35,5 +35,17 @@ namespace Molecule.Atomes.Documents.Controllers
         {
             return new FilePathResult(Service.GetDocument(filePath).Path, "application/octet-stream");
         }
+
+        public ActionResult Create(string parentPath, string name)
+        {
+            var fi = Service.CreateSubdirectory(parentPath, name);
+            return RedirectToAction<FolderController>(c => c.Display(fi.Id), Atome.Id);
+        }
+
+        public ActionResult Delete(string path)
+        {
+            Service.Delete(path);
+            return RedirectToAction<FolderController>(c => c.Display(path), Atome.Id);
+        }
     }
 }

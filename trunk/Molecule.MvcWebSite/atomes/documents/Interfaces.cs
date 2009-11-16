@@ -15,6 +15,7 @@ namespace Molecule.Atomes.Documents
     public interface IFolderInfo : IGenericInfo
     {
 
+        
     }
 
     public interface IDocumentInfo : IGenericInfo

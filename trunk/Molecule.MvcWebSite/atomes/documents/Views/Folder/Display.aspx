@@ -5,6 +5,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
 <h2><%= Model.CurrentFolder.Name %></h2>
+<%var cForm = Html.BeginForm("Create", "Folder", new { atome = Molecule.Atomes.Documents.Atome.Id }, FormMethod.Get); %>
+<%= Html.TextBox("name") %>
+<input type="hidden" name="parentPath" value="<%= Model.CurrentFolder.Id %>" />
+<input type="submit" value="Create" />
+<% cForm.EndForm(); %>
+
 <ul>
 <% foreach (var folder in Model.Folders) { %>
     <li><%= Html.ActionLink<Molecule.Atomes.Documents.Controllers.FolderController>(

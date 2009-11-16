@@ -40,5 +40,27 @@ namespace Molecule.Atomes.Documents
             return from file in di.GetFiles()
                    select new DocumentInfo(file, baseDir) as IDocumentInfo;
         }
+
+        public FolderInfo GetParent(DirectoryInfo baseDir)
+        {
+            return new FolderInfo(di.Parent, baseDir);
+        }
+
+        public void Create()
+        {
+            if (!di.Exists)
+                di.Create();
+        }
+
+        public void Delete()
+        {
+            if (di.Exists)
+                di.Delete(true);
+        }
+
+        public FolderInfo CreateSubdirectory(string name, DirectoryInfo baseDir)
+        {
+            return new FolderInfo(di.CreateSubdirectory(name), baseDir);
+        }
     }
 }

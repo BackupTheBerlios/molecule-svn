@@ -10,7 +10,7 @@ namespace Molecule.Atomes.Documents
     {
         public AGenericInfo(string id)
         {
-            this.id = id;
+            this.Id = id;
         }
 
         public AGenericInfo(FileSystemInfo fsi, DirectoryInfo baseDir)
@@ -19,8 +19,6 @@ namespace Molecule.Atomes.Documents
         }
 
         #region IGenericInfo Members
-
-        string id;
 
         public string Id
         {

@@ -27,5 +27,11 @@ namespace Molecule.Atomes.Documents
         {
             get { return fi; }
         }
+
+        public void Delete()
+        {
+            if (fi.Exists)
+                fi.Delete();
+        }
     }
 }
