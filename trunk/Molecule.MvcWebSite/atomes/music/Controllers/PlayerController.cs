@@ -30,14 +30,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
             return new FilePathResult(MusicLibrary.GetSong(id).MediaFilePath, "audio/mpeg");
         }
 
-        public ActionResult Files(string id)
-        {
-            string[] ids = id.Split(new char[] { '{', ',', '}' }, StringSplitOptions.RemoveEmptyEntries);
-            return new SongsZipResult(from i in ids
-                                      let s = MusicLibrary.GetSong(i)
-                                      where s != null
-                                      select s);
-        }
+
 
         static ILog log = LogManager.GetLogger(typeof(PlayerController));
 

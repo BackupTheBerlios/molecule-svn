@@ -78,7 +78,7 @@ namespace Molecule.MvcWebSite
         {
             if (log.IsInfoEnabled)
                 log.Info("Session end.");
-            log.Info("Session ID : " + HttpContext.Current.Session.SessionID);
+            //log.Info("Session ID : " + HttpContext.Current.Session.SessionID);
         }
 
         protected virtual void Application_End(object sender, EventArgs e)

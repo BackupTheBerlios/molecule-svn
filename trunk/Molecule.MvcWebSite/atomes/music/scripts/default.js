@@ -155,7 +155,7 @@ function updateSongList(songs) {
                         <img alt='' src='/App_Themes/bloup/images/media-playback-start-small.png'\
                             onclick=\"songsViewItem_onclick(this,'play')\" />\
                         <img alt='' src=\"/App_Themes/bloup/images/list-add.png\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
-                        <a href=\"" + "/Music/Player/File/" + song.Id + "\">\
+                        <a  href=\"" + "/Music/Player/File/" + song.Id + "\">\
                             <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
                     </td>\
                 </tr>";
@@ -170,8 +170,23 @@ function updateSongList(songs) {
         if (i > 0) separator = ',';
         songList = songList + separator + song.Id;
     });
-    var href = "/Music/Player/Files/" + songList; 
-    $("#downloadAllLink").attr("href", href);
+    
+    var searchValue = $("#search").val();
+    if (searchValue != null) {
+
+        if (searchValue.indexOf('album:', 0) == 0) {
+            searchValue = searchValue.replace('album:', 'album/');
+        }
+        else if (searchValue.indexOf('artist:', 0) == 0) {
+            searchValue = searchValue.replace('artist:', 'artist/');
+        }
+        else if (searchValue.indexOf('title:', 0) == 0) {
+            searchValue = searchValue.replace('artist:', 'artist/');
+        }
+        var href = "/Music/Download/Files/" + searchValue;
+        $("#downloadAllLink").attr("href", href);
+        $("#downloadAllLink").attr("target", "_blank");
+    }
 }
 
 var player;
@@ -419,6 +434,7 @@ function songsView_onclick(action)
         	if(i > 1) separator = ',';
             songList = songList + separator + songsView.rows[i].cells[0].innerHTML;
         }
+        
         location.href = "/Music/Player/Files/" + songList;
     }
 }

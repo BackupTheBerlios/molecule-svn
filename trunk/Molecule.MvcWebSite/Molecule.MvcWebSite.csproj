@@ -146,6 +146,7 @@
     <Compile Include="atomes\documents\AGenericInfo.cs" />
     <Compile Include="atomes\documents\Interfaces.cs" />
     <Compile Include="atomes\documents\Service.cs" />
+    <Compile Include="atomes\music\Controllers\DownloadController.cs" />
     <Compile Include="atomes\template\Atome.cs" />
     <Compile Include="atomes\music\Atome.cs" />
     <Compile Include="atomes\music\Controllers\AdminController.cs" />
@@ -387,6 +388,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atomes\documents\Views\Web.config" />
+    <Content Include="atomes\music\Views\Download\Files.aspx" />
     <Content Include="atomes\template\Views\Web.config" />
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
   </ItemGroup>
