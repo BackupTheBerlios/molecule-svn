@@ -5,6 +5,7 @@ using System.Web;
 using Molecule.MvcWebSite.Controllers;
 using System.Web.Mvc;
 using Molecule.Atomes.Documents.Data;
+using System.IO;
 
 namespace Molecule.Atomes.Documents.Controllers
 {
@@ -46,6 +47,16 @@ namespace Molecule.Atomes.Documents.Controllers
         {
             Service.Delete(path);
             return RedirectToAction<FolderController>(c => c.Display(path), Atome.Id);
+        }
+
+        public ActionResult AddDocument(string folderPath)
+        {
+            foreach (string fileId in Request.Files) {
+                var file = Request.Files[fileId];
+                file.SaveAs(Path.Combine(Service.GetFolder(folderPath).Path, file.FileName));
+            }
+
+            return RedirectToAction<FolderController>(c => c.Display(folderPath), Atome.Id);
         }
     }
 }
