@@ -60,7 +60,7 @@ namespace Molecule.Web.Mvc
         public static MvcForm BeginForm<T>(this HtmlHelper helper, Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
-            return BeginForm<T>(helper, action, FormMethod.Post, new RouteValueDictionary());
+            return BeginForm<T>(helper, action, FormMethod.Post, null);
         }
 
         public static MvcForm BeginForm<T>(this HtmlHelper helper, Expression<Action<T>> action,
@@ -70,7 +70,7 @@ namespace Molecule.Web.Mvc
             var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);
             routeValues = new RouteValueDictionary(routeValues.ToDictionary(p => p.Key.ToLower(), p => p.Value));
             routeValues.Add("atome", PublicPageControllerBase.GetAtome<T>().Id);
-            return helper.BeginForm(null, null, new RouteValueDictionary(routeValues), method, htmlAttributes);
+            return helper.BeginForm((string)null, (string)null, (RouteValueDictionary)routeValues, method, (IDictionary<string, object>)new RouteValueDictionary(htmlAttributes));
 
         }
 
