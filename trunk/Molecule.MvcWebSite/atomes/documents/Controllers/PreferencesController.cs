@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Molecule.Atomes.Documents.Controllers
 {
-    public class PreferencesController : PreferencesPageControllerBase
+    public class PreferencesController : PreferencesPageControllerBase<Atome>
     {
         public ActionResult Index()
         {

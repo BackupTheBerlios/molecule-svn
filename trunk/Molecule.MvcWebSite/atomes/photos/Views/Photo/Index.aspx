@@ -13,7 +13,7 @@
          <% if (Model.Photo.Latitude.HasValue && Model.Photo.Longitude.HasValue){ %>
         loadMap('map', <%= Model.Photo.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
                <%=Model.Photo.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
-               '<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>');
+               '<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail)) %>');
         <% } %>
     });
     </script>
@@ -41,23 +41,21 @@
               });
         %><br />
         <div class="thinBox" style="display:inline-block">
-            <div id="photo" style="width:<%=Model.PhotoSize.Width %>px;height:<%=Model.PhotoSize.Height %>px;background: url(<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal), Molecule.MvcWebSite.atomes.photos.Atome.Id) %>)">
+            <div id="photo" style="width:<%=Model.PhotoSize.Width %>px;height:<%=Model.PhotoSize.Height %>px;background: url(<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Normal)) %>)">
                 <div id="photoDescription" style="width:100%">
                    <span style="padding:5px;display:block"><%= Model.Photo.Description %></span>
                 </div>
             </div>
         </div>
         <br />
-        <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw),
-               Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+        <% using (Html.ActionLink<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Raw))) { %>
             <div class="ActionImage">
                 <img alt="Original" src="/atomes/photos/images/zoom-original.png" /></div>
             <%= Resources.photo.OriginaleImage%>
         <%} %>
         
         <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.Photo.Date.Year,
-            Model.Photo.Date.Month, Model.CurrentTag.NotNull(t => t.Id)),
-            Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+            Model.Photo.Date.Month, Model.CurrentTag.NotNull(t => t.Id)))) { %>
             <div class="ActionImage">
                 <img alt="calendar" src="/atomes/photos/images/office-calendar.png" />
             </div>

@@ -12,6 +12,7 @@ using System.Web.Routing;
 using System.Text;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using System.Web.Mvc.Html;
 
 namespace Molecule.Web.Mvc
 {
@@ -21,20 +22,19 @@ namespace Molecule.Web.Mvc
     {
         const string themeKey = "theme";
 
-        public static string Action<T>(this UrlHelper helper, Expression<Action<T>> action, string atomeId)
+        public static string Action<T>(this UrlHelper helper, Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
             var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);
             routeValues = new RouteValueDictionary(routeValues.ToDictionary(p => p.Key.ToLower(), p => p.Value));
-            if (!String.IsNullOrEmpty(atomeId))
-                routeValues.Add("atome", atomeId);
+            routeValues.Add("atome", PublicPageControllerBase.GetAtome<T>().Id);
             return helper.RouteUrl(routeValues);
         }
 
-        public static string ActionLink<T>(this HtmlHelper helper, string linkText, Expression<Action<T>> action, string atomeId)
+        public static string ActionLink<T>(this HtmlHelper helper, string linkText, Expression<Action<T>> action)
            where T : PublicPageControllerBase
         {
-            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action, atomeId);
+            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action);
 
             var tagBuilder = new TagBuilder("a"){
                 InnerHtml = (!String.IsNullOrEmpty(linkText)) ? HttpUtility.HtmlEncode(linkText) : String.Empty
@@ -44,11 +44,11 @@ namespace Molecule.Web.Mvc
             return tagBuilder.ToString(TagRenderMode.Normal);
         }
 
-        public static TagBuilder ActionLink<T>(this HtmlHelper helper, Expression<Action<T>> action, string atomeId)
+        public static TagBuilder ActionLink<T>(this HtmlHelper helper, Expression<Action<T>> action)
             where T : PublicPageControllerBase
         {
-            
-            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action, atomeId);
+
+            var url = new UrlHelper(helper.ViewContext.RequestContext).Action(action);
 
             var tagBuilder = new TagBuilder(helper.ViewContext.HttpContext.Response, "a");
             tagBuilder.MergeAttribute("href", url);
@@ -57,18 +57,35 @@ namespace Molecule.Web.Mvc
             return tagBuilder;
         }
 
+        public static MvcForm BeginForm<T>(this HtmlHelper helper, Expression<Action<T>> action)
+            where T : PublicPageControllerBase
+        {
+            return BeginForm<T>(helper, action, FormMethod.Post, new RouteValueDictionary());
+        }
+
+        public static MvcForm BeginForm<T>(this HtmlHelper helper, Expression<Action<T>> action,
+                FormMethod method, object htmlAttributes)
+            where T : PublicPageControllerBase
+        {
+            var routeValues = ExpressionHelper.GetRouteValuesFromExpression(action);
+            routeValues = new RouteValueDictionary(routeValues.ToDictionary(p => p.Key.ToLower(), p => p.Value));
+            routeValues.Add("atome", PublicPageControllerBase.GetAtome<T>().Id);
+            return helper.BeginForm(null, null, new RouteValueDictionary(routeValues), method, htmlAttributes);
+
+        }
+
         public static string Theme(this UrlHelper helper, string relativeUrl)
         {
             return "/Themes/" + System.Configuration.ConfigurationManager.AppSettings[themeKey] + "/" + relativeUrl;
         }
 
         #region JQueryProxyScript
-        public static string JQueryProxyScript<C>(this UrlHelper helper, string atomeId) where C : IController
+        public static string JQueryProxyScript<C>(this UrlHelper helper) where C : PublicPageControllerBase
         {
-            return JQueryProxyScript<C>(helper, atomeId, null);
+            return JQueryProxyScript<C>(helper, null);
         }
 
-        public static string JQueryProxyScript<C>(this UrlHelper helper, string atomeId, string prefix) where C : IController
+        public static string JQueryProxyScript<C>(this UrlHelper helper, string prefix) where C : PublicPageControllerBase
         {
             checkController<C>();
 
@@ -80,7 +97,7 @@ namespace Molecule.Web.Mvc
 
             var res = "function " + funcName + "(){\n";
 
-            var functions = generateJQueryPostFunctions<C>(helper, atomeId);
+            var functions = generateJQueryPostFunctions<C>(helper);
 
             foreach (var func in functions)
                 res += func + "\n";
@@ -106,7 +123,7 @@ namespace Molecule.Web.Mvc
 //                   select generateJQueryFunction(helper, null, mi, "getJSON", atomeId);
 //        }
 
-        private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper, string atomeId) where C : IController
+        private static IEnumerable<string> generateJQueryPostFunctions<C>(UrlHelper helper) where C : PublicPageControllerBase
         {
             return from mi in typeof(C).GetMethods(System.Reflection.BindingFlags.Public | BindingFlags.Instance)
                    let jsonResultType = typeof(JsonResult)
@@ -116,7 +133,7 @@ namespace Molecule.Web.Mvc
                    mi.GetCustomAttributes(AcceptVerbsAttributeType, false)
                      .Any(att => ((AcceptVerbsAttribute)att).Verbs
                        .Contains(Enum.GetName(httpVersType, HttpVerbs.Post).ToUpper()))
-                   select generateJQueryFunction(helper, null, mi, "post", atomeId);
+                   select generateJQueryFunction(helper, null, mi, "post", PublicPageControllerBase.GetAtome<C>().Id);
         }
 
         private static string generateJQueryFunction(UrlHelper helper, string prefix, MethodInfo method, string jqueryFunc, string atomeId)

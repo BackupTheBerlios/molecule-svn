@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Molecule.Template.Controllers
 {
-    public class DefaultController : PageControllerBase
+    public class DefaultController : PublicPageControllerBase
     {
         /// <summary>
         /// Default action.

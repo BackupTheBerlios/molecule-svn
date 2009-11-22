@@ -8,11 +8,11 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Year = Model.Year }); %>
     <br />
         <% using(Html.ActionLink<CalendarController>(c => c.Year(Model.PreviousYear,
-               Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)){ %>
+               Model.Tag.NotNull(t => t.Id)))){ %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         <%} %>
         <% using (Html.ActionLink<CalendarController>(c => c.Year(Model.NextYear,
-               Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+               Model.Tag.NotNull(t => t.Id)))) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
         <%} %>
         <table style="calendarTable">
@@ -31,8 +31,7 @@ Inherits="System.Web.Mvc.ViewPage<YearCalendarData>" %>
                                    HoverText = item.Name,
                                    Description = item.Description,
                                    NavigateUrl = Url.Action<CalendarController>(c =>
-                                       c.Month(Model.Year, i * 6 + m + 1, Model.Tag.NotNull(t => t.Id)),
-                                       Molecule.MvcWebSite.atomes.photos.Atome.Id)
+                                       c.Month(Model.Year, i * 6 + m + 1, Model.Tag.NotNull(t => t.Id)))
                                      
                                }); %>
                         </td>

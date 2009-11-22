@@ -13,7 +13,7 @@ using Molecule.Web.Mvc;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
-    public class TagController : PageControllerBase
+    public class TagController : PageControllerBase<Atome>
     {
 
 

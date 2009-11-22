@@ -16,7 +16,7 @@ using Molecule.MvcWebSite.atomes.music.Views.Player;
 namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
     [Authorize]
-    public class PlayerController : PageControllerBase
+    public class PlayerController : PageControllerBase<Atome>
     {
 
        

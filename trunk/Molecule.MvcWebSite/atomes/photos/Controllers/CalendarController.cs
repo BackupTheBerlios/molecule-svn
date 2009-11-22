@@ -13,7 +13,7 @@ using Molecule.MvcWebSite.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
-    public class CalendarController : PageControllerBase
+    public class CalendarController : PageControllerBase<Atome>
     {
 
 

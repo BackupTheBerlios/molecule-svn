@@ -11,7 +11,7 @@ using Molecule.Collections;
 
 namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
-    public class PreferencesController : PreferencesPageControllerBase
+    public class PreferencesController : PreferencesPageControllerBase<Atome>
     {
 
 

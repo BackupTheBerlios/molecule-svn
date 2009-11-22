@@ -13,7 +13,7 @@ using Molecule.MvcWebSite.atomes.music.Views.Player;
 namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
     [Authorize]
-    public class DownloadController : PageControllerBase
+    public class DownloadController : PageControllerBase<Atome>
     {
 
         private enum ArchiveResult

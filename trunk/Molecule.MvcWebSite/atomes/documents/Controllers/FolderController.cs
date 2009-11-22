@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Molecule.Atomes.Documents.Controllers
 {
-    public class FolderController : PageControllerBase
+    public class FolderController : PageControllerBase<Atome>
     {
         /// <summary>
         /// Default action.
@@ -25,7 +25,7 @@ namespace Molecule.Atomes.Documents.Controllers
                 path = "";
             var folder = Service.GetFolder(path);
 
-            return View(new FolderIndexData() {
+            return View(new FolderDisplayData() {
                 CurrentFolder = folder,
                 Folders = Service.GetFolders(folder),
                 Documents = Service.GetDocuments(folder)
@@ -37,26 +37,41 @@ namespace Molecule.Atomes.Documents.Controllers
             return new FilePathResult(Service.GetDocument(filePath).Path, "application/octet-stream");
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Create(string parentPath)
+        {
+            return View("Create", new FolderCreateData(){
+                CurrentFolder= Service.GetFolder(parentPath)
+            });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(string parentPath, string name)
         {
             var fi = Service.CreateSubdirectory(parentPath, name);
-            return RedirectToAction<FolderController>(c => c.Display(fi.Id), Atome.Id);
+            return RedirectToAction<FolderController>(c => c.Display(fi.Id));
         }
 
         public ActionResult Delete(string path)
         {
             Service.Delete(path);
-            return RedirectToAction<FolderController>(c => c.Display(path), Atome.Id);
+            return RedirectToAction<FolderController>(c => c.Display(path));
         }
+
 
         public ActionResult AddDocument(string folderPath)
         {
-            foreach (string fileId in Request.Files) {
-                var file = Request.Files[fileId];
-                file.SaveAs(Path.Combine(Service.GetFolder(folderPath).Path, file.FileName));
-            }
+            if (Request.RequestType == HttpVerbs.Post.ToString() && Request.Files.Count > 0) {
+                foreach (string fileId in Request.Files) {
+                    var file = Request.Files[fileId];
+                    file.SaveAs(Path.Combine(Service.GetFolder(folderPath).Path, file.FileName));
+                }
 
-            return RedirectToAction<FolderController>(c => c.Display(folderPath), Atome.Id);
+                return RedirectToAction<FolderController>(c => c.Display(folderPath));
+            }
+            else return View("AddDocument", new FolderAddDocumentData(){
+                CurrentFolder= Service.GetFolder(folderPath)
+            });
         }
     }
 }

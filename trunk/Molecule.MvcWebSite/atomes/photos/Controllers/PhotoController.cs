@@ -15,7 +15,7 @@ using Molecule.MvcWebSite.Controllers;
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
     [HandleError]
-    public class PhotoController : PageControllerBase
+    public class PhotoController : PageControllerBase<Atome>
     {
         
         //private static log4net.ILog log = log4net.LogManager.GetLogger(typeof(PhotoController));

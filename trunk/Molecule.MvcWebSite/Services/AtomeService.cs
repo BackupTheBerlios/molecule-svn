@@ -43,6 +43,7 @@ using Molecule.Collections;
 using Mono.Rocks;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Molecule.MvcWebSite;
 
 namespace Molecule.WebSite.Services
 {
@@ -143,6 +144,13 @@ namespace Molecule.WebSite.Services
             return GetAtomes().FirstOrDefault(a => String.Compare(a.Id, atomeId, true) == 0);
         }
 
+        public static IAtomeInfo GetAtome(Type atomeType)
+        {
+            var atomeTypeName = atomeType.FullName;
+            return instance.atomes.FirstOrDefault(a => a.ClassName == atomeTypeName);
+        }
+
+
         public static IEnumerable<IAtomeInfo> GetAtomesWithPreferences()
         {
             return from atome in GetAtomes()
@@ -198,5 +206,7 @@ namespace Molecule.WebSite.Services
                    where IsCurrentUserAuthorizedForAtome(atome.Id)
                    select atome as IAtomeInfo;
         }
+
+        
     }
 }

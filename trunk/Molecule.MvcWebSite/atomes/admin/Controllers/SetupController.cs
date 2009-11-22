@@ -10,7 +10,7 @@ using MvcContrib;
 
 namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
-    public class SetupController : PublicPageControllerBase
+    public class SetupController : PublicPageControllerBase<Atome>
     {
 
         public ActionResult Index()

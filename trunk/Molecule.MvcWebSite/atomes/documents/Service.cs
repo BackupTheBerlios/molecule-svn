@@ -32,11 +32,15 @@ namespace Molecule.Atomes.Documents
 
         public static IFolderInfo GetFolder(string id)
         {
+            if (id == null)
+                id = "";
             return new FolderInfo(id, instance.baseDir);
         }
 
         public static IDocumentInfo GetDocument(string id)
         {
+            if (id == null)
+                id = "";
             return new DocumentInfo(id, instance.baseDir);
         }
 
@@ -52,6 +56,8 @@ namespace Molecule.Atomes.Documents
 
         public static IFolderInfo CreateSubdirectory(string folderId, string name)
         {
+            if (folderId == null)
+                folderId = "";
             return (GetFolder(folderId) as FolderInfo).CreateSubdirectory(name, instance.baseDir);
         }
 

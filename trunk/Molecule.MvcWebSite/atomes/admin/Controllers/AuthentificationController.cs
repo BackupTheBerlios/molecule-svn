@@ -8,7 +8,7 @@ using Molecule.MvcWebSite.Controllers;
 
 namespace Molecule.MvcWebSite.atomes.admin.Controllers
 {
-    public class AuthentificationController : PublicPageControllerBase
+    public class AuthentificationController : PublicPageControllerBase<Atome>
     {
 
 

@@ -12,7 +12,8 @@ using System.Linq.Expressions;
 namespace Molecule.MvcWebSite.Controllers
 {
     [Molecule.MvcWebSite.Mvc.Authorize()]
-    public abstract class PageControllerBase : PublicPageControllerBase
+    public abstract class PageControllerBase<TA> : PublicPageControllerBase<TA>
+        where TA : IAtome
     {
         public PageControllerBase()
             : base()
@@ -20,7 +21,17 @@ namespace Molecule.MvcWebSite.Controllers
         }
     }
 
-    public abstract class PublicPageControllerBase : Controller
+    public class PublicPageControllerBase : Controller
+    {
+        public static IAtomeInfo GetAtome<TC>()
+            where TC : PublicPageControllerBase
+        {
+            return AtomeService.GetAtome(typeof(TC).BaseType.GetGenericArguments().First());
+        }   
+    }
+
+    public abstract class PublicPageControllerBase<TA> : PublicPageControllerBase
+        where TA : IAtome
     {
         public PublicPageControllerBase()
         {
@@ -30,23 +41,24 @@ namespace Molecule.MvcWebSite.Controllers
             };
         }
 
+        //public IAtomeInfo Atome
+        //{
+        //    get {
+        //        return AtomeService.GetAtome<TA>();
+        //    }
+        //}
 
-        protected RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action, string atomeId)
-            where T : PublicPageControllerBase
+        protected RedirectToRouteResult RedirectToAction<TC>(Expression<Action<TC>> action)
+            where TC : PublicPageControllerBase
         {
-            var res = MvcContrib.ControllerExtensions.RedirectToAction<T>(this, action);
-            if (!String.IsNullOrEmpty(atomeId))
-                res.RouteValues.Add("atome", atomeId);
+            var res = MvcContrib.ControllerExtensions.RedirectToAction<TC>(this, action);
+            res.RouteValues.Add("atome", GetAtome<TC>().Id);
             return res;
         }
 
-        protected RedirectToRouteResult RedirectToAction<T>(Expression<Action<T>> action)
-            where T : PublicPageControllerBase
-        {
-            var currentAtome = AtomeService.CurrentAtome;
-            return RedirectToAction<T>(action, currentAtome.NotNull(a => a.Id));
-        }
-
         
+    }
+    public class test : PublicPageControllerBase<Molecule.Atomes.Documents.Atome>
+    {
     }
 }

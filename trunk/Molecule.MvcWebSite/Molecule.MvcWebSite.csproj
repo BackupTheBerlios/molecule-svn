@@ -137,7 +137,7 @@
     <Compile Include="atomes\admin\Controllers\PreferencesController.cs" />
     <Compile Include="atomes\admin\Controllers\SetupController.cs" />
     <Compile Include="atomes\admin\Data\PreferencesData.cs" />
-    <Compile Include="atomes\documents\Data\FolderIndexData.cs" />
+    <Compile Include="atomes\documents\Data\FolderData.cs" />
     <Compile Include="atomes\documents\DocumentInfo.cs" />
     <Compile Include="atomes\documents\Atome.cs" />
     <Compile Include="atomes\documents\Controllers\FolderController.cs" />
@@ -207,7 +207,7 @@
     <Compile Include="atomes\template\Controllers\DefaultController.cs" />
     <Compile Include="atomes\template\Controllers\PreferencesController.cs" />
     <Compile Include="Controllers\CssController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="atomes\admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\PreferencesPageControllerBase.cs" />
     <Compile Include="Controllers\PageControllerBase.cs" />
     <Compile Include="Controllers\WebdavController.cs" />
@@ -386,6 +386,8 @@
     <Content Include="Views\Webdav\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="atomes\documents\Views\Folder\AddDocument.aspx" />
+    <Content Include="atomes\documents\Views\Folder\Create.aspx" />
     <Content Include="atomes\documents\Views\Web.config" />
     <Content Include="atomes\music\Views\Download\Files.aspx" />
     <Content Include="atomes\template\Views\Web.config" />

@@ -10,12 +10,11 @@
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.Tag, Month = Model.Month, Year = Model.Year }); %>
       <br />
       <% using (Html.ActionLink<CalendarController>(c => c.Month(Model.PreviousYear,
-            Model.PreviousMonth, Model.Tag.NotNull(t => t.Id)), Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+            Model.PreviousMonth, Model.Tag.NotNull(t => t.Id)))) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-previous.png")%>" />
         <%} %>
      <% using (Html.ActionLink<CalendarController>(c =>
-           c.Month(Model.NextYear, Model.NextMonth, Model.Tag.NotNull(t => t.Id)),
-           Molecule.MvcWebSite.atomes.photos.Atome.Id)) { %>
+           c.Month(Model.NextYear, Model.NextMonth, Model.Tag.NotNull(t => t.Id)))) { %>
             <img style="border:none" src="<%= Url.Theme("images/go-next.png")%>" />
         <%} %>
 

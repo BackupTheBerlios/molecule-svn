@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace Molecule.MvcWebSite.atomes.photos.Controllers
 {
-    public class AdminController : PreferencesPageControllerBase
+    public class AdminController : PreferencesPageControllerBase<Atome>
     {
 
         public ActionResult Index()

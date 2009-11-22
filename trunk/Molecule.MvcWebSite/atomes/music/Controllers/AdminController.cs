@@ -10,7 +10,7 @@ using WebMusic.Lastfm;
 
 namespace Molecule.MvcWebSite.atomes.music.Controllers
 {
-    public class AdminController : PreferencesPageControllerBase
+    public class AdminController : PreferencesPageControllerBase<Atome>
     {
 
         public ActionResult Index()
