@@ -146,6 +146,8 @@ namespace Molecule.WebSite.Services
 
         public static IAtomeInfo GetAtome(Type atomeType)
         {
+            if (atomeType == null)
+                return null;
             var atomeTypeName = atomeType.FullName;
             return instance.atomes.FirstOrDefault(a => a.ClassName == atomeTypeName);
         }

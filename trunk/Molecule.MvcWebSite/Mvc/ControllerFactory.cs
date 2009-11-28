@@ -4,26 +4,93 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Molecule.WebSite.Services;
+using System.Web.Routing;
+using System.Globalization;
+using System.Web.Compilation;
+using System.Reflection;
 
 namespace Molecule.MvcWebSite.Mvc
 {
-    public class ControllerFactory : DefaultControllerFactory
+    public class ControllerFactory : IControllerFactory
     {
-        protected override Type GetControllerType(string controllerName)
+        ILookup<IAtomeInfo, Type> controllerTypes;
+
+        object _lock = new object();
+
+        //protected override Type GetControllerType(string controllerName)
+        //{
+        //    //if (!AtomeService.IsCurrentUserAuthorized())
+        //        //return null;
+
+        //    if(AtomeService.CurrentAtome != null)
+        //        RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
+
+        //    //if(AtomeService.CurrentPathIsAtome)
+        //    //    Console.WriteLine("ControllerFactory:" + AtomeService.CurrentAtome.Name);
+        //    //Console.WriteLine("ControllerFactory:"+controllerName);
+        //    //Console.WriteLine("ControllerFactory:" + HttpContext.Current.Request.Url);
+        //}
+
+
+        #region IControllerFactory Members
+
+        public IController CreateController(System.Web.Routing.RequestContext requestContext, string controllerName)
         {
-            //if (!AtomeService.IsCurrentUserAuthorized())
-                //return null;
+            if (requestContext == null)
+                throw new ArgumentNullException("requestContext");
 
-            if(AtomeService.CurrentAtome != null)
-                base.RequestContext.RouteData.DataTokens["Namespaces"] = AtomeService.CurrentAtome.ControllerNamespaces;
+            if (String.IsNullOrEmpty(controllerName))
+                throw new ArgumentException("Null or empty", "controllerName");
 
-            //if(AtomeService.CurrentPathIsAtome)
-            //    Console.WriteLine("ControllerFactory:" + AtomeService.CurrentAtome.Name);
-            //Console.WriteLine("ControllerFactory:"+controllerName);
-            //Console.WriteLine("ControllerFactory:" + HttpContext.Current.Request.Url);
+            if (controllerTypes == null)
+                lock (_lock)
+                    if (controllerTypes == null)
+                        initControllerTypes();
+
+            controllerName += "Controller";
+
+            var ctrlType = controllerTypes[AtomeService.CurrentAtome].First(t => t.Name == controllerName);
+            return (IController)Activator.CreateInstance(ctrlType);
+
+        }
+
+        private void initControllerTypes()
+        {
+            controllerTypes = BuildManager.GetReferencedAssemblies().Cast<Assembly>()
+                .Aggregate((IEnumerable<Type>)new List<Type>(),
+                    (l, a) => l.Concat(a.GetTypes().Where(IsControllerType)))
+                    .ToLookup(t => GetAtome(t));
             
-            return base.GetControllerType(controllerName);
-            
+                
+        }
+
+        private string GetName(Type t)
+        {
+            return t.Name.Substring(0, t.Name.Length - "Controller".Length);
+        }
+
+        private IAtomeInfo GetAtome(Type t)
+        {
+            return AtomeService.GetAtome(t.BaseType.GetGenericArguments().FirstOrDefault());
+        }
+
+        public void ReleaseController(IController controller)
+        {
+            var disposable = controller as IDisposable;
+            if(disposable != null)
+                disposable.Dispose();
+        }
+
+        #endregion
+
+        internal static bool IsControllerType(Type t)
+        {
+            return
+                t != null &&
+                t.IsPublic &&
+                t.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase) &&
+                !t.IsAbstract &&
+                typeof(IController).IsAssignableFrom(t);
         }
     }
 }

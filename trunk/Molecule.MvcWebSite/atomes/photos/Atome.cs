@@ -31,11 +31,6 @@ namespace Molecule.MvcWebSite.atomes.photos
         #region IAtome Members
 
 
-        public IEnumerable<string> ControllerNamespaces
-        {
-            get { yield return "Molecule.MvcWebSite.atomes.photos.Controllers"; }
-        }
-
         #endregion
 
 

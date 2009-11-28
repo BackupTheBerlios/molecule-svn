@@ -21,11 +21,6 @@ namespace Molecule.MvcWebSite.atomes.admin
             get { return typeof(PreferencesController); }
         }
 
-        public IEnumerable<string> ControllerNamespaces
-        {
-            get { yield return "Molecule.MvcWebSite.atomes.admin.Controllers"; }
-        }
-
         #endregion
 
         public Type DefaultController

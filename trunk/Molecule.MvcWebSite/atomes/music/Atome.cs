@@ -32,15 +32,6 @@ namespace Molecule.MvcWebSite.atomes.music
 
         #region IAtome Members
 
-
-        public IEnumerable<string> ControllerNamespaces
-        {
-            get 
-            {
-                yield return "Molecule.MvcWebSite.atomes.music.Controllers";
-            }
-        }
-
         #endregion
 
 

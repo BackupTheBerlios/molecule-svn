@@ -39,6 +39,5 @@ namespace Molecule.WebSite.Services
         bool AdminOnly { get; }
         string ClassName { get; }
         void RegisterRoutes(RouteCollection routes);
-        IEnumerable<string> ControllerNamespaces { get; }
     }
 }

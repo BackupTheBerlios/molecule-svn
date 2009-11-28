@@ -17,20 +17,6 @@ namespace Molecule.Atomes.Documents
     {
        
         /// <summary>
-        /// Id of the template. Must be equal to atome root folder name.
-        /// </summary>
-        public const string Id = "documents";
-
-        /// <summary>
-        /// Gets namespaces where controllers are retreived when user request a path.
-        /// Used to avoid conflict with other atome controller names.
-        /// </summary>
-        public IEnumerable<string> ControllerNamespaces
-        {
-            get { yield return "Molecule.Atomes.Documents.Controllers"; }
-        }
-
-        /// <summary>
         /// Gets Preferences controller that enable user to customize atome behaviors.
         /// </summary>
         public Type PreferencesController

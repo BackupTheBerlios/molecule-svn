@@ -13,5 +13,10 @@ namespace Molecule.Atomes.Documents.Controllers
         {
             return View();
         }
+
+        public ActionResult Save()
+        {
+            return RedirectToAction<PreferencesController>(c => c.Index());
+        }
     }
 }

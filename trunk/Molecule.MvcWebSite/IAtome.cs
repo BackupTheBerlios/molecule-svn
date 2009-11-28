@@ -10,7 +10,6 @@ namespace Molecule.MvcWebSite
     {
         Type PreferencesController { get; }
         Type DefaultController { get; }
-        IEnumerable<string> ControllerNamespaces { get; }
         bool AdminOnly { get; }
         string Name { get; }
         

@@ -108,16 +108,6 @@ namespace Molecule.WebSite.Services
 
         #endregion
 
-        #region IAtomeInfo Members
-
-
-        public IEnumerable<string> ControllerNamespaces
-        {
-            get { return atomeInstance.ControllerNamespaces; }
-        }
-
-        #endregion
-
 
         public bool AdminOnly
         {
@@ -127,6 +117,11 @@ namespace Molecule.WebSite.Services
         public string Name
         {
             get { return atomeInstance.Name; }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }
