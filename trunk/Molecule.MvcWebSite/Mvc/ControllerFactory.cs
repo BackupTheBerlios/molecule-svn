@@ -14,6 +14,7 @@ namespace Molecule.MvcWebSite.Mvc
     public class ControllerFactory : IControllerFactory
     {
         ILookup<IAtomeInfo, Type> controllerTypes;
+        NullAtomeInfo nullAtome = new NullAtomeInfo();
 
         object _lock = new object();
 
@@ -49,7 +50,7 @@ namespace Molecule.MvcWebSite.Mvc
 
             controllerName += "Controller";
 
-            var ctrlType = controllerTypes[AtomeService.CurrentAtome].First(t => t.Name == controllerName);
+            var ctrlType = controllerTypes[AtomeService.CurrentAtome ?? nullAtome].First(t => t.Name == controllerName);
             return (IController)Activator.CreateInstance(ctrlType);
 
         }
@@ -71,7 +72,7 @@ namespace Molecule.MvcWebSite.Mvc
 
         private IAtomeInfo GetAtome(Type t)
         {
-            return AtomeService.GetAtome(t.BaseType.GetGenericArguments().FirstOrDefault());
+            return AtomeService.GetAtome(t.BaseType.GetGenericArguments().FirstOrDefault()) ?? nullAtome;
         }
 
         public void ReleaseController(IController controller)
@@ -92,5 +93,58 @@ namespace Molecule.MvcWebSite.Mvc
                 !t.IsAbstract &&
                 typeof(IController).IsAssignableFrom(t);
         }
+    }
+
+    public class NullAtomeInfo : IAtomeInfo
+    {
+
+        #region IAtomeInfo Members
+
+        public string DefaultControllerName
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string PreferencesControllerName
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string Id
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string Name
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string Path
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public bool HasPreferences
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public bool AdminOnly
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string ClassName
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public void RegisterRoutes(RouteCollection routes)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
