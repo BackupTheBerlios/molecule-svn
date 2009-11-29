@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -51,7 +51,7 @@ namespace Molecule.MvcWebSite.Mvc
             controllerName += "Controller";
 
             var ctrlType = controllerTypes[AtomeService.CurrentAtome ?? nullAtome]
-                .First(t => t.Name == controllerName);
+                .FirstOrDefault(t => t.Name == controllerName);
             return (IController)Activator.CreateInstance(ctrlType);
 
         }

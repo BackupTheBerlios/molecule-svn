@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -99,31 +99,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Common.fr2.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Common.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Common2.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule.fr2.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>molecule.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\molecule1.designer.cs">
       <DependentUpon>molecule.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo.fr2.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>photo.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\photo2.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>photo.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\webmusic.fr1.designer.cs">
@@ -264,7 +254,6 @@
     <Content Include="App_GlobalResources\Common.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.fr2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
@@ -273,27 +262,22 @@
     <Content Include="App_GlobalResources\Common.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\molecule.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.fr2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\molecule.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>molecule.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\photo.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>photo.fr2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\photo.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>photo2.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
@@ -385,14 +369,14 @@
     <Content Include="Themes\bloup\jquery.treeview.css" />
     <Content Include="Themes\bloup\molecule.css" />
     <Content Include="Views\Webdav\Index.aspx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="atomes\documents\Views\Folder\AddDocument.aspx" />
     <Content Include="atomes\documents\Views\Folder\Create.aspx" />
     <Content Include="atomes\documents\Views\Web.config" />
     <Content Include="atomes\music\Views\Download\Files.aspx" />
     <Content Include="atomes\template\Views\Web.config" />
     <Content Include="Scripts\ajaxupload.js" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
   </ItemGroup>
   <ItemGroup>
