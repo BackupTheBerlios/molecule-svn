@@ -13,7 +13,7 @@ namespace Molecule.MvcWebSite.Mvc
 {
     public class ControllerFactory : IControllerFactory
     {
-        ILookup<IAtomeInfo, Type> controllerTypes;
+        IDictionary<IAtomeInfo, List<Type>> controllerTypes;
         NullAtomeInfo nullAtome = new NullAtomeInfo();
 
         object _lock = new object();
@@ -50,19 +50,19 @@ namespace Molecule.MvcWebSite.Mvc
 
             controllerName += "Controller";
 
-            var ctrlType = controllerTypes[AtomeService.CurrentAtome ?? nullAtome].First(t => t.Name == controllerName);
+            var ctrlType = controllerTypes[AtomeService.CurrentAtome ?? nullAtome]
+                .First(t => t.Name == controllerName);
             return (IController)Activator.CreateInstance(ctrlType);
 
         }
 
         private void initControllerTypes()
         {
-            controllerTypes = BuildManager.GetReferencedAssemblies().Cast<Assembly>()
-                .Aggregate((IEnumerable<Type>)new List<Type>(),
-                    (l, a) => l.Concat(a.GetTypes().Where(IsControllerType)))
-                    .ToLookup(t => GetAtome(t));
-            
-                
+            controllerTypes = AtomeService.GetAtomes().Concat(new List<IAtomeInfo>(){nullAtome})
+                .ToDictionary(a => a, a => new List<Type>());
+            foreach (var assembly in BuildManager.GetReferencedAssemblies().Cast<Assembly>())
+                foreach (var controllerType in assembly.GetTypes().Where(IsControllerType))
+                    controllerTypes[GetAtome(controllerType)].Add(controllerType);
         }
 
         private string GetName(Type t)
