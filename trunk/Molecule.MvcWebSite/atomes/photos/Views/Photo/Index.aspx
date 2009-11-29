@@ -8,6 +8,15 @@
     <script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
     <script type="text/javascript" src="/atomes/photos/scripts/osm.js"></script>   
+    <% if (Model.Photo.Latitude.HasValue && Model.Photo.Longitude.HasValue){ %>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		loadMap('map', <%=Model.Photo.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
+				<%=Model.Photo.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
+				'<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail)) %>');
+    	});
+    </script>
+    <% } %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <% Html.RenderPartial("TagHierarchy", new TagHierarchyData() { Tag = Model.CurrentTag }); %>
@@ -55,21 +64,17 @@
         <h2><%= WebPhoto.Services.PhotoLibrary.GetLocalizedTagName() %>s</h2>
         <% Html.RenderPartial("TagList", Model.PhotoTags); %>
        
+        <% if (Model.Photo.Latitude.HasValue && Model.Photo.Longitude.HasValue){ %>
+        <h2><%= Resources.photo.Map %></h2>
+        <div id="map">
+        </div>
+        <% } %>    
+       
         <h2><%= Resources.Common.Details %></h2>
         <%= Html.Grid(Model.Photo.Metadatas.Select((kvp) => new {Key = kvp.Key, Value = kvp.Value}))
             .Columns(column => {
                 column.For(x => x.Key);
 	            column.For(x => x.Value);
-            }) %>    
-        <% if (Model.Photo.Latitude.HasValue && Model.Photo.Longitude.HasValue){ %>
-        <h2><%= Resources.photo.Map %></h2>
-        <div id="map">
-        </div>
-        <script type="text/javascript">
-				loadMap('map', <%=Model.Photo.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
-				<%=Model.Photo.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) %>,
-				'<%= Url.Action<PhotoController>(c => c.File(Model.Photo.Id, PhotoFileSize.Thumbnail)) %>');
-		</script>
-        <% } %>        
+            }) %>               
     </div>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
+// Copyright (c) 2009 Pascal Fresnay (dev.molecule@free.fr) - Mickael Renault (dev.molecule@free.fr) 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,8 +31,7 @@ namespace WebPhoto.Providers.Fspot
     public class Photo : IPhoto
 	{	
 
-        string uri;
-		Molecule.Collections.IKeyedEnumerable<string, string> metadatas;
+        string uri;		
         public Photo(string uri)
         {
             this.uri = uri;
@@ -43,9 +42,7 @@ namespace WebPhoto.Providers.Fspot
         public IEnumerable<ITag> Tags
         {
     		get 
-				{
-
-
+			{
                 return tags; 
             }
     	}
@@ -75,17 +72,7 @@ namespace WebPhoto.Providers.Fspot
 			get
 			{	
 				if( metadatas == null)
-				{
-				   JpegMetadataReader  jpegMetadatas =  new JpegMetadataReader(new Uri(uri).LocalPath);
-				   jpegMetadatas.RetrieveMetadatas();
-				   metadatas = jpegMetadatas.CommonMetadatas;
-				   if( jpegMetadatas.ContainsGPSInformation )
-				   {
-						this.Latitude = jpegMetadatas.Latitude;
-						this.Longitude = jpegMetadatas.Longitude;
-
-				   }
-				}
+					getMetadatas();
                 return 	metadatas;
             }
 			set
@@ -106,19 +93,46 @@ namespace WebPhoto.Providers.Fspot
 			set;
 	    }
 
-			
+		
+		double? longitude;
 		public double? Longitude 
 		{
-			get;
-			private set;
+			get
+			{
+				if (metadatas == null)
+					getMetadatas();
+				return longitude;
+			}
 		}
 		
+		double? latitude;
 		public double? Latitude
 		{
-			get;
-			private set;
+			get
+			{
+				if (metadatas == null)
+					getMetadatas();
+				return latitude;
+			}
 		}			
-	
+			
+		Molecule.Collections.Dictionary<string, string> metadatas;
+		private void getMetadatas()
+		{
+			JpegMetadataReader  jpegMetadatas =  new JpegMetadataReader(new Uri(uri).LocalPath);
+			jpegMetadatas.RetrieveMetadatas();
+			
+			metadatas = new Molecule.Collections.Dictionary<string, string>();			
+			foreach(KeyValuePair<string, string> kvp in jpegMetadatas.CommonMetadatas)
+			{
+				metadatas.Add(kvp.Key, kvp.Value);
+			}
 		
+			if( jpegMetadatas.ContainsGPSInformation )
+			{
+				this.latitude = jpegMetadatas.Latitude;
+				this.longitude = jpegMetadatas.Longitude;
+			}
+		}
     }
 }
