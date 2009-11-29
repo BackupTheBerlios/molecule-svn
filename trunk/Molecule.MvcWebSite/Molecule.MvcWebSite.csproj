@@ -147,6 +147,7 @@
     <Compile Include="atomes\documents\Interfaces.cs" />
     <Compile Include="atomes\documents\Service.cs" />
     <Compile Include="atomes\music\Controllers\DownloadController.cs" />
+    <Compile Include="atomes\music\Views\Player\SecureFileResult.cs" />
     <Compile Include="atomes\template\Atome.cs" />
     <Compile Include="atomes\music\Atome.cs" />
     <Compile Include="atomes\music\Controllers\AdminController.cs" />

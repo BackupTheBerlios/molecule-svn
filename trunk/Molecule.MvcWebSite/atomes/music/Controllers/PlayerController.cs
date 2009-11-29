@@ -27,7 +27,7 @@ namespace Molecule.MvcWebSite.atomes.music.Controllers
 
         public ActionResult File(string id)
         {
-            return new FilePathResult(MusicLibrary.GetSong(id).MediaFilePath, "audio/mpeg");
+            return new SecureFileResult(MusicLibrary.GetSong(id).MediaFilePath, "audio/mpeg");
         }
 
 
