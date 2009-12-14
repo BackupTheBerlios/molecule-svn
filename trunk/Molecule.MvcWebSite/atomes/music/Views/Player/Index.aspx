@@ -7,7 +7,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
         <style type="text/css">
         #playlistTable tr:hover .listRemove
         {
-            background: url("<%= Url.Theme("images/list-remove.png")%>" no-repeat;
+            background: url("<%= Url.Theme("images/list-remove.png")%>") no-repeat;
         }
     </style>
     <script type="text/javascript">
