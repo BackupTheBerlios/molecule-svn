@@ -13,6 +13,24 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript">
     <%= Url.JQueryProxyScript<PlayerController>("library") %>
     var covertArtUrl = "<%= Url.Action<PlayerController>(c => c.CovertArt("#id")) %>";
+    var fileUrl = "<%= Url.Action<PlayerController>(c => c.File("#id")) %>";
+    
+    function songListRowTemplate(song){ return "<tr><td style='display: none'>" + song.Id + "</td>\
+                    <td><span>" + song.Title + "</span></td>\
+                    <td><span>" + song.ArtistName + "</span></td>\
+                    <td><span>" + song.AlbumName + "</span></td>\
+                    <td>" + song.AlbumTrack + "</td>\
+                    <td>" + song.Duration + "</td>\
+                    <td style='text-align: right'>\
+                        <img alt='' src='<%= Url.Theme("images/media-playback-start-small.png")%>'\
+                            onclick=\"songsViewItem_onclick(this,'play')\" />\
+                        <img alt='' src=\"<%= Url.Theme("images/list-add.png")%>\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
+                        <a  href=\"" + fileUrl.replace("#id", song.Id) + "\">\
+                            <img alt='' src='<%= Url.Theme("images/document-save.png")%>' /></a>\
+                    </td>\
+                </tr>";
+     }
+    
     </script>
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
     <script type="text/javascript" src="../../../../Scripts/jquery.history.js"></script>

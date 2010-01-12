@@ -142,25 +142,9 @@ function updateSongList(songs) {
     $("#songsView").fadeTo(200, 1);
 
     var rows = "";
-    
+
     $.each(songs, function(i, song) {
-
-        rows = rows + "<tr><td style='display: none'>" + song.Id + "</td>\
-                    <td><span>" + song.Title + "</span></td>\
-                    <td><span>" + song.ArtistName + "</span></td>\
-                    <td><span>" + song.AlbumName + "</span></td>\
-                    <td>" + song.AlbumTrack + "</td>\
-                    <td>" + song.Duration + "</td>\
-                    <td style='text-align: right'>\
-                        <img alt='' src='/App_Themes/bloup/images/media-playback-start-small.png'\
-                            onclick=\"songsViewItem_onclick(this,'play')\" />\
-                        <img alt='' src=\"/App_Themes/bloup/images/list-add.png\" onclick=\"songsViewItem_onclick(this,'enqueue')\" />\
-                        <a  href=\"" + "/Music/Player/File/" + song.Id + "\">\
-                            <img alt='' src='/App_Themes/bloup/images/document-save.png' /></a>\
-                    </td>\
-                </tr>";
-
-
+        rows = rows + songListRowTemplate(song);
     });
     $("#songsView > tbody").html(rows);
     
