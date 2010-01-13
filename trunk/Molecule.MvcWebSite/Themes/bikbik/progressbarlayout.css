@@ -1,0 +1,54 @@
+﻿/*
+body, form, table, tr, td
+{
+	margin: 0px;
+	border: 0px none;
+	padding: 0px;
+}
+
+html, body, form, #progressDisplayCenterer
+{
+	width: 100%;
+	height: 100%;
+}
+*/
+#progressDisplayCenterer
+{
+	vertical-align: middle;
+	margin: 0 auto;
+}
+
+#progressDisplay
+{
+	vertical-align: middle;
+	width: 100%;
+}
+
+#barTd
+{
+	width: 100%;
+}
+
+#statusDiv
+{
+	border-width: 1px;
+	border-style: solid;
+	padding: 0px;
+	position: relative;
+	width: 100%;
+	text-align: center;
+	z-index: 1;
+}
+
+#barDiv, #barDetailsDiv, #smoothBar
+{
+	border: 0px none;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	top: 0pt;
+	left: 0pt;
+	z-index: -1;
+	height: 100%;
+	width: 75%;
+}
