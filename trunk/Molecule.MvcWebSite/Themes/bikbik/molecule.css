@@ -3,7 +3,7 @@
 body
 {
 	background-color: #999999;
-    font-family: Candara, sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size:13px;
     color:#ffffff;
 }
@@ -25,7 +25,7 @@ body
 
 .message
 {
-	border-bottom: 1px solid #CCCCCC;
+	border-bottom: 1px solid #F193C2;
 }
 
 .messageDate
@@ -94,7 +94,7 @@ margin-bottom:4px;
 #logPanel li
 {
     list-style-type : none;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #F193C2;
     margin-left : 0px;
     width : 100%;
 }
@@ -144,7 +144,7 @@ margin-bottom:4px;
 	padding-top:0px;
 	height:36px;
 	line-height:0px;
-	background-color:#CCCCCC;
+	background-color:#F193C2;
 	background-image: url('images/header_background.png');
 	background-repeat: repeat-x;
 }
@@ -164,7 +164,7 @@ margin-bottom:4px;
 	z-index:1;
 	padding:6px;
 	background-color:#2e3436;
-    border-color : #CCCCCC;
+    border-color : #F193C2;
     border-width:1px;
     border-style:solid;
     border-top:none;
@@ -195,7 +195,7 @@ input[type="text"]
 
 .hover_background:hover
 {
-	background-color:#CCCCCC;
+	background-color:#F193C2;
 	color:White;
 }
 
@@ -249,12 +249,12 @@ h1,#loginStatus
 a:link
 {
 	text-decoration:none;
-	color:#CCCCCC;
+	color:#F193C2;
 	font-weight:bolder;
 }
 
-a:active{text-decoration:none; color:#CCCCCC;	font-weight:bolder;}
-a:visited{text-decoration:none; color:#CCCCCC;	font-weight:bolder;}
+a:active{text-decoration:none; color:#F193C2;	font-weight:bolder;}
+a:visited{text-decoration:none; color:#F193C2;	font-weight:bolder;}
 a:hover{text-decoration:none; color:White;}
 
 a img
@@ -271,7 +271,7 @@ table
 table thead
 {
 	font-weight:bolder;
-	background-color:#CCCCCC;
+	background-color:#F193C2;
 }
 
 
@@ -283,7 +283,7 @@ table thead
 
 .selectedRow
 {
-	color:#CCCCCC;
+	color:#F193C2;
 	font-weight:bolder;
 }
 
@@ -358,7 +358,7 @@ table td
 {
 	font-weight: bold;
 	cursor:pointer;
-	color:#CCCCCC;
+	color:#F193C2;
 }
 
 #updateProgress  
