@@ -56,6 +56,10 @@
 
     <h2><%= Resources.molecule.Theme%></h2>
     <p>
+    <%foreach(var t in Model.Themes){ %> 
+    <%= Html.RadioButton("selectedTheme", t, t == Model.SelectedTheme) + t %>
+    <br />
+    <%} %>
     <label for="title"><%= Resources.molecule.Title %> :</label>
     <%= Html.TextBox("title", Model.Title) %>
     </p>

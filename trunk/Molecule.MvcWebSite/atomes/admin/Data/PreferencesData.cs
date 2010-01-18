@@ -13,6 +13,8 @@ namespace Molecule.MvcWebSite.atomes.admin.Data
         public IEnumerable<string> AuthorizableUsers { get; set; }
         public IEnumerable<AtomeUserAuthorizationsData> Authorizations { get; set; }
         public string Title { get; set; }
+        public string SelectedTheme { get; set; }
+        public IEnumerable<string> Themes { get; set; }
     }
 
     public class DeletableUserData

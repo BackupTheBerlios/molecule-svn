@@ -30,6 +30,8 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
                                  where !atome.AdminOnly
                                  select new AtomeUserAuthorizationsData(atome.Id,
                                      authorizableUsers.Concat(AtomeUserAuthorizations.AnonymousUser)),
+                Themes = AdminService.Themes,
+                SelectedTheme = AdminService.Theme,
                 Title = AdminService.MoleculeTitle
             };
             return View(res);
@@ -55,7 +57,7 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Save(string[] authorizations, string title)
+        public ActionResult Save(string[] authorizations, string title, string selectedTheme)
         {
             //update autorizations
             foreach (var aua in AdminService.AtomeUserAuthorizations)
@@ -67,6 +69,8 @@ namespace Molecule.MvcWebSite.atomes.admin.Controllers
             AdminService.SaveAtomeUserAuthorizations();
 
             AdminService.MoleculeTitle = title;
+
+            AdminService.Theme = selectedTheme;
 
             return RedirectToAction<PreferencesController>(c => c.Index());
         }

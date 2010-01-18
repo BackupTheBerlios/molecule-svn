@@ -32,16 +32,17 @@ namespace Molecule.WebSite.Services
         const string confNamespace = "Molecule.Admin";
         const string confTitleKey = "Title";
         const string confDisplayLogoKey = "DisplayLogo";
+        const string confThemeKey = "Theme";
+        const string confThemeDefaultValue = "bloup";
         const string confTitleDefaultValue = "Molecule";
+        public const string VirtualThemeDir = "/Themes/";
         private string moleculeTitle;
         private bool setupNeeded = true;
         private bool displayLogo;
+        private string theme;
         protected IEnumerable<CssVariableInfo> CssVariables = null;
 
         private static AdminService instance { get { return Singleton<AdminService>.Instance; } }
-
-
-
 
         static object cssVariablesLock = new object();
 
@@ -64,6 +65,7 @@ namespace Molecule.WebSite.Services
         {
             moleculeTitle = Configuration.ConfigurationClient.Get<string>(confNamespace, confTitleKey, confTitleDefaultValue);
             displayLogo = Configuration.ConfigurationClient.Get<bool>(confNamespace, confDisplayLogoKey, true);
+            theme = Configuration.ConfigurationClient.Get<string>(confNamespace, confThemeKey, confThemeDefaultValue);
 
             if (File.Exists(CssCachePath))
                 LastCssVariablesUpdate = File.GetCreationTime(cssCachePath);
@@ -131,6 +133,27 @@ namespace Molecule.WebSite.Services
             set { instance.updateMoleculeTitle(value); }
         }
 
+        public static string Theme
+        {
+            get { return instance.theme; }
+            set { instance.updateTheme(value); }
+        }
+
+        public static string DefaultTheme
+        {
+            get { return confThemeDefaultValue; }
+        }
+
+        public static IEnumerable<string> Themes
+        {
+            get{
+                return from dir in new DirectoryInfo(HttpContext.Current.Server.MapPath(VirtualThemeDir))
+                           .GetDirectories()
+                           where !dir.Name.StartsWith(".") //ignore svn dir
+                           select dir.Name;
+            }
+        }
+
         public static bool DisplayLogo
         {
             get { return instance.displayLogo; }
@@ -141,6 +164,12 @@ namespace Molecule.WebSite.Services
         {
             displayLogo = value;
             Configuration.ConfigurationClient.Set(confNamespace, confDisplayLogoKey, value);
+        }
+
+        private void updateTheme(string value)
+        {
+            theme = value;
+            Configuration.ConfigurationClient.Set(confNamespace, confThemeKey, theme);
         }
 
         private void updateMoleculeTitle(string value)

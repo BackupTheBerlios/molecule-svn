@@ -13,6 +13,7 @@ using System.Text;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc.Html;
+using Molecule.WebSite.Services;
 
 namespace Molecule.Web.Mvc
 {
@@ -71,12 +72,20 @@ namespace Molecule.Web.Mvc
             routeValues = new RouteValueDictionary(routeValues.ToDictionary(p => p.Key.ToLower(), p => p.Value));
             routeValues.Add("atome", PublicPageControllerBase.GetAtome<T>().Id);
             return helper.BeginForm((string)null, (string)null, (RouteValueDictionary)routeValues, method, (IDictionary<string, object>)new RouteValueDictionary(htmlAttributes));
-
         }
 
         public static string Theme(this UrlHelper helper, string relativeUrl)
         {
-            return "/Themes/" + System.Configuration.ConfigurationManager.AppSettings[themeKey] + "/" + relativeUrl;
+            var url = formatThemeResourceUrl(AdminService.Theme, relativeUrl);
+            if(File.Exists(HttpContext.Current.Server.MapPath(url)))
+                return url;
+            else
+                return formatThemeResourceUrl(AdminService.DefaultTheme, relativeUrl);
+        }
+
+        private static string formatThemeResourceUrl(string theme, string relativeUrl)
+        {
+            return String.Format(AdminService.VirtualThemeDir + theme + "/" + relativeUrl);
         }
 
         #region JQueryProxyScript
