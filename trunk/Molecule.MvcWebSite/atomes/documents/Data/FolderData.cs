@@ -14,6 +14,7 @@ namespace Molecule.Atomes.Documents.Data
     {
         public IEnumerable<IFolderInfo> Folders { get; set; }
         public IEnumerable<IDocumentInfo> Documents { get; set; }
+        public IEnumerable<IFolderInfo> CurrentFolderHierarchy { get; set; }
     }
 
     public class FolderAddDocumentData : FolderData

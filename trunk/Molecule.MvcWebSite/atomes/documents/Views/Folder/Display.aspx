@@ -26,10 +26,15 @@ li
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-<h2><%= Model.CurrentFolder.Name %></h2>
+<h2><%= Html.ActionLink<FolderController>("Documents", c => c.Display(null))%>
+    <%foreach (var folder in Model.CurrentFolderHierarchy) { %>
+       > 
+      <%= Html.ActionLink<FolderController>(folder.Name, c => c.Display(folder.Id)) %>
+    <% } %>
+</h2>
 <%= Html.ActionLink<FolderController>("Créer un dossier", c => c.Create(Model.CurrentFolder.Id))%><br />
-<%= Html.ActionLink<FolderController>("Ajouter un document", c => c.AddDocument(Model.CurrentFolder.Id))%>
-
+<%= Html.ActionLink<FolderController>("Ajouter un document", c => c.AddDocument(Model.CurrentFolder.Id))%><br />
+<br />
 <% Func<string, string> mimeIconProvider = (fileName) => {
            switch (System.IO.Path.GetExtension(fileName.ToLower()).Substring(1)){
                case "png":

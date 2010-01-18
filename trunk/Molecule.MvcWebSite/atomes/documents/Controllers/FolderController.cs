@@ -28,7 +28,8 @@ namespace Molecule.Atomes.Documents.Controllers
             return View(new FolderDisplayData() {
                 CurrentFolder = folder,
                 Folders = Service.GetFolders(folder),
-                Documents = Service.GetDocuments(folder)
+                Documents = Service.GetDocuments(folder),
+                CurrentFolderHierarchy = Service.GetFolderHierarchy(folder)
             });
         }
 

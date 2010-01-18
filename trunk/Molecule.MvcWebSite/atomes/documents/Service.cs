@@ -30,6 +30,17 @@ namespace Molecule.Atomes.Documents
             return (folderInfo as FolderInfo).GetFolders(instance.baseDir);
         }
 
+        public static IEnumerable<IFolderInfo> GetFolderHierarchy(IFolderInfo folderInfo)
+        {
+            List<IFolderInfo> res = new List<IFolderInfo>();
+            while (folderInfo != null && folderInfo.Id != ""){
+                res.Add(folderInfo);
+                folderInfo = (folderInfo as FolderInfo).GetParent(instance.baseDir);
+            }
+            res.Reverse();
+            return res;
+        }
+
         public static IFolderInfo GetFolder(string id)
         {
             if (id == null)
