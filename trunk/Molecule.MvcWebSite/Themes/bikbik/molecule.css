@@ -253,6 +253,8 @@ a:link
 	font-weight:bolder;
 }
 
+
+
 a:active{text-decoration:none; color:#F193C2;	font-weight:bolder;}
 a:visited{text-decoration:none; color:#F193C2;	font-weight:bolder;}
 a:hover{text-decoration:none; color:White;}
@@ -419,7 +421,8 @@ input[type="text"]
 	color:white;
 }
 
-#songInfo
+.tableLineHeader
 {
- width:auto;
+	font-weight:bolder;
+	color:#F193C2;
 }
