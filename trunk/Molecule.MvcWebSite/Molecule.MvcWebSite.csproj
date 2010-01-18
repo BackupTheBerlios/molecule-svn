@@ -267,52 +267,6 @@
     <Content Include="Themes\bloup\images\mimetypes\x-office-presentation.png" />
     <Content Include="Themes\bloup\images\mimetypes\x-office-spreadsheet-template.png" />
     <Content Include="Themes\bloup\images\mimetypes\x-office-spreadsheet.png" />
-    <Content Include="Themes\bikbik\images\audio-volume-high.png" />
-    <Content Include="Themes\bikbik\images\audio-volume-low.png" />
-    <Content Include="Themes\bikbik\images\colorpicker.png" />
-    <Content Include="Themes\bikbik\images\dialog-warning.png" />
-    <Content Include="Themes\bikbik\images\document-save.png" />
-    <Content Include="Themes\bikbik\images\folder.png" />
-    <Content Include="Themes\bikbik\images\go-next.png" />
-    <Content Include="Themes\bikbik\images\go-previous.png" />
-    <Content Include="Themes\bikbik\images\list-add.png" />
-    <Content Include="Themes\bikbik\images\list-remove.png" />
-    <Content Include="Themes\bikbik\images\media-playback-pause.png" />
-    <Content Include="Themes\bikbik\images\media-playback-start-small.png" />
-    <Content Include="Themes\bikbik\images\media-playback-start.png" />
-    <Content Include="Themes\bikbik\images\media-skip-backward.png" />
-    <Content Include="Themes\bikbik\images\media-skip-forward.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\application-certificate.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\application-x-executable.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\audio-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\font-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\image-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\package-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\text-html.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\text-x-generic-template.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\text-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\text-x-script.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\video-x-generic.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-address-book.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-calendar.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-document-template.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-document.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-drawing-template.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-drawing.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-presentation-template.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-presentation.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-spreadsheet-template.png" />
-    <Content Include="Themes\bikbik\images\mimetypes\x-office-spreadsheet.png" />
-    <Content Include="Themes\bikbik\images\molecule-128.png" />
-    <Content Include="Themes\bikbik\images\molecule-16.png" />
-    <Content Include="Themes\bikbik\images\molecule-24.png" />
-    <Content Include="Themes\bikbik\images\molecule-32.png" />
-    <Content Include="Themes\bikbik\images\molecule-48.png" />
-    <Content Include="Themes\bikbik\images\molecule-64.png" />
-    <Content Include="Themes\bikbik\images\refresh.png" />
-    <Content Include="Themes\bikbik\images\system-search.png" />
-    <Content Include="Themes\bikbik\images\treeview-default-line.gif" />
-    <Content Include="Themes\bikbik\images\treeview-default.gif" />
     <Content Include="Themes\bikbik\jquery.treeview.css" />
     <Content Include="Themes\bikbik\molecule.css" />
     <Content Include="Themes\bikbik\progressbarlayout.css" />
@@ -449,7 +403,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Themes\bloup\images\molecule-6-rot.svg" />
-    <None Include="Themes\bikbik\images\molecule-6-rot.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="atomes\template\Data\" />

@@ -60,6 +60,8 @@
     <%= Html.RadioButton("selectedTheme", t, t == Model.SelectedTheme) + t %>
     <br />
     <%} %>
+    </p>
+    <p>
     <label for="title"><%= Resources.molecule.Title %> :</label>
     <%= Html.TextBox("title", Model.Title) %>
     </p>
