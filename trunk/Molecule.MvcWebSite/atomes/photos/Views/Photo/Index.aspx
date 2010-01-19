@@ -73,7 +73,7 @@
         <h2><%= Resources.Common.Details %></h2>
         <%= Html.Grid(Model.Photo.Metadatas.Select((kvp) => new {Key = kvp.Key, Value = kvp.Value}))
             .Columns(column => {
-                column.For(x => x.Key).Attributes(@class => "tableLineHeader");
+                column.For(x => x.Key).Attributes((Func<object,object>)(@class => "tableLineHeader"));
 	            column.For(x => x.Value);
             }) %>               
     </div>
