@@ -245,7 +245,13 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.history.js" />
+    <Content Include="Themes\bikbik\images\folder.png" />
+    <Content Include="Themes\bikbik\images\ajax-loader.gif" />
+    <Content Include="Themes\bikbik\images\go-next.png" />
+    <Content Include="Themes\bikbik\images\go-previous.png" />
     <Content Include="Themes\bikbik\images\header_background.png" />
+    <Content Include="Themes\bikbik\images\molecule-24.png" />
+    <Content Include="Themes\bloup\images\ajax-loader.gif" />
     <Content Include="Themes\bloup\images\mimetypes\application-certificate.png" />
     <Content Include="Themes\bloup\images\mimetypes\application-x-executable.png" />
     <Content Include="Themes\bloup\images\mimetypes\audio-x-generic.png" />
@@ -267,9 +273,7 @@
     <Content Include="Themes\bloup\images\mimetypes\x-office-presentation.png" />
     <Content Include="Themes\bloup\images\mimetypes\x-office-spreadsheet-template.png" />
     <Content Include="Themes\bloup\images\mimetypes\x-office-spreadsheet.png" />
-    <Content Include="Themes\bikbik\jquery.treeview.css" />
     <Content Include="Themes\bikbik\molecule.css" />
-    <Content Include="Themes\bikbik\progressbarlayout.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />

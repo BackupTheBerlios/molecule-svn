@@ -74,7 +74,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <div id="artistscontainer">
         <h2><%= Resources.webmusic.Artists %></h2>
         <div class="navigationList thinBox">
-            <span id="artistsWaiting">Waiting...</span>
+            <span id="artistsWaiting"><img alt="waiting..." src="<%= Url.Theme("images/ajax-loader.gif") %>" /></span>
             <ul id="artistList" class="hoverList">
             </ul>
         </div>
@@ -83,7 +83,7 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <div id="albumscontainer">
         <h2><%= Resources.webmusic.Albums %></h2>
         <div class="navigationList thinBox">
-            <span id="albumsWaiting">Waiting...</span>
+            <span id="albumsWaiting"><img alt="waiting..." src="<%= Url.Theme("images/ajax-loader.gif") %>" /></span>
             <ul id="albumList" class="hoverList">
             </ul>
         </div>
