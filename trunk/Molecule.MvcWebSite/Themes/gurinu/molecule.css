@@ -1,0 +1,417 @@
+
+
+body
+{
+	background-image: url(images/molecule-128.png);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position: 20px -20px;
+	background-color: #302F2C;
+    font-family: Candara, sans-serif;
+    font-size:13px;
+    color:#D9D4CC;
+}
+
+.messagesPanelTitle
+{
+	color:#999999;
+	font-size:medium;
+}
+
+.messagesPanel
+{
+	margin-top : 10px;
+	margin-left : 10px;
+	float:left;
+	width : 45%;
+}
+
+.message
+{
+	border-bottom: 1px solid #85ac53;
+}
+
+.messageDate
+{
+	color:#302F2C;
+    font-size :10px;
+    text-align:right;
+    white-space:nowrap;
+}
+
+.spacer {
+  clear: both;
+}
+
+
+#sideBar
+{
+	float: left;
+    width: 18%;
+}
+
+#menuPanel
+{	
+    padding:10px;
+    z-index : 1;
+}
+
+#sideBar ul
+{
+	margin-top:5px;
+	margin-bottom:5px;
+	list-style-type:none;
+	padding: 0;
+	border: none;
+
+}
+
+#sideBar li
+{
+margin-top:4px;
+margin-bottom:4px;
+}
+
+#logPanel
+{
+    padding:10px;
+    z-index : 2;
+    margin-top : 0px;
+    -moz-border-radius-bottomright:10px;
+	-webkit-border-bottom-right-radius:10px;
+}
+
+#logPanel ul
+{
+    padding-left : 0px;
+    margin-top : 0px;
+}
+
+#logPanel li
+{
+    list-style-type : none;
+    border-bottom: 1px solid white;
+    margin-left : 0px;
+    width : 100%;
+}
+
+#logPanel li:hover
+{
+    background-color: #999999;
+}
+
+#maincontentPanel
+{
+	float:right;
+    width:75%;    
+    min-height: 500px;
+    padding:16px;
+    background-color:#3d3c38;
+}
+
+#pagePanel
+{
+	margin-top:40px;
+	margin-bottom:40px;
+	margin-left: auto;
+    margin-right: auto;
+	width:920px;
+
+    background-color: black;
+	border: solid 1px #3d3c38;
+
+}
+
+#footer
+{
+	clear:both;
+	bottom:0px;
+	background-color:black;
+	padding:5px;
+	text-align:center;
+}
+
+#header
+{
+	position:relative;
+	padding-left:5px;
+	padding-top:0px;
+	height:36px;
+	line-height:0px;
+	background-color:black;
+}
+
+
+#header img {
+	display: none;
+}
+
+
+.informationPanel
+{
+	display:none;
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+.informationPanel,
+.updatePanel
+{
+	z-index:1;
+	padding:6px;
+	background-color:#2e3436;
+    border-color : #85ac53;
+    border-width:1px;
+    border-style:solid;
+    border-top:none;
+    border-left:none;
+}
+
+.informationPanel img
+{
+    float: left; 
+    margin: 0 6px 6px 0;
+}
+
+.thinBorder,
+.thinBox,
+.tabSelectedTitle,
+.tabTitle,
+input[type="text"]
+{
+	border:1px;
+	border-style:solid;
+	border-color:#444444;
+}
+
+.thinBox
+{
+	padding:2px;
+}
+
+.hover_background:hover
+{
+	background-color:#85ac53;
+	color:White;
+}
+
+.invisible
+{
+    display:none;
+}
+
+h2
+{
+	color:#D9D4CC;
+	font-size:large;
+	margin-left:4px;
+	font-size:18px;
+}
+
+h1
+{
+	font-size:18px;
+	display:block;
+	vertical-align:middle;
+	float:left;
+	position:relative;
+	margin-left:5px;
+}
+
+#loginStatus
+{
+	position:relative;
+	float:right;
+	vertical-align:middle;
+	margin-right:5px;
+}
+
+#loginStatus a
+{
+	color:#D9D4CC;
+}
+
+h1,#loginStatus
+{
+	margin-top:18px;
+}
+
+a:link   {text-decoration:none;	color:#85ac53;	font-weight:bolder;}
+a:active {text-decoration:none; color:#85ac53;	font-weight:bolder;}
+a:visited{text-decoration:none; color:#85ac53;	font-weight:bolder;}
+a:hover  {text-decoration:none; color:White;}
+
+a img
+{
+    border : 0px;
+}
+
+table
+{
+	border-collapse:collapse;
+	margin-bottom:4px;
+}
+
+table thead
+{
+	font-weight:bolder;
+	border-bottom: solid 2px #85ac53;
+}
+
+
+.hoverTable tr:hover,
+.hoverList li:hover { 
+    background-color:#85ac53;
+	color: white;
+    border-width : 0px;
+}
+
+.hoverTable tr:hover a,
+.hoverList li:hover a {
+	color: white;
+}
+
+.selectedRow
+{
+	color:#85ac53;
+	font-weight:bolder;
+}
+
+
+table a:link
+{
+	font-weight:normal;
+	color:White;
+}
+
+table td
+{
+	padding:2px;
+}
+
+.tabTitle,
+.tabSelectedTitle
+{
+	padding-left:8px;
+	padding-right:8px;
+	float:left;
+	position:relative;
+}
+
+.tabTitle
+{
+	padding-top:5px;
+	padding-bottom:4px;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+}
+
+.tabSelectedTitle
+{
+	padding-top:4px;
+	padding-bottom:5px;
+	border-bottom:none;
+		-moz-border-radius-topleft:10px;
+	-moz-border-radius-topright:10px;
+	-webkit-border-top-left-radius:10px;
+	-webkit-border-top-right-radius:10px;
+}
+
+.tabSelectedTitle a:active
+{
+	color:#999999;
+}
+
+.tabSelectedTitle a:link
+{
+	color:#999999;
+}
+
+.tabSelectedTitle a:visited
+{
+	color:#999999;
+}
+
+.loginPanel
+{
+	margin-left: auto;
+	margin-right: auto;
+	background-color:#2e3436;
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:40px;
+}
+
+.errorDetails
+{
+	font-weight: bold;
+	cursor:pointer;
+	color:#85ac53;
+}
+
+#updateProgress  
+{
+	position:relative;
+
+}
+
+#logo
+{
+	position:relative;
+	display:inline;
+	top:6px;
+}
+
+.popup
+{
+	border: solid 1px;
+	background:grey;
+}
+
+.popupHeader
+{
+	text-align: left;
+	padding:0.5ex;
+}
+
+.popupHeader .left
+{	
+	position: absolute;
+	left: .5ex;
+	text-align: left;
+}
+
+.popupHeader .right
+{
+	position: absolute;
+	right: .5ex;
+	text-align: right;
+}
+
+.modalBackground
+{
+	background-color: #000000;
+	filter:alpha(opacity=30);
+	opacity:0.30;
+}
+
+.searchTextBox
+{
+	background: #2e3436 url(images/system-search.png) no-repeat 2px 2px;
+	padding-left:20px;
+}
+
+input[type="text"]
+{
+	background-color: #2e3436;
+	color:white;
+}
+
+.tableLineHeader
+{
+	font-weight:bolder;
+	color:#85ac53;
+}

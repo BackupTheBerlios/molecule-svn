@@ -12,12 +12,12 @@
     });
 </script>
 <style type="text/css">
-ul
+.webdav
 {
     list-style-type: none;padding: 0px;margin: 0px;
 }
 
-li
+.webdav li
 {
 	background-repeat: no-repeat;padding-left: 24px; margin:3px;
 }
@@ -134,12 +134,12 @@ li
        }; %>
 
 
-<ul id="folderList">
+<ul class="webdav" id="folderList">
 <% foreach (var folder in Model.Folders) { %>
     <li><%= Html.ActionLink<FolderController>(folder.Name, c => c.Display(folder.Id)) %></li>
 <%} %>
 </ul>
-<ul id="documentList">
+<ul class="webdav"  id="documentList">
 <% foreach (var doc in Model.Documents) { %>
     <li style="background-image: url(<%=Url.Theme("images/mimetypes/"+ mimeIconProvider(doc.Name)+".png") %>) ">
         <%= Html.ActionLink<FolderController>(doc.Name, c => c.File(doc.Id)) %></li>
