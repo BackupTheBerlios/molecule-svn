@@ -313,26 +313,15 @@ table td
 	padding-top:4px;
 	padding-bottom:5px;
 	border-bottom:none;
-		-moz-border-radius-topleft:10px;
+	-moz-border-radius-topleft:10px;
 	-moz-border-radius-topright:10px;
 	-webkit-border-top-left-radius:10px;
 	-webkit-border-top-right-radius:10px;
 }
 
-.tabSelectedTitle a:active
-{
-	color:#999999;
-}
-
-.tabSelectedTitle a:link
-{
-	color:#999999;
-}
-
-.tabSelectedTitle a:visited
-{
-	color:#999999;
-}
+.tabSelectedTitle a:active {color:#D9D4CC;}
+.tabSelectedTitle a:link   {color:#D9D4CC;}
+.tabSelectedTitle a:visited{color:#D9D4CC;}
 
 .loginPanel
 {
