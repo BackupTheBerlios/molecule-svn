@@ -195,4 +195,7 @@
   <data name="EnableLastFmNotification" xml:space="preserve">
     <value>Activer la notification Last.fm</value>
   </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Vider</value>
+  </data>
 </root>

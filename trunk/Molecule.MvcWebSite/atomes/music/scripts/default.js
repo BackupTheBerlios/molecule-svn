@@ -11,24 +11,25 @@ $(document).ready(function() {
     $("#playlistTable").keydown(playlist_onkeydown);
     $("#playAllButton").click(function() { songsView_onclick('playAll'); });
     $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
+    $("#emptyAction").click(emptyPlaylist);
     //$("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
     manualSearch = false;
-    
+
     $("#search").keyup(function(event) {
-    if (event.keyCode == 13) {
+        if (event.keyCode == 13) {
             $.historyLoad($("#search").attr("value"));
         }
     });
-    
+
     $(".songInfo").hide();
 
     // Initialize history plugin.
     // The callback is called at once by present location.hash.
     $.historyInit(pageload, "Player");
-    
+
     retreiveAlbumsAndArtists();
-    
+
     init();
 });
 
@@ -367,6 +368,15 @@ function formatTime(timeInMilliseconds)
     var minutesString = (minutes >= 10 ? "" : "0") + minutes;
     var secondsString = (seconds >= 10 ? "" : "0") + seconds;
     return minutesString + ":" + secondsString;
+}
+
+function emptyPlaylist() {
+    var nbSongs = playlist.length;
+    playlist = new Array();
+    while (nbSongs > 0) {
+        playlistView.deleteRow(0);
+        nbSongs--;
+    }
 }
 
 function playlist_onkeydown(event)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -287,6 +287,7 @@
     <Content Include="App_GlobalResources\webmusic.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\Common.resx">
       <SubType>Designer</SubType>
@@ -311,6 +312,7 @@
     <Content Include="App_GlobalResources\webmusic.fr.resx">
       <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>webmusic.fr.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Themes\bloup\images\audio-volume-high.png" />
     <Content Include="Themes\bloup\images\audio-volume-low.png" />
@@ -412,7 +414,6 @@
   <ItemGroup>
     <Folder Include="atomes\template\Data\" />
     <Folder Include="logs\" />
-    <Folder Include="Themes\gurinu\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

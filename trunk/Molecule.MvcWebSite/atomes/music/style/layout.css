@@ -143,5 +143,10 @@
 	display: none;
 }
 
+#empty
+{
+	margin-top:4px;
+	float:right;
+}
 
 

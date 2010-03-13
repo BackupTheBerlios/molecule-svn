@@ -192,4 +192,7 @@
   <data name="EnableLastFmNotification" xml:space="preserve">
     <value>Enable Last.fm notification</value>
   </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
 </root>
