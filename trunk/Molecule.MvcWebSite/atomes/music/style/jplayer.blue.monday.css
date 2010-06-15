@@ -1,0 +1,72 @@
+/*
+ * Skin for jPlayer Plugin (jQuery JavaScript Library)
+ * http://www.happyworm.com/jquery/jplayer
+ *
+ * Skin Name: Blue Monday
+ *
+ * Copyright (c) 2010 Happyworm Ltd
+ * Dual licensed under the MIT and GPL licenses.
+ *  - http://www.opensource.org/licenses/mit-license.php
+ *  - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Author: Silvia Benvenuti
+ * Skin Version: 2.0
+ * Date: 29th April 2010
+ * Modified by Pascal Fresnay
+ */
+
+div.jp-progress {
+	/*position: absolute;
+	top:32px;*/
+	overflow:hidden;
+	display:inline-block;
+
+	width:122px;
+	height:6px;
+	margin-bottom:8px;
+}
+
+div.jp-load-bar {
+	background: grey;
+	width:0px;
+	height:15px;
+	cursor: pointer;
+}
+div.jp-play-bar {
+	width:0px;
+	height:15px;
+}
+
+
+div.jp-volume-bar {
+	/*position: absolute;
+	top:37px;*/
+	overflow:hidden;
+	display:inline-block;
+	margin-bottom:8px;
+	background: grey;
+	width:46px;
+	height:6px;
+	cursor: pointer;
+}
+div.jp-single-player div.jp-volume-bar {
+	left:292px;
+}
+div.jp-playlist-player div.jp-volume-bar {
+	left:314px;
+}
+div.jp-volume-bar-value {
+	width:0px;
+	height:6px;
+}
+div.jp-play-time,
+div.jp-total-time {
+	position: absolute;
+	top:29px;
+	width:122px;
+	font-size:.89em;
+	
+}
+div.jp-total-time {
+	text-align: right;
+}

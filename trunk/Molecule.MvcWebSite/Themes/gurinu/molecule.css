@@ -404,3 +404,8 @@ input[type="text"]
 	font-weight:bolder;
 	color:#85ac53;
 }
+
+.backgroundHighlight
+{
+	background:#85ac53;
+}

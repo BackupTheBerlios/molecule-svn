@@ -11,7 +11,7 @@ $(document).ready(function() {
     $("#playlistTable").keydown(playlist_onkeydown);
     $("#playAllButton").click(function() { songsView_onclick('playAll'); });
     $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
-    $("#emptyAction").click(emptyPlaylist);
+    $("#emptyAction").click(emptyPlaylist)
     //$("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
     manualSearch = false;
@@ -195,7 +195,7 @@ var playlistActionCellTemplate = "<a class=\"listRemove\" onclick=\"playlistItem
 
 function init()
 {
-    soundManager.url = "/atomes/music/";
+    //soundManager.url = "/atomes/music/";
     playlist = new Array();
     playlistView = document.getElementById("playlistTable");
     playlistPanel = document.getElementById("playlistPanel"); 
@@ -357,7 +357,7 @@ function onLoad()
 
 function updateCurrentVolume(volume)
 {
-   currentVolumeLabel.innerHTML = getVolume() + "%";
+   //currentVolumeLabel.innerHTML = getVolume() + "%";
 }
 
 function formatTime(timeInMilliseconds)

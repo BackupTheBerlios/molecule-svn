@@ -431,3 +431,8 @@ input[type="text"]
 	font-weight:bolder;
 	color:#f57900;
 }
+
+.backgroundHighlight
+{
+	background:#f57900;
+}

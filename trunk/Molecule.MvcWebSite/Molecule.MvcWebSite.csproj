@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F58F7C4C-1B4A-40AC-8722-61FAC481B24B}</ProjectGuid>
-    <ProjectTypeGuids>{603C0E0B-DB56-11DC-BE95-000D561079B0};{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{603C0E0B-DB56-11DC-BE95-000D561079B0};{349C5851-65DF-11DA-9384-00065B846F21}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Molecule.MvcWebSite</RootNamespace>
@@ -238,6 +238,10 @@
     <Content Include="atomes\documents\Atome.xml" />
     <Content Include="atomes\documents\Views\Folder\Display.aspx" />
     <Content Include="atomes\documents\Views\Preferences\Index.aspx" />
+    <Content Include="atomes\music\Jplayer.swf" />
+    <Content Include="atomes\music\scripts\jplayer.js" />
+    <Content Include="atomes\music\scripts\jquery.jplayer.min.js" />
+    <Content Include="atomes\music\style\jplayer.blue.monday.css" />
     <Content Include="atomes\template\Atome.xml" />
     <Content Include="atomes\template\README.txt" />
     <Content Include="atomes\template\Views\Default\Index.aspx" />
