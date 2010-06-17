@@ -20,7 +20,7 @@ $(document).ready(function() {
 	})
 	.jPlayer("onSoundComplete", function() {
 	    onEnded();
-	});
+	}); 
 });
 
 function playSong(songUrl) {

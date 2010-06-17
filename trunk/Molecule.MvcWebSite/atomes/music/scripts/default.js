@@ -11,7 +11,12 @@ $(document).ready(function() {
     $("#playlistTable").keydown(playlist_onkeydown);
     $("#playAllButton").click(function() { songsView_onclick('playAll'); });
     $("#enqueueAllButton").click(function() { songsView_onclick('enqueueAll'); });
-    $("#emptyAction").click(emptyPlaylist)
+    $("#emptyAction").click(emptyPlaylist);
+    $("#volumeBar").click(volumeBar_onclick);
+    $("#volumeBarValue").click(volumeBar_onclick);
+    $("#loadBar").click(loadBar_onclick);
+    $("#playBar").click(loadBar_onclick);
+    
     //$("#downloadAllButton").click(function() { songsView_onclick('downloadAll'); });
 
     manualSearch = false;
@@ -195,7 +200,7 @@ var playlistActionCellTemplate = "<a class=\"listRemove\" onclick=\"playlistItem
 
 function init()
 {
-    //soundManager.url = "/atomes/music/";
+    soundManager.url = "/atomes/music/";
     playlist = new Array();
     playlistView = document.getElementById("playlistTable");
     playlistPanel = document.getElementById("playlistPanel"); 
@@ -207,10 +212,9 @@ function init()
     currentSongTitleLabel = document.getElementById("currentSongTitleLabel");
     currentSongPositionLabel = document.getElementById("currentSongPositionLabel");
     currentVolumeLabel = document.getElementById("currentVolumeLabel");
-    updateCurrentVolume(getVolume());
     errorLoadingMessage = document.getElementById("fileNotFoundPanel");
     songAddedToPlaylist = document.getElementById("fileAddedToPlaylistPanel");
-    updateCurrentVolume(getVolume());
+    updateCurrentVolume();
 }
 
 function playSelectedSong()
@@ -340,10 +344,7 @@ function onPause()
     pauseButton.style.display = "none";
 }
 
-function updateCurrentPosition(currentPosition, duration)
-{
-    currentSongPositionLabel.innerHTML = formatTime(currentPosition) + " / " + formatTime(duration);
-}
+
 
 function onLoad()
 {
@@ -355,8 +356,16 @@ function onLoad()
        }
 }
 
-function updateCurrentVolume(volume)
-{
+function updateCurrentPosition(currentPosition, duration, estimateDuration) {
+    $("#totalTimeLabel").text(formatTime(estimateDuration));
+    $("#playTimeLabel").text(formatTime(currentPosition));
+    $("#loadBar").width((100 * duration / estimateDuration) + "%");
+    $("#playBar").width((100 * currentPosition / estimateDuration) + "%");
+    //currentSongPositionLabel.innerHTML = formatTime(currentPosition) + " / " + formatTime(duration);
+}
+
+function updateCurrentVolume() {
+    $("#volumeBarValue").width(getVolume() + "%");
    //currentVolumeLabel.innerHTML = getVolume() + "%";
 }
 
@@ -474,6 +483,22 @@ function volumeUpButton_onclick() {
 function volumeDownButton_onclick() {
     volumeDown();
     updateCurrentVolume();
+}
+
+function volumeBar_onclick(e) {
+    var offset = $("#volumeBar").offset();
+    var x = e.pageX - offset.left;
+    var w = $("#volumeBar").width();
+    var p = 100 * x / w;
+    setVolume(p);
+    updateCurrentVolume();
+}
+function loadBar_onclick(e) {
+    var offset = $("#progressBar").offset();
+    var x = e.pageX - offset.left;
+    var w = $("#progressBar").width();
+    var p = 100 * x / w;
+    setPosition(getEstimateDuration() * p / 100);
 }
 
 function playButton_onclick() {

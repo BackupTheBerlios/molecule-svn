@@ -22,7 +22,9 @@ function playSong(songUrl)
       onfinish: function() {onEnded();},
       onload: function() { onLoad(); },
       volume: currentVolume,
-      whileplaying: function() {updateCurrentPosition(currentSong.position, currentSong.duration);}
+      whileplaying: function() {
+        updateCurrentPosition(currentSong.position, currentSong.duration, currentSong.durationEstimate);
+      }
     });
     soundManager.setVolume("current", currentVolume);
     onPlay();
@@ -35,22 +37,32 @@ function getVolume()
 
 function volumeUp()
 {
-    currentVolume += volumeIncrement;
-    if(currentVolume > 100)
-        currentVolume = 100;
-    soundManager.defaultOptions.volume = currentVolume; // set global default volume for all sound objects
-    if(currentSong != null)
-        soundManager.setVolume("current", currentVolume);
+    setVolume(currentVolume + volumeIncrement);
 }
 
 function volumeDown()
 {
-    currentVolume -= volumeIncrement;
-    if(currentVolume < 0)
+    setVolume(currentVolume - volumeIncrement);
+}
+
+function setVolume(v) {
+    currentVolume = v;
+    if (currentVolume > 100)
+        currentVolume = 100;
+    if (currentVolume < 0)
         currentVolume = 0;
     soundManager.defaultOptions.volume = currentVolume;
-    if(currentSong != null)
+    if (currentSong != null)
         soundManager.setVolume("current", currentVolume);
+}
+
+function getEstimateDuration()
+{
+    return currentSong.durationEstimate;
+}
+
+function setPosition(p) {
+    currentSong.setPosition(p);
 }
 
 function resume()

@@ -36,10 +36,10 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <script type="text/javascript" src="../../../../Scripts/jquery-1.3.2.js"></script>
     <script type="text/javascript" src="../../../../Scripts/jquery.history.js"></script>
     <script type="text/javascript" src="/atomes/music/scripts/default.js"></script>
-    <script type="text/javascript" src="/atomes/music/scripts/jplayer.js"></script>
-    <script type="text/javascript" src="/atomes/music/scripts/jquery.jplayer.min.js"></script>
-    <%--<script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
-    <script type="text/javascript" src="/atomes/music/scripts/soundmanager2-nodebug-jsmin.js"></script>--%>
+<%--    <script type="text/javascript" src="/atomes/music/scripts/jplayer.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/jquery.jplayer.min.js"></script>--%>
+    <script type="text/javascript" src="/atomes/music/scripts/sm2player.js"></script>
+    <script type="text/javascript" src="/atomes/music/scripts/soundmanager2-nodebug-jsmin.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <div id="fileNotFoundPanel" class="informationPanel">
@@ -49,26 +49,25 @@ Inherits="System.Web.Mvc.ViewPage<Molecule.MvcWebSite.atomes.music.Data.IndexDat
     <div id="fileAddedToPlaylistPanel" class="informationPanel">
         <%=Resources.webmusic.SongsAdded %>
     </div>
-    <div id="jquery_jplayer"></div> 
+<%--    <div id="jquery_jplayer"></div> --%>
     <div id="playerControls">
-        
 		<img id="previousButton" alt="Precedent" src="<%= Url.Theme("images/media-skip-backward.png")%>" />&nbsp;
         <img id="playButton" alt="Jouer" src="<%= Url.Theme("images/media-playback-start.png")%>" />
         <img id="pauseButton" alt="Pause" src="<%= Url.Theme("images/media-playback-pause.png")%>" />
         <img id="nextButton" alt="Suivant" src="<%= Url.Theme("images/media-skip-forward.png")%>" />
         <img id="volumeDownButton" alt="Diminuer volume" src="<%= Url.Theme("images/audio-volume-low.png")%>" />
-        <div id="jplayer_volume_bar" class="jp-volume-bar"> 
-            <div id="jplayer_volume_bar_value" class="jp-volume-bar-value backgroundHighlight"></div> 
+        <div id="volumeBar" class="jp-volume-bar"> 
+            <div id="volumeBarValue" class="jp-volume-bar-value backgroundHighlight"></div> 
         </div>
         <img id="volumeUpButton" alt="Augmenter volume" src="<%= Url.Theme("images/audio-volume-high.png")%>" />
-        <div class="jp-progress"> 
-	        <div id="jplayer_load_bar" class="jp-load-bar"> 
-	            <div id="jplayer_play_bar" class="jp-play-bar backgroundHighlight"></div>     
+        <div id="progressBar" class="jp-progress"> 
+	        <div id="loadBar" class="jp-load-bar"> 
+	            <div id="playBar" class="jp-play-bar backgroundHighlight"></div>     
 	        </div> 
-	        <div id="jplayer_play_time" class="jp-play-time"></div> 
-             <div id="jplayer_total_time" class="jp-total-time"></div> 
+	        <div id="playTimeLabel" class="jp-play-time">00:00</div> 
+             <div id="totalTimeLabel" class="jp-total-time">00:00</div> 
         </div> 
-	        </br>
+	        <br />
         <div id="currentSongTitleLabel" class="songInfo"></div>
         <div id="currentSongArtistLabel" class="songInfo"></div>
         <div id="coverArt" class="songInfo"></div>
