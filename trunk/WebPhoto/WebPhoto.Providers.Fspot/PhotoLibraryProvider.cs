@@ -183,7 +183,7 @@ namespace WebPhoto.Providers.Fspot
 				
 				while(reader.Read()) {
 					string photoId = reader.GetValue (0).ToString();
-					string photoUri = reader.GetValue(1).ToString() + reader.GetValue(2).ToString();
+					string photoUri = System.IO.Path.Combine(reader.GetValue(1).ToString(), reader.GetValue(2).ToString());
 					string photoTime = reader.GetValue(3).ToString();
 					log.Debug("photoDescription");
 					string photoDescription = reader.GetValue(4).ToString();					
